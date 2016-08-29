@@ -1,3 +1,4 @@
+import os
 import MFRC522
 import signal
 import subprocess

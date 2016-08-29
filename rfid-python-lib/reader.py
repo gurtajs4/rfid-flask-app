@@ -1,14 +1,21 @@
 import os
+import time
+import datetime
 import MFRC522
 import signal
+import sessionRepository
+from sessionInfo import SessionInfo
 
 continue_reading = True
 MIFAREReader = MFRC522.MFRC522()
+last_sessionId = 0
+current_userId = 0
+current_userTTL = 0
 
 dataStorePath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),"data/tagReadings.txt")
 if not os.path.isfile(dataStorePath):
-    dataStore = open(dataStorePath, 'w')
-    dataStore.close()
+    with open(dataStorePath, 'w') as dataStore:
+        dataStore.write('')
 
 def end_read(signal, frame):
     global continue_reading
@@ -19,11 +26,21 @@ def end_read(signal, frame):
 signal.signal(signal.SIGINT, end_read)
 
 while continue_reading:
-    (status,TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
+    (status, TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
     if status == MIFAREReader.MI_OK:
-        print "Card detected"
-    (status,backData) = MIFAREReader.MFRC522_Anticoll()
-    if status == MIFAREReader.MI_OK:
-        dataStore = open(dataStorePath, 'a')
-        dataStore.write("Card read UID: "+str(backData[0])+","+str(backData[1])+","+str(backData[2])+","+str(backData[3])+","+str(backData[4])+"\n")
-        dataStore.close()
+        print "Tag detected"
+        (status, backData) = MIFAREReader.MFRC522_Anticoll()
+        if current_userId > 0:
+            if backData != current_userId:
+                session = SessionInfo(last_sessionId, current_userId, datetime.datetime.now(), int(backData))
+                sessionService = sessionRepository.SessionRepository()
+                sessionService.storeSession(session)
+                current_userId = 0
+                current_userTTL = 0
+        else:
+            current_userTTL = time.time() + 120
+            current_userId = int(backData)
+    if current_userTTL == time.time():
+        print "2 mins elapsed.\nPlease register your ID card again..."
+        current_userId = 0
+        current_userTTL = 0
