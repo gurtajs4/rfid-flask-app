@@ -35,14 +35,18 @@ while continue_reading:
         (status, backData) = MIFAREReader.MFRC522_Anticoll()
         if current_userId > 0:
             if backData != current_userId:
-                session = SessionInfo(last_sessionId, current_userId, datetime.datetime.now(), int(backData))
+                key_id = int(str(backData[0])+str(backData[1])+str(backData[2])+str(backData[3])+str(backData[4]))
+                session = SessionInfo(session_id=last_sessionId,
+                                      user_id=current_userId,
+                                      time_stamp=datetime.datetime.now(),
+                                      key_id=key_id)
                 sessionService = SessionRepository(data_storage_path=dataStorePath)
                 sessionService.store_session(session)
                 current_userId = 0
                 current_userTTL = 0
         else:
             current_userTTL = time.time() + 120
-            current_userId = int(''.join(backData))
+            current_userId = int(str(backData[0])+str(backData[1])+str(backData[2])+str(backData[3])+str(backData[4]))
     if current_userTTL == time.time():
         print "2 minutes elapsed.\nPlease register your ID card again..."
         current_userId = 0
