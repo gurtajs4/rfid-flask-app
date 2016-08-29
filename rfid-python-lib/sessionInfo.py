@@ -1,47 +1,47 @@
-# class for encapsulating rfid reader stored data logic
-class SessionInfo:
+# class for encapsulating RFID reader stored data logic
+class SessionInfo(object):
 
     # initialize SessionInfo object
-    def __init__(self, sessionId, userId, timeStamp, keyId=None):
-        self._sessionId = sessionId
-        self._userId = userId
-        self._timeStamp = timeStamp
-        if keyId is not None:
-            self._keyId = keyId
+    def __init__(self, session_id, user_id, time_stamp, key_id=None):
+        self._session_id = session_id
+        self._user_id = user_id
+        self._time_stamp = time_stamp
+        if key_id is not None:
+            self._key_id = key_id
 
     # unique identifier for reader session data
     @property
-    def sessionId(self):
-        return self._sessionId
+    def session_id(self):
+        return self._session_id
 
-    @sessionId.setter
-    def sessionId(self, sessionId):
-        self._sessionId = sessionId
+    @session_id.setter
+    def session_id(self, session_id):
+        self._session_id = session_id
 
     # unique identifier for detected key tag in this session
     @property
-    def keyId(self):
-        return self._keyId
+    def key_id(self):
+        return self._key_id
 
-    @keyId.setter
-    def tagId(self, keyId):
-        self._keyId = keyId
+    @key_id.setter
+    def key_id(self, key_id):
+        self._key_id = key_id
 
     # unique identifier for detected user data in this session
     @property
-    def userId(self):
-        return self._userId
+    def user_id(self):
+        return self._user_id
 
-    @userId.setter
-    def userId(self, userId):
-        self._userId = userId
+    @user_id.setter
+    def user_id(self, user_id):
+        self._user_id = user_id
 
     # date & time for this session
     @property
-    def timeStamp(self):
-        return self._timeStamp
+    def time_stamp(self):
+        return self._time_stamp
 
-    @timeStamp
-    def timeStamp(self, timeStamp):
-        self._timeStamp = timeStamp
+    @time_stamp.setter
+    def time_stamp(self, time_stamp):
+        self._time_stamp = time_stamp
 
