@@ -10,6 +10,12 @@ def session_hook_handler(parsed_dict):
                        key_id=parsed_dict['key_id'])
 
 
+# class that provides JSON serialization of SessionInfo object
+class SessionEncoder(json.JSONEncoder):
+    def default(self, o):
+        return o.__dict__
+
+
 # class that encapsulates session storage logic
 class SessionRepository(object):
 
@@ -36,4 +42,4 @@ class SessionRepository(object):
     # method for storing a session into storage file
     def store_session(self, session):
         with open(self.data_storage_path, 'a') as jsonStorage:
-            jsonStorage.write(json.dumps(session))
+            jsonStorage.write(json.dumps(obj=session, cls=SessionEncoder))
