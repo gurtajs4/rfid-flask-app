@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6eea2ab4-c2f3-430a-af04-24b48cd8ae60" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rfid-python-lib/reader.py" afterPath="$PROJECT_DIR$/rfid-python-lib/reader.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rfid-python-lib/sessionInfo.py" afterPath="$PROJECT_DIR$/rfid-python-lib/sessionInfo.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rfid-python-lib/sessionRepository.py" afterPath="$PROJECT_DIR$/rfid-python-lib/sessionRepository.py" />
     </list>
     <ignored path="rfid-flask-app.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -462,22 +459,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rfid-python-lib/reader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rfid-python-lib/sessionRepository.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="612">
           <caret line="36" column="8" selection-start-line="36" selection-start-column="8" selection-end-line="36" selection-end-column="8" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rfid-python-lib/reader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="652">
+          <caret line="45" column="38" selection-start-line="45" selection-start-column="38" selection-end-line="45" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>

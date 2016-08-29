@@ -42,7 +42,7 @@ while continue_reading:
                 current_userTTL = 0
         else:
             current_userTTL = time.time() + 120
-            current_userId = int(backData)
+            current_userId = int(''.join(backData))
     if current_userTTL == time.time():
         print "2 minutes elapsed.\nPlease register your ID card again..."
         current_userId = 0
