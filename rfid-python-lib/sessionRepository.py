@@ -1,4 +1,5 @@
 import json
+import datetime
 from sessionInfo import SessionInfo
 
 
@@ -13,6 +14,8 @@ def session_hook_handler(parsed_dict):
 # class that provides JSON serialization of SessionInfo object
 class SessionEncoder(json.JSONEncoder):
     def default(self, o):
+        if type(o) is datetime.datetime:
+            return {"time_span": str(o)}
         return o.__dict__
 
 
