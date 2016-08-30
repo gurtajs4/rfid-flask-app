@@ -50,7 +50,7 @@ while continue_reading:
         else:
             current_userTTL = time.time() + 120
             current_userId = int(str(backData[0])+str(backData[1])+str(backData[2])+str(backData[3])+str(backData[4]))
-            print "Key ID: " + str(current_userId)
+            print "User ID: " + str(current_userId)
     if current_userTTL == time.time():
         print "2 minutes elapsed.\nPlease register your ID card again..."
         current_userId = 0
