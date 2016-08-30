@@ -28,6 +28,8 @@ def end_read(signal, frame):
 
 signal.signal(signal.SIGINT, end_read)
 
+print "Reader active and awaiting input..."
+
 while continue_reading:
     (status, TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
     if status == MIFAREReader.MI_OK:
@@ -44,9 +46,11 @@ while continue_reading:
                 sessionService.store_session(session)
                 current_userId = 0
                 current_userTTL = 0
+                print "Key ID: " + str(key_id)
         else:
             current_userTTL = time.time() + 120
             current_userId = int(str(backData[0])+str(backData[1])+str(backData[2])+str(backData[3])+str(backData[4]))
+            print "Key ID: " + str(current_userId)
     if current_userTTL == time.time():
         print "2 minutes elapsed.\nPlease register your ID card again..."
         current_userId = 0

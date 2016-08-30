@@ -45,4 +45,4 @@ class SessionRepository(object):
     # method for storing a session into storage file
     def store_session(self, session):
         with open(self.data_storage_path, 'a') as jsonStorage:
-            jsonStorage.write(json.dumps(obj=session, cls=SessionEncoder))
+            json.dumps(session, jsonStorage, cls=SessionEncoder)
