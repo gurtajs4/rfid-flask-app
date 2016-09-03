@@ -1,6 +1,6 @@
 import os
-from models.sessionInfo import SessionInfo
-from services.sessionRepository import SessionRepository
+from .models.sessionInfo import SessionInfo
+from .services.sessionRepository import SessionRepository
 from flask import Flask, url_for
 from flask import jsonify
 from flask import Response
@@ -28,7 +28,9 @@ def api_get_sessions():
 @app.route('/api/sessions/<tagid>', methods=['GET'])
 def api_get_session(tagid):
     _tag = _service.get_session(tagid)
-    return jsonify(_tag)
+    resp = jsonify(_tag)
+    resp.status_code = 200
+    return resp
 
 
 if __name__ == '__main__':

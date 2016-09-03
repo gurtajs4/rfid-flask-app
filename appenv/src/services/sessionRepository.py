@@ -1,7 +1,9 @@
 import os
 import json
 import datetime
+from . import sessionHandler
 from .sessionHandler import SessionHandler
+# from .sessionHandler import SessionHandler
 
 
 # class that provides JSON serialization of SessionInfo object (transforms it into dict)
