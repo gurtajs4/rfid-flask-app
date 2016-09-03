@@ -5,16 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
-    <script src="../static/vendor/angular/angular.min.js"></script>
-    <script src="../static/vendor/angular/ui-bootstrap.min.js"></script>
-    <script src="../static/vendor/angular/ui-bootstrap-tpls.min.js"></script>
-    <script src="../static/vendor/angular-route/angular-route.min.js"></script>
-    <script src="../static/app/app.js"></script>
-    <script src="../static/app/config.js"></script>
-    <scrošt src="../static/navigation/nav.controller.js"></scrošt>
-    <script src="../static/app/sessions/session.service.js"></script>
-    <script src="../static/app/sessions/session-info.controller.js"></script>
-    <script src="../static/app/sessions/sessions.controller.js"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='bootstrap.min.css')}}"/>
+    <script src="{{url_for('static', filename='angular.min.js')}}"></script>
+    <script src="{{url_for('static', filename='angular-route.min.js')}}"></script>
+    <script src="{{url_for('static', filename='ui-bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='ui-bootstrap-tpls.min.js')}}"></script>
+    <script src="{{url_for('static', filename='app.js')}}"></script>
+    <script src="{{url_for('static', filename='config.js')}}"></script>
+    <script src="{{url_for('static', filename='nav.controller.js')}}"></script>
+    <script src="{{url_for('static', filename='session.service.js')}}"></script>
+    <script src="{{url_for('static', filename='session-info.controller.js')}}"></script>
+    <script src="{{url_for('static', filename='sessions.controller.js')}}"></script>
+    <!--<script src="../static/vendor/angular/angular.min.js"></script>-->
+    <!--<script src="../static/vendor/angular/ui-bootstrap.min.js"></script>-->
+    <!--<script src="../static/vendor/angular/ui-bootstrap-tpls.min.js"></script>-->
+    <!--<script src="../static/vendor/angular-route/angular-route.min.js"></script>-->
+    <!--<script src="../static/app/app.js"></script>-->
+    <!--<script src="../static/app/config.js"></script>-->
+    <!--<scrošt src="../static/navigation/nav.controller.js"></scrošt>-->
+    <!--<script src="../static/app/sessions/session.service.js"></script>-->
+    <!--<script src="../static/app/sessions/session-info.controller.js"></script>-->
+    <!--<script src="../static/app/sessions/sessions.controller.js"></script>-->
 </head>
 <body ng-controller="NavController as navCtrl">
 <div ng-include="'navigation.html'">

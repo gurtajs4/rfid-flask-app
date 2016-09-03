@@ -10,13 +10,13 @@ function SessionService($http) {
         return $http.get('/api/sessions').then(function(response){
             return response.data;
         });
-    }
+    };
 
     function Session(session_id) {
         return $http.get('/api/sessions', session_id).then(function(response){
             return response.data;
         });
-    }
+    };
 }
 
 Sessions.$inject = ['$http'];
