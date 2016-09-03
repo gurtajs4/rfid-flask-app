@@ -1,8 +1,7 @@
 import os
 import json
 import datetime
-from sessionHandler import SessionHandler
-from ..models.sessionInfo import SessionInfo
+from .sessionHandler import SessionHandler
 
 
 # class that provides JSON serialization of SessionInfo object (transforms it into dict)
