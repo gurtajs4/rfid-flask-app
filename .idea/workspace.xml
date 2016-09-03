@@ -2,16 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6eea2ab4-c2f3-430a-af04-24b48cd8ae60" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/appenv/src/models/sessionInfo.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/appenv/src/static/app/users/users-list.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/appenv/src/templates/navigation.html" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/data/data.txt" afterPath="$PROJECT_DIR$/appenv/src/static/app/sessions/session-info.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appenv/src/__init__.py" afterPath="$PROJECT_DIR$/appenv/src/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appenv/src/static/app/app.js" afterPath="$PROJECT_DIR$/appenv/src/static/app/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appenv/src/templates/index.html" afterPath="$PROJECT_DIR$/appenv/src/templates/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rfid-python-lib/reader.py" afterPath="$PROJECT_DIR$/rfid-python-lib/reader.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rfid-python-lib/sessionRepository.py" afterPath="$PROJECT_DIR$/rfid-python-lib/sessionRepository.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appenv/src/services/sessionRepository.py" afterPath="$PROJECT_DIR$/appenv/src/services/sessionRepository.py" />
     </list>
     <ignored path="rfid-flask-app.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -36,8 +27,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -61,7 +52,6 @@
         <option value="$PROJECT_DIR$/rfid-python-lib/reader.py" />
         <option value="$PROJECT_DIR$/rfid-python-lib/sessionRepository.py" />
         <option value="$PROJECT_DIR$/appenv/src/services/__init__.py" />
-        <option value="$PROJECT_DIR$/appenv/src/services/sessionRepository.py" />
         <option value="$PROJECT_DIR$/appenv/src/__init__.py" />
         <option value="$PROJECT_DIR$/appenv/src/static/app/sessions/session.service.js" />
         <option value="$PROJECT_DIR$/appenv/src/static/app/sessions/sessions.controller.js" />
@@ -72,6 +62,8 @@
         <option value="$PROJECT_DIR$/appenv/src/static/app/navigation/nav.controller.js" />
         <option value="$PROJECT_DIR$/appenv/src/templates/navigation.html" />
         <option value="$PROJECT_DIR$/appenv/src/templates/index.html" />
+        <option value="$PROJECT_DIR$/appenv/src/services/sessionHandler.py" />
+        <option value="$PROJECT_DIR$/appenv/src/services/sessionRepository.py" />
       </list>
     </option>
   </component>
@@ -541,7 +533,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24925596" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -579,16 +571,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/appenv/src/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/appenv/src/static/app/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -808,16 +790,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/services/sessionRepository.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#9#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/appenv/src/models/sessionInfo.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -912,6 +884,24 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appenv/src/services/sessionRepository.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="550">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appenv/src/services/sessionHandler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="56" selection-start-line="10" selection-start-column="56" selection-end-line="10" selection-end-column="56" />
           <folding />
         </state>
       </provider>

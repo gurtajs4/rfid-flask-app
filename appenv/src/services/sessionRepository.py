@@ -1,15 +1,8 @@
 import os
 import json
 import datetime
+from sessionHandler import SessionHandler
 from ..models.sessionInfo import SessionInfo
-
-
-# method for hooking parsed json object into SessionInfo for usage in SessionRepository
-def session_hook_handler(parsed_dict):
-    return SessionInfo(session_id=parsed_dict['session_id'],
-                       user_id=parsed_dict['user_id'],
-                       time_stamp=parsed_dict['time_stamp'],
-                       key_id=parsed_dict['key_id'])
 
 
 # class that provides JSON serialization of SessionInfo object (transforms it into dict)
@@ -31,7 +24,7 @@ class SessionRepository(object):
         with open(self.data_storage_path, 'r', os.O_NONBLOCK) as jsonStorage:
             sessions = json.loads(jsonStorage)
             session = [value for key, value in sessions.iteritems() if value['session_id'] == session_id]
-            return session_hook_handler(session)
+            return SessionHandler.session_hook_handler(session)
 
     # method for getting all sessions from storage
     def get_sessions(self):
@@ -39,7 +32,7 @@ class SessionRepository(object):
             sessions_raw = json.loads(jsonStorage)
             sessions = []
             for key, value in sessions_raw.iteritems():
-                sessions.append(session_hook_handler(value))
+                sessions.append(SessionHandler.session_hook_handler(value))
             return sessions
 
     # method for storing a session into storage file
