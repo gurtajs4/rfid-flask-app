@@ -5,4 +5,4 @@
         'ngRoute',
         'ui.bootstrap'
     ])
-}();)
+})();
