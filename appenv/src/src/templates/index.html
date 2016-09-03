@@ -31,7 +31,7 @@
 <div ng-include="{{url_for('static', filename='navigation.html')}}">
     #navigation...
 </div>
-<h1 ng-init="temp='helloworld'">{{ {{temp}} }}</h1>
+<h1 ng-init="temp='helloworld'">{% raw %} {{temp}} {% endraw %}</h1>
 <div ng-view></div>
 <div>
     #footer...
