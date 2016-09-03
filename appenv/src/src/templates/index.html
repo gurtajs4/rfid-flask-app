@@ -28,12 +28,13 @@
     <!--<script src="../static/app/sessions/sessions.controller.js"></script>-->
 </head>
 <body ng-controller="NavController as navCtrl">
-<div ng-include="'navigation.html'">
-    #navigation...
+<div ng-include="{{url_for('static', filename='navigation.html')}}">
+    {{#navigation...}}
 </div>
+<h1 ng-init="temp='helloworld'">{{ {{temp}} }}</h1>
 <div ng-view></div>
 <div>
-    #footer...
+    {{#footer...}}
 </div>
 </body>
 </html>
