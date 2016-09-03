@@ -1,15 +1,16 @@
 from .. import app
-# import os
-from .. import data_storage_path
+import os
 from ..services.sessionRepository import SessionRepository
 from flask import jsonify
 
+data_storage_path = os.path.join(os.path.dirname  # /rfid-flask-app
+                                 (os.path.dirname  # /rfid-flask-app/appenv
+                                  (os.path.dirname  # /rfid-flask-app/appenv/src
+                                   (os.path.dirname  # /rfid-flask-app/appenv/src/src
+                                    (os.path.dirname  # /rfid-flask-app/appenv/src/src/views
+                                     (os.path.abspath(__file__)))), "data/tagReadings.txt")))
 
-# data_root_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "data")
-data_store_path = data_storage_path
-
-
-_service = SessionRepository(data_storage_path=data_store_path)
+_service = SessionRepository(data_storage_path=data_storage_path)
 
 
 @app.route('/api', methods=['GET'])
