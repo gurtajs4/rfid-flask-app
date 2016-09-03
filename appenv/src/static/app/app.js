@@ -1,5 +1,8 @@
 (function(){
     'use-strict';
 
-    angular.module('appMain')
+    angular.module('appMain', [
+        'ngRoute',
+        'ui.bootstrap'
+    ])
 }();)

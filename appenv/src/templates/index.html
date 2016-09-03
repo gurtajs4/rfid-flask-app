@@ -11,9 +11,13 @@
     <script src="../static/vendor/angular-route/angular-route.min.js"></script>
     <script src="../static/app/app.js"></script>
     <script src="../static/app/config.js"></script>
+    <scrošt src="../static/navigation/nav.controller.js"></scrošt>
+    <script src="../static/app/sessions/session.service.js"></script>
+    <script src="../static/app/sessions/session-info.controller.js"></script>
+    <script src="../static/app/sessions/sessions.controller.js"></script>
 </head>
-<body>
-<div>
+<body ng-controller="NavController as navCtrl">
+<div ng-include="'navigation.html'">
     #navigation...
 </div>
 <div ng-view></div>

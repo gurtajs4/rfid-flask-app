@@ -1,7 +1,7 @@
 import os
 import json
 import datetime
-from sessionInfo import SessionInfo
+from ..models.sessionInfo import SessionInfo
 
 
 # method for hooking parsed json object into SessionInfo for usage in SessionRepository
@@ -22,7 +22,6 @@ class SessionEncoder(json.JSONEncoder):
 
 # class that encapsulates session storage logic
 class SessionRepository(object):
-
     # initialize SessionRepository object for managing session storage
     def __init__(self, data_storage_path):
         self.data_storage_path = data_storage_path
