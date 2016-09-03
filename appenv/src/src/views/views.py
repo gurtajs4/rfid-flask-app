@@ -1,6 +1,6 @@
 from .. import app
 # import os
-from .... import data_storage_path
+from .. import data_storage_path
 from ..services.sessionRepository import SessionRepository
 from flask import jsonify
 
