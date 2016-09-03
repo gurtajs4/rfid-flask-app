@@ -1,4 +1,4 @@
-from . import app
+from .. import app
 import os
 from ..services.sessionRepository import SessionRepository
 from flask import jsonify
