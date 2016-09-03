@@ -1,7 +1,7 @@
-var appMain = angular.module('musicApp');
+var appMain = angular.module('appMain');
 
 var baseUrl = angular.element(document.querySelector('base')).attr('href');
-var appBaseUrl = baseUrl + "AngularApp/";
+var appBaseUrl = baseUrl + "app/";
 
 function config($routeProvider, $locationProvider) {
 

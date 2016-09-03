@@ -25,4 +25,4 @@ function SessionsController($location, sessionService) {
 }
 
 SessionsController.$inject = ['$location', 'sessionService'];
-angular.module('mainApp').controller('SessionsController', SessionsController);
+angular.module('appMain').controller('SessionsController', SessionsController);

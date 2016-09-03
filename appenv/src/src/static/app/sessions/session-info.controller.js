@@ -18,4 +18,4 @@ function SessionInfoController($routeParams, sessionService) {
 }
 
 SessionInfoController.$inject = ['$routeParams', 'sessionService'];
-angular.module('mainApp').controller('SessionInfoController', SessionInfoController);
+angular.module('appMain').controller('SessionInfoController', SessionInfoController);
