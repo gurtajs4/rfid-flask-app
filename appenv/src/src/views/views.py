@@ -8,7 +8,7 @@ data_storage_path = os.path.join(os.path.dirname  # /rfid-flask-app
                                   (os.path.dirname  # /rfid-flask-app/appenv/src
                                    (os.path.dirname  # /rfid-flask-app/appenv/src/src
                                     (os.path.dirname  # /rfid-flask-app/appenv/src/src/views
-                                     (os.path.abspath(__file__)))), "data/tagReadings.txt")))
+                                     (os.path.abspath(__file__)))))), "data/tagReadings.txt")
 
 _service = SessionRepository(data_storage_path=data_storage_path)
 
