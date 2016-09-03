@@ -1,13 +1,15 @@
 from .. import app
-import os
+# import os
+from .... import data_storage_path
 from ..services.sessionRepository import SessionRepository
 from flask import jsonify
 
 
-data_root_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "data")
+# data_root_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "data")
+data_store_path = data_storage_path
 
 
-_service = SessionRepository(data_storage_path=data_root_path)
+_service = SessionRepository(data_storage_path=data_store_path)
 
 
 @app.route('/api', methods=['GET'])
