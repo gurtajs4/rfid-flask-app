@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6eea2ab4-c2f3-430a-af04-24b48cd8ae60" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appenv/src/src/static/app/config.js" afterPath="$PROJECT_DIR$/appenv/src/src/static/app/config.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appenv/src/src/static/app/sessions/session-info.controller.js" afterPath="$PROJECT_DIR$/appenv/src/src/static/app/sessions/session-info.controller.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appenv/src/src/static/app/sessions/sessions.controller.js" afterPath="$PROJECT_DIR$/appenv/src/src/static/app/sessions/sessions.controller.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appenv/src/src/templates/index.html" afterPath="$PROJECT_DIR$/appenv/src/src/templates/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appenv/src/src/templates/navigation.html" afterPath="$PROJECT_DIR$/appenv/src/src/templates/navigation.html" />
     </list>
     <ignored path="rfid-flask-app.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -83,11 +82,12 @@
         <option value="$PROJECT_DIR$/appenv/src/src/static/app/app.js" />
         <option value="$PROJECT_DIR$/appenv/src/src/static/app/sessions/session-details.html" />
         <option value="$PROJECT_DIR$/appenv/src/src/static/app/sessions/session-list.html" />
-        <option value="$PROJECT_DIR$/appenv/src/src/templates/index.html" />
         <option value="$PROJECT_DIR$/appenv/src/src/static/app/config.js" />
         <option value="$PROJECT_DIR$/appenv/src/src/static/app/sessions/session.service.js" />
         <option value="$PROJECT_DIR$/appenv/src/src/static/app/sessions/session-info.controller.js" />
         <option value="$PROJECT_DIR$/appenv/src/src/static/app/sessions/sessions.controller.js" />
+        <option value="$PROJECT_DIR$/appenv/src/src/templates/index.html" />
+        <option value="$PROJECT_DIR$/appenv/src/src/templates/navigation.html" />
       </list>
     </option>
   </component>
@@ -822,22 +822,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/src/templates/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="12" selection-start-line="24" selection-start-column="12" selection-end-line="24" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/src/templates/navigation.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/appenv/src/src/static/app/sessions/session-list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -882,6 +866,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
           <caret line="24" column="1" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/templates/navigation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="14" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/templates/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="45" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
           <folding />
         </state>
       </provider>

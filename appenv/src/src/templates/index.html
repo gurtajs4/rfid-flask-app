@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html {% raw %} ng-app="appMain" {% endraw %} lang="en">
+<html ng-app="appMain" lang="en">
 <head>
     <base href="../static/app">
     <meta charset="UTF-8">
@@ -18,14 +18,12 @@
     <script src="{{url_for('static', filename='app/sessions/sessions.controller.js')}}"></script>
 </head>
 <body>
-{% raw %}
 <div ng-controller="NavController as navCtrl" ng-include="{{url_for('static', filename='app/navigation/navigation.html')}}">
     #navigation...
 </div>
-{% endraw %}
-{% raw %}
+
 <div ng-view></div>
-{% endraw %}
+
 <div>
     #footer...
 </div>
