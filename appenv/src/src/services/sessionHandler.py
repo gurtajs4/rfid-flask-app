@@ -1,5 +1,3 @@
-from .. import models
-from ..models import sessionInfo
 from ..models.sessionInfo import SessionInfo
 
 

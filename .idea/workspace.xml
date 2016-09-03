@@ -2,7 +2,64 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6eea2ab4-c2f3-430a-af04-24b48cd8ae60" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appenv/src/__init__.py" afterPath="$PROJECT_DIR$/appenv/src/__init__.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/appenv/src/runserver.py" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/appenv/src/src/__init__.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/appenv/src/services/__init__.py" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/.bowerrc" afterPath="$PROJECT_DIR$/appenv/src/src/.bowerrc" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/__init__.py" afterPath="$PROJECT_DIR$/appenv/src/src/models/__init__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/app.py" afterPath="$PROJECT_DIR$/appenv/src/src/views/views.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/bower.json" afterPath="$PROJECT_DIR$/appenv/src/src/bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/models/__init__.py" afterPath="$PROJECT_DIR$/appenv/src/src/services/__init__.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/models/sessionInfo.py" afterPath="$PROJECT_DIR$/appenv/src/src/models/sessionInfo.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/services/sessionHandler.py" afterPath="$PROJECT_DIR$/appenv/src/src/services/sessionHandler.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/services/sessionRepository.py" afterPath="$PROJECT_DIR$/appenv/src/src/services/sessionRepository.py" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/app/app.js" afterPath="$PROJECT_DIR$/appenv/src/src/static/app/app.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/app/config.js" afterPath="$PROJECT_DIR$/appenv/src/src/static/app/config.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/app/keys/key-details.html" afterPath="$PROJECT_DIR$/appenv/src/src/static/app/keys/key-details.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/app/keys/keys-list.html" afterPath="$PROJECT_DIR$/appenv/src/src/static/app/keys/keys-list.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/app/navigation/nav.controller.js" afterPath="$PROJECT_DIR$/appenv/src/src/static/app/navigation/nav.controller.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/app/sessions/session-details.html" afterPath="$PROJECT_DIR$/appenv/src/src/static/app/sessions/session-details.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/app/sessions/session-info.controller.js" afterPath="$PROJECT_DIR$/appenv/src/src/static/app/sessions/session-info.controller.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/app/sessions/session-list.html" afterPath="$PROJECT_DIR$/appenv/src/src/static/app/sessions/session-list.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/app/sessions/session.service.js" afterPath="$PROJECT_DIR$/appenv/src/src/static/app/sessions/session.service.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/app/sessions/sessions.controller.js" afterPath="$PROJECT_DIR$/appenv/src/src/static/app/sessions/sessions.controller.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/app/users/user-details.html" afterPath="$PROJECT_DIR$/appenv/src/src/static/app/users/user-details.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/app/users/users-list.html" afterPath="$PROJECT_DIR$/appenv/src/src/static/app/users/users-list.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular-bootstrap/.bower.json" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular-bootstrap/.bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular-bootstrap/.gitignore" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular-bootstrap/.gitignore" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular-bootstrap/.npmignore" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular-bootstrap/.npmignore" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular-bootstrap/README.md" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular-bootstrap/README.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular-bootstrap/bower.json" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular-bootstrap/bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular-bootstrap/index.js" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular-bootstrap/index.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular-bootstrap/package.json" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular-bootstrap/package.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular-bootstrap/ui-bootstrap-csp.css" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular-bootstrap/ui-bootstrap-csp.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular-bootstrap/ui-bootstrap-tpls.js" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular-bootstrap/ui-bootstrap-tpls.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular-bootstrap/ui-bootstrap.js" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular-bootstrap/ui-bootstrap.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular-bootstrap/ui-bootstrap.min.js" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular-bootstrap/ui-bootstrap.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular-route/.bower.json" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular-route/.bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular-route/LICENSE.md" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular-route/LICENSE.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular-route/README.md" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular-route/README.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular-route/angular-route.js" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular-route/angular-route.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular-route/angular-route.min.js" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular-route/angular-route.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular-route/angular-route.min.js.map" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular-route/angular-route.min.js.map" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular-route/bower.json" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular-route/bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular-route/index.js" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular-route/index.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular-route/package.json" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular-route/package.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular/.bower.json" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular/.bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular/LICENSE.md" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular/LICENSE.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular/README.md" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular/README.md" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular/angular-csp.css" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular/angular-csp.css" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular/angular.js" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular/angular.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular/angular.min.js" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular/angular.min.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular/angular.min.js.gzip" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular/angular.min.js.gzip" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular/angular.min.js.map" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular/angular.min.js.map" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular/bower.json" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular/bower.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular/index.js" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular/index.js" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/static/vendor/angular/package.json" afterPath="$PROJECT_DIR$/appenv/src/src/static/vendor/angular/package.json" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/templates/index.html" afterPath="$PROJECT_DIR$/appenv/src/src/templates/index.html" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/appenv/src/templates/navigation.html" afterPath="$PROJECT_DIR$/appenv/src/src/templates/navigation.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="rfid-flask-app.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -64,16 +121,26 @@
         <option value="$PROJECT_DIR$/appenv/src/models/__init__.py" />
         <option value="$PROJECT_DIR$/appenv/src/services/sessionHandler.py" />
         <option value="$PROJECT_DIR$/appenv/src/services/sessionRepository.py" />
-        <option value="$PROJECT_DIR$/appenv/src/__init__.py" />
         <option value="$PROJECT_DIR$/appenv/src/app.py" />
+        <option value="$PROJECT_DIR$/appenv/src/views.py" />
+        <option value="$PROJECT_DIR$/appenv/src/__init__.py" />
+        <option value="$PROJECT_DIR$/run.py" />
+        <option value="$PROJECT_DIR$/config.py" />
+        <option value="$PROJECT_DIR$/appenv/run.py" />
+        <option value="$PROJECT_DIR$/appenv/src/src/views/__init__.py" />
+        <option value="$PROJECT_DIR$/appenv/src/runserver.py" />
+        <option value="$PROJECT_DIR$/appenv/src/src/services/sessionHandler.py" />
+        <option value="$PROJECT_DIR$/appenv/src/src/services/sessionRepository.py" />
+        <option value="$PROJECT_DIR$/appenv/src/src/views/views.py" />
+        <option value="$PROJECT_DIR$/appenv/src/src/__init__.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="width" value="1296" />
+    <option name="height" value="1000" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -117,6 +184,7 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -134,24 +202,6 @@
               <option name="myItemId" value="rfid-flask-app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rfid-python-lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rfid-flask-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rfid-flask-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -203,165 +253,12 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rfid-flask-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rfid-flask-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="appenv" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rfid-flask-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rfid-flask-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="appenv" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rfid-flask-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rfid-flask-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="appenv" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sessions" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rfid-flask-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rfid-flask-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="appenv" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="static" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="navigation" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rfid-flask-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rfid-flask-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="appenv" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="services" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rfid-flask-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="rfid-flask-app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="appenv" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -371,15 +268,15 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\DevProjects\BitBucket\rfid-flask-app\appenv\src\src\views" />
+      <recent name="C:\DevProjects\BitBucket\rfid-flask-app\appenv\src" />
+      <recent name="C:\DevProjects\BitBucket\rfid-flask-app\appenv\src\src" />
+      <recent name="C:\DevProjects\BitBucket\rfid-flask-app\appenv" />
+      <recent name="C:\DevProjects\BitBucket\rfid-flask-app\appenv\src\templates" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\DevProjects\BitBucket\rfid-flask-app\appenv\src\services" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\DevProjects\BitBucket\rfid-flask-app\appenv\src\templates" />
-      <recent name="C:\DevProjects\BitBucket\rfid-flask-app\appenv\src\static\app\layout" />
-      <recent name="C:\DevProjects\BitBucket\rfid-flask-app\appenv\src\models" />
-      <recent name="C:\DevProjects\BitBucket\rfid-flask-app\appenv\src\static\app\users" />
-      <recent name="C:\DevProjects\BitBucket\rfid-flask-app\rfid-python-lib\MFRC522-python" />
     </key>
   </component>
   <component name="RunManager">
@@ -535,16 +432,16 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1296" height="1000" extended-state="7" />
     <editor active="false" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24925596" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24880762" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328341" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32949308" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.328341" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -573,41 +470,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/appenv/src/static/app/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/static/app/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/static/app/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/static/app/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rfid-python-lib/reader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rfid-python-lib/sessionRepository.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -623,7 +485,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/rfid-python-lib/MFRC522-python/reader.py" />
-    <entry file="file://$PROJECT_DIR$/appenv/src/__init__.py">
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -678,56 +540,42 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/.bowerrc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/static/vendor/angular/angular.js">
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/static/vendor/angular/angular.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/bower.json">
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/static/vendor/angular-bootstrap/ui-bootstrap-tpls.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/static/vendor/angular-bootstrap/ui-bootstrap-tpls.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/static/app/keys/keys-list.html">
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/static/app/keys/keys-list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="54" selection-start-line="2" selection-start-column="54" selection-end-line="2" selection-end-column="54" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/static/app/users/user-details.html">
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/static/app/users/user-details.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/static/app/keys/key-details.html">
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/static/app/keys/key-details.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
           <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/static/app/users/users-list.html">
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/static/app/users/users-list.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
@@ -766,11 +614,99 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="21" selection-start-line="22" selection-start-column="21" selection-end-line="22" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/static/app/sessions/session.service.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/static/app/sessions/sessions.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="6" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/static/app/sessions/session-info.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/static/app/navigation/nav.controller.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/static/app/sessions/session-list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="14" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/static/app/sessions/session-details.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/templates/navigation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appenv/config.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/static/app/app.js">
+    <entry file="file://$PROJECT_DIR$/appenv/run.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appenv/pip-selfcheck.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/.bowerrc">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/bower.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/static/app/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="7" column="5" selection-start-line="7" selection-start-column="5" selection-end-line="7" selection-end-column="5" />
@@ -778,63 +714,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/static/app/sessions/session.service.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/static/app/sessions/sessions.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="6" selection-start-line="23" selection-start-column="6" selection-end-line="23" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/static/app/config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/static/app/sessions/session-info.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="8" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/static/app/navigation/nav.controller.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/static/app/sessions/session-list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="14" selection-start-line="11" selection-start-column="14" selection-end-line="11" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/static/app/sessions/session-details.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="6" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/templates/index.html">
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="21" column="6" selection-start-line="21" selection-start-column="6" selection-end-line="21" selection-end-column="6" />
@@ -842,15 +722,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/templates/navigation.html">
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/static/app/config.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="6" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+        <state relative-caret-position="187">
+          <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/models/__init__.py">
+    <entry file="file://$PROJECT_DIR$/appenv/src/runserver.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/services/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -858,27 +746,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/services/sessionHandler.py">
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/services/sessionRepository.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/services/sessionRepository.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+        <state relative-caret-position="612">
+          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/services/__init__.py">
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/models/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -886,28 +764,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/models/sessionInfo.py">
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/models/sessionInfo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
+        <state relative-caret-position="255">
           <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/app.py">
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/views/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="40">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+        <state relative-caret-position="119">
+          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#17#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/__init__.py">
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/services/sessionHandler.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="0" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/views/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
         </state>
       </provider>
