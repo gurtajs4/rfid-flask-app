@@ -1,10 +1,9 @@
 import os
 from models.sessionInfo import SessionInfo
-from services.sessionRepository import session_hook_handler
 from services.sessionRepository import SessionRepository
-from flask import json
-from flask import Response
 from flask import Flask, url_for
+from flask import jsonify
+from flask import Response
 
 
 data_root_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))), "data")
@@ -21,15 +20,15 @@ def api_root():
 
 @app.route('/api/sessions', methods=['GET'])
 def api_get_sessions():
-    # return 'Listing all tagged info: '+str(_service.get_sessions())
-    return json.dumps(_service.api_get_sessions())
+    resp = jsonify(_service.get_sessions())
+    resp.status_code = 200
+    return resp
 
 
 @app.route('/api/sessions/<tagid>', methods=['GET'])
 def api_get_session(tagid):
-    _tag_raw = _service(tagid)
-    _tag = session_hook_handler(_tag_raw)
-    return json.dumps(_tag)
+    _tag = _service.get_session(tagid)
+    return jsonify(_tag)
 
 
 if __name__ == '__main__':
