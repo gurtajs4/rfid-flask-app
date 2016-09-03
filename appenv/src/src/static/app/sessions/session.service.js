@@ -19,5 +19,5 @@ function SessionService($http) {
     };
 }
 
-Sessions.$inject = ['$http'];
+SessionService.$inject = ['$http'];
 angular.module('appMain').service('sessionService', SessionService);
