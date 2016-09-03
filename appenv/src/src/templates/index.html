@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="appMain" lang="en">
+<html {% raw %} ng-app="appMain" {% raw %} lang="en">
 <head>
     <base href="../static/app">
     <meta charset="UTF-8">
@@ -16,23 +16,17 @@
     <script src="{{url_for('static', filename='session.service.js')}}"></script>
     <script src="{{url_for('static', filename='session-info.controller.js')}}"></script>
     <script src="{{url_for('static', filename='sessions.controller.js')}}"></script>
-    <!--<script src="../static/vendor/angular/angular.min.js"></script>-->
-    <!--<script src="../static/vendor/angular/ui-bootstrap.min.js"></script>-->
-    <!--<script src="../static/vendor/angular/ui-bootstrap-tpls.min.js"></script>-->
-    <!--<script src="../static/vendor/angular-route/angular-route.min.js"></script>-->
-    <!--<script src="../static/app/app.js"></script>-->
-    <!--<script src="../static/app/config.js"></script>-->
-    <!--<scrošt src="../static/navigation/nav.controller.js"></scrošt>-->
-    <!--<script src="../static/app/sessions/session.service.js"></script>-->
-    <!--<script src="../static/app/sessions/session-info.controller.js"></script>-->
-    <!--<script src="../static/app/sessions/sessions.controller.js"></script>-->
 </head>
 <body ng-controller="NavController as navCtrl">
 <div ng-include="{{url_for('static', filename='navigation.html')}}">
     #navigation...
 </div>
-<h1 ng-init="temp='helloworld'">{% raw %} {{temp}} {% endraw %}</h1>
+{% raw %}
+<h1 ng-init="temp='helloworld'">{{temp}}</h1>
+{% endraw %}
+{% raw %}
 <div ng-view></div>
+{% endraw %}
 <div>
     #footer...
 </div>
