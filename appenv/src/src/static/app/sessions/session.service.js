@@ -1,18 +1,18 @@
 function SessionService($http) {
     service = {
-        sessions: Sessions,
-        session: Session
+        sessions: sessions,
+        session: session
     }
 
     return service;
 
-    function Sessions() {
+    function sessions() {
         return $http.get('/api/sessions').then(function(response){
             return response.data;
         });
     };
 
-    function Session(session_id) {
+    function session(session_id) {
         return $http.get('/api/sessions', session_id).then(function(response){
             return response.data;
         });

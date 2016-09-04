@@ -1,21 +1,16 @@
 function SessionsController($location, sessionService) {
     self = this;
     service = sessionService;
-    _session_list = [];
 
-    self.get = get;
+    self.list = [];
     self.view = view;
 
     load();
 
     function load() {
         service.sessions().then(function(sessions){
-            _session_list = sessions;
+            self.list = sessions;
         });
-    };
-
-    function get() {
-        return _session_list;
     };
 
     function view(session_id) {
