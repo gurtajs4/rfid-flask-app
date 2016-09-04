@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6eea2ab4-c2f3-430a-af04-24b48cd8ae60" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appenv/src/src/services/sessionRepository.py" afterPath="$PROJECT_DIR$/appenv/src/src/services/sessionRepository.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appenv/src/src/templates/index.html" afterPath="$PROJECT_DIR$/appenv/src/src/templates/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/tagReadings.txt" afterPath="$PROJECT_DIR$/data/tagReadings.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rfid-python-lib/sessionRepository.py" afterPath="$PROJECT_DIR$/rfid-python-lib/sessionRepository.py" />
     </list>
     <ignored path="rfid-flask-app.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -40,7 +40,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/__init__.py" />
         <option value="$PROJECT_DIR$/rfid-python-lib/MFRC522-python/reader.py" />
         <option value="$PROJECT_DIR$/rfid-python-lib/stop-reader.py" />
         <option value="$PROJECT_DIR$/rfid-python-lib/sessionInfo.py" />
@@ -52,7 +51,6 @@
         <option value="$PROJECT_DIR$/appenv/src/static/app/users/user-details.html" />
         <option value="$PROJECT_DIR$/appenv/src/static/app/keys/key-details.html" />
         <option value="$PROJECT_DIR$/rfid-python-lib/reader.py" />
-        <option value="$PROJECT_DIR$/rfid-python-lib/sessionRepository.py" />
         <option value="$PROJECT_DIR$/appenv/src/static/app/sessions/session.service.js" />
         <option value="$PROJECT_DIR$/appenv/src/static/app/sessions/sessions.controller.js" />
         <option value="$PROJECT_DIR$/appenv/src/static/app/sessions/session-details.html" />
@@ -90,6 +88,8 @@
         <option value="$PROJECT_DIR$/appenv/src/src/static/app/sessions/sessions.controller.js" />
         <option value="$PROJECT_DIR$/appenv/src/src/static/app/sessions/session.service.js" />
         <option value="$PROJECT_DIR$/appenv/src/src/templates/index.html" />
+        <option value="$PROJECT_DIR$/data/tagReadings.txt" />
+        <option value="$PROJECT_DIR$/rfid-python-lib/sessionRepository.py" />
         <option value="$PROJECT_DIR$/appenv/src/src/services/sessionRepository.py" />
       </list>
     </option>
@@ -158,6 +158,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="rfid-flask-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rfid-python-lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rfid-flask-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="rfid-flask-app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="data" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -635,24 +653,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/data/tagReadings.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/rfid-python-lib/stop-reader.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rfid-python-lib/sessionRepository.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="619">
-          <caret line="44" column="0" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -823,14 +827,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/src/services/sessionRepository.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="26" column="63" selection-start-line="26" selection-start-column="63" selection-end-line="26" selection-end-column="63" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/appenv/src/src/static/app/config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -843,6 +839,30 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
           <caret line="21" column="18" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/data/tagReadings.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rfid-python-lib/sessionRepository.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="46" column="0" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/services/sessionRepository.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="43" column="33" selection-start-line="43" selection-start-column="33" selection-end-line="43" selection-end-column="33" />
           <folding />
         </state>
       </provider>
