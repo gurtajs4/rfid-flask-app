@@ -39,6 +39,6 @@ class SessionRepository(object):
     def store_session(self, session):
         with open(self.data_storage_path, 'a') as jsonStorage:
             json.dumps(session, jsonStorage, cls=SessionEncoder)
-            jsonStorage.write('{}\n')
-            jsonStorage.flush()
-            os.fsync(jsonStorage)
+            # jsonStorage.write('{}\n')
+            # jsonStorage.flush()
+            # os.fsync(jsonStorage)
