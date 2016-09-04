@@ -1,7 +1,6 @@
 var appMain = angular.module('appMain');
 
-var baseUrl = angular.element(document.querySelector('base')).attr('href');
-var appBaseUrl = baseUrl + "app/";
+var appBaseUrl = angular.element(document.querySelector('base')).attr('href');
 
 function config($routeProvider, $locationProvider) {
 
