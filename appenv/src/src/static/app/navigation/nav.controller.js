@@ -14,4 +14,4 @@ function NavController() {
     };
 }
 
-angular.module('mainApp').controller('NavController', NavController);
+angular.module('appMain').controller('NavController', NavController);
