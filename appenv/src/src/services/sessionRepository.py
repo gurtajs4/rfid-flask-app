@@ -22,14 +22,14 @@ class SessionRepository(object):
     def get_session(self, session_id):
         # with open(self.data_storage_path, 'r', os.O_NONBLOCK) as jsonStorage:
         with open(self.data_storage_path, 'r') as jsonStorage:
-            sessions = json.loads(jsonStorage)
+            sessions = json.loads(jsonStorage.read())
             session = [value for key, value in sessions.iteritems() if value['session_id'] == session_id]
             return SessionHandler.session_hook_handler(session)
 
     # method for getting all sessions from storage
     def get_sessions(self):
         with open(self.data_storage_path, 'r') as jsonStorage:
-            sessions_raw = json.loads(jsonStorage)
+            sessions_raw = json.loads(jsonStorage.read())
             sessions = []
             for key, value in sessions_raw.iteritems():
                 sessions.append(SessionHandler.session_hook_handler(value))
