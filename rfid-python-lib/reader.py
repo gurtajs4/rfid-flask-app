@@ -32,8 +32,8 @@ print "Reader active and awaiting input..."
 while continue_reading:
     if current_userTTL == time.time():
         print "2 minutes elapsed.\nPlease register your ID card again..."
-        current_userId = 0
-        current_userTTL = 0
+        current_userId = -1
+        current_userTTL = -1
         continue
     (status, TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
     if status == MIFAREReader.MI_OK:

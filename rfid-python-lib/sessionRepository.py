@@ -47,9 +47,9 @@ class SessionRepository(object):
 
     # method for storing a session into storage file
     def store_session(self, session):
-        # with open(self.data_storage_path, 'a', os.O_NONBLOCK) as jsonStorage:
-        with open(self.data_storage_path, 'a') as jsonStorage:
-            json.dumps(session, jsonStorage, cls=SessionEncoder)
+        sessions = self.get_sessions()
+        with open(self.data_storage_path, 'w') as jsonStorage:
+            json.dumps(sessions, jsonStorage, cls=SessionEncoder)
             # jsonStorage.write('{}\n')
             # jsonStorage.flush()
             # os.fsync(jsonStorage)
