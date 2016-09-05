@@ -20,24 +20,30 @@ class SessionRepository(object):
 
     # method for getting session from storage by sessionId
     def get_session(self, session_id):
-        # with open(self.data_storage_path, 'r', os.O_NONBLOCK) as jsonStorage:
-        with open(self.data_storage_path, 'r') as jsonStorage:
-            sessions = json.loads(jsonStorage.read())
-            session = [value for key, value in sessions.iteritems() if value['session_id'] == session_id]
-            return SessionHandler.session_hook_handler(session)
+        if os.stat(self.data_storage_path).st_size > 0:
+            with open(self.data_storage_path, 'r') as jsonStorage:
+                sessions = json.loads(jsonStorage.read())
+                session = [value for key, value in sessions.iteritems() if value['session_id'] == session_id]
+                return SessionHandler.session_hook_handler(session)
+        else:
+            return None
 
     # method for getting all sessions from storage
     def get_sessions(self):
-        with open(self.data_storage_path, 'r') as jsonStorage:
-            sessions_raw = json.loads(jsonStorage.read())
-            sessions = []
-            for key, value in sessions_raw.iteritems():
-                sessions.append(SessionHandler.session_hook_handler(value))
-            return sessions
+        if os.stat(self.data_storage_path).st_size > 0:
+            with open(self.data_storage_path, 'r') as jsonStorage:
+                sessions_raw = json.loads(jsonStorage.read())
+                sessions = []
+                for key, value in sessions_raw.iteritems():
+                    sessions.append(SessionHandler.session_hook_handler(value))
+                return sessions
+        else:
+            return None
 
     # method for storing a session into storage file
     def store_session(self, session):
-        sessions = self.get_sessions()
+        sessions_raw = self.get_sessions()
+        sessions = [] if sessions_raw is None else sessions_raw
         with open(self.data_storage_path, 'w') as jsonStorage:
             json.dumps(sessions, jsonStorage, cls=SessionEncoder)
             # jsonStorage.write('{}\n')

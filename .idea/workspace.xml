@@ -846,18 +846,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/src/services/sessionRepository.py">
+    <entry file="file://$PROJECT_DIR$/rfid-python-lib/sessionRepository.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="40" column="62" selection-start-line="40" selection-start-column="62" selection-end-line="40" selection-end-column="62" />
+        <state relative-caret-position="459">
+          <caret line="30" column="38" selection-start-line="30" selection-start-column="38" selection-end-line="30" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rfid-python-lib/sessionRepository.py">
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/services/sessionRepository.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="33" column="53" selection-start-line="33" selection-start-column="53" selection-end-line="33" selection-end-column="53" />
+        <state relative-caret-position="646">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
           <folding />
         </state>
       </provider>
