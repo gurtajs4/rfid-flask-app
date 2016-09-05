@@ -17,11 +17,11 @@ dataStorePath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__f
 if not os.path.isfile(dataStorePath):
     with open(dataStorePath, 'w') as dataStore:
         dataStore.write('')
-    os.stat(dataStorePath, stat.S_IRWXU)
-    os.stat(dataStorePath, stat.S_IRGRP)
-    os.stat(dataStorePath, stat.S_IWGRP)
-    os.stat(dataStorePath, stat.S_IROTH)
-    os.stat(dataStorePath, stat.S_IWOTH)
+    os.chmod(dataStorePath, stat.S_IRWXU | stat.S_IRGRP | stat.S_IWGRP | stat.S_IROTH | stat.S_IWOTH)
+    # os.chmod(dataStorePath, stat.S_IRGRP)
+    # os.chmod(dataStorePath, stat.S_IWGRP)
+    # os.chmod(dataStorePath, stat.S_IROTH)
+    # os.chmod(dataStorePath, stat.S_IWOTH)
 
 
 def end_read(signal, frame):
