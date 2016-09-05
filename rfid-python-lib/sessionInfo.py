@@ -1,3 +1,16 @@
+import json
+import datetime
+
+
+# class that provides JSON serialization of SessionInfo object (transforms it into dict)
+class SessionEncoder(json.JSONEncoder):
+    def default(self, o):
+        if type(o) is datetime.datetime:
+            # return {"time_span": str(o)}
+            return str(o)
+        return o.__dict__
+
+
 # class for encapsulating RFID reader stored data logic
 class SessionInfo(object):
 
@@ -8,6 +21,10 @@ class SessionInfo(object):
         self._time_stamp = time_stamp
         if key_id is not None:
             self._key_id = key_id
+
+    # string representation of class instance (using json serialization format)
+    def __repr__(self):
+        return json.dumps(self, cls=SessionEncoder)
 
     # unique identifier for reader session data
     @property

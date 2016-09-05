@@ -1,27 +1,18 @@
 import os
 import json
-import datetime
 from sessionInfo import SessionInfo
-
-
-# method for hooking parsed json object into SessionInfo for usage in SessionRepository
-def session_hook_handler(parsed_dict):
-    return SessionInfo(session_id=parsed_dict['session_id'],
-                       user_id=parsed_dict['user_id'],
-                       time_stamp=parsed_dict['time_stamp'],
-                       key_id=parsed_dict['key_id'])
-
-
-# class that provides JSON serialization of SessionInfo object (transforms it into dict)
-class SessionEncoder(json.JSONEncoder):
-    def default(self, o):
-        if type(o) is datetime.datetime:
-            return {"time_span": str(o)}
-        return o.__dict__
 
 
 # class that encapsulates session storage logic
 class SessionRepository(object):
+
+    # method for hooking parsed json object into SessionInfo for usage in SessionRepository
+    @staticmethod
+    def session_hook_handler(parsed_dict):
+        return SessionInfo(session_id=parsed_dict['session_id'],
+                           user_id=parsed_dict['user_id'],
+                           time_stamp=parsed_dict['time_stamp'],
+                           key_id=parsed_dict['key_id'])
 
     # initialize SessionRepository object for managing session storage
     def __init__(self, data_storage_path):
@@ -33,7 +24,7 @@ class SessionRepository(object):
             with open(self.data_storage_path, 'r') as jsonStorage:
                 sessions = json.loads(jsonStorage.read())
                 session = [value for key, value in sessions.iteritems() if value['session_id'] == session_id]
-                return session_hook_handler(session)
+                return SessionRepository.session_hook_handler(session)
         return None
 
     # method for getting all sessions from storage
@@ -43,7 +34,7 @@ class SessionRepository(object):
                 sessions_raw = json.loads(jsonStorage.read())
                 sessions = []
                 for key, value in sessions_raw.iteritems():
-                    sessions.append(session_hook_handler(value))
+                    sessions.append(SessionRepository.session_hook_handler(value))
                 return sessions
         return None
 
@@ -52,6 +43,6 @@ class SessionRepository(object):
         sessions_raw = self.get_sessions()
         sessions = [] if sessions_raw is None else sessions_raw
         with open(self.data_storage_path, 'w') as jsonStorage:
-            json.dumps(sessions, jsonStorage, cls=SessionEncoder)
+            json.dumps(sessions, jsonStorage)
             jsonStorage.flush()
             os.fsync(jsonStorage)

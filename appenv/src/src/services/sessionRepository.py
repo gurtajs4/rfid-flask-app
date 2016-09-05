@@ -1,15 +1,6 @@
 import os
 import json
-import datetime
 from sessionHandler import SessionHandler
-
-
-# class that provides JSON serialization of SessionInfo object (transforms it into dict)
-class SessionEncoder(json.JSONEncoder):
-    def default(self, o):
-        if type(o) is datetime.datetime:
-            return {"time_span": str(o)}
-        return o.__dict__
 
 
 # class that encapsulates session storage logic
@@ -25,8 +16,7 @@ class SessionRepository(object):
                 sessions = json.loads(jsonStorage.read())
                 session = [value for key, value in sessions.iteritems() if value['session_id'] == session_id]
                 return SessionHandler.session_hook_handler(session)
-        else:
-            return None
+        return None
 
     # method for getting all sessions from storage
     def get_sessions(self):
@@ -37,14 +27,13 @@ class SessionRepository(object):
                 for key, value in sessions_raw.iteritems():
                     sessions.append(SessionHandler.session_hook_handler(value))
                 return sessions
-        else:
-            return None
+        return None
 
     # method for storing a session into storage file
     def store_session(self, session):
         sessions_raw = self.get_sessions()
         sessions = [] if sessions_raw is None else sessions_raw
         with open(self.data_storage_path, 'w') as jsonStorage:
-            json.dumps(sessions, jsonStorage, cls=SessionEncoder)
+            json.dumps(sessions, jsonStorage)
             jsonStorage.flush()
             os.fsync(jsonStorage)

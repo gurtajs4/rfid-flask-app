@@ -10,18 +10,14 @@ from sessionInfo import SessionInfo
 continue_reading = True
 MIFAREReader = MFRC522.MFRC522()
 last_sessionId = 0
-current_userId = 0
-current_userTTL = 0
+current_userId = -1
+current_userTTL = -1
 
 dataStorePath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data/tagReadings.txt")
 if not os.path.isfile(dataStorePath):
     with open(dataStorePath, 'w') as dataStore:
         dataStore.write('')
     os.chmod(dataStorePath, stat.S_IRWXU | stat.S_IRGRP | stat.S_IWGRP | stat.S_IROTH | stat.S_IWOTH)
-    # os.chmod(dataStorePath, stat.S_IRGRP)
-    # os.chmod(dataStorePath, stat.S_IWGRP)
-    # os.chmod(dataStorePath, stat.S_IROTH)
-    # os.chmod(dataStorePath, stat.S_IWOTH)
 
 
 def end_read(signal, frame):
@@ -36,7 +32,7 @@ signal.signal(signal.SIGINT, end_read)
 print "Reader active and awaiting input..."
 
 while continue_reading:
-    if current_userTTL == time.time():
+    if current_userTTL <= time.time() and not current_userId == -1:
         print "2 minutes elapsed.\nPlease register your ID card again..."
         current_userId = -1
         current_userTTL = -1
@@ -54,12 +50,15 @@ while continue_reading:
             if backData != current_userId:
                 key_id = int(
                     str(backData[0]) + str(backData[1]) + str(backData[2]) + str(backData[3]) + str(backData[4]))
+                last_sessionId += 1
                 session = SessionInfo(session_id=last_sessionId,
                                       user_id=current_userId,
                                       time_stamp=datetime.datetime.now(),
                                       key_id=key_id)
-                sessionService = SessionRepository(data_storage_path=dataStorePath)
-                sessionService.store_session(session)
+                # sessionService = SessionRepository(data_storage_path=dataStorePath)
+                # sessionService.store_session(session)
+                with open(dataStorePath, 'a') as f:
+                    f.write(str(session))
                 current_userId = 0
                 current_userTTL = 0
                 print "Key ID: " + str(key_id)
