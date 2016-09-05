@@ -42,6 +42,7 @@ class SessionRepository(object):
     def store_session(self, session):
         sessions_raw = self.get_sessions()
         sessions = [] if sessions_raw is None else sessions_raw
+        sessions.append(session)
         with open(self.data_storage_path, 'w') as jsonStorage:
             json.dumps(sessions, jsonStorage)
             jsonStorage.flush()
