@@ -46,6 +46,5 @@ class SessionRepository(object):
         sessions = [] if sessions_raw is None else sessions_raw
         with open(self.data_storage_path, 'w') as jsonStorage:
             json.dumps(sessions, jsonStorage, cls=SessionEncoder)
-            # jsonStorage.write('{}\n')
-            # jsonStorage.flush()
-            # os.fsync(jsonStorage)
+            jsonStorage.flush()
+            os.fsync(jsonStorage)
