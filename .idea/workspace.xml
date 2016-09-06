@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6eea2ab4-c2f3-430a-af04-24b48cd8ae60" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/tagReadings.txt" afterPath="$PROJECT_DIR$/data/tagReadings.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rfid-python-lib/reader.py" afterPath="$PROJECT_DIR$/rfid-python-lib/reader.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rfid-python-lib/sessionRepository.py" afterPath="$PROJECT_DIR$/rfid-python-lib/sessionRepository.py" />
     </list>
     <ignored path="rfid-flask-app.iws" />
@@ -89,9 +87,9 @@
         <option value="$PROJECT_DIR$/appenv/src/src/templates/index.html" />
         <option value="$PROJECT_DIR$/rfid-python-lib/sessionInfo.py" />
         <option value="$PROJECT_DIR$/appenv/src/src/services/sessionRepository.py" />
-        <option value="$PROJECT_DIR$/rfid-python-lib/sessionRepository.py" />
         <option value="$PROJECT_DIR$/rfid-python-lib/reader.py" />
         <option value="$PROJECT_DIR$/data/tagReadings.txt" />
+        <option value="$PROJECT_DIR$/rfid-python-lib/sessionRepository.py" />
       </list>
     </option>
   </component>
@@ -801,7 +799,17 @@
         <state relative-caret-position="68">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#9#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/rfid-python-lib/reader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="59" column="53" selection-start-line="59" selection-start-column="53" selection-end-line="59" selection-end-column="53" />
+          <folding>
+            <element signature="e#0#9#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -816,19 +824,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rfid-python-lib/sessionRepository.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="763">
-          <caret line="47" column="31" selection-start-line="47" selection-start-column="31" selection-end-line="47" selection-end-column="31" />
+        <state relative-caret-position="678">
+          <caret line="46" column="65" selection-start-line="46" selection-start-column="65" selection-end-line="46" selection-end-column="65" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rfid-python-lib/reader.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="59" column="53" selection-start-line="59" selection-start-column="53" selection-end-line="59" selection-end-column="53" />
-          <folding>
-            <element signature="e#0#9#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
