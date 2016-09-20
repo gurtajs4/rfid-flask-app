@@ -13,7 +13,9 @@ class SessionRepository(object):
     def get_session(self, session_id):
         if os.stat(self.data_storage_path).st_size > 0:
             with open(self.data_storage_path, 'r') as jsonStorage:
-                sessions = json.loads(jsonStorage.read())
+                sessions = []
+                for line in jsonStorage:
+                    sessions.append(json.loads(line))
                 session = [value for key, value in sessions.iteritems() if value['session_id'] == session_id]
                 return SessionHandler.session_hook_handler(session)
         return None
@@ -22,7 +24,9 @@ class SessionRepository(object):
     def get_sessions(self):
         if os.stat(self.data_storage_path).st_size > 0:
             with open(self.data_storage_path, 'r') as jsonStorage:
-                sessions_raw = json.loads(jsonStorage.read())
+                sessions_raw = []
+                for line in jsonStorage:
+                    sessions_raw.append(json.loads(line))
                 sessions = []
                 for key, value in sessions_raw.iteritems():
                     sessions.append(SessionHandler.session_hook_handler(value))
@@ -31,9 +35,8 @@ class SessionRepository(object):
 
     # method for storing a session into storage file
     def store_session(self, session):
-        sessions_raw = self.get_sessions()
-        sessions = [] if sessions_raw is None else sessions_raw
-        with open(self.data_storage_path, 'w') as jsonStorage:
-            json.dumps(sessions, jsonStorage)
+        with open(self.data_storage_path, 'a') as jsonStorage:
+            json.dump(session, jsonStorage)
+            jsonStorage.write('\n')
             jsonStorage.flush()
             os.fsync(jsonStorage)

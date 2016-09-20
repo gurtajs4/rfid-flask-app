@@ -23,9 +23,8 @@ def api_root():
 @app.route('/api/sessions', methods=['GET'])
 def api_get_sessions():
     data = _service.get_sessions()
-    jdata = json.dumps(data)
-    resp = Response(jdata, status=200, mimetype='application/json')
-    # resp.status_code = 200
+    session = json.dumps(data)
+    resp = Response(session, status=200, mimetype='application/json')
     return resp
 
 
