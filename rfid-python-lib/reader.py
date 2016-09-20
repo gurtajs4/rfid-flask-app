@@ -57,8 +57,6 @@ while continue_reading:
                                       key_id=key_id)
                 sessionService = SessionRepository(data_storage_path=dataStorePath)
                 sessionService.store_session(session)
-                # with open(dataStorePath, 'a') as f:
-                #     f.write(str(session))
                 current_userId = 0
                 current_userTTL = 0
                 print "Key ID: " + str(key_id)
