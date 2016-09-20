@@ -1,9 +1,10 @@
 from .. import app
 import os
 from ..services.sessionRepository import SessionRepository
-from flask import json
-from flask import Response
+from flask import jsonify
+from flask import request
 from flask import render_template
+from flask import Response
 
 data_storage_path = os.path.join(os.path.dirname  # /rfid-flask-app
                                  (os.path.dirname  # /rfid-flask-app/appenv
@@ -23,14 +24,23 @@ def api_root():
 @app.route('/api/sessions', methods=['GET'])
 def api_get_sessions():
     data = _service.get_sessions()
-    session = json.dumps(data)
-    resp = Response(session, status=200, mimetype='application/json')
-    return resp
-
-
-@app.route('/api/sessions/<tagid>', methods=['GET'])
-def api_get_session(tagid):
-    _tag = _service.get_session(tagid)
-    resp = json.dumps(_tag)
+    resp = jsonify(data)
     resp.status_code = 200
     return resp
+
+
+@app.route('/api/sessions/<session_id>', methods=['GET'])
+def api_get_session(session_id):
+    session = _service.get_session(session_id)
+    if session is not None:
+        resp = jsonify(session)
+        resp.status_code = 200
+        return resp
+    else:
+        message = {
+            'status': 404,
+            'message': 'Not Found' + request.url,
+        }
+        resp = jsonify(message)
+        resp.status_code = 404
+        return resp
