@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6eea2ab4-c2f3-430a-af04-24b48cd8ae60" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/appenv/src/src/services/sessionRepository.py" afterPath="$PROJECT_DIR$/appenv/src/src/services/sessionRepository.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/rfid-python-lib/.gitignore" afterPath="$PROJECT_DIR$/rfid-python-lib/.gitignore" />
     </list>
     <ignored path="rfid-flask-app.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -39,7 +41,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/rfid-python-lib/stop-reader.py" />
         <option value="$PROJECT_DIR$/appenv/src/.bowerrc" />
         <option value="$PROJECT_DIR$/appenv/src/static/app/app.js" />
         <option value="$PROJECT_DIR$/appenv/src/static/app/keys/users-list.html" />
@@ -88,6 +89,7 @@
         <option value="$PROJECT_DIR$/appenv/src/src/views/views.py" />
         <option value="$PROJECT_DIR$/rfid-python-lib/sessionRepository.py" />
         <option value="$PROJECT_DIR$/rfid-python-lib/reader.py" />
+        <option value="$PROJECT_DIR$/rfid-python-lib/.gitignore" />
         <option value="$PROJECT_DIR$/appenv/src/src/services/sessionRepository.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
       </list>
@@ -204,17 +206,17 @@
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/appenv/src/src/services/sessionRepository2.py" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\DevProjects\BitBucket\rfid-flask-app\appenv\src\src\services" />
-      <recent name="C:\DevProjects\BitBucket\rfid-flask-app\rfid-python-lib" />
-      <recent name="C:\DevProjects\BitBucket\rfid-flask-app\appenv\src\services" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\DevProjects\BitBucket\rfid-flask-app\appenv\src\src\models" />
       <recent name="C:\DevProjects\BitBucket\rfid-flask-app\appenv\src\src\static\app\navigation" />
       <recent name="C:\DevProjects\BitBucket\rfid-flask-app\appenv\src\src\views" />
       <recent name="C:\DevProjects\BitBucket\rfid-flask-app\appenv\src" />
       <recent name="C:\DevProjects\BitBucket\rfid-flask-app\appenv\src\src" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\DevProjects\BitBucket\rfid-flask-app\rfid-python-lib" />
+      <recent name="C:\DevProjects\BitBucket\rfid-flask-app\appenv\src\src\services" />
+      <recent name="C:\DevProjects\BitBucket\rfid-flask-app\appenv\src\services" />
     </key>
   </component>
   <component name="RunManager">
@@ -562,13 +564,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/rfid-python-lib/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/appenv/src/src/models/sessionInfo.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -695,14 +690,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/src/models/sessionInfo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/appenv/src/src/static/app/sessions/session.service.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -719,6 +706,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/appenv/src/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/appenv/src/src/views/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
@@ -727,26 +722,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/appenv/src/src/models/sessionInfo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/appenv/src/src/services/sessionRepository.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+        <state relative-caret-position="289">
+          <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="19" selection-start-line="0" selection-start-column="19" selection-end-line="0" selection-end-column="19" />
+        <state relative-caret-position="17">
+          <caret line="1" column="7" selection-start-line="1" selection-start-column="7" selection-end-line="1" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/appenv/src/.gitignore">
+    <entry file="file://$PROJECT_DIR$/rfid-python-lib/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="5" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+        <state relative-caret-position="17">
+          <caret line="1" column="16" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
           <folding />
         </state>
       </provider>
