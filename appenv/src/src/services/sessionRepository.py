@@ -15,7 +15,7 @@ class SessionRepository(object):
             with open(self.data_storage_path, 'r') as jsonStorage:
                 sessions = []
                 for line in jsonStorage:
-                    sessions.append(json.loads(line))
+                    sessions.append(SessionHandler.session_hook_handler(json.loads(line)))
                 for s in sessions:
                     if s.session_id == session_id:
                         return s
@@ -27,7 +27,7 @@ class SessionRepository(object):
             with open(self.data_storage_path, 'r') as jsonStorage:
                 sessions = []
                 for line in jsonStorage:
-                    sessions.append(json.loads(line))
+                    sessions.append(SessionHandler.session_hook_handler(json.loads(line)))
                 return sessions
         return None
 
