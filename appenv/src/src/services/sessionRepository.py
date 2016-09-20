@@ -16,20 +16,18 @@ class SessionRepository(object):
                 sessions = []
                 for line in jsonStorage:
                     sessions.append(json.loads(line))
-                session = [value for key, value in sessions.iteritems() if value['session_id'] == session_id]
-                return SessionHandler.session_hook_handler(session)
+                session = [s for s in sessions if s['session_id'] == session_id]
+                # return SessionHandler.session_hook_handler(session)
+                return session
         return None
 
     # method for getting all sessions from storage
     def get_sessions(self):
         if os.stat(self.data_storage_path).st_size > 0:
             with open(self.data_storage_path, 'r') as jsonStorage:
-                sessions_raw = []
-                for line in jsonStorage:
-                    sessions_raw.append(json.loads(line))
                 sessions = []
-                for key, value in sessions_raw.iteritems():
-                    sessions.append(SessionHandler.session_hook_handler(value))
+                for line in jsonStorage:
+                    sessions.append(json.loads(line))
                 return sessions
         return None
 
