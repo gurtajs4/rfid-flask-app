@@ -17,8 +17,9 @@ class SessionRepository(object):
                 for line in jsonStorage:
                     sessions.append(json.loads(line))
                 for s in sessions:
-                    if s['session_id'] == session_id:
-                        return s
+                    session = SessionHandler.session_hook_handler(s)
+                    if session.session_id == session_id:
+                        return session
         return None
 
     # method for getting all sessions from storage
