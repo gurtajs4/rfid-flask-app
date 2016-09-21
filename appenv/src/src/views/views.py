@@ -5,6 +5,8 @@ from flask import jsonify
 from flask import request
 from flask import render_template
 from flask import Response
+from flask import Markup
+
 
 data_storage_path = os.path.join(os.path.dirname  # /rfid-flask-app
                                  (os.path.dirname  # /rfid-flask-app/appenv
@@ -44,3 +46,25 @@ def api_get_session(session_id):
         resp = jsonify(message)
         resp.status_code = 404
         return resp
+
+
+@app.route('/api/testing', methods=['GET'])
+def api_testing():
+    data = _service.get_sessions()
+    for d in data:
+        if d.session_id == 2:
+            resp = jsonify(d)
+            resp.status_code = 200
+            return resp
+    message = {
+        'status': 404,
+        'message': 'Not Found ' + request.url,
+    }
+    resp = jsonify(message)
+    resp.status_code = 404
+    return resp
+
+
+@app.route('/api/test', methods=['GET'])
+def api_test():
+    return '<h1>Hello from Flask...</h1>'
