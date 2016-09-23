@@ -31,9 +31,9 @@ def api_get_sessions():
     return resp
 
 
-@app.route('/api/sessions/<session_id>', methods=['GET'])
-def api_get_session(session_id):
-    session = _service.get_session(session_id)
+@app.route('/api/sessions/<id>', methods=['GET'])
+def api_get_session(id):
+    session = _service.get_session(id)
     if session is not None:
         resp = jsonify(session)
         resp.status_code = 200
