@@ -51,17 +51,18 @@ def api_get_session(session_id):
 @app.route('/api/testing', methods=['GET'])
 def api_testing():
     data = _service.get_sessions()
+    resp = None
     for d in data:
         if d.session_id == 2:
             resp = jsonify(d)
             resp.status_code = 200
-            return resp
-    message = {
-        'status': 404,
-        'message': 'Not Found ' + request.url,
-    }
-    resp = jsonify(message)
-    resp.status_code = 404
+    if resp is None:
+        message = {
+            'status': 404,
+            'message': 'Not Found ' + request.url,
+        }
+        resp = jsonify(message)
+        resp.status_code = 404
     return resp
 
 

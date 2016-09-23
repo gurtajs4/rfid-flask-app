@@ -18,8 +18,10 @@
     <script src="{{url_for('static', filename='app/sessions/sessions.controller.js')}}"></script>
 </head>
 <body>
-<div ng-include="'../static/app/navigation/navigation.html'">
+<div ng-controller="NavController as navCtrl">
+    <div ng-include="'../static/app/navigation/navigation.html'">
     #navigation...
+</div>
 </div>
 
 <div ng-view></div>
