@@ -31,9 +31,9 @@ def api_get_sessions():
     return resp
 
 
-@app.route('/api/sessions/<id>', methods=['GET'])
-def api_get_session(id):
-    session = _service.get_session(id)
+@app.route('/api/sessions/<int:session_id>', methods=['GET'])
+def api_get_session(session_id):
+    session = _service.get_session(session_id)
     if session is not None:
         resp = jsonify(session)
         resp.status_code = 200
@@ -53,7 +53,7 @@ def api_testing():
     data = _service.get_sessions()
     resp = None
     for d in data:
-        if d.session_id == 2:
+        if d['session_id'] == 2:
             resp = jsonify(d)
             resp.status_code = 200
     if resp is None:
