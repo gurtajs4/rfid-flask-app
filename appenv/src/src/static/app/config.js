@@ -37,3 +37,6 @@ function config($routeProvider, $locationProvider) {
     }).
     otherwise({ redirectTo: '/sessions' });
 }
+
+config.$inject = ['$routeProvider', '$locationProvider'];
+appMain.config(config);
