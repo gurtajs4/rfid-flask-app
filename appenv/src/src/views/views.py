@@ -36,8 +36,6 @@ def api_get_session(session_id):
     session = _service.get_session(session_id)
     if session is not None:
         resp = Response(str(session), status=200, mimetype='application/json')
-        # resp = jsonify(session)
-        # resp.status_code = 200
         return resp
     else:
         message = {
@@ -47,25 +45,6 @@ def api_get_session(session_id):
         resp = jsonify(message)
         resp.status_code = 404
         return resp
-
-
-@app.route('/api/testing', methods=['GET'])
-def api_testing():
-    data = _service.get_sessions()
-    resp = None
-    for d in data:
-        if d['session_id'] == 2:
-            resp = Response(str(d), status=200, mimetype='application/json')
-            # resp = jsonify(d)
-            # resp.status_code = 200
-    if resp is None:
-        message = {
-            'status': 404,
-            'message': 'Not Found ' + request.url,
-        }
-        resp = jsonify(message)
-        resp.status_code = 404
-    return resp
 
 
 @app.route('/api/test', methods=['GET'])

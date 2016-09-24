@@ -11,10 +11,10 @@
 
         <div class="collapse navbar-collapse" ng-class="{'in': !navCollapsed}">
             <ul class="nav navbar-nav">
-                <li ng-class="{ active: navCtrl.isActive(0) }"><a ng-click="navCtrl.setActive(0)" ng-href="/">Home</a></li>
-                <li ng-class="{ active: navCtrl.isActive(1) }"><a ng-click="navCtrl.setActive(1)" ng-href="sessions">Sessions</a></li>
-                <li ng-class="{ active: navCtrl.isActive(2) }"><a ng-click="navCtrl.setActive(2)" ng-href="sessions/1">Session 1</a></li>
-                <li ng-class="{ active: navCtrl.isActive(3) }"><a ng-click="navCtrl.setActive(3)" ng-href="sessions/2">Session 2</a></li>
+                <li ng-class="{ active: navCtrl.isActive(0) }"><a ng-click="navCtrl.setActive(0); $event.preventDefault()" ng-href="/">Home</a></li>
+                <li ng-class="{ active: navCtrl.isActive(1) }"><a ng-click="navCtrl.setActive(1); $event.preventDefault()" ng-href="sessions">Sessions</a></li>
+                <li ng-class="{ active: navCtrl.isActive(2) }"><a ng-click="navCtrl.setActive(2); $event.preventDefault()" ng-href="sessions/1">Session 1</a></li>
+                <li ng-class="{ active: navCtrl.isActive(3) }"><a ng-click="navCtrl.setActive(3); $event.preventDefault()" ng-href="sessions/2">Session 2</a></li>
             </ul>
         </div>
     </div>
