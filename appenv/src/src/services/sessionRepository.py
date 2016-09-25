@@ -39,3 +39,14 @@ class SessionRepository(object):
             jsonStorage.write('\n')
             jsonStorage.flush()
             os.fsync(jsonStorage)
+
+    # method for getting last id
+    def get_last_id(self):
+        if os.stat(self.data_storage_path).st_size > 0:
+            with open(self.data_storage_path, 'r') as jsonStorage:
+                sessions = [SessionHandler.session_hook_handler(line) for line in jsonStorage.readlines()]
+                last_id = -1
+                for s in sessions:
+                    if last_id < s.session_id:
+                        last_id = s.session_id
+                return last_id

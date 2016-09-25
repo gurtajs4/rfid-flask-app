@@ -7,18 +7,18 @@ function SessionInfoController($routeParams, sessionService) {
     self.keyId = 0;
     self.timestamp = "";
 
+    load();
+
     function load(){
         id = self.sessionId;
         console.log("Session ID is " + id);
-        service.session(id).then(function(session){
+        return service.session(id).then(function(session){
             self.userId = session.user_id;
             self.keyId = session.key_id;
             self.timestamp = session.time_stamp;
             console.log("Session user ID is " + self.userId);
         });
     };
-
-    load();
 }
 
 SessionInfoController.$inject = ['$routeParams', 'sessionService'];

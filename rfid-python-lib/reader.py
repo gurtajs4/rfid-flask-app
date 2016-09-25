@@ -9,15 +9,19 @@ from sessionInfo import SessionInfo
 
 continue_reading = True
 MIFAREReader = MFRC522.MFRC522()
-last_sessionId = 0
-current_userId = -1
-current_userTTL = -1
+
 
 dataStorePath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data/tagReadings.txt")
 if not os.path.isfile(dataStorePath):
     with open(dataStorePath, 'w') as dataStore:
         dataStore.write('')
     os.chmod(dataStorePath, stat.S_IRWXU | stat.S_IRGRP | stat.S_IWGRP | stat.S_IROTH | stat.S_IWOTH)
+
+
+last_storage_id = SessionRepository(data_storage_path=dataStorePath).get_last_id()
+last_sessionId = last_storage_id if last_storage_id > -1 else 0
+current_userId = -1
+current_userTTL = -1
 
 
 def end_read(signal, frame):

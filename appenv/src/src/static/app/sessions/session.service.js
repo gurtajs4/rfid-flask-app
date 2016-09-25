@@ -1,8 +1,8 @@
 function SessionService($http) {
     service = {
         sessions: sessions,
-        session: session
-    }
+        session: session,
+    };
 
     return service;
 
