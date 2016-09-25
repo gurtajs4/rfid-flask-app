@@ -1,6 +1,6 @@
 function SessionsController($location, sessionService) {
-    self = this;
-    service = sessionService;
+    var self = this;
+    var service = sessionService;
 
     self.list = [];
     self.view = view;
