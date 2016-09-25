@@ -1,5 +1,6 @@
 function SessionService($http) {
-    service = {
+
+    var service = {
         sessions: sessions,
         session: session,
     };
@@ -13,7 +14,7 @@ function SessionService($http) {
     };
 
     function session(session_id) {
-        return $http.get('/api/sessions', session_id).then(function(response){
+        return $http.get('/api/sessions/', { params: {session_id: session_id} }).then(function(response){
             return response.data;
         });
     };

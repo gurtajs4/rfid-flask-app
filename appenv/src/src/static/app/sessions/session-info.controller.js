@@ -12,7 +12,7 @@ function SessionInfoController($routeParams, sessionService) {
     function load(){
         id = self.sessionId;
         console.log("Session ID is " + id);
-        return service.session(id).then(function(session){
+        service.session(id).then(function(session){
             self.userId = session.user_id;
             self.keyId = session.key_id;
             self.timestamp = session.time_stamp;

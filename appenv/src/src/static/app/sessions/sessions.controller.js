@@ -8,7 +8,7 @@ function SessionsController($location, sessionService) {
     load();
 
     function load() {
-        return service.sessions().then(function(sessions){
+        service.sessions().then(function(sessions){
             self.list = sessions;
         });
     };
