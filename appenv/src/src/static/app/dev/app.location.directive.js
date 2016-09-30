@@ -2,7 +2,7 @@ function appLocation() {
     return {
         restrict: 'E',
         scope: true,
-        templateUrL: '/dev/app-location.html',
+        templateUrL: 'app-location.html',
         controller: 'AppLocationController',
         controllerAs: 'appLoc'
     };
