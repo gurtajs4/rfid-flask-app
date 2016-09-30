@@ -3,7 +3,8 @@ function appLocation() {
         restrict: 'E',
         scope: true,
         templateUrL: '/dev/app-location.html',
-        controller: 'AppLocationController'
+        controller: 'AppLocationController',
+        controllerAs: 'appLoc'
     };
 }
 
