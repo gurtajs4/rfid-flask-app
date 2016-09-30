@@ -8,6 +8,7 @@ function SessionsController(sessionService) {
 
     function activate() {
         service.sessions().then(function(result){
+        console.log(result.data);
             self.list = result.data;
         });
     };
