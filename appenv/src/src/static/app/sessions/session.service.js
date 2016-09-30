@@ -2,20 +2,23 @@ function SessionService($http) {
 
     var service = {
         sessions: sessions,
-        session: session,
+        getSession: getSession,
     };
 
     return service;
 
     function sessions() {
-        return $http.get('/api/sessions').then(function(response){
-            return response.data;
-        });
+        return $http.get('/api/sessions');
     };
 
-    function session(session_id) {
+    function getSession(session_id) {
         return $http.get('/api/sessions/', { params: {session_id: session_id} }).then(function(response){
-            return response.data;
+            return {
+                session_id: response.data.session_id,
+                key_id: response.data.key_id,
+                user_id: response.data.user_id,
+                time_stamp: response.data.time_stamp
+            };
         });
     };
 }

@@ -11,6 +11,10 @@ function config($routeProvider, $locationProvider) {
     });
 
     $routeProvider.
+    when('/', {
+        templateUrl: appBaseUrl + '/sessions/session-list.html',
+        controller: 'SessionsController',
+    }).
     when('/sessions', {
         templateUrl: appBaseUrl + '/sessions/session-list.html',
         controller: 'SessionsController',
@@ -19,23 +23,7 @@ function config($routeProvider, $locationProvider) {
         templateUrl: appBaseUrl + '/sessions/session-info.html',
         controller: 'SessionInfoController'
     }).
-    when('/users', {
-        templateUrl: appBaseUrl + '/users/users-list.html',
-        controller: 'UsersListController'
-    }).
-    when('/users/:id', {
-        templateUrl: appBaseUrl + '/users/user-details.html',
-        controller: 'UserDetailsController'
-    }).
-    when('/keys', {
-        templateUrl: appBaseUrl + '/keys/keys-list.html',
-        controller: 'KeysListController'
-    }).
-    when('/keys/:id', {
-        templateUrl: appBaseUrl + '/keys/key-details.html',
-        controller: 'KeyDetailsController'
-    }).
-    otherwise({ redirectTo: '/sessions' });
+    otherwise({ redirectTo: '/' });
 }
 
 config.$inject = ['$routeProvider', '$locationProvider'];

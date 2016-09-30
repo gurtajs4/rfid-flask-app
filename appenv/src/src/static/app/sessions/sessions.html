@@ -1,0 +1,35 @@
+<div class="container" ng-controller="SessionsController as sessionsCtrl">
+    <h1>
+        List of sessions
+    </h1>
+    <div>
+        Order sessions by:
+        <select ng-model="orderSessionsProp" name="orderSessionsOption">
+            <option value="session_id">Session ID</option>
+            <option value="key_id">Key ID</option>
+            <option value="user_id">User ID</option>
+            <option value="time_stamp">Timestamp</option>
+        </select>
+    </div>
+    <hr/>
+    <table class="table-condensed table-hover">
+        <thead>
+        <tr>
+            <th><h4><strong>Select</strong></h4></th>
+            <th><h4><strong>Session ID</strong></h4></th>
+            <th><h4><strong>Key ID</strong></h4></th>
+            <th><h4><strong>User ID</strong></h4></th>
+            <th><h4><strong>Timestamp</strong></h4></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="sessionItem in sessionsCtrl.list | orderBy:orderSessionsProp track by $index">
+            <td><input ng-model="sessionItem.isSelected" type="checkbox" /></td>
+            <td>{{ {{ sessionItem.session_id }} }}</td>
+            <td>{{ {{ sessionItem.key_id }} }}</td>
+            <td>{{ {{ sessionItem.user_id }} }}</td>
+            <td>{{ {{ sessionItem.time_stamp }} }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
