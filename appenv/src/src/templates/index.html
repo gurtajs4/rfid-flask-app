@@ -21,12 +21,12 @@
     <script src="{{url_for('static', filename='app/dev/app.location.controller.js')}}"></script>
     <script src="{{url_for('static', filename='app/dev/app.location.directive.js')}}"></script>
 </head>
-<body ng-controller="MainController">
+<body ng-controller="MainController as main">
 <navBar></navBar>
 <div>
     <h2>Angular app is located at: <appLocation></appLocation></h2>
 </div>
-<div ng-view></div>
+<!--<div ng-view></div>-->
 
 <div>
     footer...
