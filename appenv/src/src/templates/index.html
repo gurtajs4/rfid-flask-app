@@ -12,22 +12,24 @@
     <script src="{{url_for('static', filename='vendor/angular-bootstrap/ui-bootstrap-tpls.min.js')}}"></script>
     <script src="{{url_for('static', filename='app/app.js')}}"></script>
     <script src="{{url_for('static', filename='app/config.js')}}"></script>
+    <script src="{{url_for('static', filename='app/navigation/main.controller.js')}}"></script>
     <script src="{{url_for('static', filename='app/navigation/nav.controller.js')}}"></script>
+    <script src="{{url_for('static', filename='app/navigation/nav.directive.js')}}"></script>
     <script src="{{url_for('static', filename='app/sessions/session.service.js')}}"></script>
     <script src="{{url_for('static', filename='app/sessions/session-info.controller.js')}}"></script>
     <script src="{{url_for('static', filename='app/sessions/sessions.controller.js')}}"></script>
+    <script src="{{url_for('static', filename='app/dev/app.location.controller.js')}}"></script>
+    <script src="{{url_for('static', filename='app/dev/app.location.directive.js')}}"></script>
 </head>
-<body>
-<div ng-controller="NavController as navCtrl">
-    <div ng-include="'../static/app/navigation/navigation.html'">
-    #navigation...
+<body ng-controller="MainController">
+<navBar></navBar>
+<div>
+    <h2>Angular app is located at: <appLocation></appLocation></h2>
 </div>
-</div>
-
 <div ng-view></div>
 
 <div>
-    #footer...
+    footer...
 </div>
 </body>
 </html>

@@ -16,7 +16,7 @@ function config($routeProvider, $locationProvider) {
         controller: 'SessionsController',
     }).
     when('/sessions/:id', {
-        templateUrl: appBaseUrl + '/sessions/session-details.html',
+        templateUrl: appBaseUrl + '/sessions/session-info.html',
         controller: 'SessionInfoController'
     }).
     when('/users', {
