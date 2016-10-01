@@ -1,17 +1,17 @@
-function NavController() {
-    var self = this;
+function NavController($scope) {
 
-    self.tab = 0;
-    self.setActive = setActive;
-    self.isActive = isActive;
+    $scope.tab = 0;
+    $scope.setActive = setActive;
+    $scope.isActive = isActive;
 
     function setActive(tabId) {
-        self.tab = tabId;
+        $scope.tab = tabId;
     };
 
     function isActive(tabId) {
-        return self.tab === tabId;
+        return $scope.tab === tabId;
     };
 }
 
+NavController.$inject = ['$scope'];
 angular.module('appMain').controller('NavController', NavController);
