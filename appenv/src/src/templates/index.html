@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
-    <link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap-css-only/css/bootstrap.min.css')}}"/>
+    <!--<link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap-css-only/css/bootstrap.min.css')}}"/>-->
     <script src="{{url_for('static', filename='vendor/angular/angular.min.js')}}"></script>
     <script src="{{url_for('static', filename='vendor/angular-route/angular-route.min.js')}}"></script>
-    <script src="{{url_for('static', filename='vendor/angular-bootstrap/ui-bootstrap.min.js')}}"></script>
-    <script src="{{url_for('static', filename='vendor/angular-bootstrap/ui-bootstrap-tpls.min.js')}}"></script>
+    <!--<script src="{{url_for('static', filename='vendor/angular-bootstrap/ui-bootstrap.min.js')}}"></script>-->
+    <!--<script src="{{url_for('static', filename='vendor/angular-bootstrap/ui-bootstrap-tpls.min.js')}}"></script>-->
     <script src="{{url_for('static', filename='app/app.js')}}"></script>
     <script src="{{url_for('static', filename='app/config.js')}}"></script>
     <script src="{{url_for('static', filename='app/home/main.controller.js')}}"></script>
@@ -21,10 +21,10 @@
     <!--<script src="{{url_for('static', filename='app/dev/app.location.controller.js')}}"></script>-->
     <!--<script src="{{url_for('static', filename='app/dev/app.location.directive.js')}}"></script>-->
 </head>
-<body ng-controller="MainController as main">
+<body ng-controller="MainController">
 <!--<div ng-include="'../static/app/navigation/navigation.html'"></div>-->
 <div>
-    <p>Testing {% raw %} {{ main.message }} {% endraw %} </p>
+    <p>Testing {% raw %} {{ message }} {% endraw %} </p>
 </div>
 
 <div>
