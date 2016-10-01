@@ -6,7 +6,6 @@ function appLocation() {
         },
         templateUrL: 'app-location.html',
         controller: 'AppLocationController',
-        controllerAs: 'appLoc'
     };
 }
 
