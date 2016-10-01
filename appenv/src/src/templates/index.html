@@ -5,19 +5,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
-    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
     <link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap-css-only/css/bootstrap.min.css')}}"/>
     <script src="{{url_for('static', filename='vendor/angular/angular.min.js')}}"></script>
     <script src="{{url_for('static', filename='vendor/angular-route/angular-route.min.js')}}"></script>
     <script src="{{url_for('static', filename='vendor/angular-bootstrap/ui-bootstrap.min.js')}}"></script>
     <script src="{{url_for('static', filename='vendor/angular-bootstrap/ui-bootstrap-tpls.min.js')}}"></script>
     <script src="{{url_for('static', filename='app/app.js')}}"></script>
+    <script src="{{url_for('static', filename='app/config.js')}}"></script>
     <script src="{{url_for('static', filename='app/home/main.controller.js')}}"></script>
+    <script src="{{url_for('static', filename='app/navigation/nav.controller.js')}}"></script>
+    <script src="{{url_for('static', filename='app/navigation/nav.directive.js')}}"></script>
     <script src="{{url_for('static', filename='app/sessions/session.service.js')}}"></script>
+    <script src="{{url_for('static', filename='app/sessions/session-info.controller.js')}}"></script>
     <script src="{{url_for('static', filename='app/sessions/sessions.controller.js')}}"></script>
-    <!--<script src="{{url_for('static', filename='app/sessions/sessions.controller.js')}}"></script>-->
+    <script src="{{url_for('static', filename='app/dev/app.location.controller.js')}}"></script>
+    <script src="{{url_for('static', filename='app/dev/app.location.directive.js')}}"></script>
 </head>
 <body ng-controller="MainController as main">
-<div ng-view></div>
+<navBar></navBar>
+<div>
+    <h2>Angular app is located at: </h2><appLocation></appLocation>
+</div>
+
+<div>
+    footer...
+</div>
 </body>
 </html>

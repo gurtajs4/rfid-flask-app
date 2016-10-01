@@ -1,0 +1,14 @@
+<div class="container-fluid" ng-controller="SessionsController as sessions">
+    <h1>List of all sessions</h1>
+    <hr/>
+    <div>
+        <div ng-repeat="for session in sessions.list">
+            <span>Session ID: <a href="sessions/{{session.session_id}}">{{session.session_id}}</a> |</span>
+            <span>User ID: {{session.user_id}} |</span>
+            <span>Key ID: {{session.key_id}} |</span>
+            <span>Time of day: {{session.timestamp}} |</span>
+            <button class="btn btn-primary" ng-click="self.view(session.session_id)">Details</button>
+            <br/><br/>
+        </div>
+    </div>
+</div>

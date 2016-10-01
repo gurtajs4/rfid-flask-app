@@ -2,19 +2,17 @@ var appMain = angular.module('appMain');
 
 var appBaseUrl = angular.element(document.querySelector('base')).attr('href');
 
-function config($routeProvider, $locationProvider) {
+function config($routeProvider, $locationProvider, $interpolateProvider) {
+
+    $interpolateProvider.startSymbol('<<').endSymbol('>>');
 
     $locationProvider.html5Mode({
         enabled: true,
         requireBase: false,
-//        rewriteLinks: true,
+        rewriteLinks: true,
     });
 
     $routeProvider.
-    when('/', {
-        templateUrl: appBaseUrl + '/sessions/session-list.html',
-        controller: 'SessionsController',
-    }).
     when('/sessions', {
         templateUrl: appBaseUrl + '/sessions/session-list.html',
         controller: 'SessionsController',
@@ -23,7 +21,23 @@ function config($routeProvider, $locationProvider) {
         templateUrl: appBaseUrl + '/sessions/session-info.html',
         controller: 'SessionInfoController'
     }).
-    otherwise({ redirectTo: '/' });
+    when('/users', {
+        templateUrl: appBaseUrl + '/users/users-list.html',
+        controller: 'UsersListController'
+    }).
+    when('/users/:id', {
+        templateUrl: appBaseUrl + '/users/user-details.html',
+        controller: 'UserDetailsController'
+    }).
+    when('/keys', {
+        templateUrl: appBaseUrl + '/keys/keys-list.html',
+        controller: 'KeysListController'
+    }).
+    when('/keys/:id', {
+        templateUrl: appBaseUrl + '/keys/key-details.html',
+        controller: 'KeyDetailsController'
+    }).
+    otherwise({ redirectTo: '/sessions' });
 }
 
 config.$inject = ['$routeProvider', '$locationProvider'];
