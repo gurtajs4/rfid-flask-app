@@ -13,32 +13,32 @@ function config($routeProvider, $locationProvider) {
         rewriteLinks: true,
     });
 
-    $routeProvider.
-    when('/sessions', {
-        templateUrl: appBaseUrl + '/sessions/session-list.html',
-        controller: 'SessionsController',
-    }).
-    when('/sessions/:id', {
-        templateUrl: appBaseUrl + '/sessions/session-info.html',
-        controller: 'SessionInfoController'
-    }).
-    when('/users', {
-        templateUrl: appBaseUrl + '/users/users-list.html',
-        controller: 'UsersListController'
-    }).
-    when('/users/:id', {
-        templateUrl: appBaseUrl + '/users/user-details.html',
-        controller: 'UserDetailsController'
-    }).
-    when('/keys', {
-        templateUrl: appBaseUrl + '/keys/keys-list.html',
-        controller: 'KeysListController'
-    }).
-    when('/keys/:id', {
-        templateUrl: appBaseUrl + '/keys/key-details.html',
-        controller: 'KeyDetailsController'
-    }).
-    otherwise({ redirectTo: '/sessions' });
+//    $routeProvider.
+//    when('/sessions', {
+//        templateUrl: appBaseUrl + '/sessions/session-list.html',
+//        controller: 'SessionsController',
+//    }).
+//    when('/sessions/:id', {
+//        templateUrl: appBaseUrl + '/sessions/session-info.html',
+//        controller: 'SessionInfoController'
+//    }).
+//    when('/users', {
+//        templateUrl: appBaseUrl + '/users/users-list.html',
+//        controller: 'UsersListController'
+//    }).
+//    when('/users/:id', {
+//        templateUrl: appBaseUrl + '/users/user-details.html',
+//        controller: 'UserDetailsController'
+//    }).
+//    when('/keys', {
+//        templateUrl: appBaseUrl + '/keys/keys-list.html',
+//        controller: 'KeysListController'
+//    }).
+//    when('/keys/:id', {
+//        templateUrl: appBaseUrl + '/keys/key-details.html',
+//        controller: 'KeyDetailsController'
+//    }).
+//    otherwise({ redirectTo: '/sessions' });
 }
 
 //config.$inject = ['$routeProvider', '$locationProvider', '$interpolateProvider'];
