@@ -14,7 +14,7 @@
     <script src="{{url_for('static', filename='app/config.js')}}"></script>
     <script src="{{url_for('static', filename='app/home/main.controller.js')}}"></script>
     <script src="{{url_for('static', filename='app/navigation/nav.controller.js')}}"></script>
-    <script src="{{url_for('static', filename='app/navigation/nav.directive.js')}}"></script>
+    <!--<script src="{{url_for('static', filename='app/navigation/nav.directive.js')}}"></script>-->
     <script src="{{url_for('static', filename='app/sessions/session.service.js')}}"></script>
     <script src="{{url_for('static', filename='app/sessions/session-info.controller.js')}}"></script>
     <script src="{{url_for('static', filename='app/sessions/sessions.controller.js')}}"></script>
@@ -22,7 +22,8 @@
     <script src="{{url_for('static', filename='app/dev/app.location.directive.js')}}"></script>
 </head>
 <body ng-controller="MainController as main">
-<navBar></navBar>
+<div ng-include="'../static/app/navigation/navigation.html'"></div>
+<!--<navBar></navBar>-->
 <div>
     <h2>Angular app is located at: </h2> <appLocation></appLocation>
 </div>
