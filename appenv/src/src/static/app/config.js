@@ -2,9 +2,10 @@ var appMain = angular.module('appMain');
 
 var appBaseUrl = angular.element(document.querySelector('base')).attr('href');
 
-function config($routeProvider, $locationProvider, $interpolateProvider) {
+//, $interpolateProvider
+function config($routeProvider, $locationProvider) {
 
-    $interpolateProvider.startSymbol('<<').endSymbol('>>');
+//    $interpolateProvider.startSymbol('<<').endSymbol('>>');
 
     $locationProvider.html5Mode({
         enabled: true,
@@ -40,5 +41,6 @@ function config($routeProvider, $locationProvider, $interpolateProvider) {
     otherwise({ redirectTo: '/sessions' });
 }
 
-config.$inject = ['$routeProvider', '$locationProvider', '$interpolateProvider'];
+//config.$inject = ['$routeProvider', '$locationProvider', '$interpolateProvider'];
+config.$inject = ['$routeProvider', '$locationProvider'];
 appMain.config(config);
