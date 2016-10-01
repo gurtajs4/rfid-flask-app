@@ -1,23 +1,22 @@
-function SessionsController($location, sessionService) {
-    var self = this;
+function SessionsController($scope, $location, sessionService) {
     var service = sessionService;
 
-    self.list = [];
-    self.view = view;
+    $scope.list = [];
+//    self.view = view;
 
     load();
 
     function load() {
         service.sessions().then(function(sessions){
-            self.list = sessions;
+            $scope.list = sessions;
         });
     };
 
-    function view(session_id) {
-        viewPath = $location.path + '/' + session_id;
-        $location.url(viewPath);
-    };
+//    function view(session_id) {
+//        viewPath = $location.path + '/' + session_id;
+//        $location.url(viewPath);
+//    };
 }
 
-SessionsController.$inject = ['$location', 'sessionService'];
+SessionsController.$inject = ['$scope', '$location', 'sessionService'];
 angular.module('appMain').controller('SessionsController', SessionsController);

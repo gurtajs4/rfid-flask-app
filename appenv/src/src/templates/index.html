@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html ng-app="appMain" lang="en">
 <head>
-    <base href="../static/app">
+    <base href="../">
+    <!--<base href="../static/app">-->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Index</title>
@@ -15,18 +16,17 @@
     <script src="{{url_for('static', filename='app/home/main.controller.js')}}"></script>
     <!--<script src="{{url_for('static', filename='app/navigation/nav.controller.js')}}"></script>-->
     <!--<script src="{{url_for('static', filename='app/navigation/nav.directive.js')}}"></script>-->
-    <!--<script src="{{url_for('static', filename='app/sessions/session.service.js')}}"></script>-->
-    <!--<script src="{{url_for('static', filename='app/sessions/session-info.controller.js')}}"></script>-->
-    <!--<script src="{{url_for('static', filename='app/sessions/sessions.controller.js')}}"></script>-->
+    <script src="{{url_for('static', filename='app/sessions/session.service.js')}}"></script>
+    <script src="{{url_for('static', filename='app/sessions/session-info.controller.js')}}"></script>
+    <script src="{{url_for('static', filename='app/sessions/sessions.controller.js')}}"></script>
     <!--<script src="{{url_for('static', filename='app/dev/app.location.controller.js')}}"></script>-->
     <!--<script src="{{url_for('static', filename='app/dev/app.location.directive.js')}}"></script>-->
 </head>
 <body ng-controller="MainController">
 <!--<div ng-include="'../static/app/navigation/navigation.html'"></div>-->
-<div>
-    <p>Testing {% raw %} {{ message }} {% endraw %} </p>
-</div>
-
+{% raw %}
+<div ng-view></div>
+{% endraw %}
 <div>
     footer...
 </div>
