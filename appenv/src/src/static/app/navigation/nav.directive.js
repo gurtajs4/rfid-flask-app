@@ -1,9 +1,7 @@
 function navBar() {
     return {
         restrict: 'E',
-        scope: {
-            tab: "="
-        },
+        scope: true,
         templateUrl: '/navigation/navigation.html',
         controller: 'NavController'
     };
