@@ -40,5 +40,5 @@ function config($routeProvider, $locationProvider, $interpolateProvider) {
     otherwise({ redirectTo: '/sessions' });
 }
 
-config.$inject = ['$routeProvider', '$locationProvider'];
+config.$inject = ['$routeProvider', '$locationProvider', '$interpolateProvider'];
 appMain.config(config);
