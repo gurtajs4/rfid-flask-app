@@ -8,18 +8,18 @@ function config($routeProvider, $locationProvider) {
 
 //    $interpolateProvider.startSymbol('<<').endSymbol('>>');
 
-    $locationProvider.html5Mode(true);
-//    $locationProvider.html5Mode({
-//        enabled: true,
-//        requireBase: false,
-//        rewriteLinks: true,
-//    });
+//    $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode({
+        enabled: true,
+        requireBase: false,
+        rewriteLinks: true,
+    });
 
     $routeProvider.
-    when('/', {
-        templateUrl: appBaseUrl + '/sessions/session-list.html',
-        controller: 'SessionsController',
-    }).
+//    when('/', {
+//        templateUrl: appBaseUrl + '/sessions/session-list.html',
+//        controller: 'SessionsController',
+//    }).
     when('/sessions', {
         templateUrl: appBaseUrl + '/sessions/session-list.html',
         controller: 'SessionsController',
@@ -44,7 +44,7 @@ function config($routeProvider, $locationProvider) {
 //        templateUrl: appBaseUrl + '/keys/key-details.html',
 //        controller: 'KeyDetailsController'
 //    }).
-    otherwise({ redirectTo: '/' });
+    otherwise({ redirectTo: '/sessions' });
 }
 
 //config.$inject = ['$routeProvider', '$locationProvider', '$interpolateProvider'];

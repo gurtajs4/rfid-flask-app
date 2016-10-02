@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="appMain" lang="en">
+<head>
+    <base href="/">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+
+    <link rel="stylesheet" href="vendor/bootstrap-css-only/css/bootstrap.min.css">
+    <link rel="stylesheet" href="vendor/angular-bootstrap/ui-bootstrap-csp.css">
+
+    <script src="vendor/angular/angular.min.js"></script>
+    <script src="vendor/angular-route/angular-route.min.js"></script>
+    <script src="vendor/angular-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+    <script src="app/app.js"></script>
+    <script src="app/config.js"></script>
+
+    <script src="app/home/main.controller.js"></script>
+    <!--<script src="app/navigation/nav.controller.js"></script>-->
+    <!--<script src="app/navigation/nav.directive.js"></script>-->
+    <script src="app/sessions/session.service.js"></script>
+    <script src="app/sessions/sessions.controller.js"></script>
+    <script src="app/sessions/session-info.controller.js"></script>
+</head>
+<body ng-controller="MainController">
+<navBar></navBar>
+<h1> {{ message }} </h1>
+</body>
+</html>

@@ -20,7 +20,7 @@ _service = SessionRepository(data_storage_path=data_storage_path)
 
 @app.route('/', methods=['GET'])
 def api_root():
-    return render_template('index.html')
+    return app.send_static_file('index.html')
 
 
 @app.route('/api/sessions', methods=['GET'])
