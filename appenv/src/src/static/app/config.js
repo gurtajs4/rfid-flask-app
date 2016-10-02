@@ -16,6 +16,10 @@ function config($routeProvider, $locationProvider) {
     });
 
     $routeProvider.
+    when('/home', {
+        templateUrl: appBaseUrl + '/home/home.html',
+        controller: 'HomeController'
+    }).
 //    when('/', {
 //        templateUrl: appBaseUrl + '/sessions/session-list.html',
 //        controller: 'SessionsController',
@@ -44,7 +48,7 @@ function config($routeProvider, $locationProvider) {
 //        templateUrl: appBaseUrl + '/keys/key-details.html',
 //        controller: 'KeyDetailsController'
 //    }).
-    otherwise({ redirectTo: '/sessions' });
+    otherwise({ redirectTo: '/home' });
 }
 
 //config.$inject = ['$routeProvider', '$locationProvider', '$interpolateProvider'];
