@@ -8,9 +8,10 @@ function SessionService($http) {
     return service;
 
     function sessions() {
-        return $http.get('/api/sessions').then(function(response){
-            return response.data;
-        });
+        return $http.get('/api/sessions');
+//        return $http.get('/api/sessions').then(function(response){
+//            return response.data;
+//        });
     };
 
     function session(session_id) {

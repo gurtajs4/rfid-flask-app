@@ -8,7 +8,8 @@ function SessionsController($scope, $location, sessionService) {
 
     function load() {
         service.sessions().then(function(sessions){
-            $scope.list = sessions;
+//            $scope.list = sessions;
+            $scope.list = sessions.data;
         });
     };
 
