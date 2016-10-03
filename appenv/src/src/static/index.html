@@ -19,13 +19,15 @@
 
     <script src="static/app/home/main.controller.js"></script>
     <script src="static/app/home/home.controller.js"></script>
-    <!--<script src="static/app/navigation/nav.controller.js"></script>-->
-    <!--<script src="static/app/navigation/nav.directive.js"></script>-->
+    <script src="static/app/navigation/nav.controller.js"></script>
+    <script src="static/app/navigation/nav.directive.js"></script>
     <script src="static/app/sessions/session.service.js"></script>
     <script src="static/app/sessions/sessions.controller.js"></script>
     <script src="static/app/sessions/session-info.controller.js"></script>
 </head>
 <body ng-controller="MainController">
+<navBar></navBar>
+<br/>
 <h1> {{ message }} </h1>
 <div ng-view></div>
 </body>
