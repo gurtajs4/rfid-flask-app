@@ -1,5 +1,5 @@
 function MainController($scope) {
-    $scope.tab = 0;
+//    $scope.tab = 0;
     $scope.message = "At least AngularJS is working in main controller...";
 }
 

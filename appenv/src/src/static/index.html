@@ -26,7 +26,7 @@
     <script src="static/app/sessions/session-info.controller.js"></script>
 </head>
 <body ng-controller="MainController">
-<navBar></navBar>
+<div ng-include="'static/app/navigation/navigation.html'"></div>
 <br/>
 <h1> {{ message }} </h1>
 <div ng-view></div>
