@@ -10,9 +10,9 @@ function SessionsController($scope, $location, sessionService) {
     load();
 
     function load() {
-        service.sessions().then(function(sessions){
+        service.sessions().then(function(result){
 //            $scope.list = sessions.data;
-            var rawSessions = sessions.data;
+            var rawSessions = result.data;
             var sessions = [];
             for (i = 0; i < sessions.length; i++) {
                 var nextSession = {
