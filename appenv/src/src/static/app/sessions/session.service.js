@@ -28,8 +28,8 @@ function SessionService($http) {
 //        });
     };
 
-    function session(sessionId) {
-        return $http.get('/api/sessions/', { params: {session_id: sessionId} }).then(function(response){
+    function session(id) {
+        return $http.get('/api/sessions/', { params: {session_id: id} }).then(function(response){
             var session = {
                 sessionId: response.data[i]._session_id,
                 keyId: response.data[i]._key_id,

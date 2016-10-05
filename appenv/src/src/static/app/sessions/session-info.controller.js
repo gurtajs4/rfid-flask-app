@@ -15,7 +15,6 @@ function SessionInfoController($routeParams, sessionService) {
             self.userId = session.userId;
             self.keyId = session.keyId;
             self.timestamp = session.timestamp;
-            console.log("Session user ID is " + self.userId);
         });
     };
 }
