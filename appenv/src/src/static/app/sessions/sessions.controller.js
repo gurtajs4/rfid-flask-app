@@ -11,8 +11,9 @@ function SessionsController($scope, $location, sessionService) {
 
     function load() {
         service.sessions().then(function(sessions){
+            self.list = sessions;
 //            $scope.list = sessions.data;
-            self.list = sessions.data;
+//            self.list = sessions.data;
         });
     };
 

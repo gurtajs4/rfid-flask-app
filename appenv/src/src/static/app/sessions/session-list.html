@@ -3,10 +3,10 @@
     <hr/>
     <div>
         <div ng-repeat="session in sessionsCtrl.list">
-            <span>Session ID: <a ng-href="sessions/{{ session.session_id }}">{{ session.session_id }}</a> |</span>
-            <span>User ID: {{ session.user_id }} |</span>
-            <span>Key ID: {{ session.key_id }} |</span>
-            <span>Time of day: {{ session.time_stamp }} |</span>
+            <span>Session ID: <a ng-href="sessions/{{ session.sessionId }}">{{ session.sessionId }}</a> |</span>
+            <span>User ID: {{ session.userId }} |</span>
+            <span>Key ID: {{ session.keyId }} |</span>
+            <span>Time of day: {{ session.timestamp }} |</span>
             <br/><br/>
         </div>
     </div>
