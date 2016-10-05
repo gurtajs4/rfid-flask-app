@@ -11,7 +11,7 @@ function SessionService($http) {
         return $http.get('/api/sessions').then(function(response) {
             var rawSessions = response.data;
             var sessions = [];
-            for (i = 0; i < sessions.length) {
+            for (i = 0; i < sessions.length; i++) {
                 var nextSession = {
                     sessionId: rawSessions[i]._session_id,
                     keyId: rawSessions[i]._key_id,
