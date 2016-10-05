@@ -11,9 +11,20 @@ function SessionsController($scope, $location, sessionService) {
 
     function load() {
         service.sessions().then(function(sessions){
-            self.list = sessions;
 //            $scope.list = sessions.data;
-//            self.list = sessions.data;
+            var rawSessions = sessions.data;
+            var sessions = [];
+            for (i = 0; i < sessions.length; i++) {
+                var nextSession = {
+                    sessionId: rawSessions[i]._session_id,
+                    keyId: rawSessions[i]._key_id,
+                    userId: rawSessions[i]._user_id,
+                    timestamp: rawSessions[i]._time_stamp
+                };
+                sessions.push(nextSession);
+            }
+            self.list = sessions;
+//            self.list = sessions;
         });
     };
 
