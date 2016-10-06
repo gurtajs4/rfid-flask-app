@@ -29,21 +29,21 @@ function SessionService($http) {
     };
 
     function session(id) {
-        return $http.get('/api/sessions/' + id.toString()).then(function(response) {
+        return $http.get('/api/sessions/', id).then(function(response) {
             var singleSession = {
-                sessionId: response.data[i]._session_id,
-                keyId: response.data[i]._key_id,
-                userId: response.data[i]._user_id,
-                timestamp: response.data[i]._time_stamp
+                sessionId: response.data._session_id,
+                keyId: response.data._key_id,
+                userId: response.data._user_id,
+                timestamp: response.data._time_stamp
             };
             return singleSession;
         });
 //        return $http.get('/api/sessions/', { params: {session_id: id} }).then(function(response){
 //            var session = {
-//                sessionId: response.data[i]._session_id,
-//                keyId: response.data[i]._key_id,
-//                userId: response.data[i]._user_id,
-//                timestamp: response.data[i]._time_stamp
+//                sessionId: response.data._session_id,
+//                keyId: response.data._key_id,
+//                userId: response.data._user_id,
+//                timestamp: response.data._time_stamp
 //            };
 //            return session;
 ////            return response.data;
