@@ -29,7 +29,7 @@ function SessionService($http) {
     };
 
     function session(id) {
-        return $http.get('/api/sessions/', id).then(function(response) {
+        return $http.get('/api/sessions/' + id.toString()).then(function(response) {
             var singleSession = {
                 sessionId: response.data._session_id,
                 keyId: response.data._key_id,
