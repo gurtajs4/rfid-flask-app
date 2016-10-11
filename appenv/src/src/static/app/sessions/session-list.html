@@ -2,12 +2,14 @@
     <h1>List of all sessions</h1>
     <hr/>
     <div>
-        <div ng-repeat="session in sessionsCtrl.list">
-            <span>Session ID: <a ng-href="sessions/{{ session.sessionId }}">{{ session.sessionId }}</a> |</span>
-            <span>User ID: {{ session.userId }} |</span>
-            <span>Key ID: {{ session.keyId }} |</span>
-            <span>Time of day: {{ session.timestamp }} |</span>
-            <br/><br/>
+        <div ng-repeat="session in sessionsCtrl.list" class="panel panel-default">
+            <div class="panel-heading">
+                <span>Session ID: <a ng-href="sessions/{{ session.sessionId }}">{{ session.sessionId }}</a> |</span>
+                <span>User ID: {{ session.userId }} |</span>
+                <span>Key ID: {{ session.keyId }} |</span>
+                <span>Time of day: {{ session.timestamp }} |</span>
+                <br/><br/>
+            </div>
         </div>
     </div>
 </div>

@@ -1,0 +1,27 @@
+/* Common styling */
+body {
+    background-color: yellowgreen;
+    color: #4682B4;
+}
+
+/* Bootstrap overrides */
+.navbar-default {
+    background-color: #33383C;
+}
+    .navbar-default .navbar-nav > li > a {
+        color: yellowgreen;
+    }
+
+    .navbar-default .navbar-nav > li > a:hover {
+        color: darkslategray;
+    }
+
+        .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
+            color: bisque;
+            background-color: cadetblue;
+            /*background-color: grey;*/
+        }
+
+    .navbar-default .navbar-brand {
+        color: yellowgreen;
+}

@@ -1,6 +1,5 @@
 function MainController($scope) {
-//    $scope.tab = 0;
-    $scope.message = "At least AngularJS is working in main controller...";
+    $scope.message = "Keys storage management system - RFID tag reader application interface";
 }
 
 MainController.$inject = ['$scope'];

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html ng-app="appMain" lang="en">
 <head>
-    <base href="/">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="/"/>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Index</title>
 
-    <link rel="stylesheet" href="static/vendor/bootstrap-css-only/css/bootstrap.min.css">
-    <link rel="stylesheet" href="static/vendor/angular-bootstrap/ui-bootstrap-csp.css">
+    <link rel="stylesheet" href="static/vendor/bootstrap-css-only/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="static/vendor/angular-bootstrap/ui-bootstrap-csp.css"/>
+    <link rel="stylesheet" href="static/css/static.css"/>
 
     <script src="static/vendor/angular/angular.min.js"></script>
     <script src="static/vendor/angular-route/angular-route.min.js"></script>
@@ -25,8 +26,9 @@
     <script src="static/app/sessions/sessions.controller.js"></script>
     <script src="static/app/sessions/session-info.controller.js"></script>
 </head>
-<body ng-controller="MainController">
+<body class="container-fluid" ng-controller="MainController">
 <div ng-include="'static/app/navigation/navigation.html'"></div>
+<br/>
 <br/>
 <h1> {{ message }} </h1>
 <div ng-view></div>

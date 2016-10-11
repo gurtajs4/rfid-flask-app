@@ -1,5 +1,5 @@
 function HomeController($scope) {
-    $scope.message = 'Home page...';
+    $scope.message = 'Welcome! This the web application interface of the keys management system';
 }
 
 HomeController.$inject = ['$scope'];
