@@ -32,6 +32,14 @@ function config($routeProvider, $locationProvider) {
         templateUrl: appBaseUrl + '/sessions/session-info.html',
         controller: 'SessionInfoController'
     }).
+        when('/keys/lookup', {
+        templateUrl: appBaseUrl + '/keys/keys-lookup.html',
+        controller: 'KeysLookupController'
+    }).
+        when('/people/lookup', {
+        templateUrl: appBaseUrl + '/people/people-lookup.html',
+        controller: 'PeopleLookupController'
+    }).
 //    when('/users', {
 //        templateUrl: appBaseUrl + '/users/users-list.html',
 //        controller: 'UsersListController'

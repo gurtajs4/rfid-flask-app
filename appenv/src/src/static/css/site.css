@@ -25,3 +25,10 @@ body {
     .navbar-default .navbar-brand {
         color: yellowgreen;
 }
+
+/* Custom rules */
+preview-panel {
+    background-color: cadetblue;
+    color: white;
+    font-size: 120%;
+}
