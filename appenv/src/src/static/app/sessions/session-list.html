@@ -11,7 +11,7 @@
                 <option value="UserId">User ID</option>
             </select>
         </div>
-        <div ng-repeat="session in sessionsCtrl.list | orderBy:orderProp" class="panel panel-default">
+        <div ng-repeat="session in sessionsCtrl.list | orderBy:orderProp track by $index" class="panel panel-default">
             <div class="panel-heading">
                 <span>Session ID: <a ng-href="sessions/{{ session.sessionId }}">{{ session.sessionId }}</a> |</span>
                 <span>User ID: {{ session.userId }} |</span>
