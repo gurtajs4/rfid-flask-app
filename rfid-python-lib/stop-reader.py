@@ -3,7 +3,7 @@ import MFRC522
 import signal
 import subprocess
 
-p = subprocess.Popen(['ps', '-A'], stdout=subprocess.PIPE)
+p = subprocess.Popen(['ps', 'aux'], stdout=subprocess.PIPE)
 out, err = p.communicate()
 
 def findProcess(out):
