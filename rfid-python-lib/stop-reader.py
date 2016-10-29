@@ -10,20 +10,23 @@ out, err = p.communicate()
 def find_process(out):
     for line in out.splitlines():
         if 'PID' in line:
-            words = []
-            for word in line.split(" "):
-                if word is not " " and word is not "":
-                    words.append(word)
+            words = format_line(line)
             index = int(words.index('PID'))
             print "Index of PID is " + str(index)
         if 'sudo python read.py' in line or 'sudo python reader.py' in line:
-            words = []
-            for word in line.split(" "):
-                if word is not " " and word is not "":
-                    word.push(word)
-            print "*******************"
-            pid = int(line.split(" ")[index])
+            print "Task to be stopped: "
+            words = format_line(line)
+            pid = int(words[index])
+            print "PID of reader-task is " + str(pid)
             os.kill(pid, signal.SIGKILL)
+
+
+def format_line(line):
+    words = []
+    for word in line.split(" "):
+        if word is not " " and word is not "":
+            words.append(word)
+    return words
 
 find_process(out)
 
