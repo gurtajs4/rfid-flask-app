@@ -10,6 +10,11 @@ out, err = p.communicate()
 def find_process(out):
     for line in out.splitlines():
         if 'sudo python read.py' in line or 'sudo python reader.py' in line:
+            print line.split(" ")[7]
+            print "*******************"
+            for word in line.split(" "):
+                print word + " "
+            print "end of print"
             pid = int(line.split(" ")[7])
             os.kill(pid, signal.SIGKILL)
 
