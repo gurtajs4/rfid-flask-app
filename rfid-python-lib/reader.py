@@ -45,7 +45,7 @@ while continue_reading:
     if status == MIFAREReader.MI_OK:
         print "Tag detected"
         (status, backData) = MIFAREReader.MFRC522_Anticoll()
-        if not current_userId > 0:
+        if current_userId == -1:
             current_userTTL = time.time() + 120
             current_userId = int(
                 str(backData[0]) + str(backData[1]) + str(backData[2]) + str(backData[3]) + str(backData[4]))
@@ -61,7 +61,7 @@ while continue_reading:
                                       key_id=key_id)
                 sessionService = SessionRepository(data_storage_path=dataStorePath)
                 sessionService.store_session(session)
-                current_userId = 0
-                current_userTTL = 0
+                current_userId = -1
+                current_userTTL = -1
                 print "Key ID: " + str(key_id)
                 # time.sleep(30)
