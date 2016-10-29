@@ -9,7 +9,7 @@ out, err = p.communicate()
 def findProcess(out):
     for line in out.splitlines():
         if 'sudo python read.py' or 'sudo python reader.py' in line:
-            pid = int(line.split(None, 1)[0])
+            pid = int(line.split(None, 1)[1])
             os.kill(pid, signal.SIGKILL)
 
 findProcess(out)
