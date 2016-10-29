@@ -1,6 +1,6 @@
 <div ng-controller="PeopleLookupController as peopleLookup" class="container">
-    <h1>{{ peopleLookup.title }}</h1>
-    <h3>{{ peopleLookup.note }}</h3>
+    <h1 class="col-sm-10">{{ peopleLookup.title }}</h1>
+    <h3 class="col-sm-10">{{ peopleLookup.note }}</h3>
     <div>
         <form ng-submit="peopleLookup.lookup()" action="POST" novalidate>
             <input ng-model="peopleLookup.queryset" type="text" placeholder="Enter person ID..."/>
