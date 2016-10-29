@@ -15,7 +15,7 @@ def find_process(out):
                 if word is not " " and word is not "":
                     words.append(word)
             index = int(words.index('PID'))
-            print "Index of PID is " + index
+            print "Index of PID is " + str(index)
         if 'sudo python read.py' in line or 'sudo python reader.py' in line:
             words = []
             for word in line.split(" "):
