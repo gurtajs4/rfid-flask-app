@@ -1,10 +1,19 @@
 import os
 import json
-from sessionHandler import SessionHandler
+from sessionInfo import SessionInfo
 
 
 # class that encapsulates session storage logic
 class SessionRepository(object):
+
+    # method for hooking parsed json object into SessionInfo for usage in SessionRepository
+    @staticmethod
+    def session_hook_handler(parsed_dict):
+        return SessionInfo(session_id=parsed_dict['session_id'],
+                           user_id=parsed_dict['user_id'],
+                           time_stamp=parsed_dict['time_stamp'],
+                           key_id=parsed_dict['key_id'])
+
     # initialize SessionRepository object for managing session storage
     def __init__(self, data_storage_path):
         self.data_storage_path = data_storage_path
@@ -13,12 +22,10 @@ class SessionRepository(object):
     def get_session(self, session_id):
         if os.stat(self.data_storage_path).st_size > 0:
             with open(self.data_storage_path, 'r') as jsonStorage:
-                sessions = []
-                for line in jsonStorage:
-                    sessions.append(json.loads(line))
-                for s in sessions:
-                    session = SessionHandler.session_hook_handler(s)
-                    if session.session_id == session_id:
+                sessions = [SessionRepository.session_hook_handler(line) for line in jsonStorage.readlines()]
+                for _session in sessions:
+                    if _session.session_id == session_id:
+                        session = _session
                         return session
         return None
 
@@ -26,9 +33,7 @@ class SessionRepository(object):
     def get_sessions(self):
         if os.stat(self.data_storage_path).st_size > 0:
             with open(self.data_storage_path, 'r') as jsonStorage:
-                sessions = []
-                for line in jsonStorage:
-                    sessions.append(json.loads(line))
+                sessions = [SessionRepository.session_hook_handler(line) for line in jsonStorage.readlines()]
                 return sessions
         return None
 
@@ -44,9 +49,9 @@ class SessionRepository(object):
     def get_last_id(self):
         if os.stat(self.data_storage_path).st_size > 0:
             with open(self.data_storage_path, 'r') as jsonStorage:
-                sessions = [SessionHandler.session_hook_handler(line) for line in jsonStorage.readlines()]
+                sessions = [SessionRepository.session_hook_handler(line) for line in jsonStorage.readlines()]
                 last_id = -1
                 for s in sessions:
-                    if last_id < s.session_id:
+                    if s.session_id > last_id:
                         last_id = s.session_id
                 return last_id
