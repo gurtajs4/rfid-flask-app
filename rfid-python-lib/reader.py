@@ -55,14 +55,15 @@ while continue_reading:
             if backData != current_userId:
                 key_id = int(
                     str(backData[0]) + str(backData[1]) + str(backData[2]) + str(backData[3]) + str(backData[4]))
-                last_sessionId += 1
-                session = SessionInfo(session_id=last_sessionId,
-                                      user_id=current_userId,
-                                      time_stamp=datetime.datetime.now(),
-                                      key_id=key_id)
-                sessionService = SessionRepository(data_storage_path=dataStorePath)
-                sessionService.store_session(session)
-                current_userId = -1
-                current_userTTL = -1
-                print "Key ID: " + str(key_id)
-                time.sleep(5)
+                if key_id != current_userId:
+                    last_sessionId += 1
+                    session = SessionInfo(session_id=last_sessionId,
+                                          user_id=current_userId,
+                                          time_stamp=datetime.datetime.now(),
+                                          key_id=key_id)
+                    sessionService = SessionRepository(data_storage_path=dataStorePath)
+                    sessionService.store_session(session)
+                    current_userId = -1
+                    current_userTTL = -1
+                    print "Key ID: " + str(key_id)
+                    time.sleep(5)
