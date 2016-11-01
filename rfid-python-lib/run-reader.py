@@ -1,4 +1,6 @@
+import os
 import subprocess
 
 
-subprocess.Popen('sudo python ~/rfid-flask-app/rfid-python-lib/reader.py', shell=True)
+rel_path=os.path.realpath(__file__)
+subprocess.Popen('sudo python ' + rel_path + 'reader.py', shell=True)
