@@ -1,4 +1,4 @@
 import subprocess
 
 
-subprocess.Popen('reader.py', shell=True)
+subprocess.Popen('/rfid-flask-app/rfid-python-lib/reader.py', shell=True)
