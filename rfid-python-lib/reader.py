@@ -64,4 +64,4 @@ while continue_reading:
                 current_userId = -1
                 current_userTTL = -1
                 print "Key ID: " + str(key_id)
-                # time.sleep(30)
+                time.sleep(5)
