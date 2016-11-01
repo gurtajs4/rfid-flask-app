@@ -50,6 +50,7 @@ while continue_reading:
             current_userId = int(
                 str(backData[0]) + str(backData[1]) + str(backData[2]) + str(backData[3]) + str(backData[4]))
             print "User ID: " + str(current_userId)
+            time.sleep(2)
         else:
             if backData != current_userId:
                 key_id = int(
