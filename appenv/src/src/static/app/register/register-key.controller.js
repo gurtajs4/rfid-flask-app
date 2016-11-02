@@ -7,6 +7,8 @@ function RegisterKeyController($location, registerService) {
     self.extendedNote = "Please move the key tag (keychain) to the reader and the system will detect its unique number. The number will be displayed shortly after, and you can enter the rest of information then.";
     self.keyInfo = {};
 
+    load();
+
     function load() {
         service.keyId().then(function (keyId) {
             self.keyInfo.keyId = keyId;    // obtain keyId from tag to associate with additional info about that room

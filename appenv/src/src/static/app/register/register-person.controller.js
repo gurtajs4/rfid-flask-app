@@ -7,6 +7,8 @@ function RegisterPersonController($location, registerService) {
     self.extendedNote = "Please move your ID card to the reader and the system will detect its unique number. The number will be displayed shortly after, and you can enter the rest of information then.";
     self.person = {};
 
+    load();
+
     function load() {
         service.userId().then(function (userId) {
             self.person.userId = userId;    // obtain userId from tag to associate with person info
