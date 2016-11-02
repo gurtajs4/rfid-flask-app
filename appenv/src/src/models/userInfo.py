@@ -15,15 +15,16 @@ class UserEncoder(json.JSONEncoder):
 class UserInfo(object):
 
     # initialize
-    def __init__(self, u_id, u_name, email, first_name, last_name, key_id, start_on, end_on):
+    def __init__(self, u_id, u_name, email, first_name, last_name, keyyz):   # key_id, start_on, end_on):
         self._user_id = u_id
         self._user_name = u_name
         self._email = email
         self._first_name = first_name
         self._last_name = last_name
-        self._current_key_id = key_id
-        self._session_start = start_on
-        self._session_end = end_on
+        # self._current_key_id = key_id
+        # self._session_start = start_on
+        # self._session_end = end_on
+        self._keys = keyyz
 
     # string repr of UserInfo object (using json serializer)
     def __repr__(self):
@@ -69,26 +70,34 @@ class UserInfo(object):
     def last_name(self, last_name):
         self._last_name = last_name
 
+    # @property
+    # def current_key_id(self):
+    #     return self._current_key_id
+    #
+    # @current_key_id.setter
+    # def current_key_id(self, id):
+    #     self._current_key_id = id
+
+    # @property
+    # def session_start(self):
+    #     return self._session_start
+    #
+    # @session_start.setter
+    # def session_start(self, start_on):
+    #     self._session_start = start_on
+    #
+    # @property
+    # def session_end(self):
+    #     return self._session_end
+    #
+    # @session_end.setter
+    # def session_end(self, end_on):
+    #     self._session_end = end_on
+
     @property
-    def current_key_id(self):
-        return self._current_key_id
+    def keys(self, keyyz):
+        return self._keys
 
-    @current_key_id.setter
-    def current_key_id(self, id):
-        self._current_key_id = id
-
-    @property
-    def session_start(self):
-        return self._session_start
-
-    @session_start.setter
-    def session_start(self, start_on):
-        self._session_start = start_on
-
-    @property
-    def session_end(self):
-        return self._session_end
-
-    @session_end.setter
-    def session_end(self, end_on):
-        self._session_end = end_on
+    @keys.setter
+    def keys(self, keyyz):
+        self._keys = keyyz

@@ -3,9 +3,7 @@ import os
 from ..services.sessionRepository import SessionRepository
 from flask import jsonify
 from flask import request
-from flask import render_template
 from flask import Response
-from flask import Markup
 
 
 data_storage_path = os.path.join(os.path.dirname  # /rfid-flask-app
@@ -47,6 +45,31 @@ def api_get_session(session_id):
         return resp
 
 
-@app.route('/api/test', methods=['GET'])
-def api_test():
-    return '<h1>Hello from Flask...</h1>'
+@app.route('/api/register/user', methods=['GET'])
+def api_register_user():
+    user_id = 2271223943149   # mock id --> this is where another service will be called to obtain true user id
+    if user_id is not None and user_id > -1:
+        return user_id
+    else:
+        message = {
+            'status': 404,
+            'message': 'Not Found' + request.url,
+        }
+        resp = jsonify(message)
+        resp.status_code = 404
+        return resp
+
+
+@app.route('/api/register/key', methods=['GET'])
+def api_register_key():
+    key_id = 221404673253   # mock id --> this is where another service will be called to obtain true key id
+    if key_id is not None and key_id > -1:
+        return key_id
+    else:
+        message = {
+            'status': 404,
+            'message': 'Not Found' + request.url,
+        }
+        resp = jsonify(message)
+        resp.status_code = 404
+        return resp

@@ -22,10 +22,6 @@ function SessionService($http) {
             }
             return sessions;
         });
-//        return $http.get('/api/sessions');
-//        return $http.get('/api/sessions').then(function(response){
-//            return response.data;
-//        });
     };
 
     function session(id) {
@@ -38,16 +34,6 @@ function SessionService($http) {
             };
             return singleSession;
         });
-//        return $http.get('/api/sessions/', { params: {session_id: id} }).then(function(response){
-//            var session = {
-//                sessionId: response.data._session_id,
-//                keyId: response.data._key_id,
-//                userId: response.data._user_id,
-//                timestamp: response.data._time_stamp
-//            };
-//            return session;
-////            return response.data;
-//        });
     };
 }
 
