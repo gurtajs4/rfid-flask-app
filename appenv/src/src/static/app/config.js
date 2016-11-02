@@ -1,14 +1,12 @@
 var appMain = angular.module('appMain');
 
-//var appBaseUrl = angular.element(document.querySelector('base')).attr('href');
-var appBaseUrl = angular.element(document.querySelector('base')).attr('href') + 'static/app'
+var appBaseUrl = angular.element(document.querySelector('base')).attr('href') + 'static/app';
 
 //, $interpolateProvider
 function config($routeProvider, $locationProvider) {
 
 //    $interpolateProvider.startSymbol('<<').endSymbol('>>');
 
-//    $locationProvider.html5Mode(true);
     $locationProvider.html5Mode({
         enabled: true,
         requireBase: false,
@@ -20,10 +18,6 @@ function config($routeProvider, $locationProvider) {
         templateUrl: appBaseUrl + '/home/home.html',
         controller: 'HomeController'
     }).
-//    when('/', {
-//        templateUrl: appBaseUrl + '/sessions/session-list.html',
-//        controller: 'SessionsController',
-//    }).
     when('/sessions', {
         templateUrl: appBaseUrl + '/sessions/session-list.html',
         controller: 'SessionsController',
@@ -40,25 +34,16 @@ function config($routeProvider, $locationProvider) {
         templateUrl: appBaseUrl + '/people/people-lookup.html',
         controller: 'PeopleLookupController'
     }).
-//    when('/users', {
-//        templateUrl: appBaseUrl + '/users/users-list.html',
-//        controller: 'UsersListController'
-//    }).
-//    when('/users/:id', {
-//        templateUrl: appBaseUrl + '/users/user-details.html',
-//        controller: 'UserDetailsController'
-//    }).
-//    when('/keys', {
-//        templateUrl: appBaseUrl + '/keys/keys-list.html',
-//        controller: 'KeysListController'
-//    }).
-//    when('/keys/:id', {
-//        templateUrl: appBaseUrl + '/keys/key-details.html',
-//        controller: 'KeyDetailsController'
-//    }).
+        when('/register/person', {
+        templateUrl: appBaseUrl + '/register/register-person.html',
+        controller: 'RegisterPersonController'
+    }).
+        when('/register/key', {
+        templateUrl: appBaseUrl + '/register/register-key.html',
+        controller: 'RegisterKeyController'
+    }).
     otherwise({ redirectTo: '/home' });
 }
 
-//config.$inject = ['$routeProvider', '$locationProvider', '$interpolateProvider'];
 config.$inject = ['$routeProvider', '$locationProvider'];
 appMain.config(config);

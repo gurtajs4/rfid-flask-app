@@ -4,7 +4,7 @@ function RegisterPersonController($location, registerService) {
 
     self.title = "Person Registration Page";
     self.note = "Register person in the system by associating ID Card number with some personal information";
-    self.extendedNote = "";
+    self.extendedNote = "Please move your ID card to the reader and the system will detect its unique number. The number will be displayed shortly after, and you can enter the rest of information then.";
     self.person = {};
 
     function load() {
