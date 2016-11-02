@@ -47,7 +47,7 @@ def api_get_session(session_id):
 
 @app.route('/api/register/user', methods=['GET'])
 def api_register_user():
-    user_id = 2271223943149   # mock id --> this is where another service will be called to obtain true user id
+    user_id = "2271223943149"   # mock id --> this is where another service will be called to obtain true user id
     if user_id is not None and user_id > -1:
         return user_id
     else:
@@ -62,7 +62,7 @@ def api_register_user():
 
 @app.route('/api/register/key', methods=['GET'])
 def api_register_key():
-    key_id = 221404673253   # mock id --> this is where another service will be called to obtain true key id
+    key_id = "221404673253"   # mock id --> this is where another service will be called to obtain true key id
     if key_id is not None and key_id > -1:
         return key_id
     else:
