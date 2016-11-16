@@ -1,6 +1,7 @@
 from .. import app
 import os
 from ..services.sessionRepository import SessionRepository
+from ..services.mockService import UserService, KeyService
 from flask import jsonify
 from flask import request
 from flask import Response
@@ -11,9 +12,14 @@ data_storage_path = os.path.join(os.path.dirname  # /rfid-flask-app
                                   (os.path.dirname  # /rfid-flask-app/appenv/src
                                    (os.path.dirname  # /rfid-flask-app/appenv/src/src
                                     (os.path.dirname  # /rfid-flask-app/appenv/src/src/views
-                                     (os.path.abspath(__file__)))))), "data/tagReadings.txt")
+                                     (os.path.abspath(__file__)))))), "data/")
+sessions_path = data_storage_path + "tagReadings.txt"
+mock_users_path = data_storage_path + "mockUsers.txt"
+mock_keys_path = data_storage_path + "mockKeys.txt"
 
-_service = SessionRepository(data_storage_path=data_storage_path)
+session_service = SessionRepository(data_storage_path=sessions_path)
+users_service = UserService(data_storage_path=mock_users_path)
+key_service = KeyService(data_storage_path=mock_keys_path)
 
 
 @app.route('/', methods=['GET'])
@@ -23,7 +29,7 @@ def api_root():
 
 @app.route('/api/sessions', methods=['GET'])
 def api_get_sessions():
-    data = _service.get_sessions()
+    data = session_service.get_sessions()
     resp = jsonify(data)
     resp.status_code = 200
     return resp
@@ -31,7 +37,7 @@ def api_get_sessions():
 
 @app.route('/api/sessions/<int:session_id>', methods=['GET'])
 def api_get_session(session_id):
-    session = _service.get_session(session_id)
+    session = session_service.get_session(session_id)
     if session is not None:
         resp = Response(str(session), status=200, mimetype='application/json')
         return resp
@@ -73,3 +79,33 @@ def api_register_key():
         resp = jsonify(message)
         resp.status_code = 404
         return resp
+
+
+@app.route('/api/lookup/user<int:user_id>', methods=['GET'])
+def api_lookup_user(user_id):
+    user = users_service.lookup_user(user_id)
+    if user is None:
+        message = {
+            'status': 404,
+            'message': 'Not Found' + request.url,
+        }
+        resp = jsonify(message)
+        resp.status_code = 404
+        return resp
+    else:
+        return user
+
+
+@app.route('/api/lookup/key<int:key_id>', methods=['GET'])
+def api_lookup_user(key_id):
+    key = key_service.lookup_key(key_id)
+    if key is None:
+        message = {
+            'status': 404,
+            'message': 'Not Found' + request.url,
+        }
+        resp = jsonify(message)
+        resp.status_code = 404
+        return resp
+    else:
+        return key
