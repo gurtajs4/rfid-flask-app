@@ -81,7 +81,7 @@ def api_register_key():
         return resp
 
 
-@app.route('/api/lookup/user<int:user_id>', methods=['GET'])
+@app.route('/api/lookup/user/<int:user_id>', methods=['GET'])
 def api_lookup_user(user_id):
     user = users_service.lookup_user(user_id)
     if user is None:
@@ -96,7 +96,7 @@ def api_lookup_user(user_id):
         return user
 
 
-@app.route('/api/lookup/key<int:key_id>', methods=['GET'])
+@app.route('/api/lookup/key/<int:key_id>', methods=['GET'])
 def api_lookup_key(key_id):
     key = key_service.lookup_key(key_id)
     if key is None:
