@@ -97,7 +97,7 @@ def api_lookup_user(user_id):
 
 
 @app.route('/api/lookup/key<int:key_id>', methods=['GET'])
-def api_lookup_user(key_id):
+def api_lookup_key(key_id):
     key = key_service.lookup_key(key_id)
     if key is None:
         message = {
