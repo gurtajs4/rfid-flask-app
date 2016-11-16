@@ -13,4 +13,4 @@ function keysService($http) {
 }
 
 keysService.$inject = ['$http'];
-angular.module('appMain').service('KeysService', keysService);
+angular.module('appMain').service('keysService', keysService);
