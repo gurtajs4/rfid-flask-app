@@ -18,7 +18,7 @@ mock_users_path = data_storage_path + "mockUsers.txt"
 mock_keys_path = data_storage_path + "mockKeys.txt"
 
 session_service = SessionRepository(data_storage_path=sessions_path)
-users_service = UserService(data_storage_path=mock_users_path)
+user_service = UserService(data_storage_path=mock_users_path)
 key_service = KeyService(data_storage_path=mock_keys_path)
 
 
@@ -83,7 +83,7 @@ def api_register_key():
 
 @app.route('/api/lookup/user/<int:user_id>', methods=['GET'])
 def api_lookup_user(user_id):
-    user = users_service.lookup_user(user_id)
+    user = user_service.lookup_user(user_id)
     if user is None:
         message = {
             'status': 404,
@@ -109,3 +109,33 @@ def api_lookup_key(key_id):
         return resp
     else:
         return key
+
+
+@app.route('/api/lookup/user', methods=['GET'])
+def api_lookup_users():
+    users = user_service.get_all()
+    if users.count() > 0:
+        return users
+    else:
+        message = {
+            'status': 404,
+            'message': 'Not Found' + request.url,
+        }
+        resp = jsonify(message)
+        resp.status_code = 404
+        return resp
+
+
+@app.route('/api/lookup/key', methods=['GET'])
+def api_lookup_keys():
+    keys = key_service.get_all()
+    if keys.count() > 0:
+        return keys
+    else:
+        message = {
+            'status': 404,
+            'message': 'Not Found' + request.url,
+        }
+        resp = jsonify(message)
+        resp.status_code = 404
+        return resp
