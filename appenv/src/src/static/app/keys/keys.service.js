@@ -6,8 +6,11 @@ function keysService($http) {
     return service;
 
     function lookup(keyId) {
-        return $http.get('/api/lookup/key', keyId).then(function (response) {
-            return response
+        return $http.get('/api/lookup/key/' + keyId.toString()).then(function (response) {
+            var key = {
+                id: parseInt(response.data.key)
+            };
+            return key;
         });
     }
 }

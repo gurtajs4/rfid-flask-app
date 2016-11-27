@@ -9,7 +9,8 @@ class PersonRepository(object):
         self.data_storage_path = data_storage_path
 
     def get_person(self, user_id):
-        if os.stat(self.data_storage_path).st_size > 0:
+        size = os.stat(self.data_storage_path).st_size
+        if size > 0:
             with open(self.data_storage_path, 'r') as jsonStorage:
                 people = []
                 for line in jsonStorage:
@@ -21,7 +22,8 @@ class PersonRepository(object):
         return None
 
     def get_people(self):
-        if os.stat(self.data_storage_path).st_size > 0:
+        size = os.stat(self.data_storage_path).st_size
+        if size > 0:
             with open(self.data_storage_path, 'r') as jsonStorage:
                 people = []
                 for line in jsonStorage:

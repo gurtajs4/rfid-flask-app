@@ -8,17 +8,14 @@ function KeysLookupController($location, keysService) {
     self.cancel = cancel;
 
     function lookup() {
-        var kid = service.lookup(self.queryset);
-        if (kid.status != undefined) {
-            $window.alert("The key " + kid + " you were looking for is available...");
-            $location.url("/home");
+        var key = service.lookup(self.queryset);
+        if (key != undefined) {
+            $location.url("/sessions/" + key.id);
         }
         else {
+            console.log('Request didn\'t came through...');
             $window.alert("Key not registered!");
         }
-        // $window.alert("server is trying to find that key...");
-        // var result = 7;
-        // $location.url("/sessions/" + result);
     }
 
     function cancel() {
