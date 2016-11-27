@@ -22,3 +22,13 @@ class ServiceManager(object):
         self.session_service = SessionRepository(data_storage_path=sessions_path)
         self.user_service = UserService(data_storage_path=mock_users_path)
         self.key_service = KeyService(data_storage_path=mock_keys_path)
+
+    def map_user_to_session(self, user):
+        sessions = [session for session in self.session_service.get_sessions() if session.user_id == user.id]
+        sessions.sort(lambda s: s.timespan)
+        return sessions[-1]
+
+    def map_key_to_session(self, key):
+        sessions = [session for session in self.key_service.get_all() if session.key_id == key.id]
+        sessions.sort(lambda s: s.timespan)
+        return sessions[-1]

@@ -8,9 +8,9 @@ function PeopleLookupController($location, peopleService) {
     self.cancel = cancel;
 
     function lookup() {
-        var user = service.lookup(self.queryset);
-        if (user != undefined) {
-            $location.url("/sessions/" + user.id);
+        var session = service.lookup(self.queryset);
+        if (session != undefined) {
+            $location.url("/sessions/" + session.id);
         }
         else {
             console.log('Request didn\'t came through...');

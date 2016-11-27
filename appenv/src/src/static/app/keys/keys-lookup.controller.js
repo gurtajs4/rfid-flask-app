@@ -8,9 +8,9 @@ function KeysLookupController($location, keysService) {
     self.cancel = cancel;
 
     function lookup() {
-        var key = service.lookup(self.queryset);
-        if (key != undefined) {
-            $location.url("/sessions/" + key.id);
+        var session = service.lookup(self.queryset);
+        if (session != undefined) {
+            $location.url("/sessions/" + session.id);
         }
         else {
             console.log('Request didn\'t came through...');
