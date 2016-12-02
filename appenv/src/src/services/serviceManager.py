@@ -26,9 +26,9 @@ class ServiceManager(object):
     def map_user_to_session(self, user):
         sessions = [session for session in self.session_service.get_sessions() if session.user_id == user.id]
         sessions.sort(lambda s: s.timespan)
-        return sessions[-1]
+        return sessions[-1]  # get latest session
 
     def map_key_to_session(self, key):
-        sessions = [session for session in self.key_service.get_all() if session.key_id == key.id]
+        sessions = [session for session in self.session_service.get_sessions() if session.key_id == key.id]
         sessions.sort(lambda s: s.timespan)
-        return sessions[-1]
+        return sessions[-1]  # get latest session
