@@ -36,7 +36,7 @@ class UserInfo(object):
 
     @user_id.setter
     def user_id(self, id):
-        self.user_id = id
+        self._user_id = id
 
     @property
     def user_name(self):
