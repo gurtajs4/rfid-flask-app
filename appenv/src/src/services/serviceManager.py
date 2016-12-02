@@ -24,11 +24,11 @@ class ServiceManager(object):
         self.key_service = KeyService(data_storage_path=mock_keys_path)
 
     def map_user_to_session(self, user):
-        sessions = [session for session in self.session_service.get_sessions() if session.user_id == user.id]
+        sessions = [session for session in self.session_service.get_sessions().iteritems() if session.user_id == user.id]
         sessions.sort(lambda s: s.timespan)
         return sessions[-1]  # get latest session
 
     def map_key_to_session(self, key):
-        sessions = [session for session in self.session_service.get_sessions() if session.key_id == key.id]
+        sessions = [session for session in self.session_service.get_sessions().iteritems() if session.key_id == key.id]
         sessions.sort(lambda s: s.timespan)
         return sessions[-1]  # get latest session
