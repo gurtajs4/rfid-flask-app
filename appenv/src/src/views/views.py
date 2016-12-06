@@ -84,7 +84,8 @@ def api_lookup_user(user_id):
         resp.status_code = 404
         return resp
     else:
-        return session
+        resp = Response(str(session), status=200, mimetype='application/json')
+        return resp
 
 
 @app.route('/api/lookup/key/<int:key_id>', methods=['GET', 'POST'])
@@ -104,14 +105,17 @@ def api_lookup_key(key_id):
         resp.status_code = 404
         return resp
     else:
-        return session
+        resp = Response(str(session), status=200, mimetype='application/json')
+        return resp
 
 
 @app.route('/api/lookup/user', methods=['GET'])
 def api_lookup_users():
     users = service_manager.user_service.get_all()
     if len(users) > 0:
-        return users
+        resp = jsonify(users)
+        resp.status_code = 200
+        return resp
     else:
         message = {
             'status': 404,
@@ -126,7 +130,9 @@ def api_lookup_users():
 def api_lookup_keys():
     keys = service_manager.key_service.get_all()
     if len(keys) > 0:
-        return keys
+        resp = jsonify(keys)
+        resp.status_code = 200
+        return resp
     else:
         message = {
             'status': 404,

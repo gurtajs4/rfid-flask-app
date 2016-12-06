@@ -2,7 +2,7 @@
     <h1 class="col-sm-10">{{ peopleLookup.title }}</h1>
     <h3 class="col-sm-10">{{ peopleLookup.note }}</h3>
     <div>
-        <form ng-submit="peopleLookup.lookup()" action="POST" novalidate>
+        <form novalidate ng-submit="peopleLookup.lookup()" action="POST">
             <input ng-model="peopleLookup.queryset" type="text" placeholder="Enter person ID..."/>
             <button type="submit" class="btn btn-primary">Lookup</button>
             <button ng-click="peopleLookup.cancel()" type="reset" class="btn btn-default">Cancel</button>
