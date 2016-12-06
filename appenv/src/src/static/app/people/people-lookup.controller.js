@@ -8,14 +8,15 @@ function PeopleLookupController($location, peopleService) {
     self.cancel = cancel;
 
     function lookup() {
-        var session = service.lookup(self.queryset);
-        if (session != undefined) {
-            $location.url("/sessions/" + session.id);
-        }
-        else {
-            console.log('Request didn\'t came through...');
-            $window.alert("User not registered!");
-        }
+        return service.lookup(self.queryset).then(function (response) {
+            if (response.status != 404) {
+                $location.url("/sessions/" + response.data.session.id);
+            }
+            else {
+                console.log('Request didn\'t came through...');
+                $window.alert("User not registered!");
+            }
+        });
     }
 
     function cancel() {
