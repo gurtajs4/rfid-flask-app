@@ -37,7 +37,7 @@ def api_get_session(session_id):
         return resp
 
 
-@app.route('/api/register/user', methods=['GET'])
+@app.route('/api/register/user', methods=['GET', 'POST'])
 def api_register_user():
     user_id = "2271223943149"   # mock id --> this is where another service will be called to obtain true user id
     if user_id is not None and user_id > -1:
@@ -52,7 +52,7 @@ def api_register_user():
         return resp
 
 
-@app.route('/api/register/key', methods=['GET'])
+@app.route('/api/register/key', methods=['GET', 'POST'])
 def api_register_key():
     key_id = "221404673253"   # mock id --> this is where another service will be called to obtain true key id
     if key_id is not None and key_id > -1:
@@ -67,7 +67,7 @@ def api_register_key():
         return resp
 
 
-@app.route('/api/lookup/user/<int:user_id>', methods=['POST'])
+@app.route('/api/lookup/user/<int:user_id>', methods=['GET', 'POST'])
 def api_lookup_user(user_id):
     user = service_manager.user_service.lookup_user(int(user_id))
     if user is None:
@@ -87,7 +87,7 @@ def api_lookup_user(user_id):
         return session
 
 
-@app.route('/api/lookup/key/<int:key_id>', methods=['POST'])
+@app.route('/api/lookup/key/<int:key_id>', methods=['GET', 'POST'])
 def api_lookup_key(key_id):
     key = service_manager.key_service.lookup_key(int(key_id))
     if key is None:
@@ -137,6 +137,20 @@ def api_lookup_keys():
         return resp
 
 
-@app.route('/test/<int:id>', methods=['GET'])
+@app.route('/api/test/<int:id>', methods=['GET'])
 def api_test(id):
-    return id > 0
+    # route for testing data (dev only, not for release)
+    if id > 0:
+        message = {
+            'status': 200,
+            'message': 'Test passed...',
+        }
+        resp = jsonify(message)
+        resp.status_code = 200
+    else:
+        message = {
+            'status': 404,
+            'message': 'Not Found' + request.url,
+        }
+        resp = jsonify(message)
+        resp.status_code = 404
