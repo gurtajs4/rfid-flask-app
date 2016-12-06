@@ -6,7 +6,9 @@ function keysService($http) {
     return service;
 
     function lookup(keyId) {
-        return $http.get('/api/lookup/key/' + keyId.toString()).then(function (response) {
+        return $http.get('/api/lookup/key/', {params: {
+            key_id: keyId
+        }}).then(function (response) {
             var key = {
                 id: parseInt(response.data.key)
             };

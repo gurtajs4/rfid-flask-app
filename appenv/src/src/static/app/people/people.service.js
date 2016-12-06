@@ -6,7 +6,9 @@ function peopleService($http) {
     return service;
 
     function lookup(userId) {
-        return $http.get('/api/lookup/user/' + userId.toString()).then(function (response) {
+        return $http.get('/api/lookup/user/', {params:{
+            user_id: userId
+        }}).then(function (response) {
             var person = {
                 id: parseInt(response.data.user)
             };
