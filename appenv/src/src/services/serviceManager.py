@@ -25,10 +25,14 @@ class ServiceManager(object):
 
     def map_user_to_session(self, data):
         sessions = [session for session in self.session_service.get_sessions() if session["_user_id"] == data]
-        sessions.sort(lambda s: s.timespan)
+        if len(sessions) == 0:
+            return None
+        sorted(sessions, key=lambda s: s["_time_stamp"])  # sort sessions by times_stamp
         return sessions[-1]  # get latest session
 
     def map_key_to_session(self, data):
         sessions = [session for session in self.session_service.get_sessions() if session["_key_id"] == data]
-        sessions.sort(lambda s: s.timespan)
+        if len(sessions) == 0:
+            return None
+        sorted(sessions, key=lambda s: s["_time_stamp"])  # sort sessions by times_stamp
         return sessions[-1]  # get latest session
