@@ -110,7 +110,7 @@ def api_lookup_key(key_id):
 @app.route('/api/lookup/user', methods=['GET'])
 def api_lookup_users():
     users = service_manager.user_service.get_all()
-    if users.count() > 0:
+    if len(users) > 0:
         return users
     else:
         message = {
@@ -125,7 +125,7 @@ def api_lookup_users():
 @app.route('/api/lookup/key', methods=['GET'])
 def api_lookup_keys():
     keys = service_manager.key_service.get_all()
-    if keys.count() > 0:
+    if len(keys) > 0:
         return keys
     else:
         message = {
