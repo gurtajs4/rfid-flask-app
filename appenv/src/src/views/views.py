@@ -146,7 +146,10 @@ def api_lookup_keys():
 @app.route('/api/test/<int:id>', methods=['GET'])
 def api_test(id):
     # route for testing data (dev only, not for release)
-    if id > 0:
+    sessions = [session for session in service_manager.session_service.get_sessions() if session["_user_id"] == id]
+    # key = service_manager.key_service.lookup_key(int(id))
+    key = sorted(sessions, key=lambda s: s["_time_stamp"])[-1]
+    if key is None:
         message = {
             'status': 200,
             'message': 'Test passed...',
