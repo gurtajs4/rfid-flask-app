@@ -151,15 +151,15 @@ def api_test(id):
     key = sorted(sessions, key=lambda s: s["_time_stamp"])[-1]
     if key is None:
         message = {
-            'status': 200,
-            'message': 'Test passed...',
-        }
-        resp = jsonify(message)
-        resp.status_code = 200
-    else:
-        message = {
             'status': 404,
             'message': 'Not Found' + request.url,
         }
         resp = jsonify(message)
         resp.status_code = 404
+    else:
+        message = {
+            'status': 200,
+            'message': 'Test passed...',
+        }
+        resp = jsonify(message)
+        resp.status_code = 200
