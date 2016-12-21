@@ -1,11 +1,19 @@
 from .. import app
 from ..services.serviceManager import ServiceManager
-from flask import jsonify
-from flask import request
-from flask import Response
+from flask import jsonify, request, Response
+from ..core import api_manager
+from ..models import models
 
 
+for model_name in app.config['API_MODELS']:
+    model_class = app.config['API_MODELS'][model_name]
+    api_manager.create_api(model_class, methods=['GET', 'POST'])
+
+api_session = api_manager.session
 service_manager = ServiceManager()
+
+from sqlalchemy.sql import exists
+crud_url_models = app.config['CRUD_URL_MODELS']
 
 
 @app.route('/', methods=['GET'])
@@ -15,7 +23,8 @@ def api_root():
 
 @app.route('/api/sessions', methods=['GET'])
 def api_get_sessions():
-    data = service_manager.session_service.get_sessions()
+    # data = service_manager.session_service.get_sessions()
+    data = crud_url_models['Session']
     resp = jsonify(data)
     resp.status_code = 200
     return resp
@@ -23,7 +32,9 @@ def api_get_sessions():
 
 @app.route('/api/sessions/<int:session_id>', methods=['GET'])
 def api_get_session(session_id):
-    session = service_manager.session_service.get_session(session_id)
+    # session = service_manager.session_service.get_session(session_id)
+    models_class = crud_url_models['Session']
+    session = api_session.query(model_class).filter(models_class.c.session_id==session_id).first()
     if session is not None:
         resp = Response(str(session), status=200, mimetype='application/json')
         return resp
@@ -141,25 +152,3 @@ def api_lookup_keys():
         resp = jsonify(message)
         resp.status_code = 404
         return resp
-
-
-@app.route('/api/test/<int:id>', methods=['GET'])
-def api_test(id):
-    # route for testing data (dev only, not for release)
-    sessions = [session for session in service_manager.session_service.get_sessions() if session["_user_id"] == id]
-    # key = service_manager.key_service.lookup_key(int(id))
-    key = sorted(sessions, key=lambda s: s["_time_stamp"])[-1]
-    if key is None:
-        message = {
-            'status': 404,
-            'message': 'Not Found' + request.url,
-        }
-        resp = jsonify(message)
-        resp.status_code = 404
-    else:
-        message = {
-            'status': 200,
-            'message': 'Test passed...',
-        }
-        resp = jsonify(message)
-        resp.status_code = 200
