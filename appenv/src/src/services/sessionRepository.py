@@ -1,6 +1,6 @@
 import os
 import json
-from sessionHandler import SessionHandler
+from handlers import SessionHandler
 
 
 # class that encapsulates session storage logic

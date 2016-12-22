@@ -1,8 +1,7 @@
 import os
 import json
 from sessionRepository import SessionRepository
-# from personRepository import PersonRepository
-from mockService import UserService, KeyService
+from mock_service import UserService, KeyService
 
 
 class ServiceManager(object):

@@ -1,19 +1,18 @@
 from .. import app
-from ..services.serviceManager import ServiceManager
+from ..services.service_manager import ServiceManager
+from ..services.sqlite_manager import SqliteApiManager
 from flask import jsonify, request, Response
 from ..core import api_manager
-from ..models import models
 
 
-for model_name in app.config['API_MODELS']:
-    model_class = app.config['API_MODELS'][model_name]
-    api_manager.create_api(model_class, methods=['GET', 'POST'])
+# for model_name in app.config['API_MODELS']:
+#     model_class = app.config['API_MODELS'][model_name]
+#     api_manager.create_api(model_class, methods=['GET', 'POST'])
 
-api_session = api_manager.session
+# api_session = api_manager.session
 service_manager = ServiceManager()
-
-from sqlalchemy.sql import exists
-crud_url_models = app.config['CRUD_URL_MODELS']
+sqlite_manager = SqliteApiManager()
+# crud_url_models = app.config['CRUD_URL_MODELS']
 
 
 @app.route('/', methods=['GET'])
@@ -24,7 +23,8 @@ def api_root():
 @app.route('/api/sessions', methods=['GET'])
 def api_get_sessions():
     # data = service_manager.session_service.get_sessions()
-    data = crud_url_models['session']
+    data = sqlite_manager.get_models('session')
+    # data = crud_url_models['session']
     resp = jsonify(data)
     resp.status_code = 200
     return resp
@@ -33,8 +33,9 @@ def api_get_sessions():
 @app.route('/api/sessions/<int:session_id>', methods=['GET'])
 def api_get_session(session_id):
     # session = service_manager.session_service.get_session(session_id)
-    models_class = crud_url_models['Session']
-    session = api_session.query(model_class).filter(models_class.id==session_id).first()
+    session = sqlite_manager.get_single('session', session_id)
+    # models_class = crud_url_models['session']
+    # session = api_session.query(model_class).filter(models_class.id==session_id).first()
     if session is not None:
         resp = Response(str(session), status=200, mimetype='application/json')
         return resp
