@@ -19,7 +19,7 @@ class User(db.Model):
 
 
 class Session(db.Model):
-    session_id = db.Column(db.Integer, primary_key=True, unique=True, nullable=False)
+    id = db.Column(db.Integer, primary_key=True, unique=True, nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey(User.id))
     key_id = db.Column(db.Integer, db.ForeignKey(Key.id))
     timestamp = db.Column(db.DateTime)
@@ -34,7 +34,7 @@ class Session(db.Model):
         self.timestamp = timestamp
 
     def __repr__(self):
-        return '<Session %r>' % self.session_id
+        return '<Session %r>' % self.id
 
 # models for which we want to create API endpoints
 app.config['API_MODELS'] = {'session': Session, 'user': User, 'key': Key}

@@ -34,7 +34,7 @@ def api_get_sessions():
 def api_get_session(session_id):
     # session = service_manager.session_service.get_session(session_id)
     models_class = crud_url_models['Session']
-    session = api_session.query(model_class).filter(models_class.c.session_id==session_id).first()
+    session = api_session.query(model_class).filter(models_class.c.id==session_id).first()
     if session is not None:
         resp = Response(str(session), status=200, mimetype='application/json')
         return resp
