@@ -24,7 +24,7 @@ def api_root():
 @app.route('/api/sessions', methods=['GET'])
 def api_get_sessions():
     # data = service_manager.session_service.get_sessions()
-    data = crud_url_models['Session']
+    data = crud_url_models['session']
     resp = jsonify(data)
     resp.status_code = 200
     return resp
