@@ -18,6 +18,7 @@ class SqliteApiManager:
 
     def get_single(self, model_name, id):
         model_class = self.crud_url_models[model_name]
-        model_instance = self.api_session.query(model_class).filter(model_class.id == id).first()
+        model_instance = self.api_session.query(model_class).filter('id' == id).first()
+        # model_instance = self.api_session.query(model_class).filter(model_class.id == id).first()
         data = ApiJSONEncoder.key_json_encode(model_instance)
         return data
