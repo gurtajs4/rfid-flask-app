@@ -27,7 +27,8 @@ def api_get_sessions():
 def api_get_session(session_id):
     session = jserial.session_instance_serialize(service_manager.get_session(session_id=session_id))
     if session is not None:
-        resp = jsonify(session)     # Response(str(session), status=200, mimetype='application/json')
+        resp = jsonify(session)  # Response(str(session), status=200, mimetype='application/json')
+        resp.status_code = 200
         return resp
     else:
         message = {

@@ -45,6 +45,7 @@ class SqliteManager:
                 key_id             INTEGER NOT NULL,
                 user_id            INTEGER NOT NULL,
                 timestamp          TEXT,
+                UNIQUE(key_id, user_id, timestamp),
                 FOREIGN KEY(key_id) REFERENCES Key(id),
                 FOREIGN KEY(user_id) REFERENCES User(id)
             )

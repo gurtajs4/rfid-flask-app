@@ -7,10 +7,15 @@ function SessionsController(sessionService) {
     load();
 
     function load() {
-        service.sessions().then(function(sessions){
-            self.list = sessions;
+        service.sessions().then(function (response) {
+            var data = response.data;
+            var viewModel = new Array();
+            for (i = 0; i < data.length; i++) {
+                viewModel.push(JSON.parse(data[i]));
+            }
+            self.list = viewModel;
         });
-    };
+    }
 }
 
 SessionsController.$inject = ['sessionService'];
