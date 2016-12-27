@@ -1,6 +1,9 @@
 import os
-import json
-from sessionRepository import SessionRepository
+import key_factory
+import user_factory
+import session_factory
+from ..db import SqliteManager
+from session_repository import SessionRepository
 from mock_service import UserService, KeyService
 
 
@@ -22,16 +25,47 @@ class ServiceManager(object):
         self.user_service = UserService(data_storage_path=mock_users_path)
         self.key_service = KeyService(data_storage_path=mock_keys_path)
 
-    def map_user_to_session(self, data):
-        sessions = [session for session in self.session_service.get_sessions() if session["_user_id"] == data]
-        if len(sessions) == 0:
-            return None
-        sorted(sessions, key=lambda s: s["_time_stamp"])  # sort sessions by times_stamp
-        return sessions[-1]  # get latest session
+    @staticmethod
+    def start_db():
+        db = SqliteManager(True)
 
-    def map_key_to_session(self, data):
-        sessions = [session for session in self.session_service.get_sessions() if session["_key_id"] == data]
-        if len(sessions) == 0:
-            return None
-        sorted(sessions, key=lambda s: s["_time_stamp"])  # sort sessions by times_stamp
-        return sessions[-1]  # get latest session
+    # api for keys
+    @staticmethod
+    def get_keys():
+        return key_factory.get_keys()
+
+    @staticmethod
+    def get_key(key_id=None, tag_id=None, room_id=None):
+        return key_factory.get_key(key_id, tag_id, room_id)
+
+    @staticmethod
+    def create_key(tag_id=None, room_id=None):
+        return key_factory.create_key(tag_id, room_id)
+
+    # api for users
+    @staticmethod
+    def get_users():
+        return user_factory.get_users()
+
+    @staticmethod
+    def get_user(tag_id=None, first_name=None, last_name=None, pic_url=None):
+        return user_factory.get_user(tag_id, first_name, last_name, pic_url)
+
+    @staticmethod
+    def create_user(tag_id=None, first_name=None, last_name=None, pic_url=None):
+        user_factory.create_user(tag_id, first_name, last_name, pic_url)
+
+    # api for sessions
+    @staticmethod
+    def get_sessions():
+        return session_factory.get_sessions()
+
+    @staticmethod
+    def get_session(session_id=None, user_id=None, key_id=None, timestamp=None):
+        return session_factory.get_session(session_id, user_id, key_id, timestamp)
+
+    @staticmethod
+    def create_session(user_id=None, key_id=None, timestamp=None):
+        session_factory.create_session(user_id, key_id, timestamp)
+
+    # api for matching

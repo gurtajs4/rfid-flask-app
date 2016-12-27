@@ -9,10 +9,9 @@ root_path = os.path.join(os.path.dirname  # /rfid-flask-app
                         (os.path.dirname  # /rfid-flask-app/appenv/src/src
                         (os.path.abspath(__file__))))), "data/")
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////' + root_path + 'rfiddb.sqlite'
-# app.url_map.strict_slashes = False
+# app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////' + root_path + 'rfiddb.sqlite'
 
 
-from . import core
+# from . import core
 from models import models
 from views import views

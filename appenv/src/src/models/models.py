@@ -1,44 +1,22 @@
-from datetime import datetime
-
-from ..core import db
-from .. import app
-
-
-class Key(db.Model):
-    id = db.Column(db.Integer, primary_key=True, unique=True, nullable=False)
-    tag_id = db.Column(db.Integer, unique=True)
-    room_id = db.Column(db.Integer, unique=True)
+class Key:
+    def __init__(self, key_id, tag_id, room_id):
+        self.id = key_id
+        self.tag_id = tag_id
+        self.room_id = room_id
 
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True, unique=True, nullable=False)
-    tag_id = db.Column(db.Integer, unique=True)
-    first_name = db.Column(db.String(80))
-    last_name = db.Column(db.String(100))
-    profile_pic = db.Column(db.LargeBinary)
+class User:
+    def __init__(self, user_id, tag_id, first_name, last_name, pic_url):
+        self.Id = user_id
+        self.tag_id = tag_id
+        self.first_name = first_name
+        self.last_name = last_name
+        self.pic_url = pic_url
 
 
-class Session(db.Model):
-    id = db.Column(db.Integer, primary_key=True, unique=True, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey(User.id))
-    key_id = db.Column(db.Integer, db.ForeignKey(Key.id))
-    timestamp = db.Column(db.DateTime)
-    user = db.relationship(User, backref=db.backref('sessions', lazy='dynamic'))
-    key = db.relationship(Key, backref=db.backref('sessions', lazy='dynamic'))
-
-    def __init__(self, user_id, key_id, timestamp=None):
+class Session:
+    def __init__(self, session_id, user_id, key_id, timestamp):
+        self.id = session_id
         self.user_id = user_id
         self.key_id = key_id
-        if timestamp is None:
-            timestamp = datetime.utcnow()
         self.timestamp = timestamp
-
-    def __repr__(self):
-        return '<Session %r>' % self.id
-
-# models for which we want to create API endpoints
-app.config['API_MODELS'] = {'session': Session, 'user': User, 'key': Key}
-
-# models for which we want to create CRUD-style URL endpoints,
-# and pass the routing onto our AngularJS application
-app.config['CRUD_URL_MODELS'] = {'session': Session, 'user': User, 'key': Key}
