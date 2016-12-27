@@ -1,5 +1,6 @@
 from .. import app
 from ..services.service_manager import ServiceManager
+from ..services.serializers import JSONSerializer as jserial
 from flask import jsonify, request, Response
 
 service_manager = ServiceManager()
@@ -16,7 +17,7 @@ def api_root():
 
 @app.route('/api/sessions', methods=['GET'])
 def api_get_sessions():
-    data = service_manager.get_sessions()
+    data = jserial.session_instances_serialize(service_manager.get_sessions())
     resp = jsonify(data)
     resp.status_code = 200
     return resp
@@ -24,9 +25,9 @@ def api_get_sessions():
 
 @app.route('/api/sessions/<int:session_id>', methods=['GET'])
 def api_get_session(session_id):
-    session = service_manager.get_session(session_id=session_id)
+    session = jserial.session_instance_serialize(service_manager.get_session(session_id=session_id))
     if session is not None:
-        resp = Response(str(session), status=200, mimetype='application/json')
+        resp = jsonify(session)     # Response(str(session), status=200, mimetype='application/json')
         return resp
     else:
         message = {
