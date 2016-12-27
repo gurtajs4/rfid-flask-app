@@ -1,5 +1,5 @@
 import sqlite3
-from appenv.src.src.config import DATABASE_URI
+from .config import DATABASE_URI
 
 
 class SqliteManager:
