@@ -5,10 +5,11 @@
         .module('appMain')
         .config(config);
 
-    config.$inject = ['$routeProvider', '$locationProvider', 'templateServiceProvider'];
+    config.$inject = ['$routeProvider', '$locationProvider'];
 
-    function config($routeProvider, $locationProvider, templateServiceProvider) {
-        var appBaseUrl = templateServiceProvider.appBaseUrl();
+    function config($routeProvider, $locationProvider) {
+        //var appBaseUrl = templateServiceProvider.appBaseUrl();
+        var appBaseUrl = angular.element(document.querySelector('base')).attr('href') + 'static/app';
 
         $locationProvider.html5Mode({
             enabled: true,
