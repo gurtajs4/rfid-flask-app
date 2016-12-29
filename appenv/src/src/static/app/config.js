@@ -8,7 +8,7 @@
     config.$inject = ['$routeProvider', '$locationProvider', 'templateService'];
 
     function config($routeProvider, $locationProvider, templateService) {
-        var appBaseUrl = templateService.appBaseUrl();
+        var appBaseUrl = templateService.$get().appBaseUrl();
 
         $locationProvider.html5Mode({
             enabled: true,
