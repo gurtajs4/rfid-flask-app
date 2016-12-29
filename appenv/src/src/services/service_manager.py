@@ -3,6 +3,7 @@ import key_factory
 import user_factory
 import session_factory
 from ..db import SqliteManager
+from ..embedded.mfrc_service import ServiceMFRC
 from session_repository import SessionRepository
 from mock_service import UserService, KeyService
 
@@ -48,8 +49,8 @@ class ServiceManager(object):
         return user_factory.get_users()
 
     @staticmethod
-    def get_user(tag_id=None, first_name=None, last_name=None, pic_url=None):
-        return user_factory.get_user(tag_id, first_name, last_name, pic_url)
+    def get_user(user_id=None, tag_id=None, first_name=None, last_name=None, pic_url=None):
+        return user_factory.get_user(user_id, tag_id, first_name, last_name, pic_url)
 
     @staticmethod
     def create_user(tag_id=None, first_name=None, last_name=None, pic_url=None):
@@ -69,3 +70,14 @@ class ServiceManager(object):
         session_factory.create_session(user_id, key_id, timestamp)
 
     # api for matching
+    @staticmethod
+    def init_reader():
+        reader = ServiceMFRC()
+        return reader.do_read()
+
+    @staticmethod
+    def do_read(callback):
+        if callable(callable):
+            return callable()
+        else:
+            return None

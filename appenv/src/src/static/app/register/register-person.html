@@ -1,16 +1,20 @@
-<div ng-controller="RegisterPersonController as registerPerson" class="container">
-    <h1 class="col-sm-10">{{registerPerson.title}}</h1>
-    <h3 class="col-sm-10">{{registerPerson.note}}</h3>
-    <div>
-        <p>{{registerPerson.extendedNote}}</p>
+<div ng-controller="RegisterPersonController as regPrs" class="container">
+    <h1 class="col-sm-10">{{regPrs.title}}</h1>
+    <h3 class="col-sm-10">{{regPrs.note}}</h3>
+    <div class="panel panel-default">
+        <p>Please move your ID card to the reader and the system will detect its unique number. The number will be
+            displayed shortly after, and you can enter the rest of information then.</p>
     </div>
-    <form ng-show="(registerPerson.person.userId > 0)" novalidate ng-submit="registerPerson.register()" action="POST">
-        <p>Editing information about person #{{registerPerson.person.userId}}</p>
+    <reader></reader>
+    <form ng-hide="(regPrs.tagData===undefined || isNaN(regPrs.tagData))" novalidate
+          ng-submit="regPrs.register()" action="POST">
+        <p>Editing information about person #{{regPrs.tagData}}</p>
         <hr/>
-        <input ng-model="registerPerson.person.firstName" placeholder="First name" type="text"/>
-        <input ng-model="registerPerson.person.lastName" placeholder="Last name" type="text"/>
-        <input ng-model="registerPerson.person.email" placeholder="Email" type="text"/>
+        <input ng-model="regPrs.firstName" placeholder="First name" type="text"/>
+        <input ng-model="regPrs.lastName" placeholder="Last name" type="text"/>
+        <input ng-model="regPrs.picUrl" placeholder="Picture (icon) url" type="text"/>
+        <!--<input ng-model="regPrs.email" placeholder="Email" type="text"/>-->
         <button class="btn btn-primary">Register</button>
-        <button ng-click="registerPerson.cancel()" class="btn btn-danger" type="reset">Cancel</button>
+        <button ng-click="regPrs.cancel()" class="btn btn-danger" type="reset">Cancel</button>
     </form>
 </div>

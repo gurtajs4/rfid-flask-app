@@ -1,23 +1,43 @@
-function registerService($http) {
-    var service = {
-        userId: userId,
-        keyId: keyId,
-    };
+(function () {
+    'use strict';
 
-    return service;
+    angular
+        .module('appMain')
+        .service('registerService', registerService);
 
-    function userId() {
-        return $http.get('/api/register/user').then(function (response) {
-            return response.data;   // returns user ID
-        });
-    };
+    registerService.$inject = ['$http'];
+    function registerService($http) {
+        var service = {
+            userId: userId,
+            keyId: keyId,
+            registerKey: registerKey,
+            registerUser: registerUser
+        };
 
-    function keyId() {
-        return $http.get('/api/register/key').then(function (response) {
-            return response.data;   // returns key ID
-        });
-    };
-}
+        return service;
 
-registerService.$inject = ['$http'];
-angular.module('appMain').service('registerService', registerService);
+        function registerKey(key) {
+            return $http.post('/api/register/key', JSON.stringify(key));
+        }
+
+        function registerUser(user) {
+            return $http.post('/api/register/user', JSON.stringify(user));
+        }
+
+        function userId(tagData) {
+            return $http.get('/api/lookup/user', {
+                params: {
+                    id: tagData
+                }
+            });   // returns user ID
+        }
+
+        function keyId(tagData) {
+            return $http.get('/api/lookup/key', {
+                params: {
+                    id: tagData
+                }
+            });   // returns key ID
+        }
+    }
+})();

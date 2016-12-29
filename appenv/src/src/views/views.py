@@ -27,7 +27,7 @@ def api_get_sessions():
 def api_get_session(session_id):
     session = jserial.session_instance_serialize(service_manager.get_session(session_id=session_id))
     if session is not None:
-        resp = jsonify(session)  # Response(str(session), status=200, mimetype='application/json')
+        resp = jsonify(session)
         resp.status_code = 200
         return resp
     else:
@@ -40,11 +40,38 @@ def api_get_session(session_id):
         return resp
 
 
+@app.route('/api/reader', methods=['GET'])
+def api_reader():
+    data = service_manager.do_read(service_manager.init_reader)
+    if data is None:
+        message = {
+            'status': 404,
+            'message': 'Not found' + request.url
+        }
+    else:
+        message = {
+            'status': 200,
+            'data': data
+        }
+    resp = jsonify(message)
+    resp.status_code = message['status']
+    return resp
+
+
 @app.route('/api/register/user', methods=['GET', 'POST'])
 def api_register_user():
-    user_id = "2271223943149"  # mock id --> this is where another service will be called to obtain true user id
-    if user_id is not None and user_id > -1:
-        return user_id
+    user = jserial.user_instance_deserialize(request.data[0])
+    user = service_manager.create_user(tag_id=user.tag_id, first_name=user.first_name, last_name=user.last_name,
+                                       pic_url=user.pic_url)
+    if user.id > -1:
+        data = jserial.user_instance_serialize(user_instance=user)
+        message = {
+            'status': 200,
+            'data': data
+        }
+        resp = jsonify(message)
+        resp.status_code = 200
+        return resp
     else:
         message = {
             'status': 404,
@@ -55,11 +82,19 @@ def api_register_user():
         return resp
 
 
-@app.route('/api/register/key', methods=['GET', 'POST'])
+@app.route('/api/register/key>', methods=['GET', 'POST'])
 def api_register_key():
-    key_id = "221404673253"  # mock id --> this is where another service will be called to obtain true key id
-    if key_id is not None and key_id > -1:
-        return key_id
+    key = jserial.key_instance_deserialize(request.data[0])
+    key = service_manager.create_key(tag_id=key.tag_id, room_id=key.room_id)
+    if key.id > 0:
+        data = jserial.key_instance_serialize(key_instance=key)
+        message = {
+            'status': 200,
+            'data': data
+        }
+        resp = jsonify(message)
+        resp.status_code = 200
+        return resp
     else:
         message = {
             'status': 404,
@@ -72,14 +107,8 @@ def api_register_key():
 
 @app.route('/api/lookup/user/<int:user_id>', methods=['GET'])
 def api_lookup_user(user_id):
-    user = service_manager.user_service.lookup_user(int(user_id))
-    session = []  # map user to session
+    user = service_manager.get_user(user_id=user_id)
     if user is None:
-        is_found = False
-    else:
-        # session = service_manager.map_user_to_session(user)
-        is_found = False if (session is None) else True
-    if not is_found:
         message = {
             'status': 404,
             'message': 'Not Found' + request.url,
@@ -88,7 +117,8 @@ def api_lookup_user(user_id):
         resp.status_code = 404
         return resp
     else:
-        resp = Response(str(session), status=200, mimetype='application/json')
+        data = jserial.user_instance_serialize(user_instance=user)
+        resp = Response(data, status=200, mimetype='application/json')
         return resp
 
 
