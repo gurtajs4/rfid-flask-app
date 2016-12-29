@@ -73,8 +73,12 @@ class ServiceManager(object):
     @staticmethod
     def init_reader():
         reader = ServiceMFRC()
-        print reader.counter
-        return reader.do_read()
+        data = reader.do_read()
+        return {
+            'message': data['message'],
+            'data': data['data'],
+            'optional': 'message from service manager'
+        }
 
     @staticmethod
     def do_read(callback):

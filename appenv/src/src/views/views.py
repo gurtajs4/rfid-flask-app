@@ -17,6 +17,7 @@ def api_root():
 
 @app.route('/api/sessions', methods=['GET'])
 def api_get_sessions():
+    print('Hello from api-views')
     data = jserial.session_instances_serialize(service_manager.get_sessions())
     resp = jsonify(data)
     resp.status_code = 200
@@ -46,10 +47,13 @@ def api_reader():
     if data is None:
         message = {
             'status': 404,
-            'message': 'Not found' + request.url
+            'message': 'Not found, check service manager...'
         }
     else:
-        print(data[0])
+        print('output from api-reader')
+        print('message: ' + data['message'])
+        print('data: ', data['data'])
+        print('check service-manager: ' + data['optional'])
         message = {
             'status': 200,
             'data': data[1]
