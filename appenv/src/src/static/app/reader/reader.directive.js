@@ -5,18 +5,18 @@
         .module('appMain')
         .directive('reader', reader);
 
-    reader.$inject = ['templateService'];
+    reader.$inject = ['templateServiceProvider'];
 
-    function reader(templateService) {
-        // var appBaseUrl = templateService.appBaseUrl();
+    function reader(templateServiceProvider) {
+        var appBaseUrl = templateServiceProvider.appBaseUrl();
         return {
             restrict: 'EA',
             scope: {
                 tagData: "=",
                 message: "="
             },
-            templateUrl: '/reader/reader.html',
-            // templateUrl: appBaseUrl+'/reader/reader.html',
+            // templateUrl: '/reader/reader.html',
+            templateUrl: appBaseUrl+'/reader/reader.html',
             controller: 'ReaderController',
             controllerAs: 'rdc'
         }
