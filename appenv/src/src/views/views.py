@@ -3,6 +3,7 @@ from ..services.service_manager import ServiceManager
 from ..services.serializers import JSONSerializer as jserial
 from flask import jsonify, request, Response
 
+
 service_manager = ServiceManager()
 
 
@@ -58,7 +59,7 @@ def api_reader():
     return resp
 
 
-@app.route('/api/register/user', methods=['GET', 'POST'])
+@app.route('/api/register/user', methods=['POST'])
 def api_register_user():
     user = jserial.user_instance_deserialize(request.data[0])
     user = service_manager.create_user(tag_id=user.tag_id, first_name=user.first_name, last_name=user.last_name,
@@ -82,7 +83,7 @@ def api_register_user():
         return resp
 
 
-@app.route('/api/register/key', methods=['GET', 'POST'])
+@app.route('/api/register/key', methods=['POST'])
 def api_register_key():
     key = jserial.key_instance_deserialize(request.data[0])
     key = service_manager.create_key(tag_id=key.tag_id, room_id=key.room_id)

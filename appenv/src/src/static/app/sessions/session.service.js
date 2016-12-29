@@ -1,20 +1,26 @@
-function SessionService($http) {
+(function () {
+    'use strict';
 
-    var service = {
-        sessions: sessions,
-        session: session
-    };
+    angular
+        .module('appMain')
+        .service('sessionService', SessionService);
 
-    return service;
+    SessionService.$inject = ['$http'];
+    function SessionService($http) {
 
-    function sessions() {
-        return $http.get('/api/sessions');
+        var service = {
+            sessions: sessions,
+            session: session
+        };
+
+        return service;
+
+        function sessions() {
+            return $http.get('/api/sessions');
+        }
+
+        function session(id) {
+            return $http.get('/api/sessions/' + id.toString());
+        }
     }
-
-    function session(id) {
-        return $http.get('/api/sessions/' + id.toString());
-    }
-}
-
-SessionService.$inject = ['$http'];
-angular.module('appMain').service('sessionService', SessionService);
+})();

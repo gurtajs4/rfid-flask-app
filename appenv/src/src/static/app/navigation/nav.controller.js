@@ -1,17 +1,23 @@
-function NavController($scope) {
+(function () {
+    'use strict';
 
-    $scope.tab = 0;
-    $scope.setActive = setActive;
-    $scope.isActive = isActive;
+    angular
+        .module('appMain')
+        .controller('NavController', NavController);
 
-    function setActive(tabId) {
-        $scope.tab = tabId;
-    };
+    NavController.$inject = ['$scope'];
+    function NavController($scope) {
 
-    function isActive(tabId) {
-        return $scope.tab === tabId;
-    };
-}
+        $scope.tab = 0;
+        $scope.setActive = setActive;
+        $scope.isActive = isActive;
 
-NavController.$inject = ['$scope'];
-angular.module('appMain').controller('NavController', NavController);
+        function setActive(tabId) {
+            $scope.tab = tabId;
+        }
+
+        function isActive(tabId) {
+            return $scope.tab === tabId;
+        }
+    }
+})();

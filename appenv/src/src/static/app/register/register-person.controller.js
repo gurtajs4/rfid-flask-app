@@ -13,6 +13,9 @@
         self.title = "Person Registration Page";
         self.note = "Register person in the system by associating ID Card number with some personal information";
 
+        self.register = register;
+        self.cancel = cancel;
+
         function register() {
             //  creates person object and sends it to api/people/add/person/
             var user = {

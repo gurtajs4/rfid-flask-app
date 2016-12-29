@@ -1,6 +1,12 @@
-function MainController($scope) {
-    $scope.message = "Keys storage management system - RFID tag reader application interface";
-}
+(function () {
+    'use strict';
 
-MainController.$inject = ['$scope'];
-angular.module('appMain').controller('MainController', MainController);
+    angular
+        .module('appMain')
+        .controller('MainController', MainController);
+
+    MainController.$inject = ['$scope'];
+    function MainController($scope) {
+        $scope.message = "Keys storage management system - RFID tag reader application interface";
+    }
+})();

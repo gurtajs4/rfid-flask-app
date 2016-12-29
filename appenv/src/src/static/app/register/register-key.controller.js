@@ -1,15 +1,20 @@
 (function () {
     'use strict';
 
-    angular.module('appMain').controller('RegisterKeyController', RegisterKeyController);
-    RegisterKeyController.$inject = ['$location', 'registerService'];
+    angular
+        .module('appMain')
+        .controller('RegisterKeyController', RegisterKeyController);
 
+    RegisterKeyController.$inject = ['$location', 'registerService'];
     function RegisterKeyController($location, registerService) {
         var self = this;
         var service = registerService;
 
         self.title = "Key/Room Registration Page";
         self.note = "Register room key in the system by associating ID of key tag with some additional information about the room";
+
+        self.register = register;
+        self.cancel = cancel;
 
         function register() {
             //  joins key ID with additional some information and sends it to api/people/add/key/
