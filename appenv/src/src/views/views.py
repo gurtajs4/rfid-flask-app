@@ -43,7 +43,8 @@ def api_get_session(session_id):
 
 @app.route('/api/reader', methods=['GET'])
 def api_reader():
-    data = service_manager.do_read(service_manager.init_reader)
+    data=service_manager.init_reader
+    # data = service_manager.do_read(service_manager.init_reader)
     if data is None:
         message = {
             'status': 404,

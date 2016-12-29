@@ -73,6 +73,7 @@ class ServiceManager(object):
     @staticmethod
     def init_reader():
         reader = ServiceMFRC()
+        print reader.counter
         return reader.do_read()
 
     @staticmethod

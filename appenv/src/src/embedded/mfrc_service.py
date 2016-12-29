@@ -37,4 +37,5 @@ class ServiceMFRC:
             return (self.message, backData)
         if self.continue_reading == True:
             self.counter -= 1
+            print self.counter
             return self.do_read()
