@@ -3,7 +3,6 @@ from ..services.service_manager import ServiceManager
 from ..services.serializers import JSONSerializer as jserial
 from flask import jsonify, request, Response
 
-
 service_manager = ServiceManager()
 
 
@@ -43,17 +42,17 @@ def api_get_session(session_id):
 
 @app.route('/api/reader', methods=['GET'])
 def api_reader():
-    data=service_manager.init_reader
-    # data = service_manager.do_read(service_manager.init_reader)
+    data = service_manager.init_reader()
     if data is None:
         message = {
             'status': 404,
             'message': 'Not found' + request.url
         }
     else:
+        print(data[0])
         message = {
             'status': 200,
-            'data': data
+            'data': data[1]
         }
     resp = jsonify(message)
     resp.status_code = message['status']
