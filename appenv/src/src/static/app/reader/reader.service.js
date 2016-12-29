@@ -14,7 +14,7 @@
         return service;
 
         function tagRead() {
-            $http.get('api/reader/');
+            $http.get('/api/reader/');
         }
     }
 })();
