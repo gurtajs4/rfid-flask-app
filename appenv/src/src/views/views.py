@@ -82,7 +82,7 @@ def api_register_user():
         return resp
 
 
-@app.route('/api/register/key>', methods=['GET', 'POST'])
+@app.route('/api/register/key', methods=['GET', 'POST'])
 def api_register_key():
     key = jserial.key_instance_deserialize(request.data[0])
     key = service_manager.create_key(tag_id=key.tag_id, room_id=key.room_id)
