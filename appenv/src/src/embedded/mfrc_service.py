@@ -1,8 +1,9 @@
 def load_src(name, fdir, fpath):
     import os, imp
-    return imp.load_source(name, os.path.join(
-        os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))),
-                     fdir)), fpath)
+    return imp.load_source(name,
+                           os.path.join(os.path.dirname(
+                               os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(__file__))))),
+                               fdir, fpath))
 
 
 load_src("MFRC522", "rfid-python-lib", "MFRC522.py")
