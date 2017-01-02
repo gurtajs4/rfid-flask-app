@@ -6,7 +6,7 @@
         .controller('ReaderController', ReaderController);
 
     ReaderController.$inject = ['readerService', '$socket'];
-    function ReaderController(readerService) {
+    function ReaderController(readerService, $socket) {
         var self = this;
         var service = readerService;
 
