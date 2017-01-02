@@ -14,7 +14,7 @@
         return service;
 
         function initReader() {
-            return $http.get('/api/reader/');
+            return $http.get('/api/reader');
         }
     }
 })();

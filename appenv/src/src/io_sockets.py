@@ -25,7 +25,7 @@ def send_message(message, event):
     messages[last_id + 1] = {
         'message': message
     }
-    print(messages[last_id + 1])
+    print('Sending message-text: %s' % messages[last_id + 1])
     emit(event, message)
 
 
