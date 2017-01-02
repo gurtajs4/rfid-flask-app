@@ -12,7 +12,7 @@
 
         activate();
 
-        socket.on('reader-done', function (message) {
+        $socket.on('reader-done', function (message) {
             console.log('Reader is done - socket-io event from server to client');
             console.log(message);
             self.tagData = message['message']['data'];
