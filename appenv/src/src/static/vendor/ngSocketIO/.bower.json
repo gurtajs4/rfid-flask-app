@@ -1,0 +1,41 @@
+{
+  "name": "ngSocketIO",
+  "homepage": "https://github.com/VictorQueiroz/ngSocketIO",
+  "authors": [
+    "Victor Queiroz <victorcqueirozg@gmail.com>"
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/VictorQueiroz/ngSocketIO.git"
+  },
+  "bugs": {
+    "url": "https://github.com/VictorQueiroz/ngSocketIO/issues"
+  },
+  "private": false,
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular": "~1.2.23",
+    "angular-mocks": "~1.2.23"
+  },
+  "_release": "56de58613a",
+  "_resolution": {
+    "type": "branch",
+    "branch": "master",
+    "commit": "56de58613a296164a13e66133878c202ae100758"
+  },
+  "_source": "https://github.com/VictorQueiroz/ngSocketIO.git",
+  "_target": "*",
+  "_originalSource": "angular-socketio",
+  "_direct": true
+}
