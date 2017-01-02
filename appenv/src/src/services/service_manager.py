@@ -76,6 +76,7 @@ class ServiceManager(object):
     def init_reader():
         reader = ServiceMFRC()
         data = reader.do_read()
+        print('message from service manager: %s' % data['message'])
         reader_output(data=data)
 
     def set_reader(self):

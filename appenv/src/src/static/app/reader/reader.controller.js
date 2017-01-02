@@ -12,6 +12,12 @@
 
         activate();
 
+        socket.on('reader-done', function (message) {
+            console.log('Reader is done - socket-io event from server to client');
+            console.log(message);
+            self.tagData = message['message']['data'];
+        });
+
         function activate() {
             $socket().then(function (socket) {
                 console.log('creating socket instance');
@@ -21,11 +27,6 @@
                         console.log(response);
                         self.message = response.data.message;
                     });
-                });
-                socket.on('reader-done', function (message) {
-                    console.log('Reader is done - socket-io event from server to client');
-                    console.log(message);
-                    self.tagData = message['message']['data'];
                 });
             });
             // service.initReader().then(function (response) {

@@ -20,6 +20,7 @@ class ServiceMFRC:
 
     def end_read(self):
         self.continue_reading = False
+        self.counter = -1
         print "Ctrl+C captured, ending read."
         self.MIFAREReader.GPIO_CLEEN()
 
