@@ -26,6 +26,7 @@ class ServiceMFRC:
     def do_read(self):
         self.continue_reading = True
         while self.continue_reading and self.counter > 0:
+            print('Reader TTL: %s' % self.counter)
             (status, TagType) = self.MIFAREReader.MFRC522_Request(self.MIFAREReader.PICC_REQIDL)
             if status == self.MIFAREReader.MI_OK:
                 self.message += "Card detected"
@@ -42,4 +43,8 @@ class ServiceMFRC:
                 }
             self.counter -= 1
             time.sleep(1)
-        return None
+        print('No tag data found...')
+        return {
+            'message': 'No tag data detected...',
+            'data': '00000000'
+        }
