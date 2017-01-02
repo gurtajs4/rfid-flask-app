@@ -8,12 +8,12 @@
     readerService.$inject = ['$http'];
     function readerService($http) {
         var service = {
-            tagRead: tagRead
+            initReader: initReader
         };
 
         return service;
 
-        function tagRead() {
+        function initReader() {
             return $http.get('/api/reader/');
         }
     }

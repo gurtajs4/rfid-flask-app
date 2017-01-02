@@ -5,11 +5,11 @@
         </div>
         <div class="panel panel-group">
             <div class="panel">Move or hold your RFID tag over the reader to obtain tag data.</div>
-            <div ng-hide="rdc.message.length > 0" class="panel">
+            <div ng-show="rdc.tagData" class="panel">
                 <label for="tagData">Tag ID:</label>
                 <input disabled name="tagData" ng-model="rdc.tagData" type="text"/>
             </div>
-            <div ng-show="rdc.message.length > 0" class="panel">
+            <div ng-show="rdc.message" class="panel">
                 <p>{{rdc.message}}</p>
             </div>
         </div>

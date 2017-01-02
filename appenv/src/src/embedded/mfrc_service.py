@@ -42,3 +42,4 @@ class ServiceMFRC:
                 }
             self.counter -= 1
             time.sleep(1)
+        return None

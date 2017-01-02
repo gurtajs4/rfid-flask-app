@@ -43,21 +43,26 @@ def api_get_session(session_id):
 
 @app.route('/api/reader', methods=['GET'])
 def api_reader():
-    data = service_manager.init_reader()
-    if data is None:
-        message = {
-            'status': 404,
-            'message': 'Not found, check service manager...'
-        }
-    else:
-        print('output from api-reader')
-        print('message: ' + data['message'])
-        print('data: ', data['data'])
-        print('check service-manager: ' + data['optional'])
-        message = {
-            'status': 200,
-            'data': data[1]
-        }
+    service_manager.set_reader()
+    message = {
+        'status': 200,
+        'message': 'Reader will be active for the next 20 seconds...'
+    }
+    # data = service_manager.init_reader()
+    # if data is None:
+    #     message = {
+    #         'status': 404,
+    #         'message': 'Not found, check service manager...'
+    #     }
+    # else:
+    #     print('output from api-reader')
+    #     print('message: ' + data['message'])
+    #     print('data: ', data['data'])
+    #     print('check service-manager: ' + data['optional'])
+    #     message = {
+    #         'status': 200,
+    #         'data': data[1]
+    #     }
     resp = jsonify(message)
     resp.status_code = message['status']
     return resp
