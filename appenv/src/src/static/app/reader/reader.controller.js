@@ -15,18 +15,18 @@
         function activate() {
             $socket().then(function (socket) {
                 console.log('creating socket instance');
-                socket.on('connect', function (message) {
-                    socket.emit('message', {
-                        message: 'hello-from-client'
+                socket.on('connect', function () {
+                    service.initReader().then(function (response) {
+                        console.log('Ajax response for activating reader...');
+                        console.log(response);
+                        self.message = response.data.message;
                     });
                 });
                 socket.on('reader-done', function (message) {
+                    console.log('Reader is done - socket-io event from server to client');
                     console.log(message);
                     self.tagData = message['message']['data'];
                 });
-            });
-            service.initReader().then(function (response) {
-                self.message = response.data.message;
             });
             // service.initReader().then(function (response) {
             //     if (response.status == 404) {

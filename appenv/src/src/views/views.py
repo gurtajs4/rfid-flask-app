@@ -43,7 +43,9 @@ def api_get_session(session_id):
 
 @app.route('/api/reader', methods=['GET'])
 def api_reader():
+    print('Reader called from client')
     service_manager.set_reader()
+    print('Reader activated')
     message = {
         'status': 200,
         'message': 'Reader will be active for the next 20 seconds...'
