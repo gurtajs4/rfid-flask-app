@@ -1,6 +1,5 @@
 import json
 import uuid
-import eventlet
 from . import emit
 from . import session
 from . import socket_io
@@ -46,16 +45,11 @@ def send_message(message, event, room=None):
         emit(event, message)
 
 
-@socket_io.on('init_reader')
+@socket_io.on('init reader')
 def init_reader(room):
     reader = ServiceMFRC()
     print('Reader activated')
-
-    def get_data():
-        return reader.do_read()
-
-    # data = reader.do_read()
-    data = eventlet.spawn(get_data())
+    data = reader.do_read()
     print('message from service manager: %s' % data['message'])
     reader_output(data=data, room=room)
 
@@ -70,5 +64,4 @@ def reader_output(data, room=None):
     #     'message': message
     # }
     event = 'reader done'
-    # event = 'reader done %s' % session['uuid']
     send_message(message=message, event=event, room=room)

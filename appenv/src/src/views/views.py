@@ -44,23 +44,10 @@ def api_get_session(session_id):
 @app.route('/api/reader', methods=['GET'])
 def api_reader():
     print('Reader called from client')
-    # def call_reader():
-    #     service_manager.init_reader()
-    #
-    # data = eventlet.spawn(call_reader())
-    # if data is None:
-    #     message = {
-    #         'status': 200,
-    #         'message': 'Reader will be active for the next 20 seconds...'
-    #     }
-    # else:
-    #     message = {
-    #         'status': 200,
-    #         'data': data
-    #     }
+    data = service_manager.init_reader()
     message = {
         'status': 200,
-        'data': data
+        'message': data
     }
     resp = jsonify(message)
     resp.status_code = message['status']

@@ -78,7 +78,8 @@ class ServiceManager(object):
         print('Reader activated')
         data = reader.do_read()
         print('message from service manager: %s' % data['message'])
-        reader_output(data=data)
+        return data
+        # reader_output(data=data)
 
         # def set_reader(self):
         # thread = Thread(target=self.init_reader)
