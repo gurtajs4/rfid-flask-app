@@ -5,7 +5,7 @@ from flask_socketio import SocketIO, emit
 app = Flask(__name__)
 app.secret_key = config.SECRET_KEY
 
-socket_io = SocketIO(app=app)
+socket_io = SocketIO(app=app, async_mode='threading')
 
 from models import models
 from views import views
