@@ -1,6 +1,6 @@
 import eventlet
 from .. import app
-from ..services.service_manager import ServiceManager, eventlet
+from ..services.service_manager import ServiceManager
 from ..services.serializers import JSONSerializer as jserial
 from flask import jsonify, request, Response
 
