@@ -11,6 +11,7 @@
         var service = readerService;
 
         // activate();
+        self.socketId = '';
 
         function activate(socket) {
             self.message = 'Reader will be active for the next 20 seconds...';
@@ -20,10 +21,12 @@
             //     // self.message = response.data.message;
             // });
 
-            socket.emit('sid request');
-            socket.on('sid response', function (sid) {
-                self.socketId = sid;
-            });
+            if (self.socketId === '') {
+                socket.emit('sid request');
+                socket.on('sid response', function (sid) {
+                    self.socketId = sid;
+                });
+            }
 
             socket.emit('init reader', {room: self.socketId});
         }
