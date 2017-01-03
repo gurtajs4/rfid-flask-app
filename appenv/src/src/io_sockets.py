@@ -16,7 +16,6 @@ def make_connection():
     }
     message = 'User %s connected' % session['username']
     print(message)
-    send_message(message=session['uuid'], event='connect')
 
 
 @socket_io.on('request-sid')
