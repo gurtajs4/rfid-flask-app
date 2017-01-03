@@ -18,9 +18,9 @@ def make_connection():
     print(message)
 
 
-@socket_io.on('request-sid')
+@socket_io.on('sid request')
 def get_session_id():
-    send_message(message=str(session['uuid']), event='response-sid')
+    send_message(message=str(session['uuid']), event='sid response')
 
 
 def send_message(message, event):
@@ -41,5 +41,5 @@ def reader_output(data):
     messages[last_id + 1] = {
         'message': message
     }
-    event = 'reader-done-%s' % session['uuid']
+    event = 'reader done %s' % session['uuid']
     send_message(message=message, event=event)

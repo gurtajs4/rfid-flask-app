@@ -24,13 +24,13 @@
             console.log('creating socket instance');
             // socket.on('connect', function () {
             // });
-            socket.emit('request-sid');
+            socket.emit('sid request');
 
-            socket.on('response-sid', function (sid) {
+            socket.on('sid response', function (sid) {
                 self.socket_id = sid;
             });
 
-            socket.on('reader-done-' + self.socket_id, function (message) {
+            socket.on('reader done ' + self.socket_id, function (message) {
                 console.log('Reader is done - socket-io event from server to client');
                 console.log(message);
                 self.tagData = message['message']['data'];
