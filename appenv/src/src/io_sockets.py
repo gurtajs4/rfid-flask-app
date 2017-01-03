@@ -7,9 +7,6 @@ messages = {}
 users = {}
 
 
-# class IOSocketManager(object):
-
-
 @socket_io.on('connect')
 def make_connection():
     session['uuid'] = uuid.uuid1()
@@ -17,7 +14,14 @@ def make_connection():
     users[session['uuid']] = {
         'username': session['username']
     }
-    print('User %s connected' % session['username'])
+    message = 'User %s connected' % session['username']
+    print(message)
+    send_message(message=session['uuid'], event='connect')
+
+
+@socket_io.on('request-sid')
+def get_session_id():
+    send_message(message=str(session['uuid']), event='response-sid')
 
 
 def send_message(message, event):
@@ -38,4 +42,5 @@ def reader_output(data):
     messages[last_id + 1] = {
         'message': message
     }
-    send_message(message=message, event='reader-done')
+    event = 'reader-done-%s' % session['uuid']
+    send_message(message=message, event=event)

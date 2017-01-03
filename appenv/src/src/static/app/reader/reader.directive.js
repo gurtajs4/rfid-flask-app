@@ -15,7 +15,6 @@
                 tagData: "=",
                 message: "="
             },
-            // templateUrl: '/reader/reader.html',
             templateUrl: appBaseUrl+'/reader/reader.html',
             controller: 'ReaderController',
             controllerAs: 'rdc'
