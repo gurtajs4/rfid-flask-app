@@ -1,9 +1,11 @@
+import eventlet
 from .. import app
-from ..services.service_manager import ServiceManager
+from ..services.service_manager import ServiceManager, eventlet
 from ..services.serializers import JSONSerializer as jserial
 from flask import jsonify, request, Response
 
 service_manager = ServiceManager()
+eventlet.monkey_patch()
 
 
 @app.route('/', methods=['GET'])
@@ -44,12 +46,21 @@ def api_get_session(session_id):
 @app.route('/api/reader', methods=['GET'])
 def api_reader():
     print('Reader called from client')
-    service_manager.set_reader()
-    print('Reader activated')
-    message = {
-        'status': 200,
-        'message': 'Reader will be active for the next 20 seconds...'
-    }
+
+    def call_reader():
+        service_manager.init_reader()
+
+    data = eventlet.spawn(call_reader())
+    if data is None:
+        message = {
+            'status': 200,
+            'message': 'Reader will be active for the next 20 seconds...'
+        }
+    else:
+        message = {
+            'status': 200,
+            'data': data
+        }
     resp = jsonify(message)
     resp.status_code = message['status']
     return resp

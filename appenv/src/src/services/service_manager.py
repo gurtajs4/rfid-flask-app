@@ -4,8 +4,8 @@ import user_factory
 import session_factory
 from ..db import SqliteManager
 from ..embedded.mfrc_service import ServiceMFRC
-from ..io_sockets import reader_output
-from threading import Thread
+from ..io_sockets import reader_output, send_message
+# from threading import Thread
 from session_repository import SessionRepository
 from mock_service import UserService, KeyService
 
@@ -75,10 +75,11 @@ class ServiceManager(object):
     @staticmethod
     def init_reader():
         reader = ServiceMFRC()
+        print('Reader activated')
         data = reader.do_read()
         print('message from service manager: %s' % data['message'])
         reader_output(data=data)
 
-    def set_reader(self):
-        thread = Thread(target=self.init_reader)
-        thread.start()
+        # def set_reader(self):
+        # thread = Thread(target=self.init_reader)
+        # thread.start()
