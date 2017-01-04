@@ -8,7 +8,7 @@ service_manager = ServiceManager()
 
 @app.route('/', methods=['GET'])
 def api_root():
-    ServiceManager.start_db()
+    ServiceManager.start_db(True)
     for session in service_manager.session_service.get_sessions():
         service_manager.create_session(user_id=session['_user_id'], key_id=session['_key_id'],
                                        timestamp=session['_time_stamp'])
@@ -120,23 +120,18 @@ def api_user_search(user_id):
 
 @app.route('/api/key/search/<int:key_id>', methods=['GET'])
 def api_key_search(key_id):
-    key = service_manager.key_service.lookup_key(int(key_id))
-    session = []  # map key to session
+    key = service_manager.get_key(key_id=int(key_id))
     if key is None:
-        is_found = False
+        data=jserial.key_instance_serialize(key_instance=key)
+        resp = Response(data, status=200, mimetype='application/json')
+        return resp
     else:
-        # session = service_manager.map_key_to_session(key)
-        is_found = False if (session is None) else True
-    if not is_found:
         message = {
             'status': 404,
             'message': 'Not Found' + request.url,
         }
         resp = jsonify(message)
         resp.status_code = 404
-        return resp
-    else:
-        resp = Response(str(session), status=200, mimetype='application/json')
         return resp
 
 
