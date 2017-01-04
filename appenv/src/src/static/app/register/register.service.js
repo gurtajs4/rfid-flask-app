@@ -17,15 +17,15 @@
         return service;
 
         function registerKey(key) {
-            return $http.post('/api/register/key', JSON.stringify(key));
+            return $http.post('/api/key/register', JSON.stringify(key));
         }
 
         function registerUser(user) {
-            return $http.post('/api/register/user', JSON.stringify(user));
+            return $http.post('/api/user/register', JSON.stringify(user));
         }
 
         function userId(tagData) {
-            return $http.get('/api/lookup/user', {
+            return $http.get('/api/user/search', {
                 params: {
                     id: tagData
                 }
@@ -33,7 +33,7 @@
         }
 
         function keyId(tagData) {
-            return $http.get('/api/lookup/key', {
+            return $http.get('/api/key/search', {
                 params: {
                     id: tagData
                 }

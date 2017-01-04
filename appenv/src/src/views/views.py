@@ -16,7 +16,7 @@ def api_root():
 
 
 @app.route('/api/sessions', methods=['GET'])
-def api_get_sessions():
+def api_sessions_get():
     print('Hello from api-views')
     data = jserial.session_instances_serialize(service_manager.get_sessions())
     resp = jsonify(data)
@@ -25,7 +25,7 @@ def api_get_sessions():
 
 
 @app.route('/api/sessions/<int:session_id>', methods=['GET'])
-def api_get_session(session_id):
+def api_session_get(session_id):
     session = jserial.session_instance_serialize(service_manager.get_session(session_id=session_id))
     if session is not None:
         resp = jsonify(session)
@@ -54,8 +54,8 @@ def api_reader():
     return resp
 
 
-@app.route('/api/register/user', methods=['POST'])
-def api_register_user():
+@app.route('/api/user/register', methods=['POST'])
+def api_user_register():
     user = jserial.user_instance_deserialize(request.data[0])
     user = service_manager.create_user(tag_id=user.tag_id, first_name=user.first_name, last_name=user.last_name,
                                        pic_url=user.pic_url)
@@ -78,8 +78,8 @@ def api_register_user():
         return resp
 
 
-@app.route('/api/register/key', methods=['POST'])
-def api_register_key():
+@app.route('/api/key/register', methods=['POST'])
+def api_key_register():
     key = jserial.key_instance_deserialize(request.data[0])
     key = service_manager.create_key(tag_id=key.tag_id, room_id=key.room_id)
     if key.id > 0:
@@ -101,8 +101,8 @@ def api_register_key():
         return resp
 
 
-@app.route('/api/lookup/user/<int:user_id>', methods=['GET'])
-def api_lookup_user(user_id):
+@app.route('/api/user/search/<int:user_id>', methods=['GET'])
+def api_user_search(user_id):
     user = service_manager.get_user(user_id=user_id)
     if user is None:
         message = {
@@ -118,8 +118,8 @@ def api_lookup_user(user_id):
         return resp
 
 
-@app.route('/api/lookup/key/<int:key_id>', methods=['GET'])
-def api_lookup_key(key_id):
+@app.route('/api/key/search/<int:key_id>', methods=['GET'])
+def api_key_search(key_id):
     key = service_manager.key_service.lookup_key(int(key_id))
     session = []  # map key to session
     if key is None:
@@ -140,35 +140,35 @@ def api_lookup_key(key_id):
         return resp
 
 
-@app.route('/api/lookup/user', methods=['GET'])
-def api_lookup_users():
-    users = service_manager.user_service.get_all()
-    if len(users) > 0:
-        resp = jsonify(users)
-        resp.status_code = 200
-        return resp
-    else:
-        message = {
-            'status': 404,
-            'message': 'Not Found' + request.url,
-        }
-        resp = jsonify(message)
-        resp.status_code = 404
-        return resp
-
-
-@app.route('/api/lookup/key', methods=['GET'])
-def api_lookup_keys():
-    keys = service_manager.key_service.get_all()
-    if len(keys) > 0:
-        resp = jsonify(keys)
-        resp.status_code = 200
-        return resp
-    else:
-        message = {
-            'status': 404,
-            'message': 'Not Found' + request.url,
-        }
-        resp = jsonify(message)
-        resp.status_code = 404
-        return resp
+# @app.route('/api/users/search', methods=['GET'])
+# def api_users_search():
+#     users = service_manager.user_service.get_all()
+#     if len(users) > 0:
+#         resp = jsonify(users)
+#         resp.status_code = 200
+#         return resp
+#     else:
+#         message = {
+#             'status': 404,
+#             'message': 'Not Found' + request.url,
+#         }
+#         resp = jsonify(message)
+#         resp.status_code = 404
+#         return resp
+#
+#
+# @app.route('/api/key/search', methods=['GET'])
+# def api_keys_search():
+#     keys = service_manager.key_service.get_all()
+#     if len(keys) > 0:
+#         resp = jsonify(keys)
+#         resp.status_code = 200
+#         return resp
+#     else:
+#         message = {
+#             'status': 404,
+#             'message': 'Not Found' + request.url,
+#         }
+#         resp = jsonify(message)
+#         resp.status_code = 404
+#         return resp

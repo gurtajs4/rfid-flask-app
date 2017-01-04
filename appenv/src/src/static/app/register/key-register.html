@@ -1,0 +1,18 @@
+<div class="container">
+    <h1 class="col-sm-10">{{keyRegister.title}}</h1>
+    <h3 class="col-sm-10">{{keyRegister.note}}</h3>
+    <div class="panel panel-default">
+        <p>Please move the key tag (keychain) to the reader and the system will detect its unique number. The number
+            will be displayed shortly after, and you can enter the rest of information then.</p>
+    </div>
+    <reader></reader>
+    <form ng-hide="(keyRegister.tagData===undefined || isNaN(keyRegister.tagData))" novalidate
+          ng-submit="keyRegister.register()"
+          action="POST">
+        <p>Editing information regarding key/room #{{keyRegister.tagData}}</p>
+        <hr/>
+        <input ng-model="keyRegister.roomId" placeholder="Room number..." type="text"/>
+        <button class="btn btn-primary">Register</button>
+        <button ng-click="keyRegister.cancel()" class="btn btn-danger" type="reset">Cancel</button>
+    </form>
+</div>

@@ -8,13 +8,13 @@
     keysService.$inject = ['$http'];
     function keysService($http) {
         var service = {
-            lookup: lookup
+            search: search
         };
 
         return service;
 
-        function lookup(keyId) {
-            return $http.get('/api/lookup/key/', {
+        function search(keyId) {
+            return $http.get('/api/key/search/', {
                 params: {
                     key_id: keyId
                 }

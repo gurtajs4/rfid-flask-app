@@ -1,10 +1,10 @@
-<div class="container-fluid" ng-controller="SessionsController as sessionsCtrl">
+<div class="container-fluid">
     <h1 class="col-sm-10">List of all sessions</h1>
     <hr/>
     <div>
         <div>
             Order songs by:
-            <select ng-model="sessionsCtrl.orderProp" name="orderProp" id="orderProp">
+            <select ng-model="sessions.orderProp" name="orderProp" id="orderProp">
                 <option value="id">Session ID</option>
                 <option value="timestamp">Timestamp</option>
                 <option value="key_id">Key ID</option>
@@ -12,7 +12,7 @@
             </select>
         </div>
         <hr/>
-        <div ng-repeat="session in sessionsCtrl.list | orderBy:sessionsCtrl.orderProp track by $index" class="panel panel-default">
+        <div ng-repeat="session in sessions.list | orderBy:sessions.orderProp track by $index" class="panel panel-default">
             <div class="panel-heading">
                 <span>Session ID: <a ng-href="sessions/{{ session.id }}">{{ session.id }}</a> |</span>
                 <span>User ID: {{ session.user_id }} |</span>

@@ -1,7 +1,8 @@
-<nav ng-controller="NavController" class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed" class="navbar-toggle collapsed">
+            <button type="button" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed"
+                    class="navbar-toggle collapsed">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -13,12 +14,16 @@
             <ul class="nav navbar-nav">
                 <li ng-class="{ active: isActive(0) }"><a ng-click="setActive(0)" ng-href="/">Home</a></li>
                 <li ng-class="{ active: isActive(1) }"><a ng-click="setActive(1)" ng-href="sessions">Sessions</a></li>
-                <li ng-class="{ active: isActive(2) }"><a ng-click="setActive(2)" ng-href="keys/lookup">Lookup Key</a></li>
-                <li ng-class="{ active: isActive(3) }"><a ng-click="setActive(3)" ng-href="people/lookup">Lookup Person</a></li>
+                <li ng-class="{ active: isActive(2) }"><a ng-click="setActive(2)" ng-href="keys/search">Search Keys</a>
+                </li>
+                <li ng-class="{ active: isActive(3) }"><a ng-click="setActive(3)" ng-href="users/search">Search
+                    Users</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li ng-class="{ active: isActive(4) }"><a ng-click="setActive(4)" ng-href="register/key">Register Room/Key</a></li>
-                <li ng-class="{ active: isActive(5) }"><a ng-click="setActive(5)" ng-href="register/person">Register Person</a></li>
+                <li ng-class="{ active: isActive(4) }"><a ng-click="setActive(4)" ng-href="keys/register">Register
+                    Room/Key</a></li>
+                <li ng-class="{ active: isActive(5) }"><a ng-click="setActive(5)" ng-href="users/register">Register
+                    User</a></li>
             </ul>
         </div>
     </div>

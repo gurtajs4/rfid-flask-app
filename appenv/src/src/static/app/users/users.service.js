@@ -1,16 +1,16 @@
 (function () {
     'use strict';
-    angular.module('appMain').service('peopleService', peopleService);
-    peopleService.$inject = ['$http'];
-    function peopleService($http) {
+    angular.module('appMain').service('usersService', usersService);
+    usersService.$inject = ['$http'];
+    function usersService($http) {
         var service = {
-            lookup: lookup
+            search: search
         };
 
         return service;
 
-        function lookup(userId) {
-            return $http.get('/api/lookup/user/', {
+        function search(userId) {
+            return $http.get('/api/user/search/', {
                 params: {
                     user_id: userId
                 }

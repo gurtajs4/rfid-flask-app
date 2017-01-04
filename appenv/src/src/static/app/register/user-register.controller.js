@@ -3,10 +3,10 @@
 
     angular
         .module('appMain')
-        .controller('RegisterPersonController', RegisterPersonController);
+        .controller('UserRegisterController', UserRegisterController);
 
-    RegisterPersonController.$inject = ['$location', 'registerService'];
-    function RegisterPersonController($location, registerService) {
+    UserRegisterController.$inject = ['$location', 'registerService'];
+    function UserRegisterController($location, registerService) {
         var self = this;
         var service = registerService;
 

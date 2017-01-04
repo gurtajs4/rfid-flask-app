@@ -3,20 +3,20 @@
 
     angular
         .module('appMain')
-        .controller('KeysLookupController', KeysLookupController);
+        .controller('KeysSearchController', KeysSearchController);
 
-    KeysLookupController.$inject = ['$location', 'keysService'];
-    function KeysLookupController($location, keysService) {
+    KeysSearchController.$inject = ['$location', 'keysService'];
+    function KeysSearchController($location, keysService) {
         var self = this;
         var service = keysService;
 
         self.title = "Keys lookup page";
         self.note = "Check for keys by entering Key ID number";
-        self.lookup = lookup;
+        self.submit = submit;
         self.cancel = cancel;
 
-        function lookup() {
-            return service.lookup(self.queryset).then(function (response) {
+        function submit() {
+            return service.search(self.queryset).then(function (response) {
                 if (response.status != 404) {
                     $location.url("/sessions/" + response.data.session.id);
                 }

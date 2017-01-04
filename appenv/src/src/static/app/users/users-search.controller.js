@@ -3,20 +3,20 @@
 
     angular
         .module('appMain')
-        .controller('PeopleLookupController', PeopleLookupController);
+        .controller('UsersSearchController', UsersSearchController);
 
-    PeopleLookupController.$inject = ['$location', 'peopleService'];
-    function PeopleLookupController($location, peopleService) {
+    UsersSearchController.$inject = ['$location', 'usersService'];
+    function UsersSearchController($location, usersService) {
         var self = this;
-        var service = peopleService;
+        var service = usersService;
 
         self.title = "People Lookup Page";
         self.note = "Check for people by entering Person ID";
-        self.lookup = lookup;
+        self.submit = submit;
         self.cancel = cancel;
 
-        function lookup() {
-            return service.lookup(self.queryset).then(function (response) {
+        function submit() {
+            return service.search(self.queryset).then(function (response) {
                 if (response.status != 404) {
                     $location.url("/sessions/" + response.data.session.id);
                 }

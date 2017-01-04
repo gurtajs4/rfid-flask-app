@@ -3,10 +3,10 @@
 
     angular
         .module('appMain')
-        .controller('RegisterKeyController', RegisterKeyController);
+        .controller('KeyRegisterController', KeyRegisterController);
 
-    RegisterKeyController.$inject = ['$location', 'registerService'];
-    function RegisterKeyController($location, registerService) {
+    KeyRegisterController.$inject = ['$location', 'registerService'];
+    function KeyRegisterController($location, registerService) {
         var self = this;
         var service = registerService;
 
