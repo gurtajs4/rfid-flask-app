@@ -9,9 +9,6 @@ service_manager = ServiceManager()
 @app.route('/', methods=['GET'])
 def api_root():
     ServiceManager.start_db(True)
-    for session in service_manager.session_service.get_sessions():
-        service_manager.create_session(user_id=session['_user_id'], key_id=session['_key_id'],
-                                       timestamp=session['_time_stamp'])
     return app.send_static_file('index.html')
 
 

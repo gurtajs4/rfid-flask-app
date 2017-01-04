@@ -1,16 +1,19 @@
 import key_factory
 import user_factory
 import session_factory
+from .db_seed import DbInitializer
 from ..db import SqliteManager
 from ..embedded.mfrc_service import ServiceMFRC
 from ..io_sockets import reader_output, send_message
 
 
 class ServiceManager(object):
-
     @staticmethod
     def start_db(drop_create=False):
         db = SqliteManager(drop_create)
+        seed = DbInitializer()
+        for session in seed.get_sessions():
+            session_factory.create_session(user_id=session.userId, key_id=session.keyId, timestamp=session.timestamp)
 
     # api for keys
     @staticmethod
