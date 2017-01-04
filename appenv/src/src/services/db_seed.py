@@ -14,6 +14,6 @@ class DbInitializer(object):
             with open(self.data_storage_path, 'r') as jsonStorage:
                 sessions = []
                 for line in jsonStorage:
-                    sessions.append(json.loads(line, cls=jserial.session_instance_deserialize))
+                    sessions.append(jserial.session_instance_deserialize(line))
                 return sessions
         return None
