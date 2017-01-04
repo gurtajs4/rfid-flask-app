@@ -13,7 +13,7 @@ class ServiceManager(object):
         db = SqliteManager(drop_create)
         seed = DbInitializer()
         for session in seed.get_sessions():
-            session_factory.create_session(user_id=session.userId, key_id=session.keyId, timestamp=session.timestamp)
+            session_factory.create_session(user_id=session.user_id, key_id=session.key_id, timestamp=session.timestamp)
 
     # api for keys
     @staticmethod

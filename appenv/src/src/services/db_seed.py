@@ -1,5 +1,6 @@
 import os
-from .serializers import JSONSerializer as jserial
+import json
+from ..models.models import Session
 from ..config import sqlite_dir_path as data_store_path
 
 
@@ -14,6 +15,11 @@ class DbInitializer(object):
             with open(self.data_storage_path, 'r') as jsonStorage:
                 sessions = []
                 for line in jsonStorage:
-                    sessions.append(jserial.session_instance_deserialize(line))
+                    parsed_dict = json.loads(line)
+                    session = Session(session_id=0,
+                                      user_id=parsed_dict['user_id'],
+                                      key_id=parsed_dict['key_id'],
+                                      timestamp=parsed_dict['timestamp'])
+                    sessions.append(session)
                 return sessions
         return None
