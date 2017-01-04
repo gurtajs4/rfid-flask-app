@@ -34,8 +34,8 @@ class ServiceManager(object):
         return user_factory.get_users()
 
     @staticmethod
-    def get_user(user_id=None, tag_id=None, first_name=None, last_name=None, pic_url=None):
-        return user_factory.get_user(user_id, tag_id, first_name, last_name, pic_url)
+    def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, pic_url=None, limit=1):
+        return user_factory.search_user(user_id, tag_id, first_name, last_name, pic_url, limit)
 
     @staticmethod
     def create_user(tag_id=None, first_name=None, last_name=None, pic_url=None):

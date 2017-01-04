@@ -1,10 +1,18 @@
 <div class="container">
-    <h1>{{userInfo.name}}</h1>
-    <hr/>
-    UserID: <div>{{userInfo.userId</div>
-    TagID: <div>{{userInfo.tagId}}</div>
-    <p ng-show="userInfo.keyId > 0">
-        Holding key:
-            KeyID - {{userInfo.keyId}}
-    </p>
+    <div class="col-lg-3">
+        {{user.id}}
+    </div>
+    <span class="col-lg-3">
+        {{user.first_name}}
+    </span>
+    <span class="col-lg-3"></span>
+    <span class="col-lg-3">
+        {{user.last_name}}
+    </span>
+    <span class="col-lg-3">
+        {{user.tag_id}}
+    </span>
+    <span class="col-lg-12">
+        <img class="img-thumbnail" src="{{user.pic_url}}" alt="avatar">
+    </span>
 </div>

@@ -4,8 +4,9 @@
     <div>
         <form novalidate ng-submit="usersSearch.submit()">
             <input ng-model="usersSearch.queryset" type="text" placeholder="Enter person ID..."/>
-            <button type="submit" class="btn btn-primary">Lookup</button>
+            <button type="submit" class="btn btn-primary">Search</button>
             <button ng-click="usersSearch.cancel()" type="reset" class="btn btn-default">Cancel</button>
         </form>
     </div>
+    <usersSearchResults></usersSearchResults>
 </div>

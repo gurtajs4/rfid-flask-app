@@ -9,10 +9,10 @@
 
         return service;
 
-        function search(userId) {
+        function search(username) {
             return $http.get('/api/user/search/', {
                 params: {
-                    user_id: userId
+                    user_name: username
                 }
             }).then(function (response) {
                 var person = {

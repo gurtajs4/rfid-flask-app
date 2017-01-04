@@ -10,18 +10,19 @@
         var self = this;
         var service = usersService;
 
-        self.title = "People Lookup Page";
-        self.note = "Check for people by entering Person ID";
+        self.title = "User Lookup Page";
+        self.note = "Check for users by entering their name";
         self.submit = submit;
         self.cancel = cancel;
+        self.results = {};
 
         function submit() {
             return service.search(self.queryset).then(function (response) {
                 if (response.status != 404) {
-                    $location.url("/sessions/" + response.data.session.id);
+                    self.results = response.data;
                 }
                 else {
-                    console.log('Request didn\'t came through...');
+                    console.log(response.data.message['message']);
                     $window.alert("User not registered!");
                 }
             });
