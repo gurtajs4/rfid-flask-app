@@ -82,6 +82,8 @@ def api_reader():
 
 @app.route('/api/user/register', methods=['POST'])
 def api_user_register():
+    print(request.data)         # testing
+    print(request.data.user_id) # testing
     user = jserial.user_instance_deserialize(request.data)
     print('Registering user %s - handling post request' % user)
     user = service_manager.create_user(tag_id=user.tag_id, first_name=user.first_name, last_name=user.last_name,
@@ -103,6 +105,8 @@ def api_user_register():
 
 @app.route('/api/key/register', methods=['POST'])
 def api_key_register():
+    print(request.data)         # testing
+    print(request.data.room_id) # testing
     key = jserial.key_instance_deserialize(request.data)
     print('api-key-register: key %s' % key)
     key = service_manager.create_key(tag_id=key.tag_id, room_id=key.room_id)
