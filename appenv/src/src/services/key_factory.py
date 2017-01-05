@@ -37,10 +37,7 @@ def search_key(key_id=None, tag_id=None, room_id=None, limit=1):
         sql_command = 'SELECT * FROM Key WHERE ' + sql_conditions
         cur.execute(sql_command, params)
         results = [cur.fetchone()] if limit == 1 else cur.fetchall()
-        keys = []
-        for result in results:
-            key = Key(key_id=result[1], tag_id=result[2], room_id=result[3])
-            keys.append(key)
+        keys = [Key(res[0], res[1], res[2]) for res in results]
         dbm.close_connection(db)
         return keys[0] if limit == 1 else keys
     else:
@@ -105,7 +102,7 @@ def update_key(key_id, tag_id=None, room_id=None):
         sql_command = 'SELECT * FROM Key WHERE id = ? LIMIT 1 '
         cur.execute(sql_command, (key_id,))
         result = cur.fetchone()
-        key = Key(key_id=result[1], tag_id=result[2], room_id=result[3])
+        key = Key(key_id=result[0], tag_id=result[1], room_id=result[2])
         dbm.close_connection(db)
         return key
     else:

@@ -19,9 +19,7 @@ def get_users(limit=0):
     cur = db.cursor()
     cur.execute('SELECT * FROM User')
     results = cur.fetchall() if limit == 0 else cur.fetchmany(size=limit)
-    users = []
-    for res in results:
-        users.append(User(res[0], res[1], res[2], res[3], res[4]))
+    users = [User(res[0], res[1], res[2], res[3], res[4]) for res in results]
     dbm.close_connection(db)
     return users
 
@@ -41,11 +39,7 @@ def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, pic_
         sql_command = 'SELECT * FROM User WHERE ' + sql_conditions
         cur.execute(sql_command, params)
         results = [cur.fetchone()] if limit == 1 else cur.fetchall()
-        users = []
-        for result in results:
-            user = User(user_id=result[0], tag_id=result[1], first_name=result[2], last_name=result[3],
-                        pic_url=result[4])
-            users.append(user)
+        users = [User(res[0], res[1], res[2], res[3], res[4]) for res in results]
         dbm.close_connection(db)
         return users[0] if limit == 1 else users
     else:
