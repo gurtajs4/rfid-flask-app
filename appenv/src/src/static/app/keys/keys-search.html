@@ -8,5 +8,8 @@
             <button ng-click="keysSearch.cancel()" type="reset" class="btn btn-default">Cancel</button>
         </div>
     </div>
+    <div ng-show="(self.keyId!={})">
+        <infoKey></infoKey>
+    </div>
     <div ng-hide="(keysSearch.result=={})" keySession></div>
 </div>

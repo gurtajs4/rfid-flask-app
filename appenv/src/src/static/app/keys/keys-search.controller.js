@@ -14,12 +14,13 @@
         self.note = "Check for keys by entering Key ID number";
         self.submit = submit;
         self.cancel = cancel;
+        self.keyId = {};
         self.result = {};
 
         function submit() {
             return service.search(self.queryset).then(function (response) {
                 if (response.status != 404) {
-                    self.result = response.data;
+                    self.keyId = response.data;
                 }
                 else {
                     console.log(response.data['message']);

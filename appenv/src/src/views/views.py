@@ -42,6 +42,13 @@ def api_session_get(session_id):
         return resp
 
 
+@app.route('/api/session/key/<int:key_id>')
+def api_get_key_session(key_id):
+    print('Recieved %s from client' % key_id)
+    result = service_manager.search_session(key_id=key_id)
+    send_message(result, 'key session result', session['uuid'])
+
+
 @app.route('/api/sessions/new', methods=['POST'])
 def api_session_new():
     data = request.data
