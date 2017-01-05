@@ -25,19 +25,11 @@
         }
 
         function userId(tagData) {
-            return $http.get('/api/user/search', {
-                params: {
-                    id: tagData
-                }
-            });   // returns user ID
+            return $http.get('/api/user/tag/search/' + tagData);   // returns user ID
         }
 
         function keyId(tagData) {
-            return $http.get('/api/key/search', {
-                params: {
-                    id: tagData
-                }
-            });   // returns key ID
+            return $http.get('/api/key/tag/search/' + tagData);   // returns key ID
         }
     }
 })();

@@ -37,7 +37,7 @@
                 else {
                     console.log('Failed to create user...');
                 }
-            })
+            });
         }
 
         function cancel() {

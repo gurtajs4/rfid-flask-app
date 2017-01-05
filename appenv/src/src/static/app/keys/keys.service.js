@@ -15,12 +15,7 @@
         return service;
 
         function search(keyId) {
-            return $http.get('/api/key/search/' + keyId.toString()
-            ).then(function (response) {
-                return {
-                    id: parseInt(response.data.key)
-                };
-            });
+            return $http.get('/api/key/search/' + keyId.toString());
         }
 
         function activeSession(keyId) {

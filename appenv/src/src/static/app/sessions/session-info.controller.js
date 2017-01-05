@@ -20,7 +20,7 @@
         function load() {
             var id = self.sessionId;
             service.session(id).then(function (response) {
-                var session = JSON.parse(response.data)
+                var session = JSON.parse(response.data);
                 self.userId = session['user_id'];
                 self.keyId = session['key_id'];
                 self.timestamp = session['timestamp'];

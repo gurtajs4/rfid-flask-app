@@ -40,7 +40,7 @@ class ServiceMFRC:
                 self.end_read()
                 return {
                     'message': self.message,
-                    'data': backData
+                    'data': reduce(lambda x, y: str(x) + str(y), backData)
                 }
             self.counter -= 1
             time.sleep(1)

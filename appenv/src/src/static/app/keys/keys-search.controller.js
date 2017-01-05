@@ -18,7 +18,7 @@
         self.result = {};
 
         function submit() {
-            return service.search(self.queryset).then(function (response) {
+            service.search(self.queryset).then(function (response) {
                 if (response.status != 404) {
                     self.keyId = response.data;
                 }
