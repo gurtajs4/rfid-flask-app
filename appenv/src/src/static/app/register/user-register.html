@@ -6,7 +6,7 @@
             displayed shortly after, and you can enter the rest of information then.</p>
     </div>
     <reader></reader>
-    <form ng-hide="(userRegister.tagData===undefined || isNaN(userRegister.tagData))" novalidate
+    <form ng-show="userRegister.tagData.length > 0" novalidate
           ng-submit="userRegister.register()" action="POST">
         <p>Editing information about person #{{userRegister.tagData}}</p>
         <hr/>

@@ -12,6 +12,7 @@
 
         self.title = "Person Registration Page";
         self.note = "Register person in the system by associating ID Card number with some personal information";
+        self.tagData = "";
 
         self.register = register;
         self.cancel = cancel;

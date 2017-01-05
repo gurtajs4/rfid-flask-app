@@ -42,6 +42,24 @@ def api_session_get(session_id):
         return resp
 
 
+@app.route('/api/sessions/new', methods=['POST'])
+def api_session_new():
+    data = request.data[0]
+    if None is not session:
+        session = service_manager.create_session(data['user_id'], data['key_id'], data['timestamp'])
+        resp = jsonify(session)
+        resp.status_code = 200
+        return resp
+    else:
+        message = {
+            'status': 404,
+            'message': 'Not Found' + request.url,
+        }
+        resp = jsonify(message)
+        resp.status_code = 404
+        return resp
+
+
 @app.route('/api/reader', methods=['GET'])
 def api_reader():
     print('Reader called from client')
