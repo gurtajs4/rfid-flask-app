@@ -31,11 +31,12 @@ def search_session(session_id=None, user_id=None, key_id=None, timestamp=None, l
         cur = db.cursor()
         params = tuple([p for p in [session_id, user_id, key_id, timestamp] if p is not None])
         condition_operator = ' AND ' if limit == 1 else ' OR '
-        sql_conditions = reduce(lambda x, y: x + condition_operator + y,
-                                [c for c in [' id = ? ' if session_id is not None else ''
-                                    , ' user_id = ? ' if user_id is not None else '',
-                                             ' key_id = ? ' if key_id is not None else ''
-                                    , ' timestamp = ? ' if timestamp is not None else '']])
+        sql_conditions = reduce(
+            lambda x, y: x + (condition_operator + y) if (y is not None or y is not '') else '',
+            [c for c in [' id = ? ' if session_id is not None else ''
+                , ' user_id = ? ' if user_id is not None else '',
+                         ' key_id = ? ' if key_id is not None else ''
+                , ' timestamp = ? ' if timestamp is not None else '']])
         sql_command = 'SELECT * FROM Session WHERE ' + sql_conditions
         cur.execute(sql=sql_command, parameters=params)
         results = cur.fetchone() if limit == 1 else cur.fetchall()
@@ -54,7 +55,7 @@ def delete_session(session_id=None, user_id=None, key_id=None, timestamp=None):
         db = dbm.get_db()
         cur = db.cursor()
         params = tuple([p for p in [session_id, user_id, key_id, timestamp] if p is not None])
-        sql_conditions = reduce(lambda x, y: x + ' AND ' + y,
+        sql_conditions = reduce(lambda x, y: x + (' AND ' + y) if (y is not None or y is not '') else '',
                                 [c for c in [' id = ? ' if session_id is not None else ''
                                     , ' user_id = ? ' if user_id is not None else '',
                                              ' key_id = ? ' if key_id is not None else ''
@@ -78,7 +79,7 @@ def update_session(session_id, user_id=None, key_id=None, timestamp=None):
         db = dbm.get_db()
         cur = db.cursor()
         params = tuple([p for p in [session_id, user_id, key_id, timestamp] if p is not None])
-        sql_updates = reduce(lambda x, y: x + ' AND ' + y,
+        sql_updates = reduce(lambda x, y: x + (' AND ' + y) if (y is not None or y is not '') else '',
                              [c for c in [' id = ? ' if session_id is not None else ''
                                  , ' user_id = ? ' if user_id is not None else '',
                                           ' key_id = ? ' if key_id is not None else ''

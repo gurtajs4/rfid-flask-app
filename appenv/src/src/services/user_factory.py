@@ -32,13 +32,15 @@ def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, pic_
         cur = db.cursor()
         params = tuple([p for p in [user_id, tag_id, first_name, last_name] if p is not None])
         condition_operator = ' AND ' if limit == 1 else ' OR '
-        sql_conditions = reduce(lambda x, y: x + condition_operator + y, [c for c in
-                                                                          ['id = ? ' if user_id is not None else '',
-                                                                           'tag_id = ? ' if tag_id is not None else '',
-                                                                           'first_name = ? ' if first_name is not None else '',
-                                                                           'last_name = ? ' if last_name is not None else '',
-                                                                           'pic_url = ? ' if pic_url is not None else '']
-                                                                          if c is not ''])
+        sql_conditions = reduce(
+            lambda x, y: x + (condition_operator + y) if (y is not None or y is not '') else '',
+            [c for c in
+             ['id = ? ' if user_id is not None else '',
+              'tag_id = ? ' if tag_id is not None else '',
+              'first_name = ? ' if first_name is not None else '',
+              'last_name = ? ' if last_name is not None else '',
+              'pic_url = ? ' if pic_url is not None else '']
+             if c is not ''])
         sql_command = 'SELECT * FROM User WHERE ' + sql_conditions
         cur.execute(sql=sql_command, parameters=params)
         results = cur.fetchone() if limit == 1 else cur.fetchall()
@@ -58,13 +60,17 @@ def delete_user(user_id=None, tag_id=None, first_name=None, last_name=None, pic_
         db = dbm.get_db()
         cur = db.cursor()
         params = tuple([p for p in [user_id, tag_id, first_name, last_name] if p is not None])
-        sql_conditions = reduce(lambda x, y: x + ' AND ' + y, [c for c in
-                                                               ['id = ? ' if user_id is not None else '',
-                                                                'tag_id = ? ' if tag_id is not None else '',
-                                                                'first_name = ? ' if first_name is not None else '',
-                                                                'last_name = ? ' if last_name is not None else '',
-                                                                'pic_url = ? ' if pic_url is not None else '']
-                                                               if c is not ''])
+        sql_conditions = reduce(
+            lambda x, y: x + (' AND ' + y) if (y is not None or y is not '') else '',
+            [c for c in
+             [
+                 'id = ? ' if user_id is not None else '',
+                 'tag_id = ? ' if tag_id is not None else '',
+                 'first_name = ? ' if first_name is not None else '',
+                 'last_name = ? ' if last_name is not None else '',
+                 'pic_url = ? ' if pic_url is not None else '']
+             if
+             c is not ''])
         # get user_id if not provided
         if True == delete_history and None is user_id:
             sql_command = 'SELECT * FROM User WHERE ' + sql_conditions + ' LIMIT 1 '
@@ -100,13 +106,16 @@ def update_user(user_id, tag_id=None, first_name=None, last_name=None, pic_url=N
         db = dbm.get_db()
         cur = db.cursor()
         params = tuple([p for p in [user_id, tag_id, first_name, last_name] if p is not None])
-        sql_updates = reduce(lambda x, y: x + ' AND ' + y, [c for c in
-                                                            ['id = ? ' if user_id is not None else '',
-                                                             'tag_id = ? ' if tag_id is not None else '',
-                                                             'first_name = ? ' if first_name is not None else '',
-                                                             'last_name = ? ' if last_name is not None else '',
-                                                             'pic_url = ? ' if pic_url is not None else '']
-                                                            if c is not ''])
+        sql_updates = reduce(
+            lambda x, y: x + (' AND ' + y) if (y is not None or y is not '') else '',
+            [c for c in
+             [
+                 'id = ? ' if user_id is not None else '',
+                 'tag_id = ? ' if tag_id is not None else '',
+                 'first_name = ? ' if first_name is not None else '',
+                 'last_name = ? ' if last_name is not None else '',
+                 'pic_url = ? ' if pic_url is not None else '']
+             if c is not ''])
         # update user
         sql_command = 'UPDATE User SET' + sql_updates + 'WHERE id = ?'
         params += (user_id,)
