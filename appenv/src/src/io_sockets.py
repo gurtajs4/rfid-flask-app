@@ -4,6 +4,7 @@ from . import emit
 from . import session
 from . import socket_io
 from .embedded.mfrc_service import ServiceMFRC
+from .services.service_manager import ServiceManager
 
 messages = {}
 users = []
@@ -36,10 +37,7 @@ def send_message(message, event, room=None):
     # print('Sending message-text: %s' % messages[last_id + 1])
     print('Sending message-text: %s' % message)
     if room is not None:
-        unique_event = json.dumps({
-            'event': event,
-            'room': room
-        })
+        unique_event = event + ' ' + room
         emit(unique_event, message)
     else:
         emit(event, message)
@@ -52,6 +50,13 @@ def init_reader(room):
     data = reader.do_read()
     print('message from service manager: %s' % data['message'])
     reader_output(data=data, room=room)
+
+
+@socket_io.on('find key session')
+def get_key_session(key_id):
+    print('Recieved %s from client' % key_id)
+    result = ServiceManager.search_session(key_id=key_id)
+    send_message(result, 'key session result', session['uuid'])
 
 
 def reader_output(data, room=None):

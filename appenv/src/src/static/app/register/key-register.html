@@ -6,13 +6,11 @@
             will be displayed shortly after, and you can enter the rest of information then.</p>
     </div>
     <reader></reader>
-    <form ng-hide="(keyRegister.tagData.length > 0" novalidate
-          ng-submit="keyRegister.register()"
-          action="POST">
+    <div ng-hide="(keyRegister.tagData.length > 0)" class="form-group">
         <p>Editing information regarding key/room #{{keyRegister.tagData}}</p>
         <hr/>
         <input ng-model="keyRegister.roomId" placeholder="Room number..." type="text"/>
-        <button class="btn btn-primary">Register</button>
+        <button ng-click="keyRegister.register()" class="btn btn-primary">Register</button>
         <button ng-click="keyRegister.cancel()" class="btn btn-danger" type="reset">Cancel</button>
-    </form>
+    </div>
 </div>

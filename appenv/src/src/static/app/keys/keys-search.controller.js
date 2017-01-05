@@ -14,14 +14,15 @@
         self.note = "Check for keys by entering Key ID number";
         self.submit = submit;
         self.cancel = cancel;
+        self.result = {};
 
         function submit() {
             return service.search(self.queryset).then(function (response) {
                 if (response.status != 404) {
-                    $location.url("/sessions/" + response.data.session.id);
+                    self.result = response.data;
                 }
                 else {
-                    console.log('Request didn\'t came through...');
+                    console.log(response.data['message']);
                     $window.alert("Key not registered!");
                 }
             });

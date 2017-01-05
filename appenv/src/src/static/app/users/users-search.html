@@ -2,11 +2,11 @@
     <h1 class="col-sm-10">{{ usersSearch.title }}</h1>
     <h3 class="col-sm-10">{{ usersSearch.note }}</h3>
     <div>
-        <form novalidate ng-submit="usersSearch.submit()">
+        <div class="form-group">
             <input ng-model="usersSearch.queryset" type="text" placeholder="Enter person ID..."/>
-            <button type="submit" class="btn btn-primary">Search</button>
+            <button ng-click="usersSearch.submit()" type="submit" class="btn btn-primary">Search</button>
             <button ng-click="usersSearch.cancel()" type="reset" class="btn btn-default">Cancel</button>
-        </form>
+        </div>
     </div>
     <usersSearchResults></usersSearchResults>
 </div>

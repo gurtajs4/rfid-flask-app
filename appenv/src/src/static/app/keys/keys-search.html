@@ -2,10 +2,11 @@
     <h1 class="col-sm-10">{{ keysSearch.title }}</h1>
     <h3 class="col-sm-10">{{ keysSearch.note }}</h3>
     <div>
-        <form novalidate ng-submit="keysSearch.submit()">
-            <input ng-model="keysSearch.queryset" placeholder="Enter key ID..." type="text"/>
-            <button type="submit" class="btn btn-primary">Search</button>
+        <div class="form-group">
+            <input ng-model="keysSearch.queryset" placeholder="Enter room ID..." type="text"/>
+            <button ng-click="keysSearch.submit()" type="submit" class="btn btn-primary">Search</button>
             <button ng-click="keysSearch.cancel()" type="reset" class="btn btn-default">Cancel</button>
-        </form>
+        </div>
     </div>
+    <div ng-hide="(keysSearch.result=={})" keySession></div>
 </div>

@@ -44,8 +44,8 @@ def api_session_get(session_id):
 
 @app.route('/api/sessions/new', methods=['POST'])
 def api_session_new():
-    data = request.data[0]
-    if None is not session:
+    data = request.data
+    if None is not data:
         session = service_manager.create_session(data['user_id'], data['key_id'], data['timestamp'])
         resp = jsonify(session)
         resp.status_code = 200
