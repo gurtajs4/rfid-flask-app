@@ -35,8 +35,8 @@ def search_key(key_id=None, tag_id=None, room_id=None, limit=1):
                                     ' tag_id = ? ' if tag_id is not None else '',
                                     ' room_id = ? ' if room_id is not None else '']))
         sql_command = 'SELECT * FROM Key WHERE ' + sql_conditions
-        cur.execute(sql=sql_command, parameters=params)
-        results = cur.fetchone() if limit == 1 else cur.fetchall()
+        cur.execute(sql_command, params)
+        results = [cur.fetchone()] if limit == 1 else cur.fetchall()
         keys = []
         for result in results:
             key = Key(key_id=result[1], tag_id=result[2], room_id=result[3])
@@ -52,32 +52,33 @@ def delete_key(key_id=None, tag_id=None, room_id=None, delete_history=False):
         db = dbm.get_db()
         cur = db.cursor()
         params = tuple([p for p in [key_id, tag_id, room_id] if p is not None])
-        sql_conditions = ' AND '.join(filter(
+        condition_operator = ' AND '
+        sql_conditions = condition_operator.join(filter(
             lambda x: x is not '', [' id = ? ' if key_id is not None else '',
                                     ' tag_id = ? ' if tag_id is not None else '',
                                     ' room_id = ? ' if room_id is not None else '']))
         if True == delete_history and None is key_id:
             sql_command = 'SELECT * FROM Key WHERE ' + sql_conditions + ' LIMIT 1 '
-            cur.execute(sql=sql_command, parameters=params)
+            cur.execute(sql_command, params)
             key_id = cur.fetchone()[0]
         # delete key
         sql_command = 'DELETE FROM Key WHERE ' + sql_conditions
-        cur.execute(sql=sql_command, parameters=params)
+        cur.execute(sql_command, params)
         db.commit()
         # check if key deleted
         sql_command = 'SELECT * FROM Key WHERE ' + sql_conditions + ' LIMIT 1 '
-        cur.execute(sql=sql_command, parameters=params)
+        cur.execute(sql_command, params)
         result = cur.fetchone()
         # delete all sessions where key_id matches selected key
         linked_sessions = None
         if True == delete_history:
             sql_command = 'DELETE FROM Session WHERE key_id = ? '
             params = key_id
-            cur.execute(sql=sql_command, parameters=params)
+            cur.execute(sql_command, params)
             db.commit()
             # check if matched sessions deleted
             sql_command = 'SELECT * FROM Session WHERE key_id = ? '
-            cur.execute(sql=sql_command, parameters=params)
+            cur.execute(sql_command, params)
             linked_sessions = cur.fetchall()
         dbm.close_connection(db)
         return None is result and None is linked_sessions
@@ -90,18 +91,19 @@ def update_key(key_id, tag_id=None, room_id=None):
         db = dbm.get_db()
         cur = db.cursor()
         params = tuple([p for p in [key_id, tag_id, room_id] if p is not None])
-        sql_updates = ' AND '.join(filter(
+        condition_operator = ' AND '
+        sql_updates = condition_operator.join(filter(
             lambda x: x is not '', [' id = ? ' if key_id is not None else '',
                                     ' tag_id = ? ' if tag_id is not None else '',
                                     ' room_id = ? ' if room_id is not None else '']))
         # update key
         sql_command = 'UPDATE Key SET ' + sql_updates + ' WHERE id = ?'
         params += (key_id,)
-        cur.execute(sql=sql_command, parameters=params)
+        cur.execute(sql_command, params)
         db.commit()
         # return updated key
         sql_command = 'SELECT * FROM Key WHERE id = ? LIMIT 1 '
-        cur.execute(sql=sql_command, parameters=(key_id,))
+        cur.execute(sql_command, (key_id,))
         result = cur.fetchone()
         key = Key(key_id=result[1], tag_id=result[2], room_id=result[3])
         dbm.close_connection(db)
