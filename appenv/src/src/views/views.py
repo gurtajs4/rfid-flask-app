@@ -8,23 +8,27 @@ service_manager = ServiceManager()
 
 @app.route('/', methods=['GET'])
 def api_root():
-    ServiceManager.start_db(True)
+    ServiceManager.start_db(drop_create=True, seed_data=True)
     return app.send_static_file('index.html')
 
 
 @app.route('/api/sessions', methods=['GET'])
 def api_sessions_get():
-    print('Hello from api-views')
     data = jserial.session_instances_serialize(service_manager.get_sessions())
-    resp = jsonify(data)
-    resp.status_code = 200
+    if None is not data:
+        resp = jsonify(data)
+        resp.status_code = 200
+    else:
+        message = {'status': 404, 'message': 'Not Found'}
+        resp = jsonify(message)
+        resp.status_code = 404
     return resp
 
 
 @app.route('/api/sessions/<int:session_id>', methods=['GET'])
 def api_session_get(session_id):
-    session = jserial.session_instance_serialize(service_manager.get_session(session_id=session_id))
-    if session is not None:
+    session = jserial.session_instance_serialize(service_manager.search_session(session_id=session_id))
+    if None is not session:
         resp = jsonify(session)
         resp.status_code = 200
         return resp
@@ -56,7 +60,7 @@ def api_user_register():
     user = jserial.user_instance_deserialize(request.data[0])
     user = service_manager.create_user(tag_id=user.tag_id, first_name=user.first_name, last_name=user.last_name,
                                        pic_url=user.pic_url)
-    if user.id > -1:
+    if None is not user and -1 < user.id:
         data = jserial.user_instance_serialize(user_instance=user)
         message = {
             'status': 200,
@@ -79,7 +83,7 @@ def api_user_register():
 def api_key_register():
     key = jserial.key_instance_deserialize(request.data[0])
     key = service_manager.create_key(tag_id=key.tag_id, room_id=key.room_id)
-    if key.id > 0:
+    if None is not key and -1 < key.id:
         data = jserial.key_instance_serialize(key_instance=key)
         message = {
             'status': 200,
@@ -101,7 +105,7 @@ def api_key_register():
 @app.route('/api/user/search/<user_name>', methods=['GET'])
 def api_user_search(user_name):
     users = service_manager.search_user(first_name=user_name, last_name=user_name, limit=0)
-    if user is None:
+    if None is user:
         message = {
             'status': 404,
             'message': 'Not Found - user you are searching for is not registered'
@@ -117,8 +121,8 @@ def api_user_search(user_name):
 
 @app.route('/api/key/search/<int:key_id>', methods=['GET'])
 def api_key_search(key_id):
-    key = service_manager.get_key(key_id=int(key_id))
-    if key is None:
+    key = service_manager.search_key(key_id=int(key_id))
+    if None is key:
         data = jserial.key_instance_serialize(key_instance=key)
         resp = Response(data, status=200, mimetype='application/json')
         return resp
@@ -130,36 +134,3 @@ def api_key_search(key_id):
         resp = jsonify(message)
         resp.status_code = 404
         return resp
-
-# @app.route('/api/users/search', methods=['GET'])
-# def api_users_search():
-#     users = service_manager.user_service.get_all()
-#     if len(users) > 0:
-#         resp = jsonify(users)
-#         resp.status_code = 200
-#         return resp
-#     else:
-#         message = {
-#             'status': 404,
-#             'message': 'Not Found' + request.url,
-#         }
-#         resp = jsonify(message)
-#         resp.status_code = 404
-#         return resp
-#
-#
-# @app.route('/api/key/search', methods=['GET'])
-# def api_keys_search():
-#     keys = service_manager.key_service.get_all()
-#     if len(keys) > 0:
-#         resp = jsonify(keys)
-#         resp.status_code = 200
-#         return resp
-#     else:
-#         message = {
-#             'status': 404,
-#             'message': 'Not Found' + request.url,
-#         }
-#         resp = jsonify(message)
-#         resp.status_code = 404
-#         return resp

@@ -25,17 +25,74 @@ def get_sessions(limit=0):
     return sessions
 
 
-def get_session(session_id=None, user_id=None, key_id=None, timestamp=None):
-    if session_id is not None and user_id is not None and key_id is not None and timestamp is not None:
+def search_session(session_id=None, user_id=None, key_id=None, timestamp=None, limit=1):
+    if not (session_id is None and user_id is None and key_id is None and timestamp is None):
         db = dbm.get_db()
         cur = db.cursor()
         params = tuple([p for p in [session_id, user_id, key_id, timestamp] if p is not None])
-        sql_command = 'SELECT * FROM Session WHERE ' + 'id = ? ' if session_id is not None else ''
-        + 'user_id = ? ' if user_id is not None else '' + 'key_id = ? ' if key_id is not None else ''
-        + 'timestamp = ? ' if timestamp is not None else ''
+        condition_operator = ' AND ' if limit == 1 else ' OR '
+        sql_conditions = reduce(lambda x, y: x + condition_operator + y,
+                                [c for c in [' id = ? ' if session_id is not None else ''
+                                    , ' user_id = ? ' if user_id is not None else '',
+                                             ' key_id = ? ' if key_id is not None else ''
+                                    , ' timestamp = ? ' if timestamp is not None else '']])
+        sql_command = 'SELECT * FROM Session WHERE ' + sql_conditions
+        cur.execute(sql=sql_command, parameters=params)
+        results = cur.fetchone() if limit == 1 else cur.fetchall()
+        sessions = []
+        for result in results:
+            session = Session(session_id=result[0], key_id=result[1], user_id=result[2], timestamp=result[3])
+            sessions.append(session)
+        dbm.close_connection(db)
+        return sessions[0] if limit == 1 else sessions
+    else:
+        return None
+
+
+def delete_session(session_id=None, user_id=None, key_id=None, timestamp=None):
+    if not (session_id is None and user_id is None and key_id is None and timestamp is None):
+        db = dbm.get_db()
+        cur = db.cursor()
+        params = tuple([p for p in [session_id, user_id, key_id, timestamp] if p is not None])
+        sql_conditions = reduce(lambda x, y: x + ' AND ' + y,
+                                [c for c in [' id = ? ' if session_id is not None else ''
+                                    , ' user_id = ? ' if user_id is not None else '',
+                                             ' key_id = ? ' if key_id is not None else ''
+                                    , ' timestamp = ? ' if timestamp is not None else '']])
+        # delete session
+        sql_command = 'DELETE FROM Session WHERE ' + sql_conditions
+        cur.execute(sql=sql_command, parameters=params)
+        db.commit()
+        # check if session deleted
+        sql_command = 'SELECT * FROM Session WHERE ' + sql_conditions + ' LIMIT 1 '
         cur.execute(sql=sql_command, parameters=params)
         result = cur.fetchone()
-        session = Session(session_id=result[0], key_id=result[1], user_id=result[2], timestamp=result[3])
+        dbm.close_connection(db)
+        return None is result
+    else:
+        return None
+
+
+def update_session(session_id, user_id=None, key_id=None, timestamp=None):
+    if not (user_id is None and key_id is None and timestamp is None) and session_id is not None:
+        db = dbm.get_db()
+        cur = db.cursor()
+        params = tuple([p for p in [session_id, user_id, key_id, timestamp] if p is not None])
+        sql_updates = reduce(lambda x, y: x + ' AND ' + y,
+                             [c for c in [' id = ? ' if session_id is not None else ''
+                                 , ' user_id = ? ' if user_id is not None else '',
+                                          ' key_id = ? ' if key_id is not None else ''
+                                 , ' timestamp = ? ' if timestamp is not None else '']])
+        # update session
+        sql_command = 'UPDATE Session SET ' + sql_updates + ' WHERE id = ? '
+        params += (session_id,)
+        cur.execute(sql=sql_command, parameters=params)
+        db.commit()
+        # return updated session
+        sql_command = 'SELECT * FROM Session WHERE id = ? LIMIT 1 '
+        cur.execute(sql=sql_command, parameters=(session_id,))
+        result = cur.fetchone()
+        session = Session(session_id=result[0], user_id=result[1], key_id=result[2], timestamp=result[3])
         dbm.close_connection(db)
         return session
     else:

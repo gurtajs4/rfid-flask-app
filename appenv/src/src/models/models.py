@@ -7,7 +7,7 @@ class Key:
 
 class User:
     def __init__(self, user_id, tag_id, first_name, last_name, pic_url):
-        self.Id = user_id
+        self.id = user_id
         self.tag_id = tag_id
         self.first_name = first_name
         self.last_name = last_name

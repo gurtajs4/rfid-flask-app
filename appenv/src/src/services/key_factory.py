@@ -24,14 +24,84 @@ def get_keys(limit=0):
     return keys
 
 
-def get_key(key_id=None, tag_id=None, room_id=None):
-    if key_id is not None and tag_id is not None and room_id is not None:
+def search_key(key_id=None, tag_id=None, room_id=None, limit=1):
+    if not (key_id is None and tag_id is None and room_id is None):
         db = dbm.get_db()
         cur = db.cursor()
         params = tuple([p for p in [key_id, tag_id, room_id] if p is not None])
-        sql_command = 'SELECT * FROM Key WHERE ' + 'id = ? ' if key_id is not None else ''
-        + 'tag_id = ? ' if tag_id is not None else '' + 'room_id = ? ' if room_id is not None else ''
+        condition_operator = ' AND ' if limit == 1 else ' OR '
+        sql_conditions = reduce(lambda x, y: x + condition_operator + y,
+                                [c for c in [' id = ? ' if key_id is not None else ''
+                                    , ' tag_id = ? ' if tag_id is not None else '',
+                                             ' room_id = ? ' if room_id is not None else '']])
+        sql_command = 'SELECT * FROM Key WHERE ' + sql_conditions
         cur.execute(sql=sql_command, parameters=params)
+        results = cur.fetchone() if limit == 1 else cur.fetchall()
+        keys = []
+        for result in results:
+            key = Key(key_id=result[1], tag_id=result[2], room_id=result[3])
+            keys.append(key)
+        dbm.close_connection(db)
+        return keys[0] if limit == 1 else keys
+    else:
+        return None
+
+
+def delete_key(key_id=None, tag_id=None, room_id=None, delete_history=False):
+    if not (key_id is None and tag_id is None and room_id is None):
+        db = dbm.get_db()
+        cur = db.cursor()
+        params = tuple([p for p in [key_id, tag_id, room_id] if p is not None])
+        sql_conditions = reduce(lambda x, y: x + ' AND ' + y,
+                                [c for c in [' id = ? ' if key_id is not None else ''
+                                    , ' tag_id = ? ' if tag_id is not None else '',
+                                             ' room_id = ? ' if room_id is not None else '']])
+        if True == delete_history and None is key_id:
+            sql_command = 'SELECT * FROM Key WHERE ' + sql_conditions + ' LIMIT 1 '
+            cur.execute(sql=sql_command, parameters=params)
+            key_id = cur.fetchone()[0]
+        # delete key
+        sql_command = 'DELETE FROM Key WHERE ' + sql_conditions
+        cur.execute(sql=sql_command, parameters=params)
+        db.commit()
+        # check if key deleted
+        sql_command = 'SELECT * FROM Key WHERE ' + sql_conditions + ' LIMIT 1 '
+        cur.execute(sql=sql_command, parameters=params)
+        result = cur.fetchone()
+        # delete all sessions where key_id matches selected key
+        linked_sessions = None
+        if True == delete_history:
+            sql_command = 'DELETE FROM Session WHERE key_id = ? '
+            params = key_id
+            cur.execute(sql=sql_command, parameters=params)
+            db.commit()
+            # check if matched sessions deleted
+            sql_command = 'SELECT * FROM Session WHERE key_id = ? '
+            cur.execute(sql=sql_command, parameters=params)
+            linked_sessions = cur.fetchall()
+        dbm.close_connection(db)
+        return None is result and None is linked_sessions
+    else:
+        return False
+
+
+def update_key(key_id, tag_id=None, room_id=None):
+    if not (tag_id is None and room_id is None) and key_id is not None:
+        db = dbm.get_db()
+        cur = db.cursor()
+        params = tuple([p for p in [key_id, tag_id, room_id] if p is not None])
+        sql_updates = reduce(lambda x, y: x + ' AND ' + y,
+                             [c for c in [' id = ? ' if key_id is not None else ''
+                                 , ' tag_id = ? ' if tag_id is not None else '',
+                                          ' room_id = ? ' if room_id is not None else '']])
+        # update key
+        sql_command = 'UPDATE Key SET ' + sql_updates + ' WHERE id = ?'
+        params += (key_id,)
+        cur.execute(sql=sql_command, parameters=params)
+        db.commit()
+        # return updated key
+        sql_command = 'SELECT * FROM Key WHERE id = ? LIMIT 1 '
+        cur.execute(sql=sql_command, parameters=(key_id,))
         result = cur.fetchone()
         key = Key(key_id=result[1], tag_id=result[2], room_id=result[3])
         dbm.close_connection(db)
