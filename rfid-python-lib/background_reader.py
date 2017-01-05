@@ -1,26 +1,11 @@
-import os
-import stat
+import MFRC522
+import signal
+import requests
 import time
 import datetime
-import MFRC522
-import requests
-import signal
-from sessionRepository import SessionRepository
-from sessionInfo import SessionInfo
 
 continue_reading = True
 MIFAREReader = MFRC522.MFRC522()
-
-dataStorePath = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data/tagReadings.txt")
-if not os.path.isfile(dataStorePath):
-    with open(dataStorePath, 'w') as dataStore:
-        dataStore.write('')
-    os.chmod(dataStorePath, stat.S_IRWXU | stat.S_IRGRP | stat.S_IWGRP | stat.S_IROTH | stat.S_IWOTH)
-
-last_storage_id = SessionRepository(data_storage_path=dataStorePath).get_last_id()
-last_sessionId = last_storage_id if last_storage_id > -1 else 0
-current_userId = -1
-current_userTTL = -1
 
 
 def end_read(signal, frame):
@@ -37,6 +22,9 @@ def post_tag_data(data):
         print('Tag data posted to server...')
         print(r.text)
 
+
+current_userId = -1
+current_userTTL = -1
 
 signal.signal(signal.SIGINT, end_read)
 
@@ -62,13 +50,12 @@ while continue_reading:
                 key_id = int(
                     str(backData[0]) + str(backData[1]) + str(backData[2]) + str(backData[3]) + str(backData[4]))
                 if key_id != current_userId:
-                    last_sessionId += 1
-                    session = SessionInfo(session_id=last_sessionId,
-                                          user_id=current_userId,
-                                          time_stamp=datetime.datetime.now(),
-                                          key_id=key_id)
-                    sessionService = SessionRepository(data_storage_path=dataStorePath)
-                    sessionService.store_session(session)
+                    session = {
+                        'user_id': str(current_userId),
+                        'key_id': str(key_id),
+                        'timestamp': datetime.datetime.now()
+                    }
+                    post_tag_data(session)
                     current_userId = -1
                     current_userTTL = -1
                     print "Key ID: " + str(key_id)
