@@ -6,7 +6,7 @@
             will be displayed shortly after, and you can enter the rest of information then.</p>
     </div>
     <reader></reader>
-    <form ng-hide="(keyRegister.tagData===undefined || isNaN(keyRegister.tagData))" novalidate
+    <form ng-hide="(keyRegister.tagData.length > 0" novalidate
           ng-submit="keyRegister.register()"
           action="POST">
         <p>Editing information regarding key/room #{{keyRegister.tagData}}</p>
