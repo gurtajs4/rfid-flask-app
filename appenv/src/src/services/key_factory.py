@@ -30,11 +30,10 @@ def search_key(key_id=None, tag_id=None, room_id=None, limit=1):
         cur = db.cursor()
         params = tuple([p for p in [key_id, tag_id, room_id] if p is not None])
         condition_operator = ' AND ' if limit == 1 else ' OR '
-        sql_conditions = reduce(
-            lambda x, y: x + (condition_operator + y) if (y is not None or y is not '') else '',
-            [c for c in [' id = ? ' if key_id is not None else ''
-                , ' tag_id = ? ' if tag_id is not None else '',
-                         ' room_id = ? ' if room_id is not None else '']])
+        sql_conditions = condition_operator.join(filter(
+            lambda x: x is not '', [' id = ? ' if key_id is not None else '',
+                                    ' tag_id = ? ' if tag_id is not None else '',
+                                    ' room_id = ? ' if room_id is not None else '']))
         sql_command = 'SELECT * FROM Key WHERE ' + sql_conditions
         cur.execute(sql=sql_command, parameters=params)
         results = cur.fetchone() if limit == 1 else cur.fetchall()
@@ -53,10 +52,10 @@ def delete_key(key_id=None, tag_id=None, room_id=None, delete_history=False):
         db = dbm.get_db()
         cur = db.cursor()
         params = tuple([p for p in [key_id, tag_id, room_id] if p is not None])
-        sql_conditions = reduce(lambda x, y: x + (' AND ' + y) if (y is not None or y is not '') else '',
-                                [c for c in [' id = ? ' if key_id is not None else ''
-                                    , ' tag_id = ? ' if tag_id is not None else '',
-                                             ' room_id = ? ' if room_id is not None else '']])
+        sql_conditions = ' AND '.join(filter(
+            lambda x: x is not '', [' id = ? ' if key_id is not None else '',
+                                    ' tag_id = ? ' if tag_id is not None else '',
+                                    ' room_id = ? ' if room_id is not None else '']))
         if True == delete_history and None is key_id:
             sql_command = 'SELECT * FROM Key WHERE ' + sql_conditions + ' LIMIT 1 '
             cur.execute(sql=sql_command, parameters=params)
@@ -91,10 +90,10 @@ def update_key(key_id, tag_id=None, room_id=None):
         db = dbm.get_db()
         cur = db.cursor()
         params = tuple([p for p in [key_id, tag_id, room_id] if p is not None])
-        sql_updates = reduce(lambda x, y: x + (' AND ' + y) if (y is not None or y is not '') else '',
-                             [c for c in [' id = ? ' if key_id is not None else ''
-                                 , ' tag_id = ? ' if tag_id is not None else '',
-                                          ' room_id = ? ' if room_id is not None else '']])
+        sql_updates = ' AND '.join(filter(
+            lambda x: x is not '', [' id = ? ' if key_id is not None else '',
+                                    ' tag_id = ? ' if tag_id is not None else '',
+                                    ' room_id = ? ' if room_id is not None else '']))
         # update key
         sql_command = 'UPDATE Key SET ' + sql_updates + ' WHERE id = ?'
         params += (key_id,)
