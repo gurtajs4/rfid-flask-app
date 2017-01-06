@@ -5,10 +5,10 @@
         .module('appMain')
         .controller('ReaderController', ReaderController);
 
-    ReaderController.$inject = ['$scope', '$timeout', 'readerService'];
-    function ReaderController($scope, $timeout, readerService) {
+    ReaderController.$inject = ['$scope', 'readerService'];
+    function ReaderController($scope, readerService) {
         var service = readerService;
-        $scope.tagData = "";
+        $scope.tagData = "Tag ID";
         $scope.message = "";
 
         activate();
@@ -18,10 +18,12 @@
                 console.log('Ajax response for activating reader...');
                 var data = response.data['data'];
                 var message = response.data['message'];
-                $timeout(function () {
+                console.log(data);
+                console.log(message);
+                setTimeout(function () {
                     $scope.tagData = data;
                     $scope.message = message;
-                }, 0);
+                }, 10);
             });
         }
     }
