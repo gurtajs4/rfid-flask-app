@@ -19,7 +19,6 @@
         self.cancel = cancel;
 
         function register() {
-            //  creates person object and sends it to api/people/add/person/
             var user = {
                 id: -1,
                 tag_id: self.tagData,
@@ -27,10 +26,7 @@
                 last_name: self.lastName,
                 pic_url: self.picUrl
             };
-            console.log('UserId:' + user.id);
-            console.log('TagId:' + user.tag_id);
-            console.log('FirstName:' + user.first_name);
-            console.log('LastName:' + user.last_name);
+            console.log('User: ', user);
             service.registerUser(user).then(function (response) {
                 if (response.status == 200) {
                     $location.url('/home');
