@@ -18,10 +18,8 @@
                 console.log(response);
                 console.log('self.message: ', self.message);
                 console.log('self.tagData: ', self.tagData);
-                self.message = response.data.message['message'];
-                self.tagData = response.data.message['data'];
-                console.log('self.message: ', self.message);
-                console.log('self.tagData: ', self.tagData);
+                self.message = response.data['message'];
+                self.tagData = response.data['data'];
             });
         }
 
