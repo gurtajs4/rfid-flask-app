@@ -83,7 +83,7 @@ def api_reader():
 @app.route('/api/user/register', methods=['POST'])
 def api_user_register():
     print(request.data)         # testing
-    print(request.data.user_id) # testing
+    print(request.data.id)      # testing
     user = jserial.user_instance_deserialize(request.data)
     if user is None:
         user = request.get_json()

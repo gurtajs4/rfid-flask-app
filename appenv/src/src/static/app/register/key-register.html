@@ -1,16 +1,23 @@
 <div class="container">
-    <h1 class="col-sm-10">{{keyRegister.title}}</h1>
-    <h3 class="col-sm-10">{{keyRegister.note}}</h3>
-    <div class="panel panel-default">
-        <p>Please move the key tag (keychain) to the reader and the system will detect its unique number. The number
-            will be displayed shortly after, and you can enter the rest of information then.</p>
-    </div>
-    <reader></reader>
-    <div ng-hide="(keyRegister.tagData.length > 0)" class="form-group">
-        <p>Editing information regarding key/room #{{keyRegister.tagData}}</p>
-        <hr/>
-        <input ng-model="keyRegister.roomId" placeholder="Room number..." type="text"/>
-        <button ng-click="keyRegister.register()" class="btn btn-primary">Register</button>
-        <button ng-click="keyRegister.cancel()" class="btn btn-danger" type="reset">Cancel</button>
+    <h2>{{keyRegister.title}}</h2>
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading">{{keyRegister.note}}</div>
+            <div class="panel-body">
+                Please move the key tag (keychain) to the reader and the system will detect its unique number. The
+                number will be displayed shortly after, and you can enter the rest of information then.
+            </div>
+        </div>
+        <reader tag-data="keyRegister.tagData" message="keyRegister.message"></reader>
+        <div ng-hide="(keyRegister.tagData.length > 0)" class="panel panel-default">
+            <div class="panel-heading">Editing information regarding key/room #{{keyRegister.tagData}}</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <input ng-model="keyRegister.roomId" placeholder="Room number..." type="text"/>
+                    <button ng-click="keyRegister.register()" class="btn btn-primary">Register</button>
+                    <button ng-click="keyRegister.cancel()" class="btn btn-danger" type="reset">Cancel</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

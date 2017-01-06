@@ -1,15 +1,17 @@
 <div class="container">
-    <div class="panel panel-default">
+    <div class="panel-group">
         <div class="panel panel-primary">
-            <h1>Reader active and awaiting input...</h1>
+            <div class="panel-heading">Reader active and awaiting input...</div>
+            <div class="panel-body">Move or hold your RFID tag over the reader to obtain tag data.</div>
         </div>
-        <div class="panel panel-group">
-            <div class="panel">Move or hold your RFID tag over the reader to obtain tag data.</div>
-            <div ng-show="rdc.tagData" class="panel">
+        <div class="panel panel-success">
+            <div ng-show="rdc.tagData" class="panel-heading">
                 <label for="tagData">Tag ID:</label>
                 <input disabled name="tagData" ng-model="rdc.tagData" type="text"/>
             </div>
-            <div ng-show="rdc.message" class="panel">
+        </div>
+        <div ng-show="rdc.message" class="panel panel-danger">
+            <div class="panel-heading">
                 <p>{{rdc.message}}</p>
             </div>
         </div>

@@ -1,19 +1,26 @@
 <div class="container">
-    <h1 class="col-sm-10">{{userRegister.title}}</h1>
-    <h3 class="col-sm-10">{{userRegister.note}}</h3>
-    <div class="panel panel-default">
-        <p>Please move your ID card to the reader and the system will detect its unique number. The number will be
-            displayed shortly after, and you can enter the rest of information then.</p>
-    </div>
-    <reader></reader>
-    <div ng-hide="(userRegister.tagData.length > 0)" class="form-group">
-        <p>Editing information about person #{{userRegister.tagData}}</p>
-        <hr/>
-        <input ng-model="userRegister.firstName" placeholder="First name" type="text"/>
-        <input ng-model="userRegister.lastName" placeholder="Last name" type="text"/>
-        <input ng-model="userRegister.picUrl" placeholder="Picture (icon) url" type="text"/>
-        <!--<input ng-model="userRegister.email" placeholder="Email" type="text"/>-->
-        <button ng-click="userRegister.register()" class="btn btn-primary">Register</button>
-        <button ng-click="userRegister.cancel()" class="btn btn-danger" type="reset">Cancel</button>
+    <h2>{{userRegister.title}}</h2>
+    <div class="panel-group">
+        <div class="panel panel-primary">
+            <div class="panel-heading">{{userRegister.note}}</div>
+            <div class="panel'body">
+                Please move your ID card to the reader and the system will detect its unique number. The number will be
+                displayed shortly after, and you can enter the rest of information then.
+            </div>
+        </div>
+        <reader tag-data="userRegister.tagData" message="userRegister.message"></reader>
+        <div ng-hide="(userRegister.tagData.length > 0)" class="panel panel-default">
+            <div class="panel-heading">Editing information about person #{{userRegister.tagData}}</div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <input ng-model="userRegister.firstName" placeholder="First name" type="text"/>
+                    <input ng-model="userRegister.lastName" placeholder="Last name" type="text"/>
+                    <input ng-model="userRegister.picUrl" placeholder="Picture (icon) url" type="text"/>
+                    <!--<input ng-model="userRegister.email" placeholder="Email" type="text"/>-->
+                    <button ng-click="userRegister.register()" class="btn btn-primary">Register</button>
+                    <button ng-click="userRegister.cancel()" class="btn btn-danger" type="reset">Cancel</button>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
