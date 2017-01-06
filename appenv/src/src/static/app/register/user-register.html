@@ -6,7 +6,7 @@
             displayed shortly after, and you can enter the rest of information then.</p>
     </div>
     <reader></reader>
-    <div ng-show="(userRegister.tagData.length > 0)" class="form-group">
+    <div ng-hide="(userRegister.tagData.length > 0)" class="form-group">
         <p>Editing information about person #{{userRegister.tagData}}</p>
         <hr/>
         <input ng-model="userRegister.firstName" placeholder="First name" type="text"/>

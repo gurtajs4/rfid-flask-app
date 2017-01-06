@@ -85,6 +85,8 @@ def api_user_register():
     print(request.data)         # testing
     print(request.data.user_id) # testing
     user = jserial.user_instance_deserialize(request.data)
+    if user is None:
+        user = request.get_json()
     print('Registering user %s - handling post request' % user)
     user = service_manager.create_user(tag_id=user.tag_id, first_name=user.first_name, last_name=user.last_name,
                                        pic_url=user.pic_url)
@@ -108,6 +110,8 @@ def api_key_register():
     print(request.data)         # testing
     print(request.data.room_id) # testing
     key = jserial.key_instance_deserialize(request.data)
+    if key is None:
+        key = request.get_json()
     print('api-key-register: key %s' % key)
     key = service_manager.create_key(tag_id=key.tag_id, room_id=key.room_id)
     if None is not key and -1 < key.id:
