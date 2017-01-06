@@ -14,9 +14,11 @@
         function activate() {
             service.initReader().then(function (response) {
                 console.log('Ajax response for activating reader...');
+                var data = response.data['data'];
+                var message = response.data['message'];
                 $timeout(function () {
-                    $scope.tagData = response.data['data'];
-                    $scope.message = response.data['message'];
+                    $scope.tagData = data;
+                    $scope.message = message;
                 }, 0);
             });
         }

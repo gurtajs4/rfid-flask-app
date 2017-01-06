@@ -19,10 +19,9 @@
         self.cancel = cancel;
 
         function register() {
-            //  joins key ID with additional some information and sends it to api/people/add/key/
             var key = {
                 id: -1,
-                tag_id: self.tagData, // obtain tagData from tag to associate with additional info about that room
+                tag_id: self.tagData,
                 room_id: self.roomId
             };
             console.log('KeyId:' + key.id);
