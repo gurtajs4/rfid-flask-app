@@ -51,7 +51,8 @@ def api_get_key_session(key_id):
 
 @app.route('/api/sessions/new', methods=['POST'])
 def api_session_new():
-    data = request.data
+    data = request.get_json()
+    # data = request.data
     if None is data:
         message = {
             'status': 404,
