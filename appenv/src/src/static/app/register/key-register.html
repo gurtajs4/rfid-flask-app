@@ -9,7 +9,7 @@
             </div>
         </div>
         <reader tagData="keyRegister.tagData" message="keyRegister.message"></reader>
-        <div ng-hide="(keyRegister.tagData.length > 0)" class="panel panel-default">
+        <div ng-show="(keyRegister.tagData.length > 0)" class="panel panel-default">
             <div class="panel-heading">Editing information regarding key/room #{{keyRegister.tagData}}</div>
             <div class="panel-body">
                 <div class="form-group">

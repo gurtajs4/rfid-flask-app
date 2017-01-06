@@ -16,8 +16,16 @@
             service.initReader().then(function (response) {
                 console.log('Ajax response for activating reader...');
                 console.log(response);
-                self.message = response.data.message['message'];
-                self.tagData = response.data.message['data'];
+                console.log('self.message: ', self.message);
+                console.log('self.tagData: ', self.tagData);
+                self.$apply(function () {
+                    self.message = response.data.message['message'];
+                    self.tagData = response.data.message['data'];
+                    console.log('self.message: ', self.message);
+                    console.log('self.tagData: ', self.tagData);
+                });
+                console.log('self.message: ', self.message);
+                console.log('self.tagData: ', self.tagData);
             });
         }
 
