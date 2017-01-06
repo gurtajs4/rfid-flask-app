@@ -8,6 +8,8 @@
     ReaderController.$inject = ['$scope', '$timeout', 'readerService'];
     function ReaderController($scope, $timeout, readerService) {
         var service = readerService;
+        $scope.tagData = "";
+        $scope.message = "";
 
         activate();
 
