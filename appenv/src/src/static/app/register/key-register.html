@@ -8,7 +8,9 @@
                 number will be displayed shortly after, and you can enter the rest of information then.
             </div>
         </div>
-        <reader tagData="keyRegister.tagData" message="keyRegister.message"></reader>
+        <div class="panel">
+            <reader tagData="keyRegister.tagData" message="keyRegister.message"></reader>
+        </div>
         <div ng-show="(keyRegister.tagData.length > 0)" class="panel panel-default">
             <div class="panel-heading">Editing information regarding key/room #{{keyRegister.tagData}}</div>
             <div class="panel-body">

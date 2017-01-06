@@ -15,9 +15,8 @@
                 tagData: "=",
                 message: "="
             },
-            templateUrl: appBaseUrl+'/reader/reader.html',
-            controller: 'ReaderController',
-            controllerAs: 'rdc'
+            templateUrl: appBaseUrl + '/reader/reader.html',
+            controller: 'ReaderController'
         }
     }
 })();
