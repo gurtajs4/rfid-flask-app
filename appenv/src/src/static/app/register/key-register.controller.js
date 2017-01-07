@@ -22,14 +22,13 @@
                 tag_id: self.tagData,
                 room_id: self.roomId
             };
-            console.log('KeyId:' + key.id);
-            console.log('TagId:' + key.tag_id);
-            console.log('RoomId:' + key.room_id);
+            console.log('Key:', key);
             service.registerKey(key).then(function (response) {
                 if (response.status == 200) {
                     $location.url('/home');
                 }
                 else {
+                    window.alert('Failed to create key...');
                     console.log('Failed to create key...');
                 }
             });

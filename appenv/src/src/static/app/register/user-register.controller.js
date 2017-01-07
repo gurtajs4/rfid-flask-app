@@ -30,6 +30,7 @@
                     $location.url('/home');
                 }
                 else {
+                    window.alert('Failed to create user...');
                     console.log('Failed to create user...');
                 }
             });

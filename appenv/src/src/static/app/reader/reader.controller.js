@@ -16,14 +16,16 @@
         function activate() {
             service.initReader().then(function (response) {
                 console.log('Ajax response for activating reader...');
-                var data = response.data['data'];
-                var message = response.data['message'];
-                console.log(data);
-                console.log(message);
+                console.log($scope.tagData);
+                console.log($scope.message);
                 setTimeout(function () {
-                    $scope.tagData = data;
-                    $scope.message = message;
-                }, 10);
+                    $scope.$apply(function () {
+                        $scope.tagData = response.data['data'];
+                        $scope.message = response.data['message'];
+                    });
+                    console.log($scope.tagData);
+                    console.log($scope.message);
+                }, 0);
             });
         }
     }
