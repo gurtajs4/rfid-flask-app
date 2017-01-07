@@ -11,13 +11,14 @@
         var appBaseUrl = templateServiceProvider.appBaseUrl();
         return {
             restrict: 'EA',
-            // scope: false,
             scope: {
                 tagData: "=?tagData",
                 message: "=?message"
             },
             templateUrl: appBaseUrl + '/reader/reader.html',
-            controller: 'ReaderController'
+            controller: 'ReaderController',
+            controllerAs: 'rdc',
+            bindToController: true
         }
     }
 })();
