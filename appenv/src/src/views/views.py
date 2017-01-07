@@ -52,7 +52,6 @@ def api_get_key_session(key_id):
 @app.route('/api/sessions/new', methods=['POST'])
 def api_session_new():
     data = request.get_json()
-    # data = request.data
     if None is data:
         message = {
             'status': 404,
@@ -84,11 +83,7 @@ def api_reader():
 
 @app.route('/api/user/register', methods=['POST'])
 def api_user_register():
-    print(request.get_json())   # testing
-    print(request.get_json()['id']) # testing
-    print(request.data)         # testing
-    print(request.data[0]['id'])  # testing
-    user = jserial.user_instance_deserialize(request.data)
+    user = jserial.user_instance_deserialize(request.get_json())
     if user is None:
         user = request.get_json()
     print('Registering user %s - handling post request' % user)
@@ -110,11 +105,7 @@ def api_user_register():
 
 @app.route('/api/key/register', methods=['POST'])
 def api_key_register():
-    print(request.get_json())   # testing
-    print(request.get_json()['id']) # testing
-    print(request.data)  # testing
-    print(request.data[0]['room_id'])  # testing
-    key = jserial.key_instance_deserialize(request.data)
+    key = jserial.key_instance_deserialize(request.get_json)
     if None is key:
         key = request.get_json()
     print('api-key-register: key %s' % key)
