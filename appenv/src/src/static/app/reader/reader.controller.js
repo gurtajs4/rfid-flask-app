@@ -5,11 +5,12 @@
         .module('appMain')
         .controller('ReaderController', ReaderController);
 
-    ReaderController.$inject = ['$scope', 'readerService'];
-    function ReaderController($scope, readerService) {
+    ReaderController.$inject = ['readerService'];
+    function ReaderController(readerService) {
         var service = readerService;
-        $scope.tagData = "";
-        $scope.message = "";
+        var self = this;
+        self.tagData = "";
+        self.message = "";
 
         activate();
 
@@ -18,12 +19,16 @@
                 console.log(response.data);
                 var tData = response.data.data.toString();
                 setTimeout(function () {
-                    $scope.$apply(function () {
-                        $scope.tagData = tData;
-                        $scope.message = response.data.message;
-                    });
-                    console.log($scope.tagData);
-                    console.log($scope.message);
+                    self.tagData = tData;
+                    self.message = response.data.message;
+                    // $scope.$apply(function () {
+                    //     $scope.tagData = tData;
+                    //     $scope.message = response.data.message;
+                    // });
+                    // console.log($scope.tagData);
+                    // console.log($scope.message);
+                    console.log(self.tagData);
+                    console.log(self.message);
                 }, 0);
             });
         }
