@@ -30,7 +30,7 @@ class ServiceManager(object):
         return key_factory.search_key(key_id, tag_id, room_id, limit)
 
     @staticmethod
-    def create_key(tag_id=None, room_id=None):
+    def create_key(tag_id, room_id):
         return key_factory.create_key(tag_id, room_id)
 
     @staticmethod
@@ -51,7 +51,7 @@ class ServiceManager(object):
         return user_factory.search_user(user_id, tag_id, first_name, last_name, pic_url, limit)
 
     @staticmethod
-    def create_user(tag_id=None, first_name=None, last_name=None, pic_url=None):
+    def create_user(tag_id, first_name=None, last_name=None, pic_url=None):
         return user_factory.create_user(tag_id, first_name, last_name, pic_url)
 
     @staticmethod

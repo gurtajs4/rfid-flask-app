@@ -2,7 +2,9 @@ from ..db import SqliteManager as dbm
 from ..models.models import User
 
 
-def create_user(tag_id=0, first_name="", last_name="", pic_url=None):
+def create_user(tag_id, first_name="", last_name="", pic_url=None):
+    if None is tag_id:
+        return None
     db = dbm.get_db()
     cur = db.cursor()
     cur.execute('''INSERT OR IGNORE INTO User (tag_id, first_name, last_name, pic_url)

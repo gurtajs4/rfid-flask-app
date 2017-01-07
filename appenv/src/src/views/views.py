@@ -84,8 +84,9 @@ def api_reader():
 
 @app.route('/api/user/register', methods=['POST'])
 def api_user_register():
+    print(request.get_json())   # testing
     print(request.data)         # testing
-    print(request.data['id'])  # testing
+    print(request.data[0]['id'])  # testing
     user = jserial.user_instance_deserialize(request.data)
     if user is None:
         user = request.get_json()
@@ -108,8 +109,9 @@ def api_user_register():
 
 @app.route('/api/key/register', methods=['POST'])
 def api_key_register():
+    print(request.get_json())   # testing
     print(request.data)  # testing
-    print(request.data['room_id'])  # testing
+    print(request.data[0]['room_id'])  # testing
     key = jserial.key_instance_deserialize(request.data)
     if None is key:
         key = request.get_json()

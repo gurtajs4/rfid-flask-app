@@ -2,7 +2,9 @@ from ..db import SqliteManager as dbm
 from ..models.models import Key
 
 
-def create_key(tag_id=0, room_id=0):
+def create_key(tag_id, room_id):
+    if None is tag_id or None is room_id:
+        return None
     db = dbm.get_db()
     cur = db.cursor()
     cur.execute('''INSERT OR IGNORE INTO Key (tag_id, room_id)
