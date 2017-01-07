@@ -30,7 +30,7 @@ class ServiceMFRC:
             print('Reader TTL: %s' % self.counter)
             (status, TagType) = self.MIFAREReader.MFRC522_Request(self.MIFAREReader.PICC_REQIDL)
             if status == self.MIFAREReader.MI_OK:
-                self.message += "Card detected"
+                self.message += "Card detected. "
             (status, backData) = self.MIFAREReader.MFRC522_Anticoll()
             if status == self.MIFAREReader.MI_OK:
                 self.message += (

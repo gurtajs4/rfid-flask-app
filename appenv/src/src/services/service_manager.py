@@ -89,5 +89,6 @@ class ServiceManager(object):
         reader = ServiceMFRC()
         print('Reader activated')
         data = reader.do_read()
-        print('message from service manager: %s' % data['message'])
+        print('Message from service manager: %s' % data['message'])
+        print('Tag data is %s' % data['data'])
         return data

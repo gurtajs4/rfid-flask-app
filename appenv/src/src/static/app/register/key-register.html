@@ -1,4 +1,5 @@
 <div class="container">
+    <!--<div class="panel"></div>-->
     <h2>{{keyRegister.title}}</h2>
     <div class="panel-group">
         <div class="panel panel-primary">
@@ -8,10 +9,8 @@
                 number will be displayed shortly after, and you can enter the rest of information then.
             </div>
         </div>
-        <div class="panel">
-            <div reader tagData="keyRegister.tagData" message="keyRegister.message"></div>
-        </div>
-        <div class="panel panel-danger">
+        <div reader tagData="keyRegister.tagData" message="keyRegister.message"></div>
+        <div class="panel panel-info">
             <div class="panel-heading">{{self.tagData}} status</div>
             <div class="panel-body">{{self.message}}</div>
         </div>
