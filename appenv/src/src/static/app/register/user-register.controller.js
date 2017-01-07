@@ -15,7 +15,20 @@
 
         self.register = register;
         self.cancel = cancel;
-        self.getOuterScope = getOuterScope;
+
+        $scope.$watch(angular.bind(self, function () {
+            return self.tagData;
+        }), function (current, original) {
+            $log.info('tagData was %s', original);
+            $log.info('tagData is now %s', current);
+        });
+
+        $scope.$watch(angular.bind(self, function () {
+            return self.message;
+        }), function () {
+            $log.info('tagData was %s', original);
+            $log.info('tagData is now %s', current);
+        });
 
         function register() {
             var user = {
@@ -39,10 +52,6 @@
 
         function cancel() {
             $location.url('/home');
-        }
-
-        function getOuterScope() {
-            return self;
         }
     }
 })();

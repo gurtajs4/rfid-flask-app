@@ -5,8 +5,8 @@
         .module('appMain')
         .controller('KeyRegisterController', KeyRegisterController);
 
-    KeyRegisterController.$inject = ['$location', 'registerService'];
-    function KeyRegisterController($location, registerService) {
+    KeyRegisterController.$inject = ['$scope', '$location', 'registerService'];
+    function KeyRegisterController($scope, $location, registerService) {
         var self = this;
         var service = registerService;
 
@@ -15,7 +15,20 @@
 
         self.register = register;
         self.cancel = cancel;
-        self.getOuterScope = getOuterScope;
+
+        $scope.$watch(angular.bind(self, function () {
+            return self.tagData;
+        }), function (current, original) {
+            $log.info('tagData was %s', original);
+            $log.info('tagData is now %s', current);
+        });
+
+        $scope.$watch(angular.bind(self, function () {
+            return self.message;
+        }), function () {
+            $log.info('tagData was %s', original);
+            $log.info('tagData is now %s', current);
+        });
 
         function register() {
             var key = {
@@ -37,10 +50,6 @@
 
         function cancel() {
             $location.url('/home');
-        }
-
-        function getOuterScope() {
-            return self;
         }
     }
 })();
