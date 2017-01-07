@@ -16,6 +16,8 @@
         function activate() {
             service.initReader().then(function (response) {
                 console.log('Ajax response for activating reader...');
+                console.log(response.data);
+                console.log(response.data.message);
                 console.log($scope.tagData);
                 console.log($scope.message);
                 setTimeout(function () {
