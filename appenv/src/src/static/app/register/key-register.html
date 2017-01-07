@@ -8,13 +8,12 @@
                 number will be displayed shortly after, and you can enter the rest of information then.
             </div>
         </div>
+        <div class="panel">
+            <div reader tagData="keyRegister.tagData" message="keyRegister.message"></div>
+        </div>
         <div class="panel panel-info">
             <div class="panel-heading">{{self.tagData}} status</div>
             <div class="panel-body">{{self.message}}</div>
-        </div>
-        <div class="panel">
-            <!--<div reader tagData="keyRegister.tagData" message="keyRegister.message"></div>-->
-            <div reader message="keyRegister.message"></div>
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">Editing information regarding room key #{{keyRegister.tagData}}</div>

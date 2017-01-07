@@ -12,8 +12,8 @@
         return {
             restrict: 'EA',
             scope: {
-                tagData: "=",
-                message: "="
+                tagData: "=?",
+                message: "=?"
             },
             templateUrl: appBaseUrl + '/reader/reader.html',
             controller: 'ReaderController'

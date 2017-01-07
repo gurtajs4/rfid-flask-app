@@ -12,7 +12,6 @@
 
         self.title = "Key/Room Registration Page";
         self.note = "Register room key in the system by associating ID of key tag with some additional information about the room";
-        self.tagData = "";
 
         self.register = register;
         self.cancel = cancel;
