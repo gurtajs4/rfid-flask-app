@@ -13,7 +13,8 @@
             restrict: 'EA',
             scope: {
                 tagData: "=?tagData",
-                message: "=?message"
+                message: "=?message",
+                getOuterScope: "&"
             },
             templateUrl: appBaseUrl + '/reader/reader.html',
             controller: 'ReaderController',

@@ -18,10 +18,14 @@
             service.initReader().then(function (response) {
                 console.log(response.data);
                 var tData = response.data.data.toString();
+                var tMessage = response.data.message;
                 setTimeout(function () {
                     $scope.$apply(function () {
                         self.tagData = tData;
-                        self.message = response.data.message;
+                        self.message = tMessage;
+                        console.log(self.getOuterScope());
+                        self.getOuterScope().tagData = tData;
+                        self.getOuterScope().message = tMessage;
                     });
                     // $scope.$apply(function () {
                     //     $scope.tagData = tData;

@@ -15,6 +15,7 @@
 
         self.register = register;
         self.cancel = cancel;
+        self.getOuterScope = getOuterScope;
 
         function register() {
             var user = {
@@ -38,6 +39,10 @@
 
         function cancel() {
             $location.url('/home');
+        }
+
+        function getOuterScope() {
+            return self;
         }
     }
 })();
