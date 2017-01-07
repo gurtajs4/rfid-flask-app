@@ -11,6 +11,10 @@
         <div class="panel">
             <div reader tagData="userRegister.tagData" message="userRegister.message"></div>
         </div>
+        <div class="panel panel-danger">
+            <div class="panel-heading">{{self.tagData}} status</div>
+            <div class="panel-body">{{self.message}}</div>
+        </div>
         <div ng-show="(userRegister.tagData.length > 0)" class="panel panel-default">
             <div class="panel-heading">Editing information about person #{{userRegister.tagData}}</div>
             <div class="panel-body">
@@ -23,10 +27,6 @@
                     <button ng-click="userRegister.cancel()" class="btn btn-danger" type="reset">Cancel</button>
                 </div>
             </div>
-        </div>
-        <div class="panel panel-danger">
-            <div class="panel-heading">{{self.tagData}} status</div>
-            <div class="panel-body">{{self.message}}</div>
         </div>
     </div>
 </div>

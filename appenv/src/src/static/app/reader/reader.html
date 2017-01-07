@@ -4,14 +4,13 @@
             <div class="panel-heading">Reader active and awaiting input...</div>
             <div class="panel-body">Move or hold your RFID tag over the reader to obtain tag data.</div>
         </div>
-        <div ng-show="(tagData.length > 0)" class="panel panel-success">
+        <div class="panel panel-success">
             <div class="panel-heading">
                 <label for="'tagData'">Tag ID:</label>
                 <input disabled name="'tagData'" ng-model="tagData" type="text"/>
-                <div>{{tagData}}</div>
             </div>
         </div>
-        <div ng-show="message" class="panel panel-danger">
+        <div class="panel panel-danger">
             <div class="panel-heading">
                 <p>{{message}}</p>
             </div>
