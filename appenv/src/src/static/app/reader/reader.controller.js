@@ -20,7 +20,8 @@
             service.initReader().then(function (response) {
                 console.log(response.data);
                 $timeout(function () {
-                    var tData = response.data.data.toString();
+                    // var tData = response.data.data.toString();
+                    var tData = response.data.data;
                     var tMessage = response.data.message;
                     // $scope.$apply(function () {
                     //     self.tagData = tData;
