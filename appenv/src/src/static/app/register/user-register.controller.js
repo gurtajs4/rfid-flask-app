@@ -13,6 +13,9 @@
         self.title = "Person Registration Page";
         self.note = "Register person in the system by associating ID Card number with some personal information";
 
+        self.tagData = "";
+        self.message = "";
+
         self.register = register;
         self.cancel = cancel;
 
@@ -26,8 +29,8 @@
         $scope.$watch(angular.bind(self, function () {
             return self.message;
         }), function () {
-            $log.info('tagData was %s', original);
-            $log.info('tagData is now %s', current);
+            $log.info('message was %s', original);
+            $log.info('message is now %s', current);
         });
 
         function register() {
