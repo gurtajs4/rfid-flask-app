@@ -19,9 +19,9 @@
         function activate() {
             service.initReader().then(function (response) {
                 console.log(response.data);
-                var tData = response.data.data.toString();
-                var tMessage = response.data.message;
                 $timeout(function () {
+                    var tData = response.data.data.toString();
+                    var tMessage = response.data.message;
                     // $scope.$apply(function () {
                     //     self.tagData = tData;
                     //     self.message = tMessage;
