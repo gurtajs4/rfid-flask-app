@@ -1,30 +1,30 @@
 <div class="container">
-    <h2>{{keyRegister.title}}</h2>
+    <h2>{{title}}</h2>
     <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading">{{keyRegister.note}}</div>
+            <div class="panel-heading">{{note}}</div>
             <div class="panel-body">
                 Please move the key tag (keychain) to the reader and the system will detect its unique number. The
                 number will be displayed shortly after, and you can enter the rest of information then.
             </div>
         </div>
         <div class="panel">
-            <div reader tagData="keyRegister.tagData" message="keyRegister.message"></div>
+            <div reader tag_data="tagData" message="message"></div>
         </div>
         <div class="panel panel-info">
-            <div class="panel-heading">{{self.tagData}} status</div>
-            <div class="panel-body">{{self.message}}</div>
+            <div class="panel-heading">{{tagData}} status</div>
+            <div class="panel-body">{{message}}</div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading">Editing information regarding room key #{{keyRegister.tagData}}</div>
+            <div class="panel-heading">Editing information regarding room key #{{tagData}}</div>
             <div class="panel-body">
                 <div class="form-inline">
                     <div class="form-group">
                         <label for="rid">Room number:</label>
-                        <input ng-model="keyRegister.roomId" class="form-control" placeholder="Enter room number..."
+                        <input ng-model="roomId" class="form-control" placeholder="Enter room number..."
                                id="rid" type="text"/>
-                        <button ng-click="keyRegister.register()" class="btn btn-primary">Register</button>
-                        <button ng-click="keyRegister.cancel()" class="btn btn-danger">Cancel</button>
+                        <button ng-click="register()" class="btn btn-primary">Register</button>
+                        <button ng-click="cancel()" class="btn btn-danger">Cancel</button>
                     </div>
                 </div>
             </div>

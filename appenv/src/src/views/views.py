@@ -84,8 +84,6 @@ def api_reader():
 @app.route('/api/user/register', methods=['POST'])
 def api_user_register():
     user = jserial.user_instance_deserialize(request.get_json())
-    if user is None:
-        user = request.get_json()
     print('Registering user %s - handling post request' % user)
     user = service_manager.create_user(tag_id=user.tag_id, first_name=user.first_name, last_name=user.last_name,
                                        pic_url=user.pic_url)
@@ -106,8 +104,6 @@ def api_user_register():
 @app.route('/api/key/register', methods=['POST'])
 def api_key_register():
     key = jserial.key_instance_deserialize(request.get_json)
-    if None is key:
-        key = request.get_json()
     print('api-key-register: key %s' % key)
     key = service_manager.create_key(tag_id=key.tag_id, room_id=key.room_id)
     if None is key or -1 == key.id:

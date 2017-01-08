@@ -36,7 +36,7 @@ class JSONSerializer(object):
                     tag_id=parsed_dict['tag_id'],
                     first_name=parsed_dict['first_name'],
                     last_name=parsed_dict['last_name'],
-                    pic_url=parsed_dict['profile_pic'])
+                    pic_url=parsed_dict['pic_url'])
 
     @staticmethod
     def user_instance_serialize(user_instance):
