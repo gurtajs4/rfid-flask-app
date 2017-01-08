@@ -12,13 +12,13 @@
         return {
             restrict: 'EA',
             scope: {
-                tagData: "=?",
-                message: "=?"
+                tagData: "=",
+                message: "="
             },
             templateUrl: appBaseUrl + '/reader/reader.html',
-            controller: 'ReaderController',
-            controllerAs: 'rdc',
-            bindToController: true
+            controller: 'ReaderController'//,
+            // controllerAs: 'rdc',
+            // bindToController: true
         }
     }
 })();

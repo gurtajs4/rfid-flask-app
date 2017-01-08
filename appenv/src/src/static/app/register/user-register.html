@@ -1,37 +1,55 @@
 <div class="container">
-    <h2>{{userRegister.title}}</h2>
+    <!--<h2>{{userRegister.title}}</h2>-->
+    <h2>{{title}}</h2>
     <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading">{{userRegister.note}}</div>
+            <!--<div class="panel-heading">{{userRegister.note}}</div>-->
+            <div class="panel-heading">{{note}}</div>
             <div class="panel-body">
                 Please move your ID card to the reader and the system will detect its unique number. The number will be
                 displayed shortly after, and you can enter the rest of information then.
             </div>
         </div>
         <div class="panel">
-            <div reader tagData="userRegister.tagData" message="userRegister.message"></div>
+            <!--<div reader tagData="userRegister.tagData" message="userRegister.message"></div>-->
+            <div reader tagData="tagData" message="message"></div>
         </div>
         <div class="panel panel-info">
-            <div class="panel-heading">{{self.tagData}} status</div>
-            <div class="panel-body">{{self.message}}</div>
+            <!--<div class="panel-heading">{{self.tagData}} status</div>-->
+            <!--<div class="panel-body">{{self.message}}</div>-->
+            <div class="panel-heading">{{tagData}} status</div>
+            <div class="panel-body">{{message}}</div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading">Editing information about person #{{userRegister.tagData}}</div>
+            <!--<div class="panel-heading">Editing information about person #{{userRegister.tagData}}</div>-->
+            <div class="panel-heading">Editing information about person #{{tagData}}</div>
             <div class="panel-body">
                 <div class="form-inline">
                     <div class="form-group">
+                        <!--<label for="fname">First name:</label>-->
+                        <!--<input ng-model="userRegister.firstName" class="form-control" placeholder="Enter first name"-->
+                        <!--id="fname" type="text"/>-->
+                        <!--<label for="lname">Last name:</label>-->
+                        <!--<input ng-model="userRegister.lastName" class="form-control" placeholder="Enter last name"-->
+                        <!--id="lname" type="text"/>-->
+                        <!--<label for="purl">Picture url:</label>-->
+                        <!--<input ng-model="userRegister.picUrl" class="form-control" placeholder="Enter picture url"-->
+                        <!--id="purl" type="text"/>-->
+                        <!--&lt;!&ndash;<input ng-model="userRegister.email" placeholder="Email" id="email" type="text"/>&ndash;&gt;-->
+                        <!--<button ng-click="userRegister.register()" class="btn btn-primary">Register</button>-->
+                        <!--<button ng-click="userRegister.cancel()" class="btn btn-danger">Cancel</button>-->
+
                         <label for="fname">First name:</label>
-                        <input ng-model="userRegister.firstName" class="form-control" placeholder="Enter first name"
+                        <input ng-model="firstName" class="form-control" placeholder="Enter first name"
                                id="fname" type="text"/>
                         <label for="lname">Last name:</label>
-                        <input ng-model="userRegister.lastName" class="form-control" placeholder="Enter last name"
+                        <input ng-model="lastName" class="form-control" placeholder="Enter last name"
                                id="lname" type="text"/>
                         <label for="purl">Picture url:</label>
-                        <input ng-model="userRegister.picUrl" class="form-control" placeholder="Enter picture url"
+                        <input ng-model="picUrl" class="form-control" placeholder="Enter picture url"
                                id="purl" type="text"/>
-                        <!--<input ng-model="userRegister.email" placeholder="Email" id="email" type="text"/>-->
-                        <button ng-click="userRegister.register()" class="btn btn-primary">Register</button>
-                        <button ng-click="userRegister.cancel()" class="btn btn-danger">Cancel</button>
+                        <button ng-click="register()" class="btn btn-primary">Register</button>
+                        <button ng-click="cancel()" class="btn btn-danger">Cancel</button>
                     </div>
                 </div>
             </div>

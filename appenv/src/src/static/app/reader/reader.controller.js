@@ -8,9 +8,11 @@
     ReaderController.$inject = ['$scope', '$timeout', 'readerService'];
     function ReaderController($scope, $timeout, readerService) {
         var service = readerService;
-        var self = this;
-        self.tagData = "";
-        self.message = "";
+        // var self = this;
+        // self.tagData = "";
+        // self.message = "";
+        $scope.tagData = "";
+        $scope.message = "";
 
         activate();
 
@@ -20,18 +22,18 @@
                 var tData = response.data.data.toString();
                 var tMessage = response.data.message;
                 $timeout(function () {
+                    // $scope.$apply(function () {
+                    //     self.tagData = tData;
+                    //     self.message = tMessage;
+                    //     $scope.tagData = tData;
+                    //     $scope.message = tMessage;
+                    // });
                     $scope.$apply(function () {
-                        self.tagData = tData;
-                        self.message = tMessage;
                         $scope.tagData = tData;
                         $scope.message = tMessage;
                     });
-                    // $scope.$apply(function () {
-                    //     $scope.tagData = tData;
-                    //     $scope.message = response.data.message;
-                    // });
-                    console.log(self.tagData);
-                    console.log(self.message);
+                    // console.log(self.tagData);
+                    // console.log(self.message);
                     console.log($scope.tagData);
                     console.log($scope.message);
                 }, 0);

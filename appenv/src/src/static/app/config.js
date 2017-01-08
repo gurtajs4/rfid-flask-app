@@ -38,8 +38,8 @@
             controllerAs: 'usersSearch'
         }).when('/users/register', {
             templateUrl: appBaseUrl + '/register/user-register.html',
-            controller: 'UserRegisterController',
-            controllerAs: 'userRegister'
+            controller: 'UserRegisterController'//,
+            // controllerAs: 'userRegister'
         }).when('/keys/register', {
             templateUrl: appBaseUrl + '/register/key-register.html',
             controller: 'KeyRegisterController',
