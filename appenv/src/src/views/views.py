@@ -103,7 +103,7 @@ def api_user_register():
 
 @app.route('/api/key/register', methods=['POST'])
 def api_key_register():
-    key = jserial.key_instance_deserialize(request.get_json)
+    key = jserial.key_instance_deserialize(request.get_json())
     print('api-key-register: key %s' % key)
     key = service_manager.create_key(tag_id=key.tag_id, room_id=key.room_id)
     if None is key or -1 == key.id:

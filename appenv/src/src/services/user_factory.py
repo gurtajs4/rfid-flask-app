@@ -26,12 +26,12 @@ def get_users(limit=0):
     return users
 
 
-def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, pic_url=None, limit=1):
+def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, pic_url=None, limit=1, exclusive=False):
     if not (user_id is None and tag_id is None and first_name is None and last_name is None):
         db = dbm.get_db()
         cur = db.cursor()
         params = tuple([p for p in [user_id, tag_id, first_name, last_name] if p is not None])
-        condition_operator = ' AND ' if limit == 1 else ' OR '
+        condition_operator = ' AND ' if exclusive else ' OR '
         sql_conditions = condition_operator.join(filter(
             lambda x: x is not '', ['id = ? ' if user_id is not None else '',
                                     'tag_id = ? ' if tag_id is not None else '',

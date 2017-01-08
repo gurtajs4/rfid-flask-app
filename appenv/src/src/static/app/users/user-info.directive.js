@@ -9,6 +9,7 @@
         var appBaseUrl = templateServiceProvider.appBaseUrl();
         return {
             restrict: 'EA',
+            scope: false,
             templateUrl: appBaseUrl + '/users/user-info.html'
         };
     }

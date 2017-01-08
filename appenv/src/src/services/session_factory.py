@@ -25,12 +25,12 @@ def get_sessions(limit=0):
     return sessions
 
 
-def search_session(session_id=None, user_id=None, key_id=None, timestamp=None, limit=1):
+def search_session(session_id=None, user_id=None, key_id=None, timestamp=None, limit=1, exclusive=False):
     if not (session_id is None and user_id is None and key_id is None and timestamp is None):
         db = dbm.get_db()
         cur = db.cursor()
         params = tuple([p for p in [session_id, user_id, key_id, timestamp] if p is not None])
-        condition_operator = ' AND ' if limit == 1 else ' OR '
+        condition_operator = ' AND ' if exclusive else ' OR '
         sql_conditions = condition_operator.join(filter(
             lambda x: x is not '', [' id = ? ' if session_id is not None else '',
                                     ' user_id = ? ' if user_id is not None else '',

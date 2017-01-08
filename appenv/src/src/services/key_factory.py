@@ -26,12 +26,12 @@ def get_keys(limit=0):
     return keys
 
 
-def search_key(key_id=None, tag_id=None, room_id=None, limit=1):
+def search_key(key_id=None, tag_id=None, room_id=None, limit=1, exclusive=False):
     if not (key_id is None and tag_id is None and room_id is None):
         db = dbm.get_db()
         cur = db.cursor()
         params = tuple([p for p in [key_id, tag_id, room_id] if p is not None])
-        condition_operator = ' AND ' if limit == 1 else ' OR '
+        condition_operator = ' AND ' if exclusive else ' OR '
         sql_conditions = condition_operator.join(filter(
             lambda x: x is not '', [' id = ? ' if key_id is not None else '',
                                     ' tag_id = ? ' if tag_id is not None else '',

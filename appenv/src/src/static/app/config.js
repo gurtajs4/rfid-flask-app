@@ -38,12 +38,10 @@
             controllerAs: 'usersSearch'
         }).when('/users/register', {
             templateUrl: appBaseUrl + '/register/user-register.html',
-            controller: 'UserRegisterController'//,
-            // controllerAs: 'userRegister'
+            controller: 'UserRegisterController'
         }).when('/keys/register', {
             templateUrl: appBaseUrl + '/register/key-register.html',
-            controller: 'KeyRegisterController',
-            controllerAs: 'keyRegister'
+            controller: 'KeyRegisterController'
         }).otherwise({redirectTo: '/home'});
     }
 })();

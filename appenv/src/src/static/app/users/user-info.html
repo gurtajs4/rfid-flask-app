@@ -1,18 +1,30 @@
 <div class="container">
-    <div class="col-lg-3">
-        {{user.id}}
+    <div class="row">
+        <div class="span12">
+            <div class="well well-small clearfix">
+                <div class="row-fluid">
+                    <div class="span3"><img class="img-thumbnail" src="{{user.pic_url}}" alt="avatar"></div>
+                    <div class="span3">{{user.first_name}} {{user.last_name}}</div>
+                    <div class="span3">{{user.id}}</div>
+                    <div class="span3">{{user.tag_id}}</div>
+                </div>
+            </div>
+        </div>
     </div>
-    <span class="col-lg-3">
-        {{user.first_name}}
-    </span>
-    <span class="col-lg-3"></span>
-    <span class="col-lg-3">
-        {{user.last_name}}
-    </span>
-    <span class="col-lg-3">
-        {{user.tag_id}}
-    </span>
-    <span class="col-lg-12">
-        <img class="img-thumbnail" src="{{user.pic_url}}" alt="avatar">
-    </span>
+    <!--<div class="col-lg-3">-->
+        <!---->
+    <!--</div>-->
+    <!--<span class="col-lg-3">-->
+        <!---->
+    <!--</span>-->
+    <!--<span class="col-lg-3"></span>-->
+    <!--<span class="col-lg-3">-->
+        <!---->
+    <!--</span>-->
+    <!--<span class="col-lg-3">-->
+        <!---->
+    <!--</span>-->
+    <!--<span class="col-lg-12">-->
+        <!---->
+    <!--</span>-->
 </div>

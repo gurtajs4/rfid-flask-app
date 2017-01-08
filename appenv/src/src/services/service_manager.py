@@ -26,8 +26,8 @@ class ServiceManager(object):
         return key_factory.get_keys()
 
     @staticmethod
-    def search_key(key_id=None, tag_id=None, room_id=None, limit=1):
-        return key_factory.search_key(key_id, tag_id, room_id, limit)
+    def search_key(key_id=None, tag_id=None, room_id=None, limit=1, exclusive=False):
+        return key_factory.search_key(key_id, tag_id, room_id, limit, exclusive)
 
     @staticmethod
     def create_key(tag_id, room_id):
@@ -47,8 +47,8 @@ class ServiceManager(object):
         return user_factory.get_users()
 
     @staticmethod
-    def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, pic_url=None, limit=1):
-        return user_factory.search_user(user_id, tag_id, first_name, last_name, pic_url, limit)
+    def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, pic_url=None, limit=1, exclusive=False):
+        return user_factory.search_user(user_id, tag_id, first_name, last_name, pic_url, limit, exclusive)
 
     @staticmethod
     def create_user(tag_id, first_name=None, last_name=None, pic_url=None):
@@ -68,8 +68,8 @@ class ServiceManager(object):
         return session_factory.get_sessions()
 
     @staticmethod
-    def search_session(session_id=None, user_id=None, key_id=None, timestamp=None, limit=1):
-        return session_factory.search_session(session_id, user_id, key_id, timestamp, limit)
+    def search_session(session_id=None, user_id=None, key_id=None, timestamp=None, limit=1, exclusive=False):
+        return session_factory.search_session(session_id, user_id, key_id, timestamp, limit, exclusive)
 
     @staticmethod
     def create_session(user_id=None, key_id=None, timestamp=None):

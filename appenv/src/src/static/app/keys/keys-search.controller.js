@@ -5,8 +5,8 @@
         .module('appMain')
         .controller('KeysSearchController', KeysSearchController);
 
-    KeysSearchController.$inject = ['$location', 'keysService'];
-    function KeysSearchController($location, keysService) {
+    KeysSearchController.$inject = ['$location', '$log', 'keysService'];
+    function KeysSearchController($location, $log, keysService) {
         var self = this;
         var service = keysService;
 
@@ -19,13 +19,15 @@
 
         function submit() {
             service.search(self.queryset).then(function (response) {
-                if (response.status != 404) {
+                $log.info(response.data);
+                if (response.status == 200) {
                     self.keyId = response.data;
                 }
                 else {
-                    console.log(response.data['message']);
-                    $window.alert("Key not registered!");
+                    $log.debug('Response status is not 200 for key search: ' + response.data['message']);
                 }
+            }).catch(function (error) {
+                $log.error(error.data);
             });
         }
 

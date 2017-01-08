@@ -8,8 +8,8 @@
             <button ng-click="keysSearch.cancel()" type="reset" class="btn btn-default">Cancel</button>
         </div>
     </div>
-    <div ng-show="(self.keyId!={})">
-        <infoKey></infoKey>
+    <div ng-show="keysSearch.keyId">
+        <info-key key-id="keysSearch.keyId"></info-key>
     </div>
-    <div ng-hide="(keysSearch.result=={})" keySession></div>
+    <div ng-hide="keysSearch.result" key-session></div>
 </div>
