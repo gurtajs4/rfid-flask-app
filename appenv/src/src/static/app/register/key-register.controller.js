@@ -5,8 +5,8 @@
         .module('appMain')
         .controller('KeyRegisterController', KeyRegisterController);
 
-    KeyRegisterController.$inject = ['$scope', '$location', 'registerService'];
-    function KeyRegisterController($scope, $location, registerService) {
+    KeyRegisterController.$inject = ['$scope', '$log', '$location', 'registerService'];
+    function KeyRegisterController($scope, $log, $location, registerService) {
         var self = this;
         var service = registerService;
 
@@ -26,8 +26,8 @@
         $scope.$watch(angular.bind(self, function () {
             return self.message;
         }), function () {
-            $log.info('tagData was %s', original);
-            $log.info('tagData is now %s', current);
+            $log.info('message was %s', original);
+            $log.info('message is now %s', current);
         });
 
         function register() {

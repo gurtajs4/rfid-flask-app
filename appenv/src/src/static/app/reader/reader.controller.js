@@ -23,15 +23,17 @@
                     $scope.$apply(function () {
                         self.tagData = tData;
                         self.message = tMessage;
+                        $scope.tagData = tData;
+                        $scope.message = tMessage;
                     });
                     // $scope.$apply(function () {
                     //     $scope.tagData = tData;
                     //     $scope.message = response.data.message;
                     // });
-                    // console.log($scope.tagData);
-                    // console.log($scope.message);
                     console.log(self.tagData);
                     console.log(self.message);
+                    console.log($scope.tagData);
+                    console.log($scope.message);
                 }, 0);
             });
         }

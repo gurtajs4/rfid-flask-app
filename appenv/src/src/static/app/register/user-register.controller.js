@@ -5,8 +5,8 @@
         .module('appMain')
         .controller('UserRegisterController', UserRegisterController);
 
-    UserRegisterController.$inject = ['$scope', '$location', 'registerService'];
-    function UserRegisterController($scope, $location, registerService) {
+    UserRegisterController.$inject = ['$scope', '$log', '$location', 'registerService'];
+    function UserRegisterController($scope, $log, $location, registerService) {
         var self = this;
         var service = registerService;
 
