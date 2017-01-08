@@ -5,8 +5,8 @@
         .module('appMain')
         .controller('ReaderController', ReaderController);
 
-    ReaderController.$inject = ['$scope', '$timeout', 'readerService'];
-    function ReaderController($scope, $timeout, readerService) {
+    ReaderController.$inject = ['$scope', '$log', '$timeout', 'readerService'];
+    function ReaderController($scope, $log, $timeout, readerService) {
         var service = readerService;
         // var self = this;
         // self.tagData = "";
@@ -18,7 +18,7 @@
 
         function activate() {
             service.initReader().then(function (response) {
-                console.log(response.data);
+                $log.info(response.data);
                 $timeout(function () {
                     // var tData = response.data.data.toString();
                     var tData = response.data.data;
@@ -30,13 +30,13 @@
                     //     $scope.message = tMessage;
                     // });
                     $scope.$apply(function () {
-                        $scope.tagData = tData;
                         $scope.message = tMessage;
+                        $scope.tagData = tData;
                     });
                     // console.log(self.tagData);
                     // console.log(self.message);
-                    console.log($scope.tagData);
-                    console.log($scope.message);
+                    $log.info($scope.tagData);
+                    $log.info($scope.message);
                 }, 0);
             });
         }
