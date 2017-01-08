@@ -12,7 +12,7 @@
         return {
             restrict: 'EA',
             scope: {
-                tagData: "=?",
+                tagData: "=",
                 message: "="
             },
             templateUrl: appBaseUrl + '/reader/reader.html',

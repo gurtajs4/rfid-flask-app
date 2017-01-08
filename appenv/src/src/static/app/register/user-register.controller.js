@@ -25,9 +25,9 @@
         $scope.register = register;
         $scope.cancel = cancel;
 
-        $scope.$watch('tagData', function () {
-            $log.info('Tag data is: ', $scope.tagData);
-        });
+        // $scope.$watch('tagData', function () {
+        //     $log.info('Tag data is: ', $scope.tagData);
+        // });
         // $scope.$watch(angular.bind(self, function () {
         //     return self.tagData;
         // }), function (current, original) {
