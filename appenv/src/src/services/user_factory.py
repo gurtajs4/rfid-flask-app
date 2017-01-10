@@ -6,17 +6,24 @@ def create_user(tag_id, first_name="", last_name="", pic_url=None):
     if None is tag_id:
         return None
     db = dbm.get_db()
-    cur = db.cursor()
-    cur.execute('''INSERT OR IGNORE INTO User (tag_id, first_name, last_name, pic_url)
-            VALUES ( ?, ?, ?, ? )''', (tag_id, first_name, last_name, pic_url,))
-    db.commit()
-    cur.execute('SELECT id FROM User WHERE tag_id = ? AND first_name = ? AND last_name = ? AND pic_url = ?',
-                (tag_id, first_name, last_name, pic_url,))
-    result = cur.fetchone()
-    print(result)
-    user_id = int(result[0])
-    dbm.close_connection(db)
-    return User(user_id=user_id, tag_id=tag_id, first_name=first_name, last_name=last_name, pic_url=pic_url)
+    try:
+        cur = db.cursor()
+        affected_count = cur.execute('''INSERT OR IGNORE INTO User (tag_id, first_name, last_name, pic_url)
+                    VALUES ( ?, ?, ?, ? )''', (tag_id, first_name, last_name, pic_url,))
+        db.commit()
+        if affected_count > 0:
+            cur.execute('SELECT id FROM User WHERE tag_id = ? AND first_name = ? AND last_name = ? AND pic_url = ?',
+                        (tag_id, first_name, last_name, pic_url,))
+            result = cur.fetchone()
+            user_id = int(result[0])
+            dbm.close_connection(db)
+            return User(user_id=user_id, tag_id=tag_id, first_name=first_name, last_name=last_name, pic_url=pic_url)
+        else:
+            raise "Affected rows: ", affected_count
+    except:
+        return None
+    finally:
+        dbm.close_connection(db)
 
 
 def get_users(limit=0):

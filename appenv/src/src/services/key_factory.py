@@ -6,16 +6,24 @@ def create_key(tag_id, room_id):
     if None is tag_id or None is room_id:
         return None
     db = dbm.get_db()
-    cur = db.cursor()
-    cur.execute('''INSERT OR IGNORE INTO Key (tag_id, room_id)
+    try:
+        cur = db.cursor()
+        affected_count = cur.execute('''INSERT OR IGNORE INTO Key (tag_id, room_id)
             VALUES ( ?, ? )''', (tag_id, room_id,))
-    db.commit()
-    cur.execute('SELECT id FROM Key WHERE tag_id = ? AND room_id = ? ', (tag_id, room_id,))
-    result = cur.fetchone()
-    print(result)
-    key_id = int(result[0])
-    dbm.close_connection(db)
-    return Key(key_id=key_id, tag_id=tag_id, room_id=room_id)
+        db.commit()
+        if affected_count > 0:
+            cur.execute('SELECT id FROM Key WHERE tag_id = ? AND room_id = ? ', (tag_id, room_id,))
+            result = cur.fetchone()
+            print(result)
+            key_id = int(result[0])
+            dbm.close_connection(db)
+            return Key(key_id=key_id, tag_id=tag_id, room_id=room_id)
+        else:
+            raise "Affected rows: ", affected_count
+    except:
+        return None
+    finally:
+        dbm.close_connection(db)
 
 
 def get_keys(limit=0):

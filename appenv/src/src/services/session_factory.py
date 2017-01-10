@@ -5,16 +5,23 @@ from ..models.models import Session
 
 def create_session(user_id=0, key_id=0, timestamp=datetime.datetime.now()):
     db = dbm.get_db()
-    cur = db.cursor()
-    cur.execute('''INSERT OR IGNORE INTO Session (user_id, key_id, timestamp)
-            VALUES ( ?, ?, ? )''', (user_id, key_id, timestamp,))
-    db.commit()
-    cur.execute('SELECT id FROM Session WHERE key_id = ? AND user_id = ? ', (key_id, user_id,))
-    session_id = cur.fetchone()     # [0]
-    print(session_id)
-    print(session_id[0])
-    dbm.close_connection(db)
-    return Session(session_id=session_id, key_id=key_id, user_id=user_id, timestamp=timestamp)
+    try:
+        cur = db.cursor()
+        affected_count = cur.execute('''INSERT OR IGNORE INTO Session (user_id, key_id, timestamp)
+                    VALUES ( ?, ?, ? )''', (user_id, key_id, timestamp,))
+        db.commit()
+        if affected_count > 0:
+            cur.execute('SELECT id FROM Session WHERE key_id = ? AND user_id = ? ', (key_id, user_id,))
+            result = cur.fetchone()
+            session_id = result[0]
+            dbm.close_connection(db)
+            return Session(session_id=session_id, key_id=key_id, user_id=user_id, timestamp=timestamp)
+        else:
+            raise "Affected rows: ", affected_count
+    except:
+        return None
+    finally:
+        dbm.close_connection(db)
 
 
 def get_sessions(limit=0):
