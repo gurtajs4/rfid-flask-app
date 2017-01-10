@@ -39,8 +39,10 @@ def search_key(key_id=None, tag_id=None, room_id=None, limit=1, exclusive=False)
         sql_command = 'SELECT * FROM Key WHERE ' + sql_conditions
         cur.execute(sql_command, params)
         results = [cur.fetchone()] if limit == 1 else cur.fetchall()
-        keys = [Key(res[0], res[1], res[2]) for res in results]
         dbm.close_connection(db)
+        if None is results or 0 == len(results):
+            return None
+        keys = [Key(res[0], res[1], res[2]) for res in results]
         return keys[0] if limit == 1 else keys
     else:
         return None

@@ -41,8 +41,10 @@ def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, pic_
         sql_command = 'SELECT * FROM User WHERE ' + sql_conditions
         cur.execute(sql_command, params)
         results = [cur.fetchone()] if limit == 1 else cur.fetchall()
-        users = [User(res[0], res[1], res[2], res[3], res[4]) for res in results]
         dbm.close_connection(db)
+        if None is results or 0 == len(results):
+            return None
+        users = [User(res[0], res[1], res[2], res[3], res[4]) for res in results]
         return users[0] if limit == 1 else users
     else:
         return None

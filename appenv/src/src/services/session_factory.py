@@ -39,8 +39,10 @@ def search_session(session_id=None, user_id=None, key_id=None, timestamp=None, l
         sql_command = 'SELECT * FROM Session WHERE ' + sql_conditions
         cur.execute(sql_command, params)
         results = [cur.fetchone()] if limit == 1 else cur.fetchall()
-        sessions = [Session(res[0], res[1], res[2], res[3]) for res in results]
         dbm.close_connection(db)
+        if None is results or 0 == len(results):
+            return None
+        sessions = [Session(res[0], res[1], res[2], res[3]) for res in results]
         return sessions[0] if limit == 1 else sessions
     else:
         return None
