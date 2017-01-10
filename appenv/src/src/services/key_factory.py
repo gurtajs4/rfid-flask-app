@@ -10,8 +10,8 @@ def create_key(tag_id, room_id):
     cur.execute('''INSERT OR IGNORE INTO Key (tag_id, room_id)
             VALUES ( ?, ? )''', (tag_id, room_id,))
     db.commit()
-    cur.execute('SELECT id FROM Key WHERE room_id = ? ', (room_id,))
-    key_id = cur.fetchone()[0]
+    cur.execute('SELECT id FROM Key WHERE tag_id = ? AND room_id = ? ', (tag_id, room_id,))
+    key_id = int((cur.fetchone())[0])
     dbm.close_connection(db)
     return Key(key_id=key_id, tag_id=tag_id, room_id=room_id)
 

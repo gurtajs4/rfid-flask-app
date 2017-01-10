@@ -10,8 +10,9 @@ def create_user(tag_id, first_name="", last_name="", pic_url=None):
     cur.execute('''INSERT OR IGNORE INTO User (tag_id, first_name, last_name, pic_url)
             VALUES ( ?, ?, ?, ? )''', (tag_id, first_name, last_name, pic_url,))
     db.commit()
-    cur.execute('SELECT id FROM User WHERE tag_id = ? ', (tag_id,))
-    user_id = cur.fetchone()[0]
+    cur.execute('SELECT id FROM User WHERE tag_id = ? AND first_name = ? AND last_name = ? AND pic_url = ?',
+                (tag_id, first_name, last_name, pic_url,))
+    user_id = int((cur.fetchone())[0])
     dbm.close_connection(db)
     return User(user_id=user_id, tag_id=tag_id, first_name=first_name, last_name=last_name, pic_url=pic_url)
 

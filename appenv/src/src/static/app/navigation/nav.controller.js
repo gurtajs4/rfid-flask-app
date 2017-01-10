@@ -14,6 +14,7 @@
 
         function setActive(tabId) {
             $scope.tab = tabId;
+            $scope.navCollapsed = !$scope.navCollapsed
         }
 
         function isActive(tabId) {

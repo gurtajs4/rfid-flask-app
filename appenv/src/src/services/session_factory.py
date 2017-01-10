@@ -10,7 +10,7 @@ def create_session(user_id=0, key_id=0, timestamp=datetime.datetime.now()):
             VALUES ( ?, ?, ? )''', (user_id, key_id, timestamp,))
     db.commit()
     cur.execute('SELECT id FROM Session WHERE key_id = ? AND user_id = ? ', (key_id, user_id,))
-    session_id = cur.fetchone()[0]
+    session_id = int((cur.fetchone())[0])
     dbm.close_connection(db)
     return Session(session_id=session_id, key_id=key_id, user_id=user_id, timestamp=timestamp)
 
