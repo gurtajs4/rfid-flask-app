@@ -27,12 +27,10 @@ def api_sessions_get():
 
 @app.route('/api/sessions/<int:session_id>', methods=['GET'])
 def api_session_get(session_id):
+    print('Recieved session id: % - parameter for session query' % session_id)
     session = jserial.session_instance_serialize(service_manager.search_session(session_id=session_id))
-    if None is not session:
-        resp = jsonify(session)
-        resp.status_code = 200
-        return resp
-    else:
+    print('Server retrieving session object: %s' % session)
+    if None is session:
         message = {
             'status': 404,
             'message': 'Not Found' + request.url,
@@ -40,18 +38,24 @@ def api_session_get(session_id):
         resp = jsonify(message)
         resp.status_code = 404
         return resp
+    else:
+        resp = jsonify(session)
+        resp.status_code = 200
+        return resp
 
 
 @app.route('/api/session/key/<int:key_id>')
 def api_get_key_session(key_id):
     print('Received %s from client' % key_id)
     result = service_manager.search_session(key_id=key_id)
+    print('api_get_key_session - by id %s - result is %s' % key_id, result)
     send_message(result, 'key session result', session['uuid'])
 
 
 @app.route('/api/sessions/new', methods=['POST'])
 def api_session_new():
     data = request.get_json()
+    print('Received new data from reader - session: %s' % data)
     if None is data:
         message = {
             'status': 404,

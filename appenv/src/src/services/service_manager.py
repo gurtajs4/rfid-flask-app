@@ -22,7 +22,7 @@ class ServiceManager(object):
                 key = key_factory.search_key(tag_id=session.key_id)
                 if None is key:
                     pass
-                session_factory.create_session(user_id=user, key_id=key, timestamp=session.timestamp)
+                session_factory.create_session(user_id=user.id, key_id=key.id, timestamp=session.timestamp)
 
     # api for keys
     @staticmethod
