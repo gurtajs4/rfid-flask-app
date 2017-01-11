@@ -14,7 +14,12 @@
 
         function activate() {
             service.getItems(function (response) {
-                self.list = response.data;
+                var data = response.data;
+                var viewModel = [];
+                for (var i = 0; i < data.length; i++) {
+                    viewModel.push(JSON.parse(data[i]));
+                }
+                self.list = viewModel;
             }).catch(function (error) {
                 $log.error('Failed to load all stored items ', error);
             });
