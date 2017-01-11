@@ -208,7 +208,8 @@ def api_keys():
         return resp
     else:
         data = jserial.key_instances_serialize(key_list=keys)
-        resp = Response(data, status=200, mimetype='application/json')
+        # resp = Response(data, status=200, mimetype='application/json')
+        resp = jsonify(data)
         resp.status_code = 200
         return resp
 
@@ -227,6 +228,7 @@ def api_users():
         return resp
     else:
         data = jserial.user_instances_serialize(user_list=users)
-        resp = Response(data, status=200, mimetype='application/json')
+        resp = jsonify(data)
+        # resp = Response(data, status=200, mimetype='application/json')
         resp.status_code = 200
         return resp
