@@ -1,5 +1,5 @@
 <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container-fluid">
+    <div class="container-fluid" ng-init="navCollapsed = true">
         <div class="navbar-header">
             <button type="button" ng-click="navCollapsed = !navCollapsed"
                     class="navbar-toggle collapsed">
@@ -10,12 +10,11 @@
             <a class="navbar-brand" ng-click="setActive(0)" ng-href="/">RFID Sessions Site Dashboard</a>
         </div>
 
-        <!--{'in': !navCollapsed}-->
-        <div class="collapse navbar-collapse" ng-class="navCollapsed ? '' : 'in'">
+        <div class="collapse navbar-collapse" ng-class="{'in': !navCollapsed}">
             <ul class="nav navbar-nav">
-                <li ng-class="{ active: isActive(0) }"><a ng-click="setActive(0)" ng-href="/">Home</a></li>
-                <li ng-class="{ active: isActive(1) }"><a ng-click="setActive(1)" ng-href="sessions">Sessions</a></li>
-                <li ng-class="{ active: isActive(2) }"><a ng-click="setActive(2)" ng-href="keys/search">Search Keys</a>
+                <li ng-class="{ active: isActive(0) }"><a ng-click="setActive(0);navCollapsed = !navCollapsed" ng-href="/">Home</a></li>
+                <li ng-class="{ active: isActive(1) }"><a ng-click="setActive(1);navCollapsed = !navCollapsed" ng-href="sessions">Sessions</a></li>
+                <li ng-class="{ active: isActive(2) }"><a ng-click="setActive(2);navCollapsed = !navCollapsed" ng-href="keys/search">Search Keys</a>
                 </li>
                 <li ng-class="{ active: isActive(3) }"><a ng-click="setActive(3)" ng-href="users/search">Search
                     Users</a></li>

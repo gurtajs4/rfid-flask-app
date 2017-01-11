@@ -8,22 +8,16 @@
     NavController.$inject = ['$scope'];
     function NavController($scope) {
 
-        $scope.navCollapsed = true;
         $scope.tab = 0;
         $scope.setActive = setActive;
         $scope.isActive = isActive;
 
         function setActive(tabId) {
             $scope.tab = tabId;
-            collapseNavbar();
         }
 
         function isActive(tabId) {
             return $scope.tab === tabId;
-        }
-
-        function collapseNavbar() {
-            $scope.navCollapsed = !$scope.navCollapsed;
         }
     }
 })();
