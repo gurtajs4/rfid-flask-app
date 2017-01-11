@@ -28,10 +28,18 @@
             templateUrl: appBaseUrl + '/sessions/session-info.html',
             controller: 'SessionInfoController',
             controllerAs: 'sessionInfo'
+        }).when('/keys', {
+            templateUrl: appBaseUrl + '/keys/keys.html',
+            controller: 'KeysController',
+            controllerAs: 'keys'
         }).when('/keys/search', {
             templateUrl: appBaseUrl + '/keys/keys-search.html',
             controller: 'KeysSearchController',
             controllerAs: 'keysSearch'
+        }).when('/users', {
+            templateUrl: appBaseUrl + '/users/users.html',
+            controller: 'UsersController',
+            controllerAs: 'users'
         }).when('/users/search', {
             templateUrl: appBaseUrl + '/users/users-search.html',
             controller: 'UsersSearchController',

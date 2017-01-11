@@ -15,10 +15,14 @@ class ServiceManager(object):
             seed = DbInitializer()
             for session in seed.get_sessions():
                 user_factory.create_user(tag_id=session.user_id)
-                uid = user_factory.search_user(tag_id=session.user_id).id
+                user = user_factory.search_user(tag_id=session.user_id)
+                if None is user:
+                    pass
                 key_factory.create_key(tag_id=session.key_id, room_id=session.key_id)
-                kid = key_factory.search_key(tag_id=session.key_id).id
-                session_factory.create_session(user_id=uid, key_id=kid, timestamp=session.timestamp)
+                key = key_factory.search_key(tag_id=session.key_id)
+                if None is key:
+                    pass
+                session_factory.create_session(user_id=user, key_id=key, timestamp=session.timestamp)
 
     # api for keys
     @staticmethod

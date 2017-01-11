@@ -19,10 +19,14 @@
                 <li ng-class="{ active: isActive(3) }"><a ng-click="setActive(3)" ng-href="users/search">Search
                     Users</a></li>
             </ul>
+            <ul class="nav navbar-nav">
+                <li ng-class="{ active: isActive(4) }"><a ng-click="setActive(4)" ng-href="keys">Rooms/Keys</a></li>
+                <li ng-class="{ active: isActive(5) }"><a ng-click="setActive(5)" ng-href="users">Users</a></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li ng-class="{ active: isActive(4) }"><a ng-click="setActive(4)" ng-href="keys/register">Register
+                <li ng-class="{ active: isActive(6) }"><a ng-click="setActive(4)" ng-href="keys/register">Register
                     Room/Key</a></li>
-                <li ng-class="{ active: isActive(5) }"><a ng-click="setActive(5)" ng-href="users/register">Register
+                <li ng-class="{ active: isActive(7) }"><a ng-click="setActive(5)" ng-href="users/register">Register
                     User</a></li>
             </ul>
         </div>

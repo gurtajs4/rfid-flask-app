@@ -84,9 +84,10 @@ def api_reader():
 @app.route('/api/user/register', methods=['POST'])
 def api_user_register():
     user = jserial.user_instance_deserialize(request.get_json())
-    print('Registering user %s - handling post request' % user)
+    print('api-user-register is post: user %s' % user)
     user = service_manager.create_user(tag_id=user.tag_id, first_name=user.first_name, last_name=user.last_name,
                                        pic_url=user.pic_url)
+    print('api-user-register is post: user from db is %s' % key)
     if None is user or -1 == user.id:
         message = {
             'status': 404,
@@ -106,6 +107,7 @@ def api_key_register():
     key = jserial.key_instance_deserialize(request.get_json())
     print('api-key-register: key %s' % key)
     key = service_manager.create_key(tag_id=key.tag_id, room_id=key.room_id)
+    print('api-key-register: key from db is %s' % key)
     if None is key or -1 == key.id:
         message = {
             'status': 404,
@@ -185,4 +187,42 @@ def api_key_id_search(tag_id):
     else:
         data = jserial.key_instance_serialize(key_instance=key)
         resp = Response(data, status=200, mimetype='application/json')
+        return resp
+
+
+@app.route('/api/keys', methods=['GET'])
+def api_keys():
+    keys = service_manager.get_keys()
+    print(keys)
+    if None is keys or 1 > len(keys):
+        message = {
+            'status': 404,
+            'message': 'Not Found' + request.url,
+        }
+        resp = jsonify(message)
+        resp.status_code = 404
+        return resp
+    else:
+        data = jserial.key_instances_serialize(key_list=keys)
+        resp = Response(data, status=200, mimetype='application/json')
+        resp.status_code = 200
+        return resp
+
+
+@app.route('/api/users', methods=['GET'])
+def api_users():
+    users = service_manager.get_users()
+    print(users)
+    if None is users or 1 > len(users):
+        message = {
+            'status': 404,
+            'message': 'Not Found' + request.url,
+        }
+        resp = jsonify(message)
+        resp.status_code = 404
+        return resp
+    else:
+        data = jserial.user_instances_serialize(user_list=users)
+        resp = Response(data, status=200, mimetype='application/json')
+        resp.status_code = 200
         return resp

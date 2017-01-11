@@ -4,13 +4,18 @@
     usersService.$inject = ['$http'];
     function usersService($http) {
         var service = {
-            search: search
+            search: search,
+            getAllItems:getAllItems
         };
 
         return service;
 
         function search(username) {
             return $http.get('/api/user/search/' + username);
+        }
+
+        function getAllItems() {
+            return $http.get('/api/users');
         }
     }
 })();
