@@ -9,6 +9,7 @@
                 <option value="last_name">Last name</option>
             </select>
         </div>
+        <hr/>
         <div ng-repeat="user in users.list | orderBy:users.orderProp track by $index">
             <userInfo></userInfo>
         </div>

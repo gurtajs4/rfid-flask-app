@@ -10,7 +10,7 @@
         </div>
         <hr/>
         <div ng-repeat="key in keys.list | orderBy:keys.orderProp track by $index">
-            <keyInfo></keyInfo>
+            <keyInfo id="key.id" tag_id="key.tag_id" room_id="key.room_id"></keyInfo>
         </div>
     </div>
 </div>

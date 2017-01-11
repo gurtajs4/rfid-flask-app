@@ -9,7 +9,13 @@
         var appBaseUrl = templateServiceProvider.appBaseUrl();
         return {
             restrict: 'EA',
-            scope: false,
+            scope: {
+                id: '=',
+                tag_id: '=',
+                first_name: '=',
+                last_name: '=',
+                pic_url: '='
+            },
             templateUrl: appBaseUrl + '/users/user-info.html'
         };
     }

@@ -1,6 +1,7 @@
 <div class="container" ng-show="results">
     <h1>Search results:</h1>
     <div ng-repeat="user in results | orderBy: id track by $index">
-        <user-info></user-info>
+        <user-info id="user.id" tag_id="user.tag_id" first_name="user.first_name"
+                   last_name="user.last_name"></user-info>
     </div>
 </div>
