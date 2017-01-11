@@ -14,10 +14,15 @@
 
         function setActive(tabId) {
             $scope.tab = tabId;
+            collapseNavbar();
         }
 
         function isActive(tabId) {
             return $scope.tab === tabId;
+        }
+
+        function collapseNavbar() {
+            $scope.navCollapsed = !$scope.navCollapsed;
         }
     }
 })();
