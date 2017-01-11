@@ -11,14 +11,19 @@
         $scope.tab = 0;
         $scope.setActive = setActive;
         $scope.isActive = isActive;
+        $scope.collapseNavbar = collapseNavbar;
 
         function setActive(tabId) {
             $scope.tab = tabId;
-            $scope.navCollapsed = !$scope.navCollapsed
+            collapseNavbar();
         }
 
         function isActive(tabId) {
             return $scope.tab === tabId;
+        }
+
+        function collapseNavbar() {
+            $scope.navCollapsed = !$scope.navCollapsed;
         }
     }
 })();
