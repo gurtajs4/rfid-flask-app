@@ -1,5 +1,16 @@
 <div class="container-fluid">
-    <ol>
-        <li ng-repeat="key in keys.list">{{key.tagId}}</li>
-    </ol>
+    <div class="container">
+        <div>
+            Order keys by:
+            <select ng-model="keys.orderProp" name="orderProp" id="orderProp">
+                <option value="id">Key ID</option>
+                <option value="tag_id">Tag ID</option>
+                <option value="room_id">Room number</option>
+            </select>
+        </div>
+        <hr/>
+        <div ng-repeat="key in keys.list | orderBy:keys.orderProp track by $index">
+            <keyInfo></keyInfo>
+        </div>
+    </div>
 </div>

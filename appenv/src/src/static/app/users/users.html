@@ -1,5 +1,16 @@
 <div class="container-fluid">
-    <ol>
-        <li ng-repeat="user in users.list">{{user.tagId}}</li>
-    </ol>
+    <div class="container">
+        <div>
+            Order keys by:
+            <select ng-model="users.orderProp" name="orderProp" id="orderProp">
+                <option value="id">User ID</option>
+                <option value="tag_id">Tag ID</option>
+                <option value="first_name">First name</option>
+                <option value="last_name">Last name</option>
+            </select>
+        </div>
+        <div ng-repeat="user in users.list | orderBy:users.orderProp track by $index">
+            <userInfo></userInfo>
+        </div>
+    </div>
 </div>
