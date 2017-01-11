@@ -5,7 +5,7 @@
     function usersService($http) {
         var service = {
             search: search,
-            getAllItems:getAllItems
+            getItems:getItems
         };
 
         return service;
@@ -14,7 +14,7 @@
             return $http.get('/api/user/search/' + username);
         }
 
-        function getAllItems() {
+        function getItems() {
             return $http.get('/api/users');
         }
     }

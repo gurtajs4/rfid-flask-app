@@ -10,7 +10,7 @@
         activate();
 
         function activate() {
-            service.getAllItems().then(function (response) {
+            service.getItems().then(function (response) {
                 self.list = response.data;
             }).catch(function (error) {
                 $log.error("Failed loading all stored items ", error);
