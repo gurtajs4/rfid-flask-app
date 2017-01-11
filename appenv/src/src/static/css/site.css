@@ -21,10 +21,12 @@ body {
     color: darkslategray;
 }
 
-.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus {
-    color: bisque;
+.navbar-default .navbar-nav > li .active {
     background-color: cadetblue;
-    /*background-color: grey;*/
+}
+
+.navbar-default .navbar-nav > li .active > a, .navbar-default .navbar-nav > li .active > a:visited {
+    color: darkslategray;
 }
 
 .navbar-default .navbar-brand {
