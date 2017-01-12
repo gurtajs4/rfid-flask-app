@@ -91,7 +91,7 @@ def api_user_register():
     print('api-user-register is post: user %s' % user)
     user = service_manager.create_user(tag_id=user.tag_id, first_name=user.first_name, last_name=user.last_name,
                                        pic_url=user.pic_url)
-    print('api-user-register is post: user from db is %s' % key)
+    print('api-user-register is post: user from db is %s' % user)
     if None is user or -1 == user.id:
         message = {
             'status': 404,
