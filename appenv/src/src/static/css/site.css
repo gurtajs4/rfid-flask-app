@@ -21,11 +21,11 @@ body {
     color: darkslategray;
 }
 
-.navbar-default .navbar-nav > li .active {
+.navbar-default .navbar-nav > li.active {
     background-color: cadetblue;
 }
 
-.navbar-default .navbar-nav > li .active > a, .navbar-default .navbar-nav > li .active > a:visited {
+.navbar-default .navbar-nav > li .active > a, .navbar-default .navbar-nav > li.active > a:visited {
     color: darkslategray;
 }
 
