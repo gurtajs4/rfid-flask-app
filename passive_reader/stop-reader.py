@@ -1,6 +1,7 @@
 import os
 import signal
 import subprocess
+from .. import rfid_python_lib
 from rfid_python_lib import MFRC522
 
 p = subprocess.Popen(['ps', 'aux'], stdout=subprocess.PIPE)
