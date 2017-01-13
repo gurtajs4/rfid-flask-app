@@ -1,5 +1,4 @@
-from .. import rfid_python_lib
-from rfid_python_lib import MFRC522
+from ..rfid_python_lib import MFRC522
 import signal
 import requests
 import time
