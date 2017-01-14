@@ -6,7 +6,7 @@ def load_src(name, fdir, fpath):
                                fdir, fpath))
 
 
-load_src("MFRC522", "rfid-python-lib", "MFRC522.py")
+load_src("MFRC522", "rfid_python_lib", "MFRC522.py")
 import MFRC522
 import time
 
