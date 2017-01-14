@@ -1,9 +1,7 @@
 <div class="container">
-    <!--<h2>{{userRegister.title}}</h2>-->
     <h2>{{title}}</h2>
     <div class="panel-group">
         <div class="panel panel-primary">
-            <!--<div class="panel-heading">{{userRegister.note}}</div>-->
             <div class="panel-heading">{{note}}</div>
             <div class="panel-body">
                 Please move your ID card to the reader and the system will detect its unique number. The number will be
@@ -11,44 +9,35 @@
             </div>
         </div>
         <div class="panel">
-            <!--<div reader tagData="userRegister.tagData" message="userRegister.message"></div>-->
             <div reader tag-data="tagData" message="message"></div>
         </div>
         <div class="panel panel-info">
-            <!--<div class="panel-heading">{{self.tagData}} status</div>-->
-            <!--<div class="panel-body">{{self.message}}</div>-->
             <div class="panel-heading">{{tagData}}</div>
             <div class="panel-body">{{message}}</div>
         </div>
         <div class="panel panel-default">
-            <!--<div class="panel-heading">Editing information about person #{{userRegister.tagData}}</div>-->
             <div class="panel-heading">Editing information about person #<span>{{tagData}}</span></div>
             <div class="panel-body">
                 <div class="form-inline">
                     <div class="form-group">
-                        <!--<label for="fname">First name:</label>-->
-                        <!--<input ng-model="userRegister.firstName" class="form-control" placeholder="Enter first name"-->
-                        <!--id="fname" type="text"/>-->
-                        <!--<label for="lname">Last name:</label>-->
-                        <!--<input ng-model="userRegister.lastName" class="form-control" placeholder="Enter last name"-->
-                        <!--id="lname" type="text"/>-->
-                        <!--<label for="purl">Picture url:</label>-->
-                        <!--<input ng-model="userRegister.picUrl" class="form-control" placeholder="Enter picture url"-->
-                        <!--id="purl" type="text"/>-->
-                        <!--&lt;!&ndash;<input ng-model="userRegister.email" placeholder="Email" id="email" type="text"/>&ndash;&gt;-->
-                        <!--<button ng-click="userRegister.register()" class="btn btn-primary">Register</button>-->
-                        <!--<button ng-click="userRegister.cancel()" class="btn btn-danger">Cancel</button>-->
-
                         <label for="fname">First name:</label>
                         <input ng-model="firstName" class="form-control" placeholder="Enter first name"
-                               id="fname" type="text"/>
+                               id="fname" type="text" ng-required="true"/>
                         <label for="lname">Last name:</label>
                         <input ng-model="lastName" class="form-control" placeholder="Enter last name"
-                               id="lname" type="text"/>
+                               id="lname" type="text" ng-required="true"/>
+                        <label for="email">Last name:</label>
+                        <input ng-model="email" class="form-control" placeholder="Enter email"
+                               id="email" type="text" ng-required="true"/>
+                        <label for="role">Role:</label>
+                        <select ng-required="true" class="form-control" ng-model="role" name="role" id="role">
+                            <option value="1">Professor</option>
+                            <option value="2">Student</option>
+                        </select>
                         <label for="purl">Picture url:</label>
                         <input ng-model="picUrl" class="form-control" placeholder="Enter picture url"
-                               id="purl" type="text"/>
-                        <button ng-click="register()" class="btn btn-primary">Register</button>
+                               id="purl" type="text" ng-required="true"/>
+                        <button ng-disabled="isValid()" ng-click="register()" class="btn btn-primary">Register</button>
                         <button ng-click="cancel()" class="btn btn-danger">Cancel</button>
                     </div>
                 </div>

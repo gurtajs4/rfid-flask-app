@@ -1,6 +1,7 @@
 import key_factory
 import user_factory
 import session_factory
+import user_session_factory
 from .db_seed import DbInitializer
 from ..db import SqliteManager
 from ..embedded.mfrc_service import ServiceMFRC
@@ -86,6 +87,14 @@ class ServiceManager(object):
     @staticmethod
     def update_session(session_id, user_id=None, key_id=None, timestamp=None):
         return session_factory.update_session(session_id, user_id, key_id, timestamp)
+
+    @staticmethod
+    def create_user_session(user_id, timestamp):
+        return user_session_factory.create_user_session(user_id=user_id, timestamp=timestamp)
+
+    @staticmethod
+    def get_user_sessions(user_id, limit=0):
+        return user_session_factory.get_user_sessions(user_id=user_id, limit=limit)
 
     # api for matching
     @staticmethod

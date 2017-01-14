@@ -8,7 +8,7 @@ def create_key(tag_id, room_id):
     db = dbm.get_db()
     try:
         cur = db.cursor()
-        affected_count = cur.execute('''INSERT OR IGNORE INTO Key (tag_id, room_id)
+        affected_count = cur.execute('''INSERT OR REPLACE INTO Key (tag_id, room_id)
             VALUES ( ?, ? )''', (tag_id, room_id,))
         db.commit()
         if affected_count > 0:

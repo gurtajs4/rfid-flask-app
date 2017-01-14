@@ -15,8 +15,13 @@
         $scope.tagData = "";
         $scope.message = "";
 
+        $scope.isValid = isValid;
         $scope.register = register;
         $scope.cancel = cancel;
+
+        function isValid() {
+            return ($scope.$valid);
+        }
 
         function register() {
             var user = {
@@ -24,6 +29,8 @@
                 tag_id: $scope.tagData,
                 first_name: $scope.firstName,
                 last_name: $scope.lastName,
+                email: $scope.email,
+                role_id: $scope.role,
                 pic_url: $scope.picUrl
             };
             $log.info('User: ', user);

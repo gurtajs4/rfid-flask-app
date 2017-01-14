@@ -8,7 +8,7 @@ service_manager = ServiceManager()
 
 @app.route('/', methods=['GET'])
 def api_root():
-    ServiceManager.start_db(drop_create=True, seed_data=True)
+    ServiceManager.start_db(drop_create=True, seed_data=False)
     return app.send_static_file('index.html')
 
 
@@ -49,12 +49,14 @@ def api_users():
         return resp
 
 
-@app.route('/api/users/new', methods=['POST'])
+@app.route('/api/user/session', methods=['POST'])
 def api_users_new():
     user = (request.get_json())
     print('Received user data from the reader...')
     if None is not user:
         print('User %s - timestamp %s' % (user['user_id'], user['timestamp']))
+        user_session = service_manager.create_user_session(user['user_id'], user['timestamp'])
+        print("User session stored as %s"%user_session)
 
 
 @app.route('/api/user/register', methods=['POST'])
@@ -74,7 +76,9 @@ def api_user_register():
         return resp
     else:
         data = jserial.user_instance_serialize(user_instance=user)
-        resp = Response(data, status=200, mimetype='application/json')
+        # resp = Response(data, status=200, mimetype='application/json')
+        resp = jsonify(data)
+        resp.status_code = 200
         return resp
 
 

@@ -6,12 +6,14 @@ class Key:
 
 
 class User:
-    def __init__(self, user_id, tag_id, first_name, last_name, pic_url):
+    def __init__(self, user_id, tag_id, first_name, last_name, email, role_id, pic_id):
         self.id = user_id
         self.tag_id = tag_id
         self.first_name = first_name
         self.last_name = last_name
-        self.pic_url = pic_url
+        self.email = email
+        self.role_id = role_id
+        self.pic_id = pic_id
 
 
 class Session:
