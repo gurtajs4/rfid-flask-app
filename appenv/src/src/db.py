@@ -20,6 +20,7 @@ class SqliteManager:
     def db_init(self):
         db = self.get_db()
         db.executescript('''
+            DROP TABLE IF EXISTS UserSession;
             DROP TABLE IF EXISTS Session;
             DROP TABLE IF EXISTS User;
             DROP TABLE IF EXISTS UserRole;
