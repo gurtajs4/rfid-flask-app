@@ -17,8 +17,10 @@ def end_read(signal, frame):
 
 def post_tag_data(data):
     url = 'http://0.0.0.0:80/api/sessions/new'
-    requests.post(url, json=data, headers={'Content-type': 'application/json'})
+    r=requests.post(url, json=data, headers={'Content-type': 'application/json'})
     print('Tag data posted to server...')
+    if r.status_code == requests.codes.ok or r.status_code == 200:
+        print('Response from server is %s' % r.text)
 
 
 current_userId = -1
