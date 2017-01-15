@@ -80,6 +80,7 @@ class SqliteManager:
 
             INSERT INTO UserRole (name) VALUES ("Professor");
             INSERT INTO UserRole (name) VALUES ("Student");
+            INSERT INTO ImageStore (name, location) VALUES ('/static/images/default.png', 'default');
             ''')
         db.commit()
         self.close_connection(db)
