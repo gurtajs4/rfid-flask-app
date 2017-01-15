@@ -50,7 +50,7 @@
         }).when('/keys/register', {
             templateUrl: appBaseUrl + '/register/key-register.html',
             controller: 'KeyRegisterController'
-        }).when('', {
+        }).when('/user/sessions', {
             templateUrl: appBaseUrl + '/user-sessions/user-sessions.html',
             controller: 'UserSessionsController',
             controllerAs: 'userSessions'

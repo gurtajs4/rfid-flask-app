@@ -27,7 +27,7 @@
             $log.info('Key: ', key);
             service.registerKey(key)
                 .then(function (response) {
-                    if (response.data.status == 200) {
+                    if (response.status == 200) {
                         $location.url('/home');
                     }
                     else {

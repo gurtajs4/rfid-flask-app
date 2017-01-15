@@ -14,7 +14,7 @@
         return service;
 
         function getUserSessions(userId) {
-            $http.get('');
+            $http.get('/api/user/sessions/' + userId.toString());
         }
     }
 })();

@@ -14,12 +14,18 @@
 
         function activate() {
             service.getItems(function (response) {
-                var data = response.data;
-                var viewModel = [];
-                for (var i = 0; i < data.length; i++) {
-                    viewModel.push(JSON.parse(data[i]));
+                if (response.status == 200) {
+                    var data = response.data;
+                    var viewModel = [];
+                    for (var i = 0; i < data.length; i++) {
+                        viewModel.push(JSON.parse(data[i]));
+                    }
+                    self.list = viewModel;
+                    $log.debug('Sessions loaded are ', viewModel);
                 }
-                self.list = viewModel;
+                else {
+                    $log.debug('Response status is not 200, data is ' + response.data);
+                }
             }).catch(function (error) {
                 $log.error('Failed to load all stored items ', error);
             });

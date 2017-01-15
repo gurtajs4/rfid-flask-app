@@ -44,7 +44,6 @@ def api_users():
     else:
         data = jserial.user_instances_serialize(user_list=users)
         resp = jsonify(data)
-        # resp = Response(data, status=200, mimetype='application/json')
         resp.status_code = 200
         return resp
 
@@ -57,6 +56,25 @@ def api_users_new():
         print('User %s - timestamp %s' % (user['user_id'], user['timestamp']))
         user_session = service_manager.create_user_session(user['user_id'], user['timestamp'])
         print("User session stored as %s"%user_session)
+
+
+@app.route('/api/user/sessions/<int:user_id>', methods=['GET'])
+def api_user_sessions(user_id):
+    sessions=service_manager.get_user_sessions(user_id=user_id)
+    print('api-user-sessions count: %s' % len(sessions))
+    if None is sessions:
+        message = {
+            'status': 404,
+            'message': 'Not Found - no sessions for the selected user were found',
+        }
+        resp = jsonify(message)
+        resp.status_code = 404
+        return resp
+    else:
+        print(sessions)
+        resp = jsonify(sessions)
+        resp.status_code = 200
+        return resp
 
 
 @app.route('/api/user/register', methods=['POST'])

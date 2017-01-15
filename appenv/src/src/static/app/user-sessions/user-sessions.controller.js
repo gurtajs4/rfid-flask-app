@@ -17,10 +17,10 @@
 
         function activate() {
             service.getUserSessions(self.userId).then(function (response) {
-                var data = response.data;
+                var data = JSON.parse(response.data);
                 var viewModel = [];
                 for (var i = 0; i < data.length; i++) {
-                    viewModel.push(JSON.parse(data[i]));
+                    viewModel.push(data[i]);
                 }
                 self.list = viewModel;
             });
