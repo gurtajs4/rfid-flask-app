@@ -17,8 +17,9 @@ class User:
 
 
 class Session:
-    def __init__(self, session_id, user_id, key_id, timestamp):
+    def __init__(self, session_id, user_id, key_id, started_on, closed_on):
         self.id = session_id
         self.user_id = user_id
         self.key_id = key_id
-        self.timestamp = timestamp
+        self.started_on = started_on
+        self.closed_on = closed_on

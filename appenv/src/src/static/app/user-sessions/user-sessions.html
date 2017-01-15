@@ -1,5 +1,5 @@
-<div class="container-fluid">
-    <h1 class="col-sm-10">List of all sessions</h1>
+<div class="container">
+    <h1>List of all sessions from user # self.userId</h1>
     <hr/>
     <div>
         <div>
@@ -7,12 +7,12 @@
             <select ng-model="sessions.orderProp" name="orderProp" id="orderProp">
                 <option value="id">Session ID</option>
                 <option value="timestamp">Timestamp</option>
-                <option value="key_id">Key ID</option>
-                <option value="user_id">User ID</option>
+                <!--<option value="started_on">Start date</option>-->
+                <!--<option value="closed_on">End date</option>-->
             </select>
         </div>
         <hr/>
-        <div ng-repeat="session in sessions.list | orderBy:sessions.orderProp track by $index" class="panel panel-default">
+        <div ng-repeat="session in userSessions.list | orderBy:userSessions.orderProp track by $index" class="panel panel-default">
             <div class="panel-heading">
                 <span>Session ID: <a ng-href="sessions/{{ session.id }}">{{ session.id }}</a> |</span>
                 <span>User ID: {{ session.user_id }} |</span>

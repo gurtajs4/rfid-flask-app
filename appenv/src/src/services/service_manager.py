@@ -23,7 +23,7 @@ class ServiceManager(object):
                 key = key_factory.search_key(tag_id=session.key_id)
                 if None is key:
                     pass
-                session_factory.create_session(user_id=user.id, key_id=key.id, timestamp=session.timestamp)
+                session_factory.create_session(user_id=user.id, key_id=key.id, started_on=session.started_on)
 
     # api for keys
     @staticmethod
@@ -60,8 +60,8 @@ class ServiceManager(object):
         return user_factory.create_user(tag_id, first_name, last_name, pic_url)
 
     @staticmethod
-    def delete_user(user_id=None, tag_id=None, first_name=None, last_name=None, pic_url=None, delete_history=False):
-        return user_factory.delete_user(user_id, tag_id, first_name, last_name, pic_url, delete_history)
+    def delete_user(user_id, delete_history=False):
+        return user_factory.delete_user(user_id, delete_history)
 
     @staticmethod
     def update_user(user_id, tag_id=None, first_name=None, last_name=None, pic_url=None):
@@ -73,20 +73,20 @@ class ServiceManager(object):
         return session_factory.get_sessions()
 
     @staticmethod
-    def search_session(session_id=None, user_id=None, key_id=None, timestamp=None, limit=1, exclusive=False):
-        return session_factory.search_session(session_id, user_id, key_id, timestamp, limit, exclusive)
+    def search_session(session_id=None, user_id=None, key_id=None, started_on=None, closed_on=None, limit=1, exclusive=False):
+        return session_factory.search_session(session_id, user_id, key_id, started_on, closed_on, limit, exclusive)
 
     @staticmethod
-    def create_session(user_id=None, key_id=None, timestamp=None):
-        return session_factory.create_session(user_id, key_id, timestamp)
+    def create_session(user_id=None, key_id=None, started_on=None):
+        return session_factory.create_session(user_id, key_id, started_on)
 
     @staticmethod
-    def delete_session(session_id=None, user_id=None, key_id=None, timestamp=None):
-        return session_factory.delete_session(session_id, user_id, key_id, timestamp)
+    def delete_session(session_id=None, user_id=None, key_id=None, started_on=None, closed_on=None):
+        return session_factory.delete_session(session_id, user_id, key_id, started_on, closed_on)
 
     @staticmethod
-    def update_session(session_id, user_id=None, key_id=None, timestamp=None):
-        return session_factory.update_session(session_id, user_id, key_id, timestamp)
+    def update_session(session_id, user_id=None, key_id=None, started_on=None, closed_on=None):
+        return session_factory.update_session(session_id, user_id, key_id, started_on, closed_on)
 
     @staticmethod
     def create_user_session(user_id, timestamp):

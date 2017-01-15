@@ -23,7 +23,8 @@
                 var session = JSON.parse(response.data);
                 self.userId = session['user_id'];
                 self.keyId = session['key_id'];
-                self.timestamp = session['timestamp'];
+                self.started_on = session['started_on'];
+                self.closed_on = session['closed_on']
             });
         }
     }

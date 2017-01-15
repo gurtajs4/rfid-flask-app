@@ -6,7 +6,8 @@
         <div class="panel-body">
             <div>User ID: <bold>{{ sessionInfo.userId }}</bold></div>
             <div>Key ID: <bold>{{ sessionInfo.keyId }}</bold></div>
-            <div>Timestamp: {{ sessionInfo.timestamp }}</div>
+            <div>Key taken on: {{ sessionInfo.started_on }}</div>
+            <div>Key returned on: {{ sessionInfo.closed_on ? sessionInfo.closed_on : "still active" }}</div>
             <br/>
             <div><a ng-href="sessions/">View all sessions</a></div>
         </div>

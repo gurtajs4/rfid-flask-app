@@ -20,7 +20,8 @@ class JSONSerializer(object):
         return Session(session_id=parsed_dict['id'],
                        user_id=parsed_dict['user_id'],
                        key_id=parsed_dict['key_id'],
-                       timestamp=parsed_dict['timestamp'])
+                       started_on=parsed_dict['started_on'],
+                       closed_on=parsed_dict['closed_on'])
 
     @staticmethod
     def session_instance_serialize(session_instance):
@@ -36,7 +37,9 @@ class JSONSerializer(object):
                     tag_id=parsed_dict['tag_id'],
                     first_name=parsed_dict['first_name'],
                     last_name=parsed_dict['last_name'],
-                    pic_url=parsed_dict['pic_url'])
+                    email=parsed_dict['email'],
+                    role_id=parsed_dict['role_id'],
+                    pic_id=parsed_dict['pic_id'])
 
     @staticmethod
     def user_instance_serialize(user_instance):

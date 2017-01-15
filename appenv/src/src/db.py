@@ -71,7 +71,8 @@ class SqliteManager:
                 id                 INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
                 key_id             INTEGER NOT NULL,
                 user_id            INTEGER NOT NULL,
-                timestamp          TEXT,
+                started_on         TEXT,
+                closed_on          TEXT,
                 UNIQUE(key_id, user_id, timestamp),
                 FOREIGN KEY(key_id) REFERENCES Key(id),
                 FOREIGN KEY(user_id) REFERENCES User(id)

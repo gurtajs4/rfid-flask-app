@@ -50,6 +50,10 @@
         }).when('/keys/register', {
             templateUrl: appBaseUrl + '/register/key-register.html',
             controller: 'KeyRegisterController'
+        }).when('', {
+            templateUrl: appBaseUrl + '/user-sessions/user-sessions.html',
+            controller: 'UserSessionsController',
+            controllerAs: 'userSessions'
         }).otherwise({redirectTo: '/home'});
     }
 })();

@@ -99,19 +99,29 @@ def update_user(user_id, tag_id=None, first_name=None, last_name=None, email=Non
     if not (tag_id is None and first_name is None and email is None and last_name is None) and user_id is not None:
         db = dbm.get_db()
         cur = db.cursor()
-        params = tuple([p for p in [user_id, tag_id, first_name, last_name] if p is not None])
-        condition_operator = ' AND '
-        sql_updates = condition_operator.join(filter(
-            lambda x, y: x is not '', ['id = ? ' if user_id is not None else '',
-                                       'tag_id = ? ' if tag_id is not None else '',
+        params = tuple([p for p in [tag_id, first_name, last_name, email, role_id] if p is not None])
+        updates_separator = ' , '
+        sql_updates = updates_separator.join(filter(
+            lambda x, y: x is not '', ['tag_id = ? ' if tag_id is not None else '',
                                        'first_name = ? ' if first_name is not None else '',
                                        'last_name = ? ' if last_name is not None else '',
-                                       'pic_url = ? ' if pic_url is not None else '']))
+                                       'email = ? ' if email is not None else '',
+                                       'role_id = ? ' if role_id is not None else '']))
         # update user
         sql_command = 'UPDATE User SET' + sql_updates + 'WHERE id = ?'
         params += (user_id,)
         cur.execute(sql_command, params)
         db.commit()
+        if None is not pic_url:
+            pic_name = pic_url.split('/')[-1]
+            cur.execute('''INSERT INTO ImageStore (name, location) VALUES (?, ?))''', (pic_name, pic_url,))
+            db.commit()
+            cur.execute('''SELECT id FROM ImageStore WHERE name = ? AND pic_url = ?''', (pic_name, pic_url,))
+            pic_id = cur.fetchone()
+            sql_command = 'UPDATE User SET pic_id = ? WHERE id = ?'
+            params += (pic_id, user_id,)
+            cur.execute(sql_command, params)
+            db.commit()
         # return updated user
         sql_command = 'SELECT * FROM User WHERE id = ? LIMIT 1 '
         cur.execute(sql_command, (user_id,))
