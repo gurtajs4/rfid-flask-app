@@ -76,11 +76,9 @@ class SqliteManager:
                 FOREIGN KEY(key_id) REFERENCES Key(id),
                 FOREIGN KEY(user_id) REFERENCES User(id)
             );
+
+            INSERT INTO UserRole (name) VALUES ("Professor");
+            INSERT INTO UserRole (name) VALUES ("Student");
             ''')
-        db.commit()
-        db.executescript('''
-        INSERT INTO UserRole (name) VALUES "Professor";
-        INSERT INTO UserRole (name) VALUES "Student"
-        ''')
         db.commit()
         self.close_connection(db)
