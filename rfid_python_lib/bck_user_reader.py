@@ -1,6 +1,7 @@
 import MFRC522
 import signal
 import requests
+import json
 import time
 import datetime
 
@@ -17,7 +18,7 @@ def end_read(signal, frame):
 
 def post_tag_data(data):
     url = 'http://0.0.0.0:80/api/user/session'
-    r = requests.post(url, json=data, headers={'Content-type': 'application/json'})
+    r = requests.post(url, json=json.dumps(data), headers={'Content-type': 'application/json'})
     if r.status_code == requests.codes.ok or r.status_code == 200:
         print('Tag data posted to server...')
         print(r.text)
