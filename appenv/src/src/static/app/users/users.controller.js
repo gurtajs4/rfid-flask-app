@@ -10,6 +10,8 @@
         var self = this;
         var service = usersService;
 
+        self.list=[];
+
         activate();
 
         function activate() {
