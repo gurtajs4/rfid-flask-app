@@ -8,7 +8,7 @@ service_manager = ServiceManager()
 
 @app.route('/', methods=['GET'])
 def api_root():
-    ServiceManager.start_db(drop_create=True, seed_data=False)
+    ServiceManager.start_db(drop_create=False, seed_data=False)
     return app.send_static_file('index.html')
 
 
@@ -43,7 +43,8 @@ def api_users():
     else:
         print(users)
         data = jserial.user_instances_serialize(user_list=users)
-        resp = Response(data, status=200, mimetype='application/json')
+        resp = jsonify(data)
+        # resp = Response(data, status=200, mimetype='application/json')
         resp.status_code = 200
         return resp
 
@@ -55,12 +56,12 @@ def api_users_new():
     if None is not user:
         print('User %s - timestamp %s' % (user['user_id'], user['timestamp']))
         user_session = service_manager.create_user_session(user['user_id'], user['timestamp'])
-        print("User session stored as %s"%user_session)
+        print("User session stored as %s" % user_session)
 
 
 @app.route('/api/user/sessions/<int:user_id>', methods=['GET'])
 def api_user_sessions(user_id):
-    sessions=service_manager.get_user_sessions(user_id=user_id)
+    sessions = service_manager.get_user_sessions(user_id=user_id)
     print('api-user-sessions count: %s' % len(sessions))
     if None is sessions:
         message = {
