@@ -21,6 +21,8 @@ def post_tag_data(data):
     if r.status_code == requests.codes.ok or r.status_code == 200:
         print('Tag data posted to server...')
         print(r.text)
+    else:
+        print r.text
 
 
 current_userId = -1
