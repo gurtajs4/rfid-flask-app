@@ -43,7 +43,7 @@ while continue_reading:
         print("Tag detected")
         (status, backData) = MIFAREReader.MFRC522_Anticoll()
         tag_data = int(str(backData[0]) + str(backData[1]) + str(backData[2]) + str(backData[3]) + str(backData[4]))
-        if current_userId == -1 and len(str(tag_data)) == 12:
+        if current_userId == -1 and len(str(tag_data)) == 13:
             current_userTTL = time.time() + 120
             current_userId = tag_data
             print("User ID: %s" % current_userId)
