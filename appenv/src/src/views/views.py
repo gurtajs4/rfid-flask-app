@@ -32,18 +32,19 @@ def api_reader():
 @app.route('/api/users', methods=['GET'])
 def api_users():
     users = service_manager.get_users()
-    print(users)
     if None is users or 1 > len(users):
         message = {
             'status': 404,
-            'message': 'Not Found' + request.url,
+            'message': 'Not Found - no users found',
         }
         resp = jsonify(message)
         resp.status_code = 404
         return resp
     else:
-        data = jserial.user_instances_serialize(user_list=users)
-        resp = jsonify(data)
+        print(users)
+        # data = jserial.user_instances_serialize(user_list=users)
+        # resp = Response(data, status=200, mimetype='application/json')
+        resp = jsonify(users)
         resp.status_code = 200
         return resp
 
@@ -93,9 +94,9 @@ def api_user_register():
         resp.status_code = 404
         return resp
     else:
-        data = jserial.user_instance_serialize(user_instance=user)
+        # data = jserial.user_instance_serialize(user_instance=user)
         # resp = Response(data, status=200, mimetype='application/json')
-        resp = jsonify(data)
+        resp = jsonify(user)
         resp.status_code = 200
         return resp
 
