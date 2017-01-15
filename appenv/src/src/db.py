@@ -62,7 +62,7 @@ class SqliteManager:
                 id            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
                 user_id       INTEGER NOT NULL UNIQUE,
                 timestamp     TEXT,
-                UNIQUE(user_id, timestamp)
+                UNIQUE(user_id, timestamp),
                 FOREIGN KEY (user_id) REFERENCES User(id)
             );
 
@@ -77,7 +77,7 @@ class SqliteManager:
             );
 
             INSERT INTO UserRole (name) VALUES "Professor";
-            INSERT INTO UserRole (name) VALUES "Student";
+            INSERT INTO UserRole (name) VALUES "Student"
             ''')
         db.commit()
         self.close_connection(db)
