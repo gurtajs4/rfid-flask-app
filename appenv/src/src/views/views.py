@@ -263,15 +263,7 @@ def api_session_new():
     data = request.get_json()
     print('Received new data from reader - session: %s' % data)
     if None is data:
-        message = {
-            'status': 404,
-            'message': 'Not Found - incorrect request data',
-        }
-        resp = jsonify(message)
-        resp.status_code = 404
-        return resp
+        print('Data not received')
     else:
         session = service_manager.create_session(data['user_id'], data['key_id'], data['timestamp'])
-        resp = jsonify(session)
-        resp.status_code = 200
-        return resp
+        print('Data stored: %s' % session)

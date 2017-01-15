@@ -17,12 +17,8 @@ def end_read(signal, frame):
 
 def post_tag_data(data):
     url = 'http://0.0.0.0:80/api/sessions/new'
-    r = requests.post(url, data)
-    if r.status_code == requests.codes.ok or r.status_code == 200:
-        print('Tag data posted to server...')
-        print(r.text)
-    else:
-        print r.text
+    requests.post(url, json=data, headers={'Content-type': 'application/json'})
+    print('Tag data posted to server...')
 
 
 current_userId = -1
@@ -52,6 +48,9 @@ while continue_reading:
         elif current_keyId == -1 and len(str(tag_data)) == 12:
             current_keyId = tag_data
             print("Key ID: %s" % current_keyId)
+        if current_keyId == current_userId:
+            current_keyId = -1
+            continue
         if current_keyId != current_userId and current_keyId > -1 and current_userId > -1:
             session = {
                 'user_id': str(current_userId),

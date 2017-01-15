@@ -17,7 +17,7 @@ def end_read(signal, frame):
 
 def post_tag_data(data):
     url = 'http://0.0.0.0:80/api/sessions/new'
-    r = requests.post(url, data)
+    r = requests.post(url, json=data, headers={'Content-type': 'application/json'})
     if r.status_code == requests.codes.ok or r.status_code == 200:
         print('Tag data posted to server...')
         print(r.text)
