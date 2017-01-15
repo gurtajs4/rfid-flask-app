@@ -55,7 +55,7 @@ while continue_reading:
             session = {
                 'user_id': str(current_userId),
                 'key_id': str(current_keyId),
-                'timestamp': datetime.datetime.now()
+                'timestamp': str(datetime.datetime.now())
             }
             post_tag_data(session)
             current_userId = -1

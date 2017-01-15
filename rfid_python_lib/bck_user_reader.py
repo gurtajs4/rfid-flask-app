@@ -38,7 +38,7 @@ while continue_reading:
         print('User ID: %s' % current_userId)
         user_data = {
             'user_id': str(current_userId),
-            'timestamp': datetime.datetime.now()
+            'timestamp': str(datetime.datetime.now())
         }
         post_tag_data(data=user_data)
         current_userId = -1
