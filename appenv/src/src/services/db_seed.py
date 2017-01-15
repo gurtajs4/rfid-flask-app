@@ -19,7 +19,8 @@ class DbInitializer(object):
                     session = Session(session_id=0,
                                       user_id=parsed_dict['user_id'],
                                       key_id=parsed_dict['key_id'],
-                                      timestamp=parsed_dict['timestamp'])
+                                      started_on=parsed_dict['started_on'],
+                                      closed_on=parsed_dict['closed_on'])
                     sessions.append(session)
                 return sessions
         return None

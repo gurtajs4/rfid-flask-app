@@ -73,7 +73,7 @@ class SqliteManager:
                 user_id            INTEGER NOT NULL,
                 started_on         TEXT,
                 closed_on          TEXT,
-                UNIQUE(key_id, user_id, timestamp),
+                UNIQUE(key_id, user_id, started_on),
                 FOREIGN KEY(key_id) REFERENCES Key(id),
                 FOREIGN KEY(user_id) REFERENCES User(id)
             );
