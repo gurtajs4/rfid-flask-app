@@ -22,8 +22,8 @@ class SqliteManager:
         db.executescript('''
             DROP TABLE IF EXISTS Session;
             DROP TABLE IF EXISTS User;
-            DROP TABLE IF EXISTS UserRole,
-            DROP TABLE IF EXISTS ImageStore,
+            DROP TABLE IF EXISTS UserRole;
+            DROP TABLE IF EXISTS ImageStore;
             DROP TABLE IF EXISTS Key;
 
             PRAGMA foreign_keys = "1";
