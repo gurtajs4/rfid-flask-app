@@ -1,6 +1,8 @@
 import json
 import datetime
 from ..models.models import Session, User, Key
+
+
 # import base64
 
 
@@ -15,6 +17,20 @@ class CustomJSONEncoder(json.JSONEncoder):
 
 
 class JSONSerializer(object):
+    @staticmethod
+    def key_instance_deserialize(parsed_dict):
+        return Key(key_id=parsed_dict['id'],
+                   tag_id=parsed_dict['tag_id'],
+                   room_id=parsed_dict['room_id'])
+
+    @staticmethod
+    def key_instance_serialize(key_instance):
+        return json.dumps(key_instance, cls=CustomJSONEncoder)
+
+    @staticmethod
+    def key_instances_serialize(key_list):
+        return [JSONSerializer.key_instance_serialize(key) for key in key_list]
+
     @staticmethod
     def session_instance_deserialize(parsed_dict):
         return Session(session_id=parsed_dict['id'],
@@ -33,7 +49,8 @@ class JSONSerializer(object):
 
     @staticmethod
     def user_instance_deserialize(parsed_dict):
-        picture=parsed_dict['pic_id'] if 'pic_id' in parsed_dict else parsed_dict['pic_url'] if 'pic_url' in parsed_dict else None
+        picture = parsed_dict['pic_id'] if 'pic_id' in parsed_dict else parsed_dict[
+            'pic_url'] if 'pic_url' in parsed_dict else None
         return User(user_id=parsed_dict['id'],
                     tag_id=parsed_dict['tag_id'],
                     first_name=parsed_dict['first_name'],
@@ -51,15 +68,13 @@ class JSONSerializer(object):
         return [JSONSerializer.user_instance_serialize(user) for user in user_list]
 
     @staticmethod
-    def key_instance_deserialize(parsed_dict):
-        return Key(key_id=parsed_dict['id'],
-                   tag_id=parsed_dict['tag_id'],
-                   room_id=parsed_dict['room_id'])
+    def user_session_instance_deserialize(parsed_dict):
+        return {
+            'user_id': parsed_dict['user_id'],
+            'key_id': parsed_dict['key_id'],
+            'timestamp': parsed_dict['timestamp']
+        }
 
     @staticmethod
-    def key_instance_serialize(key_instance):
-        return json.dumps(key_instance, cls=CustomJSONEncoder)
-
-    @staticmethod
-    def key_instances_serialize(key_list):
-        return [JSONSerializer.key_instance_serialize(key) for key in key_list]
+    def user_session_instance_serialize(user_session_instance):
+        return json.dumps(user_session_instance, cls=CustomJSONEncoder)
