@@ -272,8 +272,8 @@ def api_session_new():
         resp.status_code = 404
         return resp
     else:
-        item = jserial.user_session_instance_deserialize(data)
-        session = service_manager.create_session(item[0], item[0], item[0])
+        # item = jserial.user_session_instance_deserialize(data)
+        session = service_manager.create_session(data[0], data[0], data[0])
         print('Data stored: %s' % session)
         resp = jsonify(session)
         resp.status_code = 200
