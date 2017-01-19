@@ -12,18 +12,18 @@
 
         <div class="collapse navbar-collapse" ng-class="{'in': !navCollapsed}">
             <ul class="nav navbar-nav">
-                <li ng-repeat="route in leftNav | track by $index" ng-class="{ active: isActive($index) }"><a
-                        ng-click="setActive($index);navCollapsed = !navCollapsed"
+                <li ng-repeat="route in leftNav" ng-class="{ active: isActive(route.id) }"><a
+                        ng-click="setActive(route.id);navCollapsed = !navCollapsed"
                         ng-href="route.route">{{route.name}}</a></li>
             </ul>
             <ul class="nav navbar-nav">
-                <li ng-repeat="route in midNav | track by $index" ng-class="{ active: isActive($index) }"><a
-                        ng-click="setActive($index);navCollapsed = !navCollapsed"
+                <li ng-repeat="route in midNav" ng-class="{ active: isActive(route.id) }"><a
+                        ng-click="setActive(route.id);navCollapsed = !navCollapsed"
                         ng-href="route.route">{{route.name}}</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li ng-repeat="route in rightNav | track by $index" ng-class="{ active: isActive($index) }"><a
-                        ng-click="setActive($index);navCollapsed = !navCollapsed"
+                <li ng-repeat="route in rightNav" ng-class="{ active: isActive(route.id) }"><a
+                        ng-click="setActive(route.id);navCollapsed = !navCollapsed"
                         ng-href="route.route">{{route.name}}</a></li>
             </ul>
         </div>

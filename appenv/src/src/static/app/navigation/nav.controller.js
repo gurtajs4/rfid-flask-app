@@ -13,20 +13,20 @@
         $scope.isActive = isActive;
 
         $scope.title = 'RFID Sessions Site Dashboard';
-        $scope.leftNav = {
-            0: {route: '/', name: 'Home'},
-            1: {route: 'sessions', name: 'Sessions'},
-            2: {route: 'keys/search', name: 'Search Keys'},
-            3: {route: 'users/search', name: 'Search Users'}
-        };
-        $scope.midNav = {
-            4: {route: 'keys', name: 'Rooms/Keys'},
-            5: {route: 'users', name: 'Users'}
-        };
-        $scope.rightNav = {
-            6: {route: 'keys/register', name: 'Register Room/Key'},
-            7: {route: 'users/register', name: 'Register User'}
-        };
+        $scope.leftNav = [
+            {id: 0, route: '/', name: 'Home'},
+            {id: 1, route: 'sessions', name: 'Sessions'},
+            {id: 2, route: 'keys/search', name: 'Search Keys'},
+            {id: 3, route: 'users/search', name: 'Search Users'}
+        ];
+        $scope.midNav = [
+            {id: 4, route: 'keys', name: 'Rooms/Keys'},
+            {id: 5, route: 'users', name: 'Users'}
+        ];
+        $scope.rightNav = [
+            {id: 6, route: 'keys/register', name: 'Register Room/Key'},
+            {id: 7, route: 'users/register', name: 'Register User'}
+        ];
 
         function setActive(tabId) {
             $scope.tab = tabId;
