@@ -17,7 +17,7 @@
         function activate() {
             service.getItems(function (response) {
                 if (response.status == 200) {
-                    var data = response.data;
+                    var data = response.data.data;
                     var viewModel = [];
                     for (var i = 0; i < data.length; i++) {
                         viewModel.push(JSON.parse(data[i]));

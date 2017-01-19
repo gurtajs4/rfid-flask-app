@@ -11,7 +11,7 @@
 
         function activate() {
             service.getItems().then(function (response) {
-                var data = response.data;
+                var data = response.data.data;
                 $log.debug(data);
                 var viewModel = [];
                 for (var i = 0; i < data.length; i++) {
