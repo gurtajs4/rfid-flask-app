@@ -10,13 +10,18 @@
 
         function templateService() {
             var service = {
-                appBaseUrl: appBaseUrl
+                appBaseUrl: appBaseUrl,
+                sharedBaseUrl: sharedBaseUrl
             };
 
             return service;
 
             function appBaseUrl() {
                 return angular.element(document.querySelector('base')).attr('href') + 'static/app';
+            }
+
+            function sharedBaseUrl() {
+                return angular.element(document.querySelector('base')).attr('href') + 'static/shared-components';
             }
         }
     }

@@ -12,6 +12,12 @@ def api_root():
     return app.send_static_file('index.html')
 
 
+@app.route('/door-lock', methods=['GET'])
+def api_door_lock_root():
+    ServiceManager.start_db(drop_create=False, seed_data=False)
+    return app.send_static_file('index2.html')
+
+
 @app.route('/api/reader', methods=['GET'])
 def api_reader():
     print('Reader called from client')
@@ -272,9 +278,12 @@ def api_session_new():
         resp.status_code = 404
         return resp
     else:
-        # item = jserial.user_session_instance_deserialize(data)
         session = service_manager.create_session(data[0], data[0], data[0])
         print('Data stored: %s' % session)
-        resp = jsonify(session)
+        message = {
+            'status': 200,
+            'data': jserial.session_instance_serialize(session)
+        }
+        resp = jsonify(message)
         resp.status_code = 200
         return resp

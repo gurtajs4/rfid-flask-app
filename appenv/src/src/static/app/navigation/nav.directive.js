@@ -1,11 +1,17 @@
 (function () {
     'use strict';
-    angular.module('appMain').directive('navBar', navBar);
-    function navBar() {
+
+    angular
+        .module('appMain')
+        .directive('navBar', navBar);
+
+    navBar.$inject = ['templateServiceProvider'];
+    function navBar(templateServiceProvider) {
+        var sharedBaseUrl = templateServiceProvider.sharedBaseUrl();
         return {
             restrict: 'E',
-            scope: true,
-            templateUrl: '/navigation/navigation.html',
+            scope: false,
+            templateUrl: sharedBaseUrl + '/navigation/navigation.html',
             controller: 'NavController'
         };
     }
