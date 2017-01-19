@@ -10,11 +10,7 @@
         var appBaseUrl = templateServiceProvider.appBaseUrl();
         return {
             restrict: 'E',
-            scope: {
-                id: '=',
-                tag_id: '=',
-                room_id: '='
-            },
+            scope: false,
             templateUrl: appBaseUrl + '/keys/key-info.html'
         };
     }
