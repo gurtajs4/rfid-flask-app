@@ -10,26 +10,19 @@
         var self = this;
         var service = usersService;
 
-        self.list=[];
+        self.list = [];
 
         activate();
 
         function activate() {
             service.getItems(function (response) {
-                if (response.status == 200) {
-                    var data = response.data.data;
-                    var viewModel = [];
-                    for (var i = 0; i < data.length; i++) {
-                        viewModel.push(JSON.parse(data[i]));
-                    }
-                    self.list = viewModel;
-                    $log.debug('Sessions loaded are ', viewModel);
+                var data = response.data;
+                $log.info(data);
+                var viewModel = [];
+                for (var i = 0; i < data.length; i++) {
+                    viewModel.push(JSON.parse(data[i]));
                 }
-                else {
-                    $log.debug('Response status is not 200, data is ' + response.data);
-                }
-            }).catch(function (error) {
-                $log.error('Failed to load all stored items ', error);
+                self.list = viewModel;
             });
         }
     }
