@@ -14,17 +14,17 @@
             <ul class="nav navbar-nav">
                 <li ng-repeat="route1 in leftNav" ng-class="{ active: isActive(route1.id) }"><a
                         ng-click="setActive(route1.id);navCollapsed = !navCollapsed"
-                        ng-href="route1.route">{{route1.name}}</a></li>
+                        ng-href="{{route1.route}}">{{route1.name}}</a></li>
             </ul>
             <ul class="nav navbar-nav">
                 <li ng-repeat="route2 in midNav" ng-class="{ active: isActive(route2.id) }"><a
                         ng-click="setActive(route2.id);navCollapsed = !navCollapsed"
-                        ng-href="route2.route">{{route2.name}}</a></li>
+                        ng-href="{{route2.route}}">{{route2.name}}</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li ng-repeat="route3 in rightNav" ng-class="{ active: isActive(route3.id) }"><a
                         ng-click="setActive(route3.id);navCollapsed = !navCollapsed"
-                        ng-href="route3.route">{{route3.name}}</a></li>
+                        ng-href="{{route3.route}}">{{route3.name}}</a></li>
             </ul>
         </div>
     </div>
