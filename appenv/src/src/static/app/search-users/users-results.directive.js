@@ -12,7 +12,7 @@
             scope: {
                 results: '='
             },
-            templateUrl: appBaseUrl+ '/users/users-results.html'
+            templateUrl: appBaseUrl+ '/search-users/users-results.html'
         };
     }
 })();

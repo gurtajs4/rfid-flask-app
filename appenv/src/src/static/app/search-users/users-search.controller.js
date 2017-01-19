@@ -20,7 +20,7 @@
             service.search(self.queryset).then(function (response) {
                 $log.info(response.data);
                 if (response.status == 200) {
-                    self.results = response.data;
+                    self.results = JSON.parse(response.data);
                 }
                 else {
                     $log.debug('Response status for users search is not 200: ' + response.data.message['message']);

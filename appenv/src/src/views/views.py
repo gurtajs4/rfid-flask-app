@@ -68,7 +68,7 @@ def api_users_new():
 @app.route('/api/user/sessions/<int:user_id>', methods=['GET'])
 def api_user_sessions(user_id):
     sessions = service_manager.get_user_sessions(user_id=user_id)
-    print('api-user-sessions count: %s' % len(sessions))
+    print('api-user-to-sessions count: %s' % len(sessions))
     if None is sessions:
         message = {
             'status': 404,
@@ -159,7 +159,8 @@ def api_keys():
         return resp
     else:
         data = jserial.key_instances_serialize(key_list=keys)
-        resp = Response(data, status=200, mimetype='application/json')
+        # resp = Response(data, status=200, mimetype='application/json')
+        resp = jsonify(data)
         resp.status_code = 200
         return resp
 
@@ -185,9 +186,9 @@ def api_key_register():
         return resp
 
 
-@app.route('/api/key/search/<int:key_id>', methods=['GET'])
-def api_key_search(key_id):
-    key = service_manager.search_key(key_id=int(key_id))
+@app.route('/api/key/search/<int:room_id>', methods=['GET'])
+def api_key_search(room_id):
+    key = service_manager.search_key(room_id=int(room_id))
     if None is key:
         message = {
             'status': 404,
@@ -198,7 +199,8 @@ def api_key_search(key_id):
         return resp
     else:
         data = jserial.key_instance_serialize(key_instance=key)
-        resp = Response(data, status=200, mimetype='application/json')
+        # resp = Response(data, status=200, mimetype='application/json')
+        resp = jsonify(data)
         resp.status_code = 200
         return resp
 

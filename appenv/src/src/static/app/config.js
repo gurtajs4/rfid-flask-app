@@ -33,7 +33,7 @@
             controller: 'KeysController',
             controllerAs: 'keys'
         }).when('/keys/search', {
-            templateUrl: appBaseUrl + '/keys/keys-search.html',
+            templateUrl: appBaseUrl + '/search-keys/keys-search-form.html',
             controller: 'KeysSearchController',
             controllerAs: 'keysSearch'
         }).when('/users', {
@@ -41,7 +41,7 @@
             controller: 'UsersController',
             controllerAs: 'users'
         }).when('/users/search', {
-            templateUrl: appBaseUrl + '/users/users-search.html',
+            templateUrl: appBaseUrl + '/search-users/users-search.html',
             controller: 'UsersSearchController',
             controllerAs: 'usersSearch'
         }).when('/users/register', {
@@ -51,7 +51,7 @@
             templateUrl: appBaseUrl + '/register/key-register.html',
             controller: 'KeyRegisterController'
         }).when('/user/sessions', {
-            templateUrl: appBaseUrl + '/user-sessions/user-sessions.html',
+            templateUrl: appBaseUrl + '/user-to-sessions/user-to-sessions.html',
             controller: 'UserSessionsController',
             controllerAs: 'userSessions'
         }).otherwise({redirectTo: '/home'});

@@ -1,4 +1,4 @@
-<div class="container" ng-show="results">
+<div class="container" ng-if="results!=[]">
     <h1>Search results:</h1>
     <div ng-repeat="user in results | orderBy: id track by $index">
         <user-info id="user.id" tag_id="user.tag_id" first_name="user.first_name"

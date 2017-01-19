@@ -14,14 +14,13 @@
         self.note = "Check for keys by entering Key ID number";
         self.submit = submit;
         self.cancel = cancel;
-        self.keyId = {};
         self.result = {};
 
         function submit() {
             service.search(self.queryset).then(function (response) {
                 $log.info(response.data);
                 if (response.status == 200) {
-                    self.keyId = response.data;
+                    self.result = JSON.parse(response.data);
                 }
                 else {
                     $log.debug('Response status is not 200 for key search: ' + response.data['message']);

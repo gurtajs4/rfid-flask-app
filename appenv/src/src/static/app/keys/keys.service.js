@@ -15,8 +15,8 @@
 
         return service;
 
-        function search(keyId) {
-            return $http.get('/api/key/search/' + keyId.toString());
+        function search(roomId) {
+            return $http.get('/api/key/search/' + roomId.toString());
         }
 
         function activeSession(keyId) {

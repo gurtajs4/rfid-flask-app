@@ -10,10 +10,9 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <div ng-show="keysSearch.keyId">
-            <info-key id="keysSearch.keyId" tag_id="keySearch.tag_id"></info-key>
+    <div class="panel panel-success">
+        <div ng-if="keysSearch.result!={}" class="panel-heading">
+            {{keysSearch.result.room_id}}
         </div>
     </div>
-    <!--<div ng-hide="keysSearch.result" key-session></div>-->
 </div>
