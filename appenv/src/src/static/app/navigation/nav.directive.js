@@ -7,11 +7,11 @@
 
     navBar.$inject = ['templateServiceProvider'];
     function navBar(templateServiceProvider) {
-        var sharedBaseUrl = templateServiceProvider.sharedBaseUrl();
+        var appBaseUrl = templateServiceProvider.appBaseUrl();
         return {
             restrict: 'E',
             scope: false,
-            templateUrl: sharedBaseUrl + '/navigation/navigation.html',
+            templateUrl: appBaseUrl + '/navigation/navigation.html',
             controller: 'NavController'
         };
     }
