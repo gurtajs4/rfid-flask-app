@@ -12,7 +12,8 @@
         </div>
         <hr/>
         <div ng-repeat="key in keys.list | orderBy:keys.orderProp track by $index">
-            <keyInfo id="key.id" tag_id="key.tag_id" room_id="key.room_id"></keyInfo>
+            <span>ID: {{key.id}}</span><span>Tag: {{key.tag_id}}</span><span>Room number: {{key.room_id}}</span>
+            <!--<keyInfo id="key.id" tag_id="key.tag_id" room_id="key.room_id"></keyInfo>-->
         </div>
     </div>
 </div>
