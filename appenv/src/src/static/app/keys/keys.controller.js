@@ -7,9 +7,9 @@
         var self = this;
         var service = keysService;
 
-        activate();
+        init();
 
-        function activate() {
+        function init() {
             service.getItems().then(function (response) {
                 var data = response.data;
                 $log.info(data);

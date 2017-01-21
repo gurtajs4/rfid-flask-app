@@ -11,9 +11,9 @@
         var service = usersService;
         var images = imagesService;
 
-        activate();
+        init();
 
-        function activate() {
+        function init() {
             service.getItems(function (response) {
                 var data = response.data;
                 $log.info(data);

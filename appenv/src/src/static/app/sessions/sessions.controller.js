@@ -12,9 +12,9 @@
 
         self.list = [];
 
-        load();
+        init();
 
-        function load() {
+        function init() {
             service.sessions().then(function (response) {
                 var data = response.data;
                 var viewModel = [];         //new Array();

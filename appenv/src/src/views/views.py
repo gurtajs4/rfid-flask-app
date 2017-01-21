@@ -48,6 +48,7 @@ def api_users():
         return resp
     else:
         print(users)
+        print('Name of first user is %s' % users[0].first_name)
         data = jserial.user_instances_serialize(user_list=users)
         resp = jsonify(data)
         # resp = Response(data, status=200, mimetype='application/json')
@@ -158,6 +159,8 @@ def api_keys():
         resp.status_code = 404
         return resp
     else:
+        print(keys)
+        print('Id of first key in list is %s' % keys[0].id)
         data = jserial.key_instances_serialize(key_list=keys)
         # resp = Response(data, status=200, mimetype='application/json')
         resp = jsonify(data)

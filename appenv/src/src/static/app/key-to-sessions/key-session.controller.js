@@ -10,9 +10,9 @@
         var self = this;
         var service = keyService;
 
-        activate();
+        init();
 
-        function activate() {
+        function init() {
             var waitSocket = setInterval(function () {
                 if (self.result != {}) {
                     service.activeSession(self.result).then(function (response) {
