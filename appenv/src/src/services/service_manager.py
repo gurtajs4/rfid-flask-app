@@ -1,9 +1,11 @@
+from ..models.adapters import UserProfile
+from ..db import SqliteManager
+from .db_seed import DbInitializer
 import key_factory
 import user_factory
 import session_factory
 import user_session_factory
-from .db_seed import DbInitializer
-from ..db import SqliteManager
+import images_service
 from ..embedded.mfrc_service import ServiceMFRC
 from ..io_sockets import reader_output, send_message
 
@@ -67,13 +69,19 @@ class ServiceManager(object):
     def update_user(user_id, tag_id=None, first_name=None, last_name=None, pic_url=None):
         return user_factory.update_user(user_id, tag_id, first_name, last_name, pic_url)
 
+    @staticmethod
+    def get_user_ui_model(user):
+        pic_url = images_service.get_pic_url(user.pic_id)
+        return UserProfile(user.id, user.tag_id, user.first_name, user.last_name, user.email, user.role_id, pic_url)
+
     # api for sessions
     @staticmethod
     def get_sessions():
         return session_factory.get_sessions()
 
     @staticmethod
-    def search_session(session_id=None, user_id=None, key_id=None, started_on=None, closed_on=None, limit=1, exclusive=False):
+    def search_session(session_id=None, user_id=None, key_id=None, started_on=None, closed_on=None, limit=1,
+                       exclusive=False):
         return session_factory.search_session(session_id, user_id, key_id, started_on, closed_on, limit, exclusive)
 
     @staticmethod

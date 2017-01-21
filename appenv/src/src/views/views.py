@@ -49,7 +49,9 @@ def api_users():
     else:
         print(users)
         print('Name of first user is %s' % users[0].first_name)
-        data = jserial.user_instances_serialize(user_list=users)
+        ui_models = [service_manager.get_user_ui_model(u) for u in users]
+        print('pic_url of first user in list is: %s' % ui_models[0].pic_url)
+        data = jserial.user_instances_serialize(user_list=ui_models)
         resp = jsonify(data)
         # resp = Response(data, status=200, mimetype='application/json')
         resp.status_code = 200
