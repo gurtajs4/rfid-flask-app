@@ -1,4 +1,4 @@
-from ..db import SqliteManager
+from ..db import SqliteManager as dbm
 
 
 def get_pic_url(pic_id):
