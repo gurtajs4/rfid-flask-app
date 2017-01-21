@@ -9,8 +9,8 @@ def get_pic_url(pic_id):
     sql_command = 'SELECT location FROM ImageStore WHERE id = ?'
     params = (pic_id,)
     cur.execute(sql_command, params)
-    result=cur.fetchone()
-    print(result)
-    pic_url=result[0]
+    result = cur.fetchone()
+    print('From backend image service - Image location%s' % result)
+    pic_url = result
     dbm.close_connection(db)
     return pic_url
