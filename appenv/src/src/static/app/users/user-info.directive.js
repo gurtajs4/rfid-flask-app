@@ -10,11 +10,7 @@
         return {
             restrict: 'EA',
             scope: {
-                id: '=',
-                tag_id: '=',
-                first_name: '=',
-                last_name: '=',
-                pic_url: '='
+                user: '=userInfo'
             },
             templateUrl: appBaseUrl + '/users/user-info.html'
         };

@@ -3,14 +3,16 @@
 
     angular
         .module('appMain')
-        .directive('infoKey', infoKey);
+        .directive('keyInfo', keyInfo);
 
-    infoKey.$inject = ['templateServiceProvider'];
-    function infoKey(templateServiceProvider) {
+    keyInfo.$inject = ['templateServiceProvider'];
+    function keyInfo(templateServiceProvider) {
         var appBaseUrl = templateServiceProvider.appBaseUrl();
         return {
-            restrict: 'E',
-            scope: false,
+            restrict: 'EA',
+            scope: {
+                key: '=keyInfo'
+            },
             templateUrl: appBaseUrl + '/keys/key-info.html'
         };
     }
