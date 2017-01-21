@@ -5,7 +5,7 @@
         .module('appMain')
         .controller('UsersController', UsersController);
 
-    UsersController.$inject = ['$log', 'usersService', imagesService];
+    UsersController.$inject = ['$log', 'usersService', 'imagesService'];
     function UsersController($log, usersService, imagesService) {
         var self = this;
         var service = usersService;
