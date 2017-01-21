@@ -5,12 +5,11 @@
         .module('appMain')
         .controller('UsersController', UsersController);
 
-    UsersController.$inject = ['$log', 'usersService'];
-    function UsersController($log, usersService) {
+    UsersController.$inject = ['$log', 'usersService', imagesService];
+    function UsersController($log, usersService, imagesService) {
         var self = this;
         var service = usersService;
-
-        self.list = [];
+        var images = imagesService;
 
         activate();
 
@@ -21,6 +20,9 @@
                 var viewModel = [];
                 for (var i = 0; i < data.length; i++) {
                     var singleViewModel = data[i];
+                    if (!images.isImage(singleViewModel.pic_url)) {
+                        singleViewModel.pic_url = images.getDefaultUserProfileImageUrl();
+                    }
                     $log.info(singleViewModel);
                     viewModel.push(JSON.parse(singleViewModel));
                 }
