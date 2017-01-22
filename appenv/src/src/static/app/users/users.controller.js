@@ -20,7 +20,7 @@
                 var viewModel = [];
                 for (var i = 0; i < data.length; i++) {
                     var singleViewModel = data[i];
-                    if (!images.isImage(singleViewModel.pic_url)) {
+                    if (!images.isImageUrl(singleViewModel.pic_url)) {
                         singleViewModel.pic_url = images.getDefaultUserProfileImageUrl();
                     }
                     $log.info(singleViewModel);

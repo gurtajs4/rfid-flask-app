@@ -58,7 +58,7 @@ class ServiceManager(object):
         return user_factory.search_user(user_id, tag_id, first_name, last_name, pic_url, limit, exclusive)
 
     @staticmethod
-    def create_user(tag_id, first_name=None, last_name=None, pic_url=None):
+    def create_user(tag_id, first_name=None, last_name=None, pic_id=None):
         return user_factory.create_user(tag_id, first_name, last_name, pic_url)
 
     @staticmethod
@@ -70,8 +70,21 @@ class ServiceManager(object):
         return user_factory.update_user(user_id, tag_id, first_name, last_name, pic_url)
 
     @staticmethod
+    def create_user_json(user):
+        pic_id = images_service.get_img_id(user['pic_url'])
+        return {
+            'id': -1,
+            'tag_id': user['tag_id'],
+            'first_name': user['first_name'],
+            'last_name': user['last_name'],
+            'email': user['email'],
+            'role_id': user['role_id'],
+            'pic_id': pic_id
+        }
+
+    @staticmethod
     def get_user_ui_model(user):
-        pic_url = images_service.get_pic_url(user.pic_id)
+        pic_url = images_service.get_img_url(user.pic_id)
         return UserProfile(user.id, user.tag_id, user.first_name, user.last_name, user.email, user.role_id, pic_url)
 
     # api for sessions
@@ -108,8 +121,12 @@ class ServiceManager(object):
     @staticmethod
     def init_reader():
         reader = ServiceMFRC()
-        print('Reader activated')
+        print('From server - service manager - reader activated')
         data = reader.do_read()
-        print('Message from service manager: %s' % data['message'])
-        print('Tag data is %s' % data['data'])
+        print('From server - service manager - reader message is %s' % data['message'])
+        print('From server - service manager - tag data is %s' % data['data'])
         return data
+
+    @staticmethod
+    def upload_image(image):
+        return images_service.save_img(image)

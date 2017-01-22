@@ -8,7 +8,7 @@ service_manager = ServiceManager()
 
 @app.route('/', methods=['GET'])
 def api_root():
-    ServiceManager.start_db(drop_create=False, seed_data=False)
+    ServiceManager.start_db(drop_create=True, seed_data=False)
     return app.send_static_file('index.html')
 
 
@@ -30,6 +30,32 @@ def api_reader():
     resp = jsonify(message)
     resp.status_code = message['status']
     return resp
+
+
+@app.route('/api/image/upload', methods=['POST'])
+def api_image_upload():
+    image = request.get_json()
+    print('From server - route image upload - image received: %s' % image)
+    pic_url, pic_id = service_manager.upload_image(image)
+    print('From server - route image upload - image url is: %s' % pic_url)
+    print('From server - route image upload - image id is: %s' % pic_id)
+    if None is pic_url or '' is pic_url:
+        message = {
+            'status': 404,
+            'message': 'Not Found - no users found',
+        }
+        resp = jsonify(message)
+        resp.status_code = 404
+        return resp
+    else:
+        message = {
+            'status': 200,
+            'pic_url': pic_url,
+            'pic_id': pic_id
+        }
+        resp = jsonify(message)
+        resp.status_code = 200
+        return resp
 
 
 # *********** users ***********
@@ -89,15 +115,18 @@ def api_user_sessions(user_id):
 
 @app.route('/api/user/register', methods=['POST'])
 def api_user_register():
-    user = jserial.user_instance_deserialize(request.get_json())
-    print('api-user-register is post: user %s' % user)
-    user = service_manager.create_user(tag_id=user.tag_id, first_name=user.first_name, last_name=user.last_name,
-                                       pic_url=user.pic_id)
+    user_json = service_manager.create_user_json(request.get_json())
+    print('api-user-register is post: user json is %s' % user_json)
+    user = jserial.user_instance_deserialize(user_json)
+    print('api-user-register is post: user is %s' % user)
+    user = service_manager.create_user(tag_id=user.tag_id,
+                                       first_name=user.first_name, last_name=user.last_name,
+                                       pic_id=user.pic_id)
     print('api-user-register is post: user from db is %s' % user)
     if None is user or -1 == user.id:
         message = {
             'status': 404,
-            'message': 'Not Found' + request.url,
+            'message': 'Not Found - unable to register user',
         }
         resp = jsonify(message)
         resp.status_code = 404
@@ -105,6 +134,7 @@ def api_user_register():
     else:
         data = jserial.user_instance_serialize(user_instance=user)
         resp = Response(data, status=200, mimetype='application/json')
+        # resp=jsonify(data)
         resp.status_code = 200
         return resp
 

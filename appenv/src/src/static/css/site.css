@@ -40,3 +40,14 @@ body {
     font-size: 120%;
 }
 
+.drop-box-container {
+    width: 250px;
+    height: 250px;
+}
+
+.drop-box {
+    background-color: #8c8c8c;
+    text-align: center;
+    padding: auto;
+    margin: 0;
+}

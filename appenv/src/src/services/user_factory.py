@@ -2,18 +2,19 @@ from ..db import SqliteManager as dbm
 from ..models.models import User
 
 
-def create_user(tag_id, first_name="", last_name="", email="", role_id=1, pic_url=None):
+def create_user(tag_id, first_name="", last_name="", email="", role_id=1, pic_id=1):
     if None is tag_id:
         return None
     db = dbm.get_db()
-    pic_id = 1
+    # pic_id = 1
     cur = db.cursor()
-    if None is not pic_url:
-        pic_name = pic_url.split('/')[-1]
-        cur.execute('''INSERT INTO ImageStore (name, location) VALUES (?, ?))''', (pic_name, pic_url,))
-        db.commit()
-        cur.execute('''SELECT id FROM ImageStore WHERE name = ? AND pic_url = ?''', (pic_name, pic_url,))
-        pic_id = cur.fetchone()
+    # if None is not pic_url:
+    #     pic_name = pic_url.split('/')[-1]
+    #     cur.execute('''INSERT INTO ImageStore (name, location) VALUES (?, ?))''', (pic_name, pic_url,))
+    #     db.commit()
+    #     cur.execute('''SELECT id FROM ImageStore WHERE name = ? AND location = ?''', (pic_name, pic_url,))
+    #     pic_id = cur.fetchone()
+    #     print('From server user factory - newly stored image id is %s' % pic_id)
     affected_count = cur.execute('''INSERT OR REPLACE INTO User (tag_id, first_name, last_name, email, role_id, pic_id)
                 VALUES ( ?, ?, ?, ?, ?, ? )''', (tag_id, first_name, last_name, email, role_id, pic_id,))
     db.commit()
