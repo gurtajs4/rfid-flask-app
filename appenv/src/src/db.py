@@ -31,8 +31,8 @@ class SqliteManager:
 
             CREATE TABLE Key (
                 id         INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-                room_id    INTEGER NOT NULL UNIQUE,
-                tag_id     INTEGER NOT NULL UNIQUE
+                tag_id     INTEGER NOT NULL UNIQUE,
+                room_id    INTEGER NOT NULL UNIQUE
             );
 
             CREATE TABLE UserRole (

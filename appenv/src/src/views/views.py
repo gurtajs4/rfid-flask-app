@@ -203,9 +203,9 @@ def api_keys():
 @app.route('/api/key/register', methods=['POST'])
 def api_key_register():
     key = jserial.key_instance_deserialize(request.get_json())
-    print('api-key-register: key %s' % key)
+    print('api-key-register: key tag is %s' % key.tag_id)
     key = service_manager.create_key(tag_id=key.tag_id, room_id=key.room_id)
-    print('api-key-register: key from db is %s' % key)
+    print('api-key-register: key from db has tag %s' % key.tag_id)
     if None is key or -1 == key.id:
         message = {
             'status': 404,
