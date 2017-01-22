@@ -19,22 +19,22 @@
         $scope.register = register;
         $scope.cancel = cancel;
         $scope.isNotValid = isNotValid;
-        $scope.readImageFile = readImageFile;
-
-        function readImageFile(file) {
-            if (file) {
-                images.readImageFile(file, function (img) {
-                    $timeout(function () {
-                        if (img) {
-                            $scope.apply(function () {
-                                $scope.image = img;
-                                $log.info('From client - image src has been updated');
-                            });
-                        }
-                    }, 0);
-                });
-            }
-        }
+        // $scope.readImageFile = readImageFile;
+        //
+        // function readImageFile(file) {
+        //     if (file) {
+        //         images.readImageFile(file, function (img) {
+        //             $timeout(function () {
+        //                 if (img) {
+        //                     $scope.apply(function () {
+        //                         $scope.image = img;
+        //                         $log.info('From client - image src has been updated');
+        //                     });
+        //                 }
+        //             }, 0);
+        //         });
+        //     }
+        // }
 
         function isNotValid() {
             return ($scope.tagData == '' || $scope.firstName == '' || $scope.lastName == '' || $scope.email == '' || $scope.role == '');

@@ -34,16 +34,18 @@
                             <option value="1">Professor</option>
                             <option value="2">Student</option>
                         </select>
-                        <div class="container">
-                            <div ng-show="!image"
-                                 class="container drop-box drop-box-container"
-                                 ngf-change="readImageFile(file)"
-                                 ng-model="file"
-                                 ngf-drop="" ngf-select=""
-                                 ngf-accept="image/*" accept="image/*">
-                                <span>Drop image or click to upload profile photo</span>
-                            </div>
-                        </div>
+                        <label for="file">Profile image:</label>
+                        <input ngf-select="" ngf-drop="" ng-model="image" name="file" id="file" accept="image/*" type="file"/>
+                        <!--<div class="container">-->
+                            <!--<div ng-show="!image"-->
+                                 <!--class="container drop-box drop-box-container"-->
+                                 <!--ngf-change="readImageFile(file)"-->
+                                 <!--ng-model="file"-->
+                                 <!--ngf-drop="" ngf-select=""-->
+                                 <!--ngf-accept="image/*" accept="image/*">-->
+                                <!--<span>Drop image or click to upload profile photo</span>-->
+                            <!--</div>-->
+                        <!--</div>-->
                         <div ng-hide="!image" class="drop-box-container">
                             <img class="drop-box-container img-responsive img-rounded" ngf-src="image" alt="avatar"/>
                         </div>
