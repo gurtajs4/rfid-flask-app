@@ -63,18 +63,17 @@
         }
 
         function uploadImageToServer(fileSrc) {
-            return uploader(fileSrc, function (result) {
-                if (result != null) {
-                    var file = {
-                        src: fileSrc,
-                        file: result
-                    };
-                    return $http.post('/api/image/upload', JSON.parse(file));
-                }
-                else {
-                    return null
-                }
-            });
+            var file = {
+                src: fileSrc
+            };
+            return $http.post('/api/image/upload', JSON.parse(file));
+            // return uploader(fileSrc, function (result) {
+            //     var file = {
+            //             src: fileSrc,
+            //             file: result
+            //         };
+            //         return $http.post('/api/image/upload', JSON.parse(file));
+            // });
         }
 
         function getDefaultUserProfileImageUrl() {

@@ -33,7 +33,7 @@ def get_img_id(pic_url):
 
 
 def save_img(image):
-    file = image['file']
+    file = image['src']
     print('From server - image service - image file received %s' % file)
     file_name = image['src'].split('/')[-1]
     print('From server - image service - image filename is %s' % file_name)
@@ -43,7 +43,7 @@ def save_img(image):
     db = dbm.get_db()
     cur = db.cursor()
     sql_command = 'INSERT INTO ImageStore (name, location) VALUES (?, ?))'
-    params = (pic_name, pic_url,)
+    params = (file_name, file_src,)
     cur.execute(sql_command, params)
     db.commit()
     sql_command = 'SELECT id FROM ImageStore WHERE name = ? AND location = ?'
