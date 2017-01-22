@@ -63,7 +63,7 @@
         }
 
         function uploadImageToServer(fileSrc) {
-            uploader(fileSrc, function (result) {
+            return uploader(fileSrc, function (result) {
                 if (result != null) {
                     var file = {
                         src: fileSrc,
