@@ -22,16 +22,18 @@
         $scope.readImageFile = readImageFile;
 
         function readImageFile(file) {
-            images.readImageFile(file, function (img) {
-                $timeout(function () {
-                    if (img) {
-                        $scope.apply(function () {
-                            $scope.image = img;
-                            $log.info('From client - image src has been updated');
-                        });
-                    }
-                }, 0);
-            });
+            if (file) {
+                images.readImageFile(file, function (img) {
+                    $timeout(function () {
+                        if (img) {
+                            $scope.apply(function () {
+                                $scope.image = img;
+                                $log.info('From client - image src has been updated');
+                            });
+                        }
+                    }, 0);
+                });
+            }
         }
 
         function isNotValid() {

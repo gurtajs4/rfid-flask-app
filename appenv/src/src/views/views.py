@@ -8,7 +8,7 @@ service_manager = ServiceManager()
 
 @app.route('/', methods=['GET'])
 def api_root():
-    ServiceManager.start_db(drop_create=True, seed_data=False)
+    ServiceManager.start_db(drop_create=False, seed_data=False)
     return app.send_static_file('index.html')
 
 

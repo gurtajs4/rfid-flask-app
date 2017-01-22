@@ -35,8 +35,8 @@
                             <option value="2">Student</option>
                         </select>
                         <div ng-show="!image.src"
-                             class="drop-box drop-box-container"
-                             ngf-change="readImageFile($file)"
+                             class="container drop-box drop-box-container"
+                             ngf-change="readImageFile(file)"
                              ng-model="file"
                              ngf-drop="" ngf-select=""
                              ngf-accept="image/*" accept="image/*">
