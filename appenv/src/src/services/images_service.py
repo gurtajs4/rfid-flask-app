@@ -1,3 +1,4 @@
+import os
 from ..db import SqliteManager as dbm
 from ..config import UPLOAD_URI as upu
 
