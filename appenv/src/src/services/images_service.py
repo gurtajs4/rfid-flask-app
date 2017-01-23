@@ -48,7 +48,7 @@ def save_img(image):
     print('From server - image service - new file src is %s' % file_src)
     db = dbm.get_db()
     cur = db.cursor()
-    sql_command = 'INSERT INTO ImageStore (name, location) VALUES (?, ?))'
+    sql_command = 'INSERT INTO ImageStore (name, location) VALUES (?, ?)'
     params = (file_name, file_src,)
     cur.execute(sql_command, params)
     db.commit()
