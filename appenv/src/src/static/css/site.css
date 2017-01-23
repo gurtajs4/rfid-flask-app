@@ -48,3 +48,7 @@ body {
 .drop-box {
     background-color: #8c8c8c;
 }
+
+.user-field {
+    max-width: 30%;
+}
