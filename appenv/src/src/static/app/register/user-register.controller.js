@@ -35,6 +35,7 @@
                 image: $scope.image
             };
             $log.info('From client - raw user data is: ', user);
+            $log.info('From client - user image type - ', user.image.type);
             images.readImageFile(user.image, function (img_uri) {
                 if (null !== img_uri) {
                     user.image = img_uri;
