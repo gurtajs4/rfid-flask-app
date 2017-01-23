@@ -31,8 +31,7 @@
                 first_name: $scope.firstName,
                 last_name: $scope.lastName,
                 email: $scope.email,
-                role_id: $scope.role,
-                image: $scope.image
+                role_id: $scope.role
             };
             $log.info('From client - raw user data is: ', user);
             var imgName = user.image.name;
