@@ -35,8 +35,12 @@
                 image: $scope.image
             };
             $log.info('From client - raw user data is: ', user);
-            var user_json = JSON.parse(user);
-            $log.info('From client - JSON user data is: ', user_json);
+            images.readImageFile(user.image, function (img_uri) {
+                user.image = img_uri;
+                $log.info('From client - user image uri - ', user.image);
+                var user_json = JSON.parse(user);
+                $log.info('From client - JSON user data is: ', user_json);
+            });
             // service.registerUser(user)
             //     .then(function (response) {
             //         if (response.status == 200 || response.data.message['status'] == 200) {

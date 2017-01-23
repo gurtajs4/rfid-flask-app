@@ -8,12 +8,20 @@
     imagesService.$inject = ['$http', '$log', '$window'];
     function imagesService($http, $log, $window) {
         var service = {
+            isImage: isImage,
             isImageUrl: isImageUrl,
             readImageFile: readImageFile,
+            readImageFileBuffer: readImageFileBuffer,
             getDefaultUserProfileImageUrl: getDefaultUserProfileImageUrl,
             getDefaultRoomPhotoUrl: getDefaultRoomPhotoUrl,
             uploadImageToServer: uploadImageToServer
         };
+
+        function isImage(file) {
+            if ($window.FileReader) {
+                return file.type.match('image.*') == true;
+            }
+        }
 
         function isImageUrl(url) {
             $http.get(url).then(function (response) {
@@ -22,12 +30,6 @@
                 $log.error('Log from images service: ', error);
                 return false;
             });
-        }
-
-        function isImage(file) {
-            if ($window.FileReader) {
-                return file.type.match('image.*') == true;
-            }
         }
 
         function readImageFile(file) {
@@ -47,7 +49,7 @@
             }
         }
 
-        function uploader(fileSrc) {
+        function readImageFileBuffer(fileSrc) {
             return function () {
                 var reader = new $window.FileReader();
                 reader.onloadend = function (event) {
