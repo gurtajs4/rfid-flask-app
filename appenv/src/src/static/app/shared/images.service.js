@@ -35,19 +35,17 @@
         }
 
         function readImageFile(file, callback) {
-            return function () {
-                if ($window.FileReader) {
-                    var reader = new $window.FileReader();
-                    reader.onloadend = function (event) {
-                        if (event.target.error === null) {
-                            callback(reader.result);
-                        }
-                        else {
-                            callback(null);
-                        }
-                    };
-                    reader.readAsDataURL(file);
-                }
+            if ($window.FileReader) {
+                var reader = new $window.FileReader();
+                reader.onloadend = function (event) {
+                    if (event.target.error === null) {
+                        callback(reader.result);
+                    }
+                    else {
+                        callback(null);
+                    }
+                };
+                reader.readAsDataURL(file);
             }
         }
 
