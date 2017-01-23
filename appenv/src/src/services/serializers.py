@@ -1,9 +1,7 @@
 import json
 import datetime
+import base64
 from ..models.models import Session, User, Key
-
-
-# import base64
 
 
 class CustomJSONEncoder(json.JSONEncoder):
@@ -78,3 +76,8 @@ class JSONSerializer(object):
     @staticmethod
     def user_session_instance_serialize(user_session_instance):
         return json.dumps(user_session_instance, cls=CustomJSONEncoder)
+
+class ImageB64Serializer(object):
+    @staticmethod
+    def get_image_from_base64(image_base64):
+        return base64.b64decode(image_base64)

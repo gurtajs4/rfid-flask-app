@@ -5,8 +5,8 @@
         .module('appMain')
         .controller('UserRegisterController', UserRegisterController);
 
-    UserRegisterController.$inject = ['$scope', '$log', '$location', '$timeout', 'registerService', 'imagesService'];
-    function UserRegisterController($scope, $log, $location, $timeout, registerService, imagesService) {
+    UserRegisterController.$inject = ['$scope', '$log', '$location', 'Upload', 'registerService', 'imagesService'];
+    function UserRegisterController($scope, $log, $location, Upload, registerService, imagesService) {
         var service = registerService;
         var images = imagesService;
 
@@ -35,16 +35,41 @@
                 image: $scope.image
             };
             $log.info('From client - raw user data is: ', user);
-            $log.info('From client - user image type - ', user.image.type);
-            images.readImageFile(user.image, function (img_uri) {
-                if (null !== img_uri) {
-                    user.image = img_uri;
-                    $log.info('From client - user image uri - ', user.image);
-                    var user_json = JSON.parse(user);
-                    $log.info('From client - JSON user data is: ', user_json);
-                }
-                $log.error('Image cannot be parsed...');
+            var imgName = user.image.name;
+            var imgType = user.image.type;
+            $log.info('Image type is ', imgType);
+            $log.info('Image name is ', imgName);
+            Upload.upload({
+                url: '/api/user/register',
+                data: {file: $scope.image, 'user': user}
+            }).then(function (response) {
+                $log.info('Success ' + response.config.data.file.name + 'uploaded. Response: ' + response.data);
+            }, function (error) {
+                $log.error('Error status: ' + error.status);
+            }, function (evt) {
+                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+                $log.info('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
             });
+
+            // previous solution - encodes to base64 but problem is retrieving image
+            /*
+             images.readImageFile(user.image, function (img_uri) {
+             if (null !== img_uri) {
+             imgUrl = img_uri.substring(('data:' + imgType + ';').length);
+             user.image = {
+             name: imgName,
+             type: imgType,
+             url: imgUrl
+             };
+             $log.info('From client - user image - ', user.image);
+             $log.info('From client - user image uri - ', user.image.url);
+             var user_json = JSON.parse(user);
+             $log.info('From client - JSON user data is: ', user_json);
+             }
+             $log.error('Image cannot be parsed...');
+             });
+             */
+
             // service.registerUser(user)
             //     .then(function (response) {
             //         if (response.status == 200 || response.data.message['status'] == 200) {

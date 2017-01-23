@@ -1,6 +1,7 @@
 from .. import app
 from ..services.service_manager import ServiceManager
 from ..services.serializers import JSONSerializer as jserial
+from ..services.serializers import ImageB64Serializer as img64
 from flask import jsonify, request, Response
 
 service_manager = ServiceManager()
@@ -115,15 +116,21 @@ def api_user_sessions(user_id):
 
 @app.route('/api/user/register', methods=['POST'])
 def api_user_register():
+    file=None
+    pic_url, pic_id = '/static/default.png', 1
+    if 'file' in request.files:
+        file = request.files['file']
+        pic_url, pic_id = service_manager.upload_image(file)
     user_json = service_manager.create_user_json(request.get_json())
     print('From server - api-user-register(POST) - user json is %s' % user_json)
-    if ('image' in user_json and None is not user_json['image']):
-        image_file = user_json['image']
-        pic_url, pic_id = service_manager.upload_image(image_file)
-        print('From server - on image upload - image url is: %s' % pic_url)
-        print('From server - on image upload - image id is: %s' % pic_id)
-        user_json['pic_url'] = pic_url
-        user_json['pic_id'] = pic_id
+    # if ('image' in user_json and None is not user_json['image']):
+    #     image_base64 = 'data:' + user_json['image']['type'] + ';' + user_json['image']['url']
+    #     image_file = img64.get_image_from_base64(image_base64)
+    #     pic_url, pic_id = service_manager.upload_image(image_file)
+    print('From server - on image upload - image url is: %s' % pic_url)
+    print('From server - on image upload - image id is: %s' % pic_id)
+    user_json['pic_url'] = pic_url
+    user_json['pic_id'] = pic_id
     print('From server - user image id %s - user image url %s' % (user_json['pic_id'], user_json['pic_url']))
     user = jserial.user_instance_deserialize(user_json)
     print('From server - api-user-register(POST) - user is %s' % user)
