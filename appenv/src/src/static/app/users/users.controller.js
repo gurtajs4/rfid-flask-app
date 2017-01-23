@@ -20,7 +20,7 @@
                 var viewModel = [];
                 angular.forEach(data, function (value, key) {
                     var singleViewModel = JSON.parse(value);
-                    if (!images.isImageUrl(singleViewModel.pic_url)) {
+                    if ("" === singleViewModel.pic_url) {
                         singleViewModel.pic_url = images.getDefaultUserProfileImageUrl();
                     }
                     $log.info('User ' + singleViewModel + 'added at index ' + key);
