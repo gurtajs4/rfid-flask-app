@@ -37,11 +37,10 @@ def save_img(image):
         return os.path.join(upu, 'default.png'), 1
     print('From server - image service - image file received %s' % image)
     print('From server - image service - image file has %s' % dir(image))
-    if '' == image['name'] and '' == image['filename']:
+    if '' == image.filename:
         return os.path.join(upu, 'default.png'), 1
     file = image
-    # file_name = image['filename'].split('/')[-1]  # for url
-    file_name = image.name  # image['filename'] if '' == image['name'] else image['name']
+    file_name = image.filename
     print('From server - image service - image filename is %s' % file_name)
     file_src = os.path.join(upu, file_name)
     file.save(file_src)
