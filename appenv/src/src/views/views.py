@@ -117,14 +117,15 @@ def api_user_sessions(user_id):
 @app.route('/api/user/register', methods=['POST'])
 def api_user_register():
     file = None
-    if 'file' in request.files:
-        file = request.files['file']
+    files = request.files
+    if 'file' in files:
+        file = files['file']
     pic_url, pic_id = service_manager.upload_image(file)
     print('From server - on image upload - image id is: %s' % pic_id)
     print('From server - on image upload - image url is: %s' % pic_url)
-    user_data = request.get_json()
-    if None is user_data:
-        user_data = request.files['user']
+    # user_data = request.get_json()
+    # if None is user_data:
+    user_data = files['user']
     print('From server - on image upload - JSON data: %s' % user_data)
     user_json = service_manager.create_user_json(user_data, pic_id)
     print('From server - api-user-register(POST) - user json is %s' % user_json)
