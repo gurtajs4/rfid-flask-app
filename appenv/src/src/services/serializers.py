@@ -47,15 +47,13 @@ class JSONSerializer(object):
 
     @staticmethod
     def user_instance_deserialize(parsed_dict):
-        picture = parsed_dict['pic_id'] if 'pic_id' in parsed_dict else parsed_dict[
-            'pic_url'] if 'pic_url' in parsed_dict else ''
         return User(user_id=parsed_dict['id'],
                     tag_id=parsed_dict['tag_id'],
                     first_name=parsed_dict['first_name'],
                     last_name=parsed_dict['last_name'],
                     email=parsed_dict['email'],
                     role_id=parsed_dict['role_id'],
-                    pic_id=picture)
+                    pic_id=parsed_dict['pic_id'])
 
     @staticmethod
     def user_instance_serialize(user_instance):

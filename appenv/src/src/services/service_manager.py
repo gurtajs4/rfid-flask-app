@@ -73,11 +73,11 @@ class ServiceManager(object):
     def create_user_json(user, pic_id):
         return {
             'id': -1,
-            'tag_id': user['tag_id'],
-            'first_name': user['first_name'],
-            'last_name': user['last_name'],
-            'email': user['email'],
-            'role_id': user['role_id'],
+            'tag_id': user[0],
+            'first_name': user[1],
+            'last_name': user[2],
+            'email': user[3],
+            'role_id': user[4],
             'pic_id': pic_id
         }
 
