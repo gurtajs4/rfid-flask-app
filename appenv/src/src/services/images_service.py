@@ -36,6 +36,7 @@ def save_img(image):
     if None is image:
         return os.path.join(upu, 'default.png'), 1
     print('From server - image service - image file received %s' % image)
+    print('From server - image service - image file has %s' % dir(image))
     if '' == image['name'] and '' == image['filename']:
         return os.path.join(upu, 'default.png'), 1
     file = image
