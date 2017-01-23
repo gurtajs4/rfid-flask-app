@@ -17,6 +17,8 @@
             uploadImageToServer: uploadImageToServer
         };
 
+        return service;
+
         function isImage(file) {
             if ($window.FileReader) {
                 return file.type.match('image.*') == true;
