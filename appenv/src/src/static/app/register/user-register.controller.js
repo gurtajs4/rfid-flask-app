@@ -36,10 +36,13 @@
             };
             $log.info('From client - raw user data is: ', user);
             images.readImageFile(user.image, function (img_uri) {
-                user.image = img_uri;
-                $log.info('From client - user image uri - ', user.image);
-                var user_json = JSON.parse(user);
-                $log.info('From client - JSON user data is: ', user_json);
+                if (null !== img_uri) {
+                    user.image = img_uri;
+                    $log.info('From client - user image uri - ', user.image);
+                    var user_json = JSON.parse(user);
+                    $log.info('From client - JSON user data is: ', user_json);
+                }
+                $log.error('Image cannot be parsed...');
             });
             // service.registerUser(user)
             //     .then(function (response) {

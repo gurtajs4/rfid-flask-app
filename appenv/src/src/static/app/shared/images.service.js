@@ -34,16 +34,16 @@
             });
         }
 
-        function readImageFile(file) {
+        function readImageFile(file, callback) {
             return function () {
                 if ($window.FileReader) {
                     var reader = new $window.FileReader();
                     reader.onloadend = function (event) {
                         if (event.target.error === null) {
-                            return reader.result;
+                            callback(reader.result);
                         }
                         else {
-                            return null;
+                            callback(null);
                         }
                     };
                     reader.readAsDataURL(file);
