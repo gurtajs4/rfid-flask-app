@@ -117,10 +117,9 @@ def api_user_sessions(user_id):
 @app.route('/api/user/register', methods=['POST'])
 def api_user_register():
     file=None
-    pic_url, pic_id = '/static/default.png', 1
     if 'file' in request.files:
         file = request.files['file']
-        pic_url, pic_id = service_manager.upload_image(file)
+    pic_url, pic_id = service_manager.upload_image(file)
     user_json = service_manager.create_user_json(request.get_json())
     print('From server - api-user-register(POST) - user json is %s' % user_json)
     # if ('image' in user_json and None is not user_json['image']):
