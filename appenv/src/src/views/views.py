@@ -121,14 +121,15 @@ def api_user_register():
     if 'file' in files:
         file = files['file']
     pic_url, pic_id = service_manager.upload_image(file)
-    print('From server - on image upload - image id is: %s' % pic_id)
-    print('From server - on image upload - image url is: %s' % pic_url)
-    print('From server - user data is %s' % request.form['user_json'])
+    # print('From server - on image upload - image id is: %s' % pic_id)
+    # print('From server - on image upload - image url is: %s' % pic_url)
+    # print('From server - user data is %s' % request.form['user_json'])
     user_dict = jserial.json_deserialize(request.form['user_json'])
     print('From server - on image upload - JSON data: %s' % user_dict)
-    user_json = service_manager.create_user_json(user_dict, pic_id)
-    print('From server - api-user-register(POST) - user json is %s' % user_json)
-    user = jserial.user_instance_deserialize(user_json)
+    user_dict = service_manager.create_user_dict(user_dict, pic_id)
+    print('From server - api-user-register(POST) - user json is %s' % user_dict)
+    # user_json=jserial.user_instance_serialize(user_dict)
+    user = jserial.user_instance_deserialize(user_dict)
     print('From server - api-user-register(POST) - user is %s' % user)
     user = service_manager.create_user(tag_id=user.tag_id,
                                        first_name=user.first_name,

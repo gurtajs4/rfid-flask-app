@@ -70,7 +70,7 @@ class ServiceManager(object):
         return user_factory.update_user(user_id, tag_id, first_name, last_name, pic_url)
 
     @staticmethod
-    def create_user_json(user, pic_id):
+    def create_user_dict(user, pic_id):
         return {
             'id': -1,
             'tag_id': user['tag_id'],
