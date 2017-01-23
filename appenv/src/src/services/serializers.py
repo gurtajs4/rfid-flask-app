@@ -16,6 +16,10 @@ class CustomJSONEncoder(json.JSONEncoder):
 
 class JSONSerializer(object):
     @staticmethod
+    def json_deserialize(data_string):
+        return dict(json.loads(data_string))
+
+    @staticmethod
     def key_instance_deserialize(parsed_dict):
         return Key(key_id=parsed_dict['id'],
                    tag_id=parsed_dict['tag_id'],
@@ -47,9 +51,8 @@ class JSONSerializer(object):
 
     @staticmethod
     def user_instance_deserialize(parsed_dict):
-        id = parsed_dict['id'] if 'id' in parsed_dict else 0
         pic_id = parsed_dict['pic_id'] if 'pic_id' in parsed_dict else 0
-        return User(user_id=id,
+        return User(user_id=parsed_dict['id'],
                     tag_id=parsed_dict['tag_id'],
                     first_name=parsed_dict['first_name'],
                     last_name=parsed_dict['last_name'],
