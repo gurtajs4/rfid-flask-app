@@ -52,3 +52,9 @@ body {
 .user-field {
     max-width: 30%;
 }
+
+.inline-field {
+    display: inline-block;
+    border-right-style: solid;
+    border-right-color: cadetblue;
+}
