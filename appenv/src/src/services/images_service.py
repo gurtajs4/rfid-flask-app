@@ -33,9 +33,11 @@ def get_img_id(pic_url):
 
 
 def save_img(image):
-    file = image['src']
-    print('From server - image service - image file received %s' % file)
-    file_name = image['src'].split('/')[-1]
+    print('From server - image service - image file received %s' % image)
+    if '' == image['filename']:
+        return os.path.join(upu, 'default.png'), 1
+    file = image
+    file_name = image['filename'].split('/')[-1]
     print('From server - image service - image filename is %s' % file_name)
     file_src = os.path.join(upu, file_name)
     file.save(file_src)

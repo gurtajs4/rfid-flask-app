@@ -116,11 +116,22 @@ def api_user_sessions(user_id):
 @app.route('/api/user/register', methods=['POST'])
 def api_user_register():
     user_json = service_manager.create_user_json(request.get_json())
-    print('api-user-register is post: user json is %s' % user_json)
+    print('From server - api-user-register(POST) - user json is %s' % user_json)
+    if ('image' in user_json and None is not user_json['image']):
+        image_file = user_json['image']
+        pic_url, pic_id = service_manager.upload_image(image_file)
+        print('From server - on image upload - image url is: %s' % pic_url)
+        print('From server - on image upload - image id is: %s' % pic_id)
+        user_json['pic_url'] = pic_url
+        user_json['pic_id'] = pic_id
+    print('From server - user image id %s - user image url %s' % (user_json['pic_id'], user_json['pic_url']))
     user = jserial.user_instance_deserialize(user_json)
-    print('api-user-register is post: user is %s' % user)
+    print('From server - api-user-register(POST) - user is %s' % user)
     user = service_manager.create_user(tag_id=user.tag_id,
-                                       first_name=user.first_name, last_name=user.last_name,
+                                       first_name=user.first_name,
+                                       last_name=user.last_name,
+                                       email=user.email,
+                                       role_id=user.role_id,
                                        pic_id=user.pic_id)
     print('api-user-register is post: user from db is %s' % user)
     if None is user or -1 == user.id:
@@ -297,7 +308,7 @@ def api_session_get(session_id):
 def api_get_key_session(key_id):
     print('Received %s from client' % key_id)
     result = service_manager.search_session(key_id=key_id)
-    print('api_get_key_session - by id %s - result is %s' % key_id, result)
+    print('api_get_key_session - by id %s - result is %s' % (key_id, result))
     send_message(result, 'key session result', session['uuid'])
 
 

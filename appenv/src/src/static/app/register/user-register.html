@@ -19,42 +19,51 @@
             <div class="panel-heading">Editing information about person #<span>{{tagData}}</span></div>
             <div class="panel-body">
                 <div class="form-inline">
+                    <div class="drop-box-container drop-box">
+                        <img ng-hide="!image" class="img-responsive img-rounded" ngf-src="image" alt="avatar"/>
+                    </div>
                     <div class="form-group">
                         <label for="fname">First name:</label>
                         <input ng-model="firstName" class="form-control" placeholder="Enter first name"
                                id="fname" type="text" ng-required="true"/>
+                    </div>
+                    <div class="form-group">
                         <label for="lname">Last name:</label>
                         <input ng-model="lastName" class="form-control" placeholder="Enter last name"
                                id="lname" type="text" ng-required="true"/>
+                    </div>
+                    <div class="form-group">
                         <label for="email">Email:</label>
                         <input ng-model="email" class="form-control" placeholder="Enter email"
                                id="email" type="email" ng-required="true"/>
+                    </div>
+                    <div class="form-group">
                         <label for="role">Role:</label>
                         <select ng-required="true" class="form-control" ng-model="role" name="role" id="role">
                             <option value="1">Professor</option>
                             <option value="2">Student</option>
                         </select>
-                        <label for="file">Profile image:</label>
-                        <input ngf-select="" ngf-drop="" ng-model="image" name="file" id="file" accept="image/*" type="file"/>
-                        <!--<div class="container">-->
-                            <!--<div ng-show="!image"-->
-                                 <!--class="container drop-box drop-box-container"-->
-                                 <!--ngf-change="readImageFile(file)"-->
-                                 <!--ng-model="file"-->
-                                 <!--ngf-drop="" ngf-select=""-->
-                                 <!--ngf-accept="image/*" accept="image/*">-->
-                                <!--<span>Drop image or click to upload profile photo</span>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                        <div ng-hide="!image" class="drop-box-container">
-                            <img class="drop-box-container img-responsive img-rounded" ngf-src="image" alt="avatar"/>
-                        </div>
-                        <button ng-disabled="isNotValid()" ng-click="register()" class="btn btn-primary">Register
-                        </button>
-                        <button ng-click="cancel()" class="btn btn-danger">Cancel</button>
                     </div>
+                    <div class="form-group">
+                        <label for="file">Profile image:</label>
+                        <input ngf-select="" ngf-drop="" ng-model="image" name="file" id="file" accept="image/*"
+                               type="file"/>
+                    </div>
+                    <button ng-disabled="isNotValid()" ng-click="register()" class="btn btn-primary">Register
+                    </button>
+                    <button ng-click="cancel()" class="btn btn-danger">Cancel</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!--<div class="container">-->
+<!--<div ng-show="!image"-->
+<!--class="container drop-box drop-box-container"-->
+<!--ngf-change="readImageFile(file)"-->
+<!--ng-model="file"-->
+<!--ngf-drop="" ngf-select=""-->
+<!--ngf-accept="image/*" accept="image/*">-->
+<!--<span>Drop image or click to upload profile photo</span>-->
+<!--</div>-->
+<!--</div>-->
