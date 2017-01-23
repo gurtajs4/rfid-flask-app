@@ -11,8 +11,6 @@
             </select>
         </div>
         <hr/>
-        <div ng-repeat="item in keys.list | orderBy:keys.orderProp" key-info="item">
-            <!--<span>ID: {{key.id}}</span><span>Tag: {{key.tag_id}}</span><span>Room number: {{key.room_id}}</span>-->
-        </div>
+        <div ng-repeat="item in keys.list | orderBy:keys.orderProp" key-info="item"></div>
     </div>
 </div>
