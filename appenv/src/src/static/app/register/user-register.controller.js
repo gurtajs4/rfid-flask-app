@@ -40,7 +40,7 @@
             $log.info('Image name is ', imgName);
             Upload.upload({
                 url: '/api/user/register',
-                data: {file: $scope.image, 'user_json': JSON.parse(user), 'user': user}
+                data: {file: $scope.image, 'user_json': JSON.stringify(user), 'user': user}
             }).then(function (response) {
                 $log.info('Success ' + response.config.data.file.name + 'uploaded. Response: ' + response.data);
             }, function (error) {
