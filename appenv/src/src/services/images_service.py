@@ -3,7 +3,12 @@ from ..db import SqliteManager as dbm
 from ..config import UPLOAD_URI as upu
 
 
-def get_img_url(pic_id):
+def get_img_rel_url(img_url):
+    start_of_rel_url = img_url.find('/static')
+    return img_url[start_of_rel_url:]
+
+
+def get_img_url(pic_id, is_relative=False):
     if None is pic_id:
         return os.path.join(upu, 'default.png')
     db = dbm.get_db()
@@ -15,7 +20,7 @@ def get_img_url(pic_id):
     print('From server image service - Image location is %s' % result)
     pic_url = result[0]
     dbm.close_connection(db)
-    return pic_url
+    return pic_url if not is_relative else get_img_rel_url(pic_url)
 
 
 def get_img_id(pic_url):

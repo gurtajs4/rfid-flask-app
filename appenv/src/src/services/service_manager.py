@@ -83,7 +83,7 @@ class ServiceManager(object):
 
     @staticmethod
     def get_user_ui_model(user):
-        pic_url = images_service.get_img_url(user.pic_id)
+        pic_url = images_service.get_img_url(user.pic_id, True)
         return UserProfile(user.id, user.tag_id, user.first_name, user.last_name, user.email, user.role_id, pic_url)
 
     # api for sessions
