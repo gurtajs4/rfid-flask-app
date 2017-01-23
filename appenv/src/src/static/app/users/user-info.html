@@ -1,9 +1,13 @@
 <div class="container">
     <div class="row">
+        <div>
+            <button class="btn btn-primary">View user sessions</button>
+            <!--<button class="btn btn-primary" ng-href="/user/sessions/{{user.user_id}}">View user sessions</button>-->
+        </div>
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h4>User number: {{user.id}}</h4>
-                <h5>Role: {{user.role}}</h5>
+                <h4>User number: {{user.user_id}}</h4>
+                <h5>Role: {{user.role_title}}</h5>
             </div>
             <div class="panel-body">
                 <span style="max-width: 30%"><img class="img-thumbnail" ng-src="{{user.pic_url}}" alt="avatar"></span>
@@ -11,10 +15,6 @@
                 <span style="width: 30%"><i>{{user.email}}</i></span>
                 <span style="width: 30%">{{user.tag_id}}</span>
             </div>
-        </div>
-        <div>
-            <button class="btn btn-primary">View user sessions</button>
-            <!--<button class="btn btn-primary" ng-href="/user/sessions/{{user.id}}">View user sessions</button>-->
         </div>
     </div>
 </div>

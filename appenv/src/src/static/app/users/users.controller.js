@@ -26,14 +26,6 @@
                     $log.info('User ' + singleViewModel + 'added at index ' + key);
                     this.push(singleViewModel)
                 }, viewModel);
-                // for (var i = 0; i < data.length; i++) {
-                //     var singleViewModel = JSON.parse(data[i]);
-                //     if (!images.isImageUrl(singleViewModel.pic_url)) {
-                //         singleViewModel.pic_url = images.getDefaultUserProfileImageUrl();
-                //     }
-                //     $log.info(singleViewModel);
-                //     viewModel.push(singleViewModel);
-                // }
                 self.list = viewModel;
             });
         }
