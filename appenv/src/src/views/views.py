@@ -33,32 +33,6 @@ def api_reader():
     return resp
 
 
-@app.route('/api/image/upload', methods=['POST'])
-def api_image_upload():
-    image = request.get_json()
-    print('From server - route image upload - image received: %s' % image)
-    pic_url, pic_id = service_manager.upload_image(image)
-    print('From server - route image upload - image url is: %s' % pic_url)
-    print('From server - route image upload - image id is: %s' % pic_id)
-    if None is pic_url or '' is pic_url:
-        message = {
-            'status': 404,
-            'message': 'Not Found - no users found',
-        }
-        resp = jsonify(message)
-        resp.status_code = 404
-        return resp
-    else:
-        message = {
-            'status': 200,
-            'pic_url': pic_url,
-            'pic_id': pic_id
-        }
-        resp = jsonify(message)
-        resp.status_code = 200
-        return resp
-
-
 # *********** users ***********
 
 
@@ -248,7 +222,6 @@ def api_key_search(room_id):
         return resp
     else:
         data = jserial.key_instance_serialize(key_instance=key)
-        # resp = Response(data, status=200, mimetype='application/json')
         resp = jsonify(data)
         resp.status_code = 200
         return resp

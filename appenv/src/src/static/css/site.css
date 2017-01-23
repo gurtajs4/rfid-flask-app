@@ -57,4 +57,5 @@ body {
     display: inline-block;
     border-right-style: solid;
     border-right-color: cadetblue;
+    max-height: 30%;
 }
