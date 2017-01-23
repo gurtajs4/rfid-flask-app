@@ -34,7 +34,8 @@ def get_sessions(limit=0):
     return sessions
 
 
-def search_session(session_id=None, user_id=None, key_id=None, started_on=None, closed_on=None, limit=1, exclusive=False):
+def search_session(session_id=None, user_id=None, key_id=None, started_on=None, closed_on=None, limit=1,
+                   exclusive=False):
     if not (user_id is None and key_id is None and started_on is None and closed_on is None) and session_id is not None:
         db = dbm.get_db()
         cur = db.cursor()
@@ -98,13 +99,15 @@ def update_session(session_id, user_id=None, key_id=None, started_on=None, close
         # update session
         sql_command = 'UPDATE Session SET ' + sql_updates + ' WHERE id = ? '
         params += (session_id,)
+        params *= 2
         cur.execute(sql_command, params)
         db.commit()
         # return updated session
         sql_command = 'SELECT * FROM Session WHERE id = ? LIMIT 1 '
         cur.execute(sql_command, (session_id,))
         result = cur.fetchone()
-        session = Session(session_id=result[0], user_id=result[1], key_id=result[2], started_on=result[3], closed_on=result[4])
+        session = Session(session_id=result[0], user_id=result[1], key_id=result[2], started_on=result[3],
+                          closed_on=result[4])
         dbm.close_connection(db)
         return session
     else:

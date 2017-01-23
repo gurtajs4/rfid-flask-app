@@ -110,6 +110,7 @@ def update_key(key_id, tag_id=None, room_id=None):
         # update key
         sql_command = 'UPDATE Key SET ' + sql_updates + ' WHERE id = ?'
         params += (key_id,)
+        params *= 2
         cur.execute(sql_command, params)
         db.commit()
         # return updated key

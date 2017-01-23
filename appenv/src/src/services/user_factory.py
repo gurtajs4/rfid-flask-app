@@ -103,6 +103,7 @@ def update_user(user_id, tag_id=None, first_name=None, last_name=None, email=Non
         # update user
         sql_command = 'UPDATE User SET' + sql_updates + 'WHERE id = ?'
         params += (user_id,)
+        params *= 2
         cur.execute(sql_command, params)
         db.commit()
         if None is not pic_url:

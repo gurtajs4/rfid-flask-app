@@ -306,11 +306,22 @@ def api_session_new():
             'status': 200,
             'data': ''
         }
-        session = service_manager.search_session(user_id=data[0], key_id=data[1], started_on=data[2])
+        user = service_manager.search_user(tag_id=data[1])
+        key = service_manager.search_key(tag_id=data[0])
+        session = service_manager.search_session(user_id=user.id, key_id=key.id, started_on=data[2])
         if None is not session:
-            message['data'] = session.closed_on
-        session = service_manager.create_session(data[0], data[1], data[2])
-        print('Data stored - id: %s user_id: %s key_id: %s timestamp: %s' % (session.id, session.user_id, session.key_id, session.started_on))
+            session.closed_on = data[2]
+            service_manager.update_session(
+                session.id, session.user_id, session.key_id, session.started_on, session.closed_on
+            )
+            print('Session closed: %s user_id: %s key_id: %s started: %s closed: %s' % (
+                session.id, session.user_id, session.key_id, session.started_on, session.closed_on
+            ))
+        else:
+            session = service_manager.create_session(user.id, key.id, data[2])
+            print('Data stored - id: %s user_id: %s key_id: %s timestamp: %s' % (
+                session.id, session.user_id, session.key_id, session.started_on
+            ))
         message['data'] = jserial.session_instance_serialize(session)
         resp = jsonify(message)
         resp.status_code = 200
