@@ -126,7 +126,7 @@ def api_user_register():
     # print('From server - user data is %s' % request.form['user_json'])
     user_dict = jserial.json_deserialize(request.form['user_json'])
     print('From server - on image upload - JSON data: %s' % user_dict)
-    user_dict = service_manager.create_user_dict(user_dict, pic_id)
+    user_dict = service_manager.create_user_dict(user_dict, pic_id[0])
     print('From server - api-user-register(POST) - user json is %s' % user_dict)
     # user_json=jserial.user_instance_serialize(user_dict)
     user = jserial.user_instance_deserialize(user_dict)
