@@ -13,7 +13,7 @@ def get_img_url(pic_id):
     cur.execute(sql_command, params)
     result = cur.fetchone()
     print('From server image service - Image location is %s' % result)
-    pic_url = result
+    pic_url = result[0]
     dbm.close_connection(db)
     return pic_url
 
@@ -28,7 +28,7 @@ def get_img_id(pic_url):
     cur.execute(sql_command, params)
     result = cur.fetchone()
     print('From server image service - Image id is %s' % result)
-    pic_id = result
+    pic_id = result[0]
     dbm.close_connection(db)
     return pic_id
 

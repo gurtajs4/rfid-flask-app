@@ -80,7 +80,6 @@ def api_users():
         print('pic_url of first user in list is: %s' % ui_models[0].pic_url)
         data = jserial.user_instances_serialize(user_list=ui_models)
         resp = jsonify(data)
-        # resp = Response(data, status=200, mimetype='application/json')
         resp.status_code = 200
         return resp
 
