@@ -33,7 +33,7 @@ signal.signal(signal.SIGINT, end_read)
 print("Reader active and awaiting input...")
 
 while continue_reading:
-    if current_userTTL <= time.time() and not current_userId == -1:
+    if current_userTTL <= time.time() and not current_userTTL == -1:
         print("2 minutes elapsed.\nPlease register your ID card again...")
         current_userId = -1
         current_keyId = -1
@@ -49,6 +49,8 @@ while continue_reading:
             current_userId = tag_data
             print("User ID: %s" % current_userId)
         elif current_keyId == -1 and len(str(tag_data)) == 12:
+            if current_userId == -1:
+                current_userTTL = time.time() + 120
             current_keyId = tag_data
             print("Key ID: %s" % current_keyId)
         if current_keyId == current_userId:
@@ -61,7 +63,7 @@ while continue_reading:
                 'timestamp': str(datetime.datetime.now())
             }
             post_tag_data(session)
-            current_userId = -1
+            # current_userId = -1
             current_keyId = -1
-            current_userTTL = -1
-            time.sleep(5)
+            # current_userTTL = -1
+            time.sleep(2)

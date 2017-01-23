@@ -302,12 +302,16 @@ def api_session_new():
         resp.status_code = 404
         return resp
     else:
-        session = service_manager.create_session(data[0], data[0], data[0])
-        print('Data stored: %s' % session)
         message = {
             'status': 200,
-            'data': jserial.session_instance_serialize(session)
+            'data': ''
         }
+        session = service_manager.search_session(user_id=data[0], key_id=data[1], started_on=data[2])
+        if None is not session:
+            message['data'] = session.closed_on
+        session = service_manager.create_session(data[0], data[1], data[2])
+        print('Data stored - id: %s user_id: %s key_id: %s timestamp: %s' % (session.id, session.user_id, session.key_id, session.started_on))
+        message['data'] = jserial.session_instance_serialize(session)
         resp = jsonify(message)
         resp.status_code = 200
         return resp
