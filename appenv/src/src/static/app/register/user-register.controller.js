@@ -34,8 +34,8 @@
                 role_id: $scope.role
             };
             $log.info('From client - raw user data is: ', user);
-            var imgName = user.image.name;
-            var imgType = user.image.type;
+            var imgName = $scope.image.name;
+            var imgType = $scope.image.type;
             $log.info('Image type is ', imgType);
             $log.info('Image name is ', imgName);
             Upload.upload({
