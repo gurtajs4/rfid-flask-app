@@ -5,10 +5,9 @@
         .module('appMain')
         .controller('UserRegisterController', UserRegisterController);
 
-    UserRegisterController.$inject = ['$scope', '$log', '$location', 'Upload', 'registerService', 'imagesService'];
-    function UserRegisterController($scope, $log, $location, Upload, registerService, imagesService) {
+    UserRegisterController.$inject = ['$scope', '$log', '$location', 'Upload', 'registerService'];
+    function UserRegisterController($scope, $log, $location, Upload, registerService) {
         var service = registerService;
-        var images = imagesService;
 
         $scope.title = "Person Registration Page";
         $scope.note = "Register person in the system by associating ID Card number with some personal information";

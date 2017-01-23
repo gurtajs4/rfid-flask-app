@@ -11,10 +11,8 @@
             isImage: isImage,
             isImageUrl: isImageUrl,
             readImageFile: readImageFile,
-            readImageFileBuffer: readImageFileBuffer,
             getDefaultUserProfileImageUrl: getDefaultUserProfileImageUrl,
-            getDefaultRoomPhotoUrl: getDefaultRoomPhotoUrl,
-            uploadImageToServer: uploadImageToServer
+            getDefaultRoomPhotoUrl: getDefaultRoomPhotoUrl
         };
 
         return service;
@@ -49,41 +47,12 @@
             }
         }
 
-        function readImageFileBuffer(fileSrc) {
-            return function () {
-                var reader = new $window.FileReader();
-                reader.onloadend = function (event) {
-                    if (event.target.error === null) {
-                        return reader.result;
-                    }
-                    else {
-                        return null;
-                    }
-                };
-                reader.readAsArrayBuffer(fileSrc);
-            }
-        }
-
-        function uploadImageToServer(fileSrc) {
-            var file = {
-                src: fileSrc
-            };
-            return $http.post('/api/image/upload', JSON.parse(file));
-            // return uploader(fileSrc, function (result) {
-            //     var file = {
-            //             src: fileSrc,
-            //             file: result
-            //         };
-            //         return $http.post('/api/image/upload', JSON.parse(file));
-            // });
-        }
-
         function getDefaultUserProfileImageUrl() {
-            return '/images/default.png';
+            return '/static/images/default.png';
         }
 
         function getDefaultRoomPhotoUrl() {
-            return '/images/default-room.png';
+            return '/static/images/default-room.png';
         }
     }
 })();
