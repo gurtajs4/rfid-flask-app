@@ -15,7 +15,7 @@
 
         function init() {
             service.getItems(function (response) {
-                var data = response.data;
+                var data = response.data.data;
                 $log.info(data);
                 var viewModel = [];
                 for (var i = 0; i < data.length; i++) {
