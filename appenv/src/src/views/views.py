@@ -121,8 +121,7 @@ def api_user_register():
         return resp
     else:
         data = jserial.user_instance_serialize(user_instance=user)
-        resp = Response(data, status=200, mimetype='application/json')
-        # resp=jsonify(data)
+        resp = jsonify(data)
         resp.status_code = 200
         return resp
 
@@ -140,7 +139,8 @@ def api_user_search(user_name):
         return resp
     else:
         data = jserial.user_instances_serialize(user_list=users)
-        resp = Response(data, status=200, mimetype='application/json')
+        # resp = Response(data, status=200, mimetype='application/json')
+        resp = jsonify(data)
         resp.status_code = 200
         return resp
 
@@ -158,7 +158,8 @@ def api_user_id_search(tag_id):
         return resp
     else:
         data = jserial.user_instance_serialize(user_instance=user)
-        resp = Response(data, status=200, mimetype='application/json')
+        # resp = Response(data, status=200, mimetype='application/json')
+        resp = jsonify(data)
         resp.status_code = 200
         return resp
 
@@ -323,6 +324,27 @@ def api_session_new():
                 session.id, session.user_id, session.key_id, session.started_on
             ))
         message['data'] = jserial.session_instance_serialize(session)
+        resp = jsonify(message)
+        resp.status_code = 200
+        return resp
+
+
+@app.route('/api/sessions/delete/<int:id>', methods=['DELETE'])
+def api_delete_session(session_id):
+    print('From server - delete session with id %s' % session_id)
+    if service_manager.delete_session(session_id=session_id):
+        message = {
+            'status': 200,
+            'message': 'Successfully deleted session'
+        }
+        resp = jsonify(message)
+        resp.status_code = 200
+        return resp
+    else:
+        message = {
+            'status': 404,
+            'message': 'Session not found'
+        }
         resp = jsonify(message)
         resp.status_code = 200
         return resp

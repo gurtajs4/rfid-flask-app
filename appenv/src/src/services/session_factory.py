@@ -63,7 +63,7 @@ def delete_session(session_id=None, user_id=None, key_id=None, started_on=None, 
     if session_id is not None and not (user_id is None and key_id is None and started_on is None and closed_on is None):
         db = dbm.get_db()
         cur = db.cursor()
-        params = tuple([p for p in [session_id, user_id, key_id, timestamp] if p is not None])
+        params = tuple([p for p in [session_id, user_id, key_id, started_on, closed_on] if p is not None])
         condition_operator = ' AND '
         sql_conditions = condition_operator.join(filter(
             lambda x: x is not '', [' id = ? ' if session_id is not None else '',
