@@ -21,7 +21,7 @@ def post_tag_data(data):
     r = requests.post(url, json=json.dumps(data), headers={'Content-type': 'application/json'})
     if r.status_code == requests.codes.ok or r.status_code == 200:
         print('Tag data posted to server...')
-        print(r.text)
+        print(r.json())
 
 
 current_userId = -1

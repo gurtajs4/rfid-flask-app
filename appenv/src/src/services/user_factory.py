@@ -34,19 +34,19 @@ def get_users(limit=0):
     return users
 
 
-def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, email=None, role_id=1, pic_url=None,
-                limit=1, exclusive=False):
+def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, email=None, role_id=1, pic_id=1, limit=1, exclusive=False):
     if not (user_id is None and tag_id is None and first_name is None and last_name is None):
         db = dbm.get_db()
         cur = db.cursor()
-        params = tuple([p for p in [user_id, tag_id, first_name, last_name] if p is not None])
+        params = tuple([p for p in [user_id, tag_id, first_name, last_name, role_id, pic_id] if p is not None])
         condition_operator = ' AND ' if exclusive else ' OR '
         sql_conditions = condition_operator.join(filter(
             lambda x: x is not '', ['id = ? ' if user_id is not None else '',
                                     'tag_id = ? ' if tag_id is not None else '',
                                     'first_name = ? ' if first_name is not None else '',
                                     'last_name = ? ' if last_name is not None else '',
-                                    'pic_url = ? ' if pic_url is not None else '']))
+                                    'role_id = ? ' if role_id is not None else '',
+                                    'pic_id = ? ' if pic_id is not None else '']))
         sql_command = 'SELECT * FROM User WHERE ' + sql_conditions
         cur.execute(sql_command, params)
         results = [cur.fetchone()] if limit == 1 else cur.fetchall()
@@ -88,34 +88,25 @@ def delete_user(user_id, delete_history=False):
         return False
 
 
-def update_user(user_id, tag_id=None, first_name=None, last_name=None, email=None, role_id=1, pic_url=None):
+def update_user(user_id, tag_id=None, first_name=None, last_name=None, email=None, role_id=1, pic_id=1):
     if not (tag_id is None and first_name is None and email is None and last_name is None) and user_id is not None:
         db = dbm.get_db()
         cur = db.cursor()
-        params = tuple([p for p in [tag_id, first_name, last_name, email, role_id] if p is not None])
+        params = tuple([p for p in [tag_id, first_name, last_name, email, role_id, pic_id] if p is not None])
         updates_separator = ' , '
         sql_updates = updates_separator.join(filter(
             lambda x, y: x is not '', ['tag_id = ? ' if tag_id is not None else '',
                                        'first_name = ? ' if first_name is not None else '',
                                        'last_name = ? ' if last_name is not None else '',
                                        'email = ? ' if email is not None else '',
-                                       'role_id = ? ' if role_id is not None else '']))
+                                       'role_id = ? ' if role_id is not None else '',
+                                       'pic_id = ? ' if pic_id is not None else '']))
         # update user
         sql_command = 'UPDATE User SET' + sql_updates + 'WHERE id = ?'
         params += (user_id,)
         params *= 2
         cur.execute(sql_command, params)
         db.commit()
-        if None is not pic_url:
-            pic_name = pic_url.split('/')[-1]
-            cur.execute('''INSERT INTO ImageStore (name, location) VALUES (?, ?))''', (pic_name, pic_url,))
-            db.commit()
-            cur.execute('''SELECT id FROM ImageStore WHERE name = ? AND pic_url = ?''', (pic_name, pic_url,))
-            pic_id = cur.fetchone()
-            sql_command = 'UPDATE User SET pic_id = ? WHERE id = ?'
-            params += (pic_id, user_id,)
-            cur.execute(sql_command, params)
-            db.commit()
         # return updated user
         sql_command = 'SELECT * FROM User WHERE id = ? LIMIT 1 '
         cur.execute(sql_command, (user_id,))

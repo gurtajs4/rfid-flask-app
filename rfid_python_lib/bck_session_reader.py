@@ -21,7 +21,7 @@ def post_tag_data(data):
     r = requests.post(url, json=json.dumps(data), headers={'Content-type': 'application/json'})
     print('Tag data posted to server...')
     if r.status_code == requests.codes.ok or r.status_code == 200:
-        print('Response from server is %s' % r.text)
+        print('Response from server is %s' % r.json())
 
 
 current_userId = -1
@@ -43,7 +43,8 @@ while continue_reading:
     if status == MIFAREReader.MI_OK:
         print("Tag detected")
         (status, backData) = MIFAREReader.MFRC522_Anticoll()
-        tag_data = int(str(backData[0]) + str(backData[1]) + str(backData[2]) + str(backData[3]) + str(backData[4]))
+        tag_data = int(reduce(lambda x, y: str(x)+str(y), backData))
+        # int(str(backData[0]) + str(backData[1]) + str(backData[2]) + str(backData[3]) + str(backData[4]))
         if current_userId == -1 and len(str(tag_data)) == 13:
             current_userTTL = time.time() + 120
             current_userId = tag_data
