@@ -307,7 +307,7 @@ def api_session_new():
             'status': 200,
             'data': ''
         }
-        print(type(data))
+        print('From server - reader data is of type %s' % type(data))
         user_id = -1
         key_id = -1
         # if 'user_id' in data:
@@ -315,9 +315,10 @@ def api_session_new():
         #     print(data['user_id'])
         #     user_id = int(jserial.unicode_to_ascii(data['user_id']))
         # else:
-        print(type(data[1]))
-        print(data[1])
-        user_id = int(jserial.unicode_to_ascii(data[1]))    # end of else
+        print('From server - reader data second field is of type %s' % type(data[1]))
+        print('From server - reader data is %s' % data[1])
+        print('From server - all methods and fields of data are ', dir(data))
+        user_id = int(jserial.unicode_to_ascii(data[1]))  # end of else
         print('From server - User ID is %s' % user_id)
         user = service_manager.search_user(tag_id=user_id)
         print('From server - user found %s' % user.first_name)
@@ -328,7 +329,7 @@ def api_session_new():
         # else:
         print(type(data[0]))
         print(data[0])
-        key_id = int(jserial.unicode_to_ascii(data[0])) # end of else
+        key_id = int(jserial.unicode_to_ascii(data[0]))  # end of else
         print('From server - Key ID is %s' % key_id)
         key = service_manager.search_key(tag_id=key_id)
         print('From server - key found with room id: %s' % key.room_id)
