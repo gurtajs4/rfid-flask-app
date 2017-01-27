@@ -47,8 +47,10 @@ def search_key(key_id=None, tag_id=None, room_id=None, limit=1, exclusive=False)
                                     ' tag_id = ? ' if tag_id is not None else '',
                                     ' room_id = ? ' if room_id is not None else '']))
         sql_command = 'SELECT * FROM Key WHERE ' + sql_conditions
+        print('From server - key factory - search sql command: %s' % sql_command)
         cur.execute(sql_command, params)
         results = [cur.fetchone()] if limit == 1 else cur.fetchall()
+        print('From server - key factory - search results: %s' % results)
         dbm.close_connection(db)
         if None is results or 0 == len(results):
             return None
@@ -114,7 +116,7 @@ def update_key(key_id, tag_id=None, room_id=None):
         # update key
         sql_command = 'UPDATE Key SET ' + sql_updates + ' WHERE id = ?'
         params += (key_id,)
-        params *= 2
+        # params *= 2
         cur.execute(sql_command, params)
         db.commit()
         # return updated key

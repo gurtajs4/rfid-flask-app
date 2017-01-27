@@ -49,8 +49,10 @@ def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, emai
                                     'role_id = ? ' if role_id is not None else '',
                                     'pic_id = ? ' if pic_id is not None else '']))
         sql_command = 'SELECT * FROM User WHERE ' + sql_conditions
+        print('From server - user factory - search sql command %s' % sql_command)
         cur.execute(sql_command, params)
         results = [cur.fetchone()] if limit == 1 else cur.fetchall()
+        print('From server - user factory - search results %s' % results)
         dbm.close_connection(db)
         if None is results or 0 == len(results):
             return None
@@ -108,8 +110,9 @@ def update_user(user_id, tag_id=None, first_name=None, last_name=None, email=Non
                                        'pic_id = ? ' if pic_id is not None else '']))
         # update user
         sql_command = 'UPDATE User SET' + sql_updates + 'WHERE id = ?'
+        print('From server - user factory - sql command is %s' % sql_command)
         params += (user_id,)
-        params *= 2
+        # params *= 2
         cur.execute(sql_command, params)
         db.commit()
         # return updated user

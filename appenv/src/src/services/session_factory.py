@@ -48,8 +48,10 @@ def search_session(session_id=None, user_id=None, key_id=None, started_on=None, 
                                     ' started_on = ? ' if started_on is not None else '',
                                     ' closed_on = ? ' if closed_on is not None else '']))
         sql_command = 'SELECT * FROM Session WHERE ' + sql_conditions
+        print('From server - session factory - search sql command is %s' % sql_command)
         cur.execute(sql_command, params)
         results = [cur.fetchone()] if limit == 1 else cur.fetchall()
+        print('From server - session factory - search results: %s' % results)
         dbm.close_connection(db)
         if None is results or 0 == len(results):
             return None
@@ -103,7 +105,7 @@ def update_session(session_id, user_id=None, key_id=None, started_on=None, close
         # update session
         sql_command = 'UPDATE Session SET ' + sql_updates + ' WHERE id = ? '
         params += (session_id,)
-        params *= 2
+        # params *= 2
         cur.execute(sql_command, params)
         db.commit()
         # return updated session

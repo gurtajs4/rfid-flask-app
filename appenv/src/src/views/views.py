@@ -307,39 +307,25 @@ def api_session_new():
             'status': 200,
             'data': ''
         }
-        print('From server - reader data is of type %s' % type(data))
-        user_id = -1
-        key_id = -1
-        # if 'user_id' in data:
-        #     print(type(data['user_id']))
-        #     print(data['user_id'])
-        #     user_id = int(jserial.unicode_to_ascii(data['user_id']))
-        # else:
-        print('From server - reader data second field is of type %s' % type(data[1]))
         data_deserialized = jserial.json_deserialize(data)
         print('From server - reader data deserialized: %s' % data_deserialized)
-        print('From server - all methods and fields of data are ', dir(data_deserialized))
-        # user_id = int(jserial.unicode_to_ascii(data_deserialized[1]))  # end of else
         print('From server - user id from data deserialized is %s' % data_deserialized['user_id'])
         user_id = int(data_deserialized['user_id'])
-        print('From server - User ID is %s' % user_id)
+        print('From server - user id is of type %s' % type(user_id))
         user = service_manager.search_user(tag_id=user_id)
         print('From server - user found %s' % user.first_name)
-        # if 'key_id' in data:
-        #     print(type(data['key_id']))
-        #     print(data['key_id'])
-        #     key_id = int(jserial.unicode_to_ascii(data['key_id']))
-        # else:
-        print('From server - reader data first field is of type %s' % type(data[0]))
         print('From server - key id from data deserialized is %s' % data_deserialized['key_id'])
-        # key_id = int(jserial.unicode_to_ascii(data[0]))  # end of else
         key_id = int(data_deserialized['key_id'])
-        print('From server - Key ID is %s' % key_id)
+        print('From server - key id is of type %s' % type(key_id))
         key = service_manager.search_key(tag_id=key_id)
         print('From server - key found with room id: %s' % key.room_id)
         session = None
-        if -1 == key_id or -1 == user_id:
+        if None is key_id or '' == key_id or None is user_id or '' == user_id:
             print('Key ID or user ID not found so no session can be registered, retry...')
+        elif None is user:
+            session = None
+        elif None is key:
+            session = None
         else:
             session = service_manager.search_session(user_id=user.id, key_id=key.id, started_on=data[2])
         print('From server - is existing session? %s' % (False if session is None else True))
