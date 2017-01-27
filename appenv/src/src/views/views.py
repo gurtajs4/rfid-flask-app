@@ -316,9 +316,12 @@ def api_session_new():
         #     user_id = int(jserial.unicode_to_ascii(data['user_id']))
         # else:
         print('From server - reader data second field is of type %s' % type(data[1]))
-        print('From server - reader data is %s' % data[1])
-        print('From server - all methods and fields of data are ', dir(data))
-        user_id = int(jserial.unicode_to_ascii(data[1]))  # end of else
+        data_deserialized = jserial.json_deserialize(data)
+        print('From server - reader data deserialized: %s' % data_deserialized)
+        print('From server - all methods and fields of data are ', dir(data_deserialized))
+        # user_id = int(jserial.unicode_to_ascii(data_deserialized[1]))  # end of else
+        print('From server - user id from data deserialized is %s' % data_deserialized['user_id'])
+        user_id = int(data_deserialized['user_id'])
         print('From server - User ID is %s' % user_id)
         user = service_manager.search_user(tag_id=user_id)
         print('From server - user found %s' % user.first_name)
@@ -327,9 +330,10 @@ def api_session_new():
         #     print(data['key_id'])
         #     key_id = int(jserial.unicode_to_ascii(data['key_id']))
         # else:
-        print(type(data[0]))
-        print(data[0])
-        key_id = int(jserial.unicode_to_ascii(data[0]))  # end of else
+        print('From server - reader data first field is of type %s' % type(data[0]))
+        print('From server - key id from data deserialized is %s' % data_deserialized['key_id'])
+        # key_id = int(jserial.unicode_to_ascii(data[0]))  # end of else
+        key_id = int(data_deserialized['key_id'])
         print('From server - Key ID is %s' % key_id)
         key = service_manager.search_key(tag_id=key_id)
         print('From server - key found with room id: %s' % key.room_id)
