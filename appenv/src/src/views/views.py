@@ -310,25 +310,25 @@ def api_session_new():
         print(type(data))
         user_id = -1
         key_id = -1
-        if 'user_id' in data:
-            print(type(data['user_id']))
-            print(data['user_id'])
-            user_id = int(data['user_id'])
-        else:
-            print(type(data[1]))
-            print(data[1])
-            user_id = int(data[1])
+        # if 'user_id' in data:
+        #     print(type(data['user_id']))
+        #     print(data['user_id'])
+        #     user_id = int(jserial.unicode_to_ascii(data['user_id']))
+        # else:
+        print(type(data[1]))
+        print(data[1])
+        user_id = int(jserial.unicode_to_ascii(data[1]))    # end of else
         print('From server - User ID is %s' % user_id)
         user = service_manager.search_user(tag_id=user_id)
         print('From server - user found %s' % user.first_name)
-        if 'key_id' in data:
-            print(type(data['key_id']))
-            print(data['key_id'])
-            key_id = int(data['key_id'])
-        else:
-            print(type(data[0]))
-            print(data[0])
-            key_id = int(data[0])
+        # if 'key_id' in data:
+        #     print(type(data['key_id']))
+        #     print(data['key_id'])
+        #     key_id = int(jserial.unicode_to_ascii(data['key_id']))
+        # else:
+        print(type(data[0]))
+        print(data[0])
+        key_id = int(jserial.unicode_to_ascii(data[0])) # end of else
         print('From server - Key ID is %s' % key_id)
         key = service_manager.search_key(tag_id=key_id)
         print('From server - key found with room id: %s' % key.room_id)

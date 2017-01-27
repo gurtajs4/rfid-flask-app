@@ -80,6 +80,13 @@ class JSONSerializer(object):
     def user_session_instance_serialize(user_session_instance):
         return json.dumps(user_session_instance, cls=CustomJSONEncoder)
 
+    @staticmethod
+    def unicode_to_ascii(unicode_string):
+        if 'unicode' in type(unicode_string):
+            return a.encode('ascii','ignore')
+        else:
+            return unicode_string   # it is not unicode
+
 
 class ImageB64Serializer(object):
     @staticmethod
