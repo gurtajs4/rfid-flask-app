@@ -307,13 +307,36 @@ def api_session_new():
             'status': 200,
             'data': ''
         }
-        print('From server - User ID is %s' % int(data[1]))
-        user = service_manager.search_user(tag_id=int(data[1]))
+        print(type(data))
+        user_id = -1
+        key_id = -1
+        if 'user_id' in data:
+            print(type(data['user_id']))
+            print(data['user_id'])
+            user_id = int(data['user_id'])
+        else:
+            print(type(data[1]))
+            print(data[1])
+            user_id = int(data[1])
+        print('From server - User ID is %s' % user_id)
+        user = service_manager.search_user(tag_id=user_id)
         print('From server - user found %s' % user.first_name)
-        print('From server - Key ID is %s' % int(data[0]))
-        key = service_manager.search_key(tag_id=int(data[0]))
+        if 'key_id' in data:
+            print(type(data['key_id']))
+            print(data['key_id'])
+            key_id = int(data['key_id'])
+        else:
+            print(type(data[0]))
+            print(data[0])
+            key_id = int(data[0])
+        print('From server - Key ID is %s' % key_id)
+        key = service_manager.search_key(tag_id=key_id)
         print('From server - key found with room id: %s' % key.room_id)
-        session = service_manager.search_session(user_id=user.id, key_id=key.id, started_on=data[2])
+        session = None
+        if -1 == key_id or -1 == user_id:
+            print('Key ID or user ID not found so no session can be registered, retry...')
+        else:
+            session = service_manager.search_session(user_id=user.id, key_id=key.id, started_on=data[2])
         print('From server - is existing session? %s' % (False if session is None else True))
         if None is not session:
             session.closed_on = data[2]
@@ -324,10 +347,11 @@ def api_session_new():
                 session.id, session.user_id, session.key_id, session.started_on, session.closed_on
             ))
         else:
-            session = service_manager.create_session(user.id, key.id, data[2])
-            print('Data stored - id: %s user_id: %s key_id: %s timestamp: %s' % (
-                session.id, session.user_id, session.key_id, session.started_on
-            ))
+            if not (-1 == key_id or -1 == user_id):
+                session = service_manager.create_session(user.id, key.id, data[2])
+                print('Data stored - id: %s user_id: %s key_id: %s timestamp: %s' % (
+                    session.id, session.user_id, session.key_id, session.started_on
+                ))
         message['data'] = jserial.session_instance_serialize(session)
         resp = jsonify(message)
         resp.status_code = 200
