@@ -34,7 +34,8 @@ def get_users(limit=0):
     return users
 
 
-def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, email=None, role_id=1, pic_id=1, limit=1, exclusive=False):
+def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, email=None, role_id=1, pic_id=1, limit=1,
+                exclusive=False):
     if not (user_id is None and tag_id is None and first_name is None and last_name is None):
         db = dbm.get_db()
         cur = db.cursor()
@@ -53,7 +54,11 @@ def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, emai
         dbm.close_connection(db)
         if None is results or 0 == len(results):
             return None
-        users = [User(res[0], res[1], res[2], res[3], res[4], res[5], res[6]) for res in results]
+        users = []
+        if len(results) > 1:
+            users = [User(res[0], res[1], res[2], res[3], res[4], res[5], res[6]) for res in results]
+        else:
+            users[0] = User(results[0], results[1], results[2], results[3], results[4], results[5], results[6])
         return users[0] if limit == 1 else users
     else:
         return None

@@ -307,9 +307,14 @@ def api_session_new():
             'status': 200,
             'data': ''
         }
-        user = service_manager.search_user(tag_id=data[1])
-        key = service_manager.search_key(tag_id=data[0])
+        print('From server - User ID is %s' % int(data[1]))
+        user = service_manager.search_user(tag_id=int(data[1]))
+        print('From server - user found %s' % user.first_name)
+        print('From server - Key ID is %s' % int(data[0]))
+        key = service_manager.search_key(tag_id=int(data[0]))
+        print('From server - key found with room id: %s' % key.room_id)
         session = service_manager.search_session(user_id=user.id, key_id=key.id, started_on=data[2])
+        print('From server - is existing session? %s' % (False if session is None else True))
         if None is not session:
             session.closed_on = data[2]
             service_manager.update_session(
