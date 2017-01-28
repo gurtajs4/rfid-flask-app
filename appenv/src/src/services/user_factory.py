@@ -60,7 +60,8 @@ def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, emai
         if len(results) > 1:
             users = [User(res[0], res[1], res[2], res[3], res[4], res[5], res[6]) for res in results]
         else:
-            users[0] = User(results[0], results[1], results[2], results[3], results[4], results[5], results[6])
+            res = results[0]
+            users[0] = User(res[0], res[1], res[2], res[3], res[4], res[5], res[6])
         return users[0] if limit == 1 else users
     else:
         return None

@@ -322,9 +322,7 @@ def api_session_new():
         session = None
         if None is key_id or '' == key_id or None is user_id or '' == user_id:
             print('Key ID or user ID not found so no session can be registered, retry...')
-        elif None is user:
-            session = None
-        elif None is key:
+        elif None is user or None is key:
             session = None
         else:
             session = service_manager.search_session(user_id=user.id, key_id=key.id, started_on=data[2])

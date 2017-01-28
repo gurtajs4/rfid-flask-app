@@ -59,7 +59,8 @@ def search_session(session_id=None, user_id=None, key_id=None, started_on=None, 
         if len(results) > 1:
             sessions = [Session(res[0], res[1], res[2], res[3], res[4]) for res in results]
         else:
-            sessions[0] = (results[0], results[1], results[2], results[3], results[4])
+            res = results[0]
+            sessions[0] = (res[0], res[1], res[2], res[3], res[4])
         return sessions[0] if limit == 1 else sessions
     else:
         return None

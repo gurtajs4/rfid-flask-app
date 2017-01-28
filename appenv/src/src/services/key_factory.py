@@ -58,7 +58,8 @@ def search_key(key_id=None, tag_id=None, room_id=None, limit=1, exclusive=False)
         if len(results) > 1:
             keys = [Key(res[0], res[1], res[2]) for res in results]
         else:
-            keys[0] = Key(results[0], results[1], results[2])
+            res = results[0]
+            keys[0] = Key(res[0], res[1], res[2])
         return keys[0] if limit == 1 else keys
     else:
         return None
