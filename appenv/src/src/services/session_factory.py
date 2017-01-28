@@ -60,7 +60,7 @@ def search_session(session_id=None, user_id=None, key_id=None, started_on=None, 
             sessions = [Session(res[0], res[1], res[2], res[3], res[4]) for res in results]
         else:
             res = results[0]
-            sessions[0] = (res[0], res[1], res[2], res[3], res[4])
+            sessions.append(Session(res[0], res[1], res[2], res[3], res[4]))
         return sessions[0] if limit == 1 else sessions
     else:
         return None
