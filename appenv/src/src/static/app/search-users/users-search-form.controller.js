@@ -18,13 +18,14 @@
 
         function submit() {
             service.search(self.queryset).then(function (response) {
-                $log.info(response.data);
-                if (response.status == 200) {
-                    self.results = JSON.parse(response.data);
-                }
-                else {
-                    $log.debug('Response status for users search is not 200: ' + response.data.message['message']);
-                }
+                var data = response.data;
+                $log.info(data);
+                var viewModel = [];
+                angular.forEach(data, function (value, key) {
+                    var singleViewModel = JSON.parse(value);
+                    this.push(singleViewModel);
+                }, viewModel);
+                self.results = viewModel;
             }).catch(function (error) {
                 $log.error(error.data);
             });

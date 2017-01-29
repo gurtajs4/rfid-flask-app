@@ -41,7 +41,7 @@
             controller: 'UsersController',
             controllerAs: 'users'
         }).when('/users/search', {
-            templateUrl: appBaseUrl + '/search-users/users-search.html',
+            templateUrl: appBaseUrl + '/search-users/users-search-form.html',
             controller: 'UsersSearchController',
             controllerAs: 'usersSearch'
         }).when('/users/register', {
@@ -50,10 +50,6 @@
         }).when('/keys/register', {
             templateUrl: appBaseUrl + '/register/key-register.html',
             controller: 'KeyRegisterController'
-        }).when('/user/sessions', {
-            templateUrl: appBaseUrl + '/user-to-sessions/user-to-sessions.html',
-            controller: 'UserSessionsController',
-            controllerAs: 'userSessions'
         }).otherwise({redirectTo: '/home'});
     }
 })();

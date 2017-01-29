@@ -38,7 +38,7 @@
             $log.info('Image type is ', imgType);
             $log.info('Image name is ', imgName);
             Upload.upload({
-                url: '/api/user/register',
+                url: '/api/users/register',
                 data: {file: $scope.image, 'user_json': JSON.stringify(user), 'user': user}
             }).then(function (response) {
                 $log.info('Success ' + response.config.data.file.name + 'uploaded. Response: ' + response.data);

@@ -1,0 +1,14 @@
+<div class="container" ng-if="results!=[]">
+    <h1>Search results:</h1>
+    <hr/>
+    <div>
+        Order users by:
+        <select ng-model="orderProp" name="orderProp" id="orderProp">
+            <option value="user_id">Key ID</option>
+            <option value="tag_id">Tag ID</option>
+            <option value="room_id">Room ID</option>
+        </select>
+    </div>
+    <hr/>
+    <div ng-repeat="key in results | orderBy:orderProp track by $index" key-info="key"></div>
+</div>

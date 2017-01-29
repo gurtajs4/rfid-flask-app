@@ -21,7 +21,7 @@ def api_door_lock_root():
 
 @app.route('/api/reader', methods=['GET'])
 def api_reader():
-    print('Reader called from client')
+    print('From server - reader init - reader called from client')
     data = service_manager.init_reader()
     message = {
         'status': 404 if data['data'] == '00000000' else 200,
@@ -37,7 +37,7 @@ def api_reader():
 
 
 @app.route('/api/users', methods=['GET'])
-def api_users():
+def api_users_get():
     users = service_manager.get_users()
     if None is users or 1 > len(users):
         message = {
@@ -48,69 +48,35 @@ def api_users():
         resp.status_code = 404
         return resp
     else:
-        print(users)
-        print('Name of first user is %s' % users[0].first_name)
+        print('From server - users - %s' % users)
         ui_models = [service_manager.get_user_ui_model(u) for u in users]
-        print('pic_url of first user in list is: %s' % ui_models[0].pic_url)
+        print('From server - users - pic_url of first user is: %s' % ui_models[0].pic_url)
         data = jserial.user_instances_serialize(user_list=ui_models)
         resp = jsonify(data)
         resp.status_code = 200
         return resp
 
 
-@app.route('/api/user/session', methods=['POST'])
-def api_users_new():
-    user = (request.get_json())
-    print('Received user data from the reader...')
-    if None is not user:
-        print('User %s - timestamp %s' % (user['user_id'], user['timestamp']))
-        user_session = service_manager.create_user_session(user['user_id'], user['timestamp'])
-        print("User session stored as %s" % user_session)
-
-
-@app.route('/api/user/sessions/<int:user_id>', methods=['GET'])
-def api_user_sessions(user_id):
-    sessions = service_manager.get_user_sessions(user_id=user_id)
-    print('api-user-to-sessions count: %s' % len(sessions))
-    if None is sessions:
-        message = {
-            'status': 404,
-            'message': 'Not Found - no sessions for the selected user were found',
-        }
-        resp = jsonify(message)
-        resp.status_code = 404
-        return resp
-    else:
-        print(sessions)
-        resp = jsonify(sessions)
-        resp.status_code = 200
-        return resp
-
-
-@app.route('/api/user/register', methods=['POST'])
+@app.route('/api/users/register', methods=['POST'])
 def api_user_register():
     file = None
     files = request.files
     if 'file' in files:
         file = files['file']
     pic_url, pic_id = service_manager.upload_image(file)
-    # print('From server - on image upload - image id is: %s' % pic_id)
-    # print('From server - on image upload - image url is: %s' % pic_url)
-    # print('From server - user data is %s' % request.form['user_json'])
     user_dict = jserial.json_deserialize(request.form['user_json'])
     print('From server - on image upload - JSON data: %s' % user_dict)
     user_dict = service_manager.create_user_dict(user_dict, pic_id[0])
-    print('From server - api-user-register(POST) - user json is %s' % user_dict)
-    # user_json=jserial.user_instance_serialize(user_dict)
+    print('From server - user register (POST) - user json is %s' % user_dict)
     user = jserial.user_instance_deserialize(user_dict)
-    print('From server - api-user-register(POST) - user is %s' % user)
+    print('From server - user register (POST) - user is %s' % user)
     user = service_manager.create_user(tag_id=user.tag_id,
                                        first_name=user.first_name,
                                        last_name=user.last_name,
                                        email=user.email,
                                        role_id=user.role_id,
                                        pic_id=user.pic_id)
-    print('api-user-register is post: user from db is %s' % user)
+    print('From server - api-user-register (post) - user from db is %s' % user)
     if None is user or -1 == user.id:
         message = {
             'status': 404,
@@ -126,8 +92,8 @@ def api_user_register():
         return resp
 
 
-@app.route('/api/user/search/<user_name>', methods=['GET'])
-def api_user_search(user_name):
+@app.route('/api/users/search/<user_name>', methods=['GET'])
+def api_users_search(user_name):
     users = service_manager.search_user(first_name=user_name, last_name=user_name, limit=0)
     if None is users or 1 > len(users):
         message = {
@@ -138,17 +104,17 @@ def api_user_search(user_name):
         resp.status_code = 404
         return resp
     else:
-        data = jserial.user_instances_serialize(user_list=users)
-        # resp = Response(data, status=200, mimetype='application/json')
+        ui_models = [service_manager.get_user_ui_model(u) for u in users]
+        data = jserial.user_instances_serialize(user_list=ui_models)
         resp = jsonify(data)
         resp.status_code = 200
         return resp
 
 
-@app.route('/api/user/tag/search/<tag_id>', methods=['GET'])
-def api_user_id_search(tag_id):
-    user = service_manager.search_user(tag_id=tag_id)
-    if None is user:
+@app.route('/api/users/tag/search/<tag_id>', methods=['GET'])
+def api_user_tag_search(tag_id):
+    result = service_manager.search_user(tag_id=tag_id)
+    if None is result:
         message = {
             'status': 404,
             'message': 'Not Found - user you are searching for is not registered'
@@ -157,9 +123,41 @@ def api_user_id_search(tag_id):
         resp.status_code = 404
         return resp
     else:
+        user = service_manager.get_user_ui_model(result)
         data = jserial.user_instance_serialize(user_instance=user)
-        # resp = Response(data, status=200, mimetype='application/json')
         resp = jsonify(data)
+        resp.status_code = 200
+        return resp
+
+
+# *********** user auth requests ***********
+
+
+@app.route('/api/user/auth-request', methods=['POST'])
+def api_user_auth_request_new():
+    user = (request.get_json())
+    print('From server - received from reader - auth request: %s' % user)
+    if None is not user:
+        print('From server - user auth request - (user: %s, timestamp %s)' % (user['user_id'], user['timestamp']))
+        user_session = service_manager.create_user_auth_request(user['user_id'], user['timestamp'])
+        print("From server - user auth request - stored request: %s" % user_session)
+
+
+@app.route('/api/user/auth-requests/<int:user_id>', methods=['GET'])
+def api_user_auth_requests(user_id):
+    sessions = service_manager.get_user_auth_requests(user_id=user_id)
+    print('From server - user auth requests - requests count: %s' % len(sessions))
+    if None is sessions:
+        message = {
+            'status': 404,
+            'message': 'Not Found - no sessions for the selected user were found',
+        }
+        resp = jsonify(message)
+        resp.status_code = 404
+        return resp
+    else:
+        print(sessions)
+        resp = jsonify(sessions)
         resp.status_code = 200
         return resp
 
@@ -168,7 +166,7 @@ def api_user_id_search(tag_id):
 
 
 @app.route('/api/keys', methods=['GET'])
-def api_keys():
+def api_keys_get():
     keys = service_manager.get_keys()
     print(keys)
     if None is keys or 1 > len(keys):
@@ -180,21 +178,19 @@ def api_keys():
         resp.status_code = 404
         return resp
     else:
-        print(keys)
-        print('Id of first key in list is %s' % keys[0].id)
+        print('From server - keys - %s' % keys)
         data = jserial.key_instances_serialize(key_list=keys)
-        # resp = Response(data, status=200, mimetype='application/json')
         resp = jsonify(data)
         resp.status_code = 200
         return resp
 
 
-@app.route('/api/key/register', methods=['POST'])
+@app.route('/api/keys/register', methods=['POST'])
 def api_key_register():
     key = jserial.key_instance_deserialize(request.get_json())
-    print('api-key-register: key tag is %s' % key.tag_id)
+    print('From server - key register - key tag is %s' % key.tag_id)
     key = service_manager.create_key(tag_id=key.tag_id, room_id=key.room_id)
-    print('api-key-register: key from db has tag %s' % key.tag_id)
+    print('From server - key register - stored key id is %s' % key.id)
     if None is key or -1 == key.id:
         message = {
             'status': 404,
@@ -210,8 +206,8 @@ def api_key_register():
         return resp
 
 
-@app.route('/api/key/search/<int:room_id>', methods=['GET'])
-def api_key_search(room_id):
+@app.route('/api/keys/search/<int:room_id>', methods=['GET'])
+def api_keys_search(room_id):
     key = service_manager.search_key(room_id=int(room_id))
     if None is key:
         message = {
@@ -228,8 +224,8 @@ def api_key_search(room_id):
         return resp
 
 
-@app.route('/api/key/tag/search/<tag_id>', methods=['GET'])
-def api_key_id_search(tag_id):
+@app.route('/api/keys/tag/search/<tag_id>', methods=['GET'])
+def api_key_tag_search(tag_id):
     key = service_manager.search_key(tag_id=int(tag_id))
     if None is key:
         message = {
@@ -264,9 +260,8 @@ def api_sessions_get():
 
 @app.route('/api/sessions/<int:session_id>', methods=['GET'])
 def api_session_get(session_id):
-    print('Received session id: %s - parameter for session query' % session_id)
     session = jserial.session_instance_serialize(service_manager.search_session(session_id=session_id))
-    print('Server retrieving session object: %s' % session)
+    print('From server - session get - (session_id: %s, session: %s)' % (session_id, session))
     if None is session:
         message = {
             'status': 404,
@@ -281,18 +276,42 @@ def api_session_get(session_id):
         return resp
 
 
-@app.route('/api/session/key/<int:key_id>')
-def api_get_key_session(key_id):
-    print('Received %s from client' % key_id)
-    result = service_manager.search_session(key_id=key_id)
-    print('api_get_key_session - by id %s - result is %s' % (key_id, result))
-    send_message(result, 'key session result', session['uuid'])
+@app.route('/api/sessions/key/<int:key_id>', methods=['GET'])
+def api_sessions_get_by_key(key_id):
+    results = service_manager.search_session(key_id=key_id, limit=0)
+    print('From server - sessions by key id - (key_id: %s, results: %s)' % (key_id, results))
+    # send_message(results, 'key session result', session['uuid'])
+    if None is not results:
+        data = jserial.session_instances_serialize(session_list=results)
+        resp = jsonify(data)
+        resp.status_code = 200
+    else:
+        message = {'status': 404, 'message': 'Not Found'}
+        resp = jsonify(message)
+        resp.status_code = 404
+    return resp
+
+
+@app.route('/api/sessions/user/<int:user_id>', methods=['GET'])
+def api_sessions_get_by_user(user_id):
+    results = service_manager.search_session(user_id=user_id, limit=0)
+    print('From server - sessions by user id - (user_id: %s, results: %s)' % (user_id, results))
+    # service_manager.send
+    if None is not results:
+        data = jserial.session_instances_serialize(session_list=results)
+        resp = jsonify(data)
+        resp.status_code = 200
+    else:
+        message = {'status': 404, 'message': 'Not Found'}
+        resp = jsonify(message)
+        resp.status_code = 404
+    return resp
 
 
 @app.route('/api/sessions/new', methods=['POST'])
 def api_session_new():
     data = request.get_json()
-    print('Received new data from reader - session: %s' % data)
+    print('From server - received from reader - session: %s' % data)
     if None is data:
         print('Data not received')
         message = {
@@ -348,7 +367,7 @@ def api_session_new():
 
 
 @app.route('/api/sessions/delete/<int:id>', methods=['DELETE'])
-def api_delete_session(session_id):
+def api_session_delete(session_id):
     print('From server - delete session with id %s' % session_id)
     if service_manager.delete_session(session_id=session_id):
         message = {

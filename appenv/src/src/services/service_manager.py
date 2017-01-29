@@ -4,7 +4,7 @@ from .db_seed import DbInitializer
 import key_factory
 import user_factory
 import session_factory
-import user_session_factory
+import user_auth_request_service
 import images_service
 from ..embedded.mfrc_service import ServiceMFRC
 from ..io_sockets import reader_output, send_message
@@ -108,13 +108,14 @@ class ServiceManager(object):
     def update_session(session_id, user_id=None, key_id=None, started_on=None, closed_on=None):
         return session_factory.update_session(session_id, user_id, key_id, started_on, closed_on)
 
+    # api for user auth requests
     @staticmethod
-    def create_user_session(user_id, timestamp):
-        return user_session_factory.create_user_session(user_id=user_id, timestamp=timestamp)
+    def create_user_auth_request(user_id, timestamp):
+        return user_auth_request_service.create_user_auth_request(user_id=user_id, timestamp=timestamp)
 
     @staticmethod
-    def get_user_sessions(user_id, limit=0):
-        return user_session_factory.get_user_sessions(user_id=user_id, limit=limit)
+    def get_user_auth_requests(user_id, limit=0):
+        return user_auth_request_service.get_user_auth_requests(user_id=user_id, limit=limit)
 
     # api for matching
     @staticmethod

@@ -9,18 +9,13 @@
     function keysService($http) {
         var service = {
             search: search,
-            activeSession: activeSession,
             getItems: getItems
         };
 
         return service;
 
         function search(roomId) {
-            return $http.get('/api/key/search/' + roomId.toString());
-        }
-
-        function activeSession(keyId) {
-            return $http.get('/api/session/key/', keyId.toString());
+            return $http.get('/api/keys/search/' + roomId.toString());
         }
 
         function getItems() {

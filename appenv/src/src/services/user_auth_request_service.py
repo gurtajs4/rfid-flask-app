@@ -1,7 +1,7 @@
 from ..db import SqliteManager as dbm
 
 
-def create_user_session(user_id, timestamp):
+def create_user_auth_request(user_id, timestamp):
     db = dbm.get_db()
     cur = db.cursor()
     affected_count = cur.execute(
@@ -18,7 +18,7 @@ def create_user_session(user_id, timestamp):
         return None
 
 
-def get_user_sessions(user_id, limit=0):
+def get_user_auth_requests(user_id, limit=0):
     db = dbm.get_db()
     cur = db.cursor()
     cur.execute('SELECT * FROM UserSession WHERE user_id = ?', (user_id,))

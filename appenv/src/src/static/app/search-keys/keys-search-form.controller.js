@@ -14,17 +14,18 @@
         self.note = "Check for keys by entering Key ID number";
         self.submit = submit;
         self.cancel = cancel;
-        self.result = {};
+        self.results = [];
 
         function submit() {
             service.search(self.queryset).then(function (response) {
-                $log.info(response.data);
-                if (response.status == 200) {
-                    self.result = JSON.parse(response.data);
-                }
-                else {
-                    $log.debug('Response status is not 200 for key search: ' + response.data['message']);
-                }
+                var data = response.data;
+                $log.info(data);
+                var viewModel = [];
+                angular.forEach(data, function (value, key) {
+                    var singleViewModel = JSON.parse(value);
+                    this.push(singleViewModel);
+                }, viewModel);
+                self.results = viewModel;
             }).catch(function (error) {
                 $log.error(error.data);
             });

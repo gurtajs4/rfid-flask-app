@@ -23,8 +23,8 @@ def make_connection():
     print(message)
 
 
-@socket_io.on('sid request')
-def get_session_id():
+@socket_io.on('client sid request')
+def get_client_session_id():
     send_message(message=str(session['uuid']), event='sid response')
 
 

@@ -1,7 +1,17 @@
 <div class="container" ng-if="results!=[]">
     <h1>Search results:</h1>
-    <div ng-repeat="user in results | orderBy: id track by $index">
-        <user-info id="user.id" tag_id="user.tag_id" first_name="user.first_name"
-                   last_name="user.last_name"></user-info>
+    <hr/>
+    <div>
+        Order users by:
+        <select ng-model="orderProp" name="orderProp" id="orderProp">
+            <option value="user_id">User ID</option>
+            <option value="tag_id">Tag ID</option>
+            <option value="role_id">Role</option>
+            <option value="first_name">First name</option>
+            <option value="last_name">Last name</option>
+            <option value="email">Email</option>
+        </select>
     </div>
+    <hr/>
+    <div ng-repeat="user in results | orderBy:orderProp track by $index" user-info="user"></div>
 </div>

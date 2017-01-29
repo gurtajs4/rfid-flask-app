@@ -1,9 +1,6 @@
 <div class="container">
     <div class="row">
-        <div>
-            <button class="btn btn-primary">View user sessions</button>
-            <!--<button class="btn btn-primary" ng-href="/user/sessions/{{user.user_id}}">View user sessions</button>-->
-        </div>
+        <div user-sessions user="user.user_id"></div>
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h4>User number: {{user.user_id}}</h4>

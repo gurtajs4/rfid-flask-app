@@ -10,9 +10,5 @@
             </div>
         </div>
     </div>
-    <div class="panel panel-success">
-        <div ng-if="keysSearch.result!={}" class="panel-heading">
-            {{keysSearch.result.room_id}}
-        </div>
-    </div>
+    <div keys-search-results results="keysSearch.results"></div>
 </div>
