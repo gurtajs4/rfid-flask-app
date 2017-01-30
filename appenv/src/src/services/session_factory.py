@@ -34,7 +34,8 @@ def get_sessions(limit=0):
     return sessions
 
 
-def search_session(session_id=None, user_id=None, key_id=None, started_on=None, closed_on=None, limit=1, exclusive=False):
+def search_session(session_id=None, user_id=None, key_id=None, started_on=None, closed_on=None, limit=1,
+                   exclusive=False):
     if not (session_id is None and user_id is None and key_id is None and started_on is None and closed_on is None):
         db = dbm.get_db()
         cur = db.cursor()
@@ -52,15 +53,17 @@ def search_session(session_id=None, user_id=None, key_id=None, started_on=None, 
         results = [cur.fetchone()] if limit == 1 else cur.fetchall()
         print('From server - session factory - search results: %s' % results)
         dbm.close_connection(db)
-        if None is results or 0 == len(results):
+        if None is results or 0 == len(results) or None is results[0]:
             return None
-        sessions = []
-        if len(results) > 1:
-            sessions = [Session(res[0], res[1], res[2], res[3], res[4]) for res in results]
         else:
-            res = results[0]
-            sessions.append(Session(res[0], res[1], res[2], res[3], res[4]))
-        return sessions[0] if limit == 1 else sessions
+            sessions = []
+            if len(results) > 1:
+                sessions = [Session(res[0], res[1], res[2], res[3], res[4]) for res in results]
+            else:
+                res = results[0]
+                print('From server - session factory - single result %s' % res)
+                sessions.append(Session(res[0], res[1], res[2], res[3], res[4]))
+            return sessions[0] if limit == 1 else sessions
     else:
         return None
 
