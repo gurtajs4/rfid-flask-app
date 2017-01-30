@@ -344,11 +344,11 @@ def api_session_new():
         elif None is user or None is key:
             session = None
         else:
-            session = service_manager.search_session(user_id=user.id, key_id=key.id, started_on=data[2])
+            session = service_manager.search_session(user_id=user.id, key_id=key.id, started_on=data_deserialized['timestamp'])
         print('From server - is existing session? %s' % (False if session is None else True))
-        print('From server - timestamp of new session is %s' % data[2])
+        print('From server - timestamp of new session is %s' % data_deserialized['timestamp'])
         if None is not session:
-            session.closed_on = data[2]
+            session.closed_on = data_deserialized['timestamp']
             service_manager.update_session(
                 session.id, session.user_id, session.key_id, session.started_on, session.closed_on
             )
@@ -357,7 +357,7 @@ def api_session_new():
             ))
         else:
             if not (-1 == key_id or -1 == user_id):
-                session = service_manager.create_session(user.id, key.id, data[2])
+                session = service_manager.create_session(user.id, key.id, data_deserialized['timestamp'])
                 print('From server - data stored - id: %s user_id: %s key_id: %s timestamp: %s' % (
                     session.id, session.user_id, session.key_id, session.started_on
                 ))
