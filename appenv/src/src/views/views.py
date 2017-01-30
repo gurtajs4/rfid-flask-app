@@ -346,18 +346,19 @@ def api_session_new():
         else:
             session = service_manager.search_session(user_id=user.id, key_id=key.id, started_on=data[2])
         print('From server - is existing session? %s' % (False if session is None else True))
+        print('From server - timestamp of new session is %s' % data[2])
         if None is not session:
             session.closed_on = data[2]
             service_manager.update_session(
                 session.id, session.user_id, session.key_id, session.started_on, session.closed_on
             )
-            print('Session closed: %s user_id: %s key_id: %s started: %s closed: %s' % (
+            print('From server - Session closed: %s user_id: %s key_id: %s started: %s closed: %s' % (
                 session.id, session.user_id, session.key_id, session.started_on, session.closed_on
             ))
         else:
             if not (-1 == key_id or -1 == user_id):
                 session = service_manager.create_session(user.id, key.id, data[2])
-                print('Data stored - id: %s user_id: %s key_id: %s timestamp: %s' % (
+                print('From server - data stored - id: %s user_id: %s key_id: %s timestamp: %s' % (
                     session.id, session.user_id, session.key_id, session.started_on
                 ))
         message['data'] = jserial.session_instance_serialize(session)
