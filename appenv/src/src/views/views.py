@@ -92,9 +92,14 @@ def api_user_register():
         return resp
 
 
-@app.route('/api/users/search/<user_name>', methods=['GET'])
-def api_users_search(user_name):
-    users = service_manager.search_user(first_name=user_name, last_name=user_name, limit=0)
+@app.route('/api/users/search/<queryset>', methods=['GET'])
+def api_users_search(queryset):
+    words = [word for word in queryset.split(' ')]
+    users = []
+    for word in words:
+        results = service_manager.search_user(first_name=word, last_name=word, limit=0)
+        diff=[u for u in (set(jserial.user_instances_serialize(results)) - set(jserial.user_instances_serialize(users)))]
+        users = sorted((users + diff), lambda x: x.id)
     if None is users or 1 > len(users):
         message = {
             'status': 404,
@@ -330,23 +335,19 @@ def api_session_new():
         print('From server - reader data deserialized: %s' % data_deserialized)
         print('From server - user id from data deserialized is %s' % data_deserialized['user_id'])
         user_id = int(data_deserialized['user_id'])
-        print('From server - user id is of type %s' % type(user_id))
         user = service_manager.search_user(tag_id=user_id)
-        print('From server - user found %s' % user.first_name)
         print('From server - key id from data deserialized is %s' % data_deserialized['key_id'])
         key_id = int(data_deserialized['key_id'])
-        print('From server - key id is of type %s' % type(key_id))
         key = service_manager.search_key(tag_id=key_id)
-        print('From server - key found with room id: %s' % key.room_id)
         session = None
         if None is key_id or '' == key_id or None is user_id or '' == user_id:
             print('Key ID or user ID not found so no session can be registered, retry...')
         elif None is user or None is key:
             session = None
         else:
-            session = service_manager.search_session(user_id=user.id, key_id=key.id, started_on=data_deserialized['timestamp'])
+            session = service_manager.search_session(user_id=user.id, key_id=key.id,
+                                                     started_on=data_deserialized['timestamp'])
         print('From server - is existing session? %s' % (False if session is None else True))
-        print('From server - timestamp of new session is %s' % data_deserialized['timestamp'])
         if None is not session:
             session.closed_on = data_deserialized['timestamp']
             service_manager.update_session(
@@ -358,7 +359,7 @@ def api_session_new():
         else:
             if not (-1 == key_id or -1 == user_id):
                 session = service_manager.create_session(user.id, key.id, data_deserialized['timestamp'])
-                print('From server - data stored - id: %s user_id: %s key_id: %s timestamp: %s' % (
+                print('From server - data stored - id: %s user_id: %s key_id: %s started_on: %s' % (
                     session.id, session.user_id, session.key_id, session.started_on
                 ))
         message['data'] = jserial.session_instance_serialize(session)

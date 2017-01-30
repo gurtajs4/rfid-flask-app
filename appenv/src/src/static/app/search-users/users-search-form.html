@@ -1,8 +1,12 @@
 <div class="container">
+    <div>
+        <h1>User Lookup Page</h1>
+        <hr/>
+    </div>
     <div class="panel panel-primary">
-        <div class="panel-heading">{{ usersSearch.title }}</div>
+        <div class="panel-heading">Users search form</div>
         <div class="panel-body">
-            <h3>{{ usersSearch.note }}</h3>
+            <h3>Check for users by entering their name</h3>
             <div class="form-group">
                 <input ng-model="usersSearch.queryset" type="text" placeholder="Enter person ID..."/>
                 <button ng-click="usersSearch.submit()" type="submit" class="btn btn-primary">Search</button>
@@ -11,5 +15,5 @@
         </div>
     </div>
     <hr/>
-    <div users-search-results results="usersSearch.results"></div>
+    <div ng-if="usersSearch.results" users-search-results results="usersSearch.results"></div>
 </div>

@@ -10,8 +10,6 @@
         var self = this;
         var service = usersService;
 
-        self.title = "User Lookup Page";
-        self.note = "Check for users by entering their name";
         self.submit = submit;
         self.cancel = cancel;
         self.results = [];

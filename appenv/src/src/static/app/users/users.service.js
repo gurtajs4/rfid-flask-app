@@ -10,8 +10,8 @@
 
         return service;
 
-        function search(username) {
-            return $http.get('/api/user/search/' + username);
+        function search(queryset) {
+            return $http.get('/api/user/search/' + queryset);
         }
 
         function getItems() {

@@ -36,16 +36,17 @@ def get_users(limit=0):
 
 def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, email=None, role_id=1, pic_id=1, limit=1,
                 exclusive=False):
-    if not (user_id is None and tag_id is None and first_name is None and last_name is None):
+    if not (user_id is None and tag_id is None and first_name is None and last_name is None and email is None):
         db = dbm.get_db()
         cur = db.cursor()
-        params = tuple([p for p in [user_id, tag_id, first_name, last_name, role_id, pic_id] if p is not None])
+        params = tuple([p for p in [user_id, tag_id, first_name, last_name, email, role_id, pic_id] if p is not None])
         condition_operator = ' AND ' if exclusive else ' OR '
         sql_conditions = condition_operator.join(filter(
             lambda x: x is not '', ['id = ? ' if user_id is not None else '',
                                     'tag_id = ? ' if tag_id is not None else '',
                                     'first_name = ? ' if first_name is not None else '',
                                     'last_name = ? ' if last_name is not None else '',
+                                    'email = ? ' if email is not None else '',
                                     'role_id = ? ' if role_id is not None else '',
                                     'pic_id = ? ' if pic_id is not None else '']))
         sql_command = 'SELECT * FROM User WHERE ' + sql_conditions
@@ -54,15 +55,16 @@ def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, emai
         results = [cur.fetchone()] if limit == 1 else cur.fetchall()
         print('From server - user factory - search results %s' % results)
         dbm.close_connection(db)
-        if None is results or 0 == len(results):
+        if None is results or 0 == len(results) or None is results[0]:
             return None
-        users = []
-        if len(results) > 1:
-            users = [User(res[0], res[1], res[2], res[3], res[4], res[5], res[6]) for res in results]
         else:
-            res = results[0]
-            users.append(User(res[0], res[1], res[2], res[3], res[4], res[5], res[6]))
-        return users[0] if limit == 1 else users
+            users = []
+            if len(results) > 1:
+                users = [User(res[0], res[1], res[2], res[3], res[4], res[5], res[6]) for res in results]
+            else:
+                res = results[0]
+                users.append(User(res[0], res[1], res[2], res[3], res[4], res[5], res[6]))
+            return users[0] if limit == 1 else users
     else:
         return None
 

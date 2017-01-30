@@ -52,15 +52,16 @@ def search_key(key_id=None, tag_id=None, room_id=None, limit=1, exclusive=False)
         results = [cur.fetchone()] if limit == 1 else cur.fetchall()
         print('From server - key factory - search results: %s' % results)
         dbm.close_connection(db)
-        if None is results or 0 == len(results):
+        if None is results or 0 == len(results) or None is results[0]:
             return None
-        keys = []
-        if len(results) > 1:
-            keys = [Key(res[0], res[1], res[2]) for res in results]
         else:
-            res = results[0]
-            keys.append(Key(res[0], res[1], res[2]))
-        return keys[0] if limit == 1 else keys
+            keys = []
+            if len(results) > 1:
+                keys = [Key(res[0], res[1], res[2]) for res in results]
+            else:
+                res = results[0]
+                keys.append(Key(res[0], res[1], res[2]))
+            return keys[0] if limit == 1 else keys
     else:
         return None
 

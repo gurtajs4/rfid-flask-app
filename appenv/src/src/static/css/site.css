@@ -55,7 +55,10 @@ body {
 
 .inline-field {
     display: inline-block;
+    /*max-height: 10%;*/
+}
+
+.border-right {
     border-right-style: solid;
     border-right-color: cadetblue;
-    max-height: 30%;
 }
