@@ -367,7 +367,7 @@ def api_session_new():
         return resp
 
 
-@app.route('/api/sessions/delete/<int:id>', methods=['DELETE'])
+@app.route('/api/sessions/delete/<int:session_id>', methods=['DELETE'])
 def api_session_delete(session_id):
     print('From server - delete session with id %s' % session_id)
     if service_manager.delete_session(session_id=session_id):
