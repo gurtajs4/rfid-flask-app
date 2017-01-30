@@ -34,9 +34,8 @@ def get_sessions(limit=0):
     return sessions
 
 
-def search_session(session_id=None, user_id=None, key_id=None, started_on=None, closed_on=None, limit=1,
-                   exclusive=False):
-    if not (user_id is None and key_id is None and started_on is None and closed_on is None) and session_id is not None:
+def search_session(session_id=None, user_id=None, key_id=None, started_on=None, closed_on=None, limit=1, exclusive=False):
+    if not (session_id is None and user_id is None and key_id is None and started_on is None and closed_on is None):
         db = dbm.get_db()
         cur = db.cursor()
         params = tuple([p for p in [session_id, user_id, key_id, started_on, closed_on] if p is not None])
@@ -67,7 +66,7 @@ def search_session(session_id=None, user_id=None, key_id=None, started_on=None, 
 
 
 def delete_session(session_id=None, user_id=None, key_id=None, started_on=None, closed_on=None):
-    if session_id is not None and not (user_id is None and key_id is None and started_on is None and closed_on is None):
+    if not (session_id is None and user_id is None and key_id is None and started_on is None and closed_on is None):
         db = dbm.get_db()
         cur = db.cursor()
         params = tuple([p for p in [session_id, user_id, key_id, started_on, closed_on] if p is not None])
@@ -83,7 +82,7 @@ def delete_session(session_id=None, user_id=None, key_id=None, started_on=None, 
         cur.execute(sql_command, params)
         db.commit()
         # check if session deleted
-        sql_command = 'SELECT * FROM Session WHERE ' + sql_conditions + ' LIMIT 1 '
+        sql_command = 'SELECT * FROM Session WHERE ' + sql_conditions + (' LIMIT 1 ' if session_id is not None else '')
         cur.execute(sql_command, params)
         result = cur.fetchone()
         dbm.close_connection(db)

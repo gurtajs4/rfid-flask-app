@@ -54,7 +54,7 @@
                 }
             }
             self.list = self.list.filter(function (session) {
-                return selectedList.indexOf(session) > -1;
+                return selectedList.indexOf(session) < 0;
             });
         }
     }
