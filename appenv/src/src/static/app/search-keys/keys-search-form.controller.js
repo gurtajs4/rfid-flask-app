@@ -10,8 +10,6 @@
         var self = this;
         var service = keysService;
 
-        self.title = "Keys lookup page";
-        self.note = "Check for keys by entering Key ID number";
         self.submit = submit;
         self.cancel = cancel;
         self.results = [];

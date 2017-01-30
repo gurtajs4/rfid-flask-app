@@ -1,10 +1,14 @@
 <div class="container">
+    <div>
+        <h1>Keys lookup page</h1>
+        <hr/>
+    </div>
     <div class="panel panel-primary">
-        <div class="panel-heading">{{ keysSearch.title }}</div>
+        <div class="panel-heading">Keys search form</div>
         <div class="panel-body">
-            <h3>{{ keysSearch.note }}</h3>
+            <h3>Check for keys by entering tag ID or room number</h3>
             <div class="form-group">
-                <input ng-model="keysSearch.queryset" placeholder="Enter room ID..." type="text"/>
+                <input ng-model="keysSearch.queryset" placeholder="Enter tag or room ID..." type="text"/>
                 <button ng-click="keysSearch.submit()" type="submit" class="btn btn-primary">Search</button>
                 <button ng-click="keysSearch.cancel()" type="reset" class="btn btn-default">Cancel</button>
             </div>

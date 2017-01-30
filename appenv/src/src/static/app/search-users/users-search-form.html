@@ -6,9 +6,9 @@
     <div class="panel panel-primary">
         <div class="panel-heading">Users search form</div>
         <div class="panel-body">
-            <h3>Check for users by entering their name</h3>
+            <h3>Check for users by entering their first name or last name (supported for now)</h3>
             <div class="form-group">
-                <input ng-model="usersSearch.queryset" type="text" placeholder="Enter person ID..."/>
+                <input ng-model="usersSearch.queryset" type="text" placeholder="Enter search data..."/>
                 <button ng-click="usersSearch.submit()" type="submit" class="btn btn-primary">Search</button>
                 <button ng-click="usersSearch.cancel()" type="reset" class="btn btn-default">Cancel</button>
             </div>
