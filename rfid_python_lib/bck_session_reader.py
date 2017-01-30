@@ -18,6 +18,7 @@ def end_read(signal, frame):
 
 def post_tag_data(data):
     url = 'http://0.0.0.0:80/api/sessions/new'
+    print('From passive reader - posting data to server - (data: %s , url: %s)' % (data, url))
     r = requests.post(url, json=json.dumps(data), headers={'Content-type': 'application/json'})
     print('From passive reader - Tag data posted to server...')
     if r.status_code == requests.codes.ok or r.status_code == 200:
