@@ -24,8 +24,6 @@
                             $scope.message = tMessage;
                             $scope.tagData = tData;
                         });
-                        // $log.debug('Tag data from reader: ' + $scope.tagData);
-                        // $log.debug('Message from reader: ' + $scope.message);
                     }, 0);
                 })
                 .catch(function (error) {

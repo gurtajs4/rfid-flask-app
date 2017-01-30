@@ -23,7 +23,6 @@
                     if ("" === singleViewModel.pic_url) {
                         singleViewModel.pic_url = images.getDefaultUserProfileImageUrl();
                     }
-                    $log.info('User ' + singleViewModel + 'added at index ' + key);
                     this.push(singleViewModel)
                 }, viewModel);
                 self.list = viewModel;

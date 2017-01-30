@@ -2,7 +2,13 @@
     <h1 class="col-sm-10">List of all sessions</h1>
     <hr/>
     <div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <button ng-click="sessions.deleteSelected()" class="btn btn-danger">Delete selected</button>
+            </div>
+        </div>
         <div>
+            Select all <input ng-click="sessions.selectAll()" type="checkbox"/>
             Order sessions by:
             <select ng-model="sessions.orderProp" name="orderProp" id="orderProp">
                 <option value="id">Session ID</option>
@@ -13,15 +19,8 @@
             </select>
         </div>
         <hr/>
-        <div ng-repeat="session in sessions.list | orderBy:sessions.orderProp track by $index" class="panel panel-default">
-            <div class="panel-heading">
-                <span>Session ID: <a ng-href="sessions/{{ session.id }}">{{ session.id }}</a> |</span>
-                <span>User ID: {{ session.user_id }} |</span>
-                <span>Key ID: {{ session.key_id }} |</span>
-                <span>Key taken on: {{ session.started_on }}</span>
-                <span>Key returned on: {{ session.closed_on ? session.closed_on : "still active" }}</span>
-                <br/><br/>
-            </div>
+        <div ng-repeat="session in sessions.list | orderBy:sessions.orderProp track by $index" session-info="session">
+
         </div>
     </div>
 </div>

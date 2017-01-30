@@ -1,15 +1,15 @@
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h1>Session ID: {{ sessionInfo.sessionId }}</h1>
+            <h1>Session ID: {{ session.id }}</h1>
         </div>
         <div class="panel-body">
-            <div>User ID: <bold>{{ sessionInfo.userId }}</bold></div>
-            <div>Key ID: <bold>{{ sessionInfo.keyId }}</bold></div>
-            <div>Key taken on: {{ sessionInfo.started_on }}</div>
-            <div>Key returned on: {{ sessionInfo.closed_on ? sessionInfo.closed_on : "still active" }}</div>
-            <br/>
-            <div><a ng-href="sessions/">View all sessions</a></div>
+            <div><input ng-model="session.isSelected" type="checkbox"></div>
+            <div>User ID: <bold>{{ session.user_id }}</bold></div>
+            <div>Key ID: <bold>{{ session.key_id }}</bold></div>
+            <div>Key taken on: {{ session.started_on }}</div>
+            <div>Key returned on: {{ session.closed_on ? session.closed_on : "still active" }}</div>
+            <button ng-href="/api/sessions/delete/{{session.id}}" class="btn btn-primary">Delete </button>
         </div>
     </div>
 </div>

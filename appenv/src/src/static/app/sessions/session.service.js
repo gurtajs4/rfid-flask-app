@@ -10,7 +10,8 @@
 
         var service = {
             sessions: sessions,
-            session: session
+            session: session,
+            sessionDelete: sessionDelete
         };
 
         return service;
@@ -21,6 +22,10 @@
 
         function session(id) {
             return $http.get('/api/sessions/' + id.toString());
+        }
+
+        function sessionDelete(id) {
+            return $http.delete('/api/sessions/delete/' + id.toString());
         }
     }
 })();
