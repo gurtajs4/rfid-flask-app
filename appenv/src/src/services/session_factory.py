@@ -35,7 +35,7 @@ def get_sessions(limit=0):
 
 
 def search_session(session_id=None, user_id=None, key_id=None, started_on=None, closed_on=None, limit=1,
-                   exclusive=False):
+                   exclusive=False, is_active=False):
     if not (session_id is None and user_id is None and key_id is None and started_on is None and closed_on is None):
         db = dbm.get_db()
         cur = db.cursor()
@@ -46,6 +46,7 @@ def search_session(session_id=None, user_id=None, key_id=None, started_on=None, 
                                     ' user_id = ? ' if user_id is not None else '',
                                     ' key_id = ? ' if key_id is not None else '',
                                     ' started_on = ? ' if started_on is not None else '',
+                                    ' closed_on IS NULL' if is_active else
                                     ' closed_on = ? ' if closed_on is not None else '']))
         sql_command = 'SELECT * FROM Session WHERE ' + sql_conditions
         print('From server - session factory - search sql command is %s' % sql_command)
