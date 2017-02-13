@@ -13,7 +13,7 @@
             scope: {
                 user: '=userId'
             },
-            templateUrl: appBaseUrl + 'search-sessions/user-sessions.html',
+            templateUrl: appBaseUrl + '/search-sessions/user-sessions.html',
             controller: 'UserSessionsController'
         };
     }

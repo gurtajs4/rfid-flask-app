@@ -13,7 +13,7 @@
             scope: {
                 key: '=keyId'
             },
-            templateUrl: appBaseUrl + 'search-sessions/key-sessions.html',
+            templateUrl: appBaseUrl + '/search-sessions/key-sessions.html',
             controller: 'KeySessionsController'
         };
     }
