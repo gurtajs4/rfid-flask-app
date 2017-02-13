@@ -13,12 +13,12 @@ def find_process(out):
             words = format_line(line)
             index = int(words.index('PID'))
             print "Index of PID is " + str(index)
-        if 'sudo python read.py' in line or 'sudo python reader.py' in line:
-            print "Task to be stopped: "
-            words = format_line(line)
-            pid = int(words[index])
-            print "PID of reader-task is " + str(pid)
-            os.kill(pid, signal.SIGKILL)
+            if 'sudo python read.py' in line or 'sudo python reader.py' in line:
+                print "Task to be stopped: "
+                words = format_line(line)
+                pid = int(words[index])
+                print "PID of reader-task is " + str(pid)
+                os.kill(pid, signal.SIGKILL)
 
 
 def format_line(line):

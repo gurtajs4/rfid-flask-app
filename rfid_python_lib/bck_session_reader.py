@@ -47,20 +47,16 @@ while continue_reading:
         if "" == backData or None is backData:
             continue
         tag_data = int(str(backData[0]) + str(backData[1]) + str(backData[2]) + str(backData[3]) + str(backData[4]))
-        # tag_data = int(reduce(lambda x, y: str(x) + str(y), backData))
-        if current_userId == -1 and len(str(tag_data)) == 13:
+        if len(str(tag_data)) == 13:
             current_userTTL = time.time() + 120
             current_userId = tag_data
             print("User ID: %s" % current_userId)
-        elif current_keyId == -1 and len(str(tag_data)) == 12:
+        elif len(str(tag_data)) == 12:
             if current_userId == -1:
                 current_userTTL = time.time() + 120
             current_keyId = tag_data
             print("Key ID: %s" % current_keyId)
-        if current_keyId == current_userId:
-            current_keyId = -1
-            continue
-        if current_keyId != current_userId and current_keyId > -1 and current_userId > -1:
+        if current_keyId > -1 and current_userId > -1:
             session = {
                 'user_id': str(current_userId),
                 'key_id': str(current_keyId),
