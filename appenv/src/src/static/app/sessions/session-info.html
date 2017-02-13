@@ -9,7 +9,6 @@
             <div>Key ID: <bold>{{ session.key_id }}</bold></div>
             <div>Key taken on: {{ session.started_on }}</div>
             <div>Key returned on: {{ session.closed_on ? session.closed_on : "still active" }}</div>
-            <button ng-href="/api/sessions/delete/{{session.id}}" class="btn btn-primary">Delete </button>
         </div>
     </div>
 </div>

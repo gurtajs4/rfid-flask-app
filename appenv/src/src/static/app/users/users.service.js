@@ -6,7 +6,8 @@
         var service = {
             search: search,
             getItems: getItems,
-            getItem: getItem
+            getItem: getItem,
+            userDelete: userDelete
         };
 
         return service;
@@ -21,6 +22,10 @@
 
         function getItem(userId) {
             return $http.get('/api/user/get/' + userId.toString());
+        }
+
+        function userDelete(id) {
+            return $http.delete('/api/user/delete/' + id.toString());
         }
     }
 })();

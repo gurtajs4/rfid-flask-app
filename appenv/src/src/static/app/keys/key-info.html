@@ -5,8 +5,11 @@
         <span>Tag ID: {{key.tag_id}}</span>
         <span>Room number: {{key.room_id}}</span>
         <span></span>
-        <div>
+        <div ng-init="key.isSelected = false">
             <button class="btn btn-primary">Edit</button>
+            <button ng-click="key.isSelected=!key.isSelected" class="btn btn-danger">
+                {{ key.isSelected ? 'Deselect' : 'Select' }}
+            </button>
         </div>
     </div>
 </div>

@@ -11,6 +11,8 @@
         var service = usersService;
         var images = imagesService;
 
+        self.deleteSelected = deleteSelected;
+
         init();
 
         function init() {
@@ -26,6 +28,29 @@
                     this.push(singleViewModel)
                 }, viewModel);
                 self.list = viewModel;
+            });
+        }
+
+        function deleteById(id) {
+            return service.userDelete(id).then(function (response) {
+                return true;
+            }).catch(function (error) {
+                $log.error(' error: ' + error);
+                return false;
+            });
+        }
+
+        function deleteSelected() {
+            var selectedList = self.list.filter(function (session) {
+                return session.isSelected;
+            });
+            for (var i = 0; i < selectedList.length; i++) {
+                if (!deleteById(selectedList[i].id)) {
+                    $log.error('Failed to delete session with id ' + id.toString());
+                }
+            }
+            self.list = self.list.filter(function (session) {
+                return selectedList.indexOf(session) < 0;
             });
         }
     }

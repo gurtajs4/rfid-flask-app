@@ -1,6 +1,9 @@
 <div class="container">
-    <div class="row">
-        <div class="btn btn-default"><a class="no-decoration" ng-href="/user-details/{{user.user_id}}">Details</a></div>
+    <div ng-init="user.isSelected=false" class="row">
+        <div class="btn btn-default inline-field"><a class="no-decoration" ng-href="/user-details/{{user.user_id}}">Details</a></div>
+        <button ng-click="user.isSelected=!user.isSelected" class="btn btn-danger">
+            {{ user.isSelected ? 'Deselect' : 'Select' }}
+        </button>
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h4>User number: {{user.user_id}}</h4>

@@ -10,7 +10,8 @@
         var service = {
             search: search,
             getItems: getItems,
-            getItem: getItem
+            getItem: getItem,
+            keyDelete: keyDelete
         };
 
         return service;
@@ -25,6 +26,10 @@
 
         function getItem(keyId) {
             return $http.get('/api/key/get/' + keyId.toString());
+        }
+
+        function keyDelete(id) {
+            return $http.delete('/api/key/delete/' + id.toString());
         }
     }
 })();

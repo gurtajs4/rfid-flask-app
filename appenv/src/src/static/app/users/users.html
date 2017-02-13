@@ -2,6 +2,11 @@
     <h1>Users registered</h1>
     <hr/>
     <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <button ng-click="users.deleteSelected()" class="btn btn-danger">Delete selected</button>
+            </div>
+        </div>
         <div>
             Order users by:
             <select ng-model="users.orderProp" name="orderProp" id="orderProp">

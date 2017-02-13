@@ -2,6 +2,11 @@
     <h1>List of all available keys</h1>
     <hr/>
     <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <button ng-click="keys.deleteSelected()" class="btn btn-danger">Delete selected</button>
+            </div>
+        </div>
         <div>
             Order keys by:
             <select ng-model="keys.orderProp" name="orderProp" id="orderProp">

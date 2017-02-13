@@ -155,6 +155,24 @@ def api_user_get(user_id):
         return resp
 
 
+@app.route('/api/user/delete/<int:user_id>', methods=['DELETE'])
+def api_user_delete(user_id):
+    print('From server - delete user %s' % user_id)
+    if service_manager.delete_user(user_id=user_id):
+        message = {
+            'status': 200,
+            'message': 'User deleted'
+        }
+    else:
+        message = {
+            'status': 404,
+            'message': 'Not found'
+        }
+    resp = jsonify(message)
+    resp.status_code = message['status']
+    return resp
+
+
 # *********** user auth requests ***********
 
 
@@ -283,6 +301,24 @@ def api_key_get(key_id):
         resp = jsonify(data)
         resp.status_code = 200
         return resp
+
+
+@app.route('/api/key/delete/<int:key_id>', methods=['DELETE'])
+def api_key_delete(key_id):
+    print('From server - delete key %s' % key_id)
+    if service_manager.delete_key(key_id=key_id):
+        message = {
+            'status': 200,
+            'message': 'Key deleted'
+        }
+    else:
+        message = {
+            'status': 404,
+            'message': 'Not found'
+        }
+    resp = jsonify(message)
+    resp.status_code = message['status']
+    return resp
 
 
 # *********** sessions ***********
