@@ -14,7 +14,7 @@
         function init() {
             service.getSessionsByUser($scope.userId).then(function (response) {
                 $timeout(function () {
-                    $scope.apply(function () {
+                    $scope.$apply(function () {
                         var data = response.data;
                         var viewModel = [];
                         for (var i = 0; i < data.length; i++) {
