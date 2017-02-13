@@ -9,7 +9,8 @@
     function keysService($http) {
         var service = {
             search: search,
-            getItems: getItems
+            getItems: getItems,
+            getItem: getItem
         };
 
         return service;
@@ -20,6 +21,10 @@
 
         function getItems() {
             return $http.get('api/keys');
+        }
+
+        function getItem(keyId) {
+            return $http.get('/api/key/get/' + keyId.toString());
         }
     }
 })();

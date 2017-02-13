@@ -15,11 +15,11 @@
         return service;
 
         function getSessionsByKey(keyId) {
-            return $http.get('/api/sessions/key/', keyId.toString());
+            return $http.get('/api/sessions/key/' + keyId.toString());
         }
 
         function getSessionsByUser(userId) {
-            return $http.get('/api/sessions/user/', userId.toString());
+            return $http.get('/api/sessions/user/' + userId.toString());
         }
     }
 })();

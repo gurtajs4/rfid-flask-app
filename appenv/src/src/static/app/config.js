@@ -32,6 +32,9 @@
             templateUrl: appBaseUrl + '/keys/keys.html',
             controller: 'KeysController',
             controllerAs: 'keys'
+        }).when('/key-details/:id', {
+            templateUrl: appBaseUrl + '/key-details/key-details.html',
+            controller: 'KeyDetailsController'
         }).when('/keys/search', {
             templateUrl: appBaseUrl + '/search-keys/keys-search-form.html',
             controller: 'KeysSearchController',
@@ -40,6 +43,9 @@
             templateUrl: appBaseUrl + '/users/users.html',
             controller: 'UsersController',
             controllerAs: 'users'
+        }).when('/user-details/:id', {
+            templateUrl: appBaseUrl + '/user-details/user-details.html',
+            controller: 'UserDetailsController'
         }).when('/users/search', {
             templateUrl: appBaseUrl + '/search-users/users-search-form.html',
             controller: 'UsersSearchController',
