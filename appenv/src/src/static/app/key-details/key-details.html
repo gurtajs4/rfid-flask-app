@@ -1,9 +1,11 @@
 <div class="container">
-    <div ng-if="keyData!=null">
-        <div key-info="keyData"></div>
-        <div key-sessions key="keyId"></div>
-    </div>
-    <div ng-if="!keyData">
-        Key data cannot be displayed...
+    <div>
+        <div ng-if="keyData!=null">
+            <div key-info="keyData"></div>
+            <div key-sessions key="keyId"></div>
+        </div>
+        <div ng-if="!keyData">
+            Key data cannot be displayed...
+        </div>
     </div>
 </div>

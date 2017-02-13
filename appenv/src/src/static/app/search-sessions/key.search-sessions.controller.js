@@ -5,7 +5,7 @@
         .module('appMain')
         .controller('KeySessionsController', KeySessionsController);
 
-    KeySessionsController.$inject = ['$scope', 'timeout', 'searchSessionsService'];
+    KeySessionsController.$inject = ['$scope', '$timeout', 'searchSessionsService'];
     function KeySessionsController($scope, $timeout, searchSessionsService) {
         var service = searchSessionsService;
 

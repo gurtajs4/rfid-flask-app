@@ -1,9 +1,11 @@
 <div class="container">
-    <div ng-if="userData!=null">
-        <div user-info="userData"></div>
-        <div user-sessions user="userId"></div>
-    </div>
-    <div ng-if="!userData">
-        User cannot be displayed...
+    <div>
+        <div ng-if="userData!=null">
+            <div user-info="userData"></div>
+            <div user-sessions user="userId"></div>
+        </div>
+        <div ng-if="!userData">
+            User cannot be displayed...
+        </div>
     </div>
 </div>
