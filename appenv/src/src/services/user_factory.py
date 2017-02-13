@@ -34,7 +34,7 @@ def get_users(limit=0):
     return users
 
 
-def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, email=None, role_id=1, pic_id=1, limit=1,
+def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, email=None, role_id=None, pic_id=None, limit=1,
                 exclusive=False):
     if not (user_id is None and tag_id is None and first_name is None and last_name is None and email is None):
         db = dbm.get_db()

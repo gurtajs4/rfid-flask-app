@@ -139,7 +139,7 @@ def api_user_tag_search(tag_id):
 @app.route('/api/user/get/<int:user_id>', methods=['GET'])
 def api_user_get(user_id):
     print('From server - user get - user id: %s' % user_id)
-    user_data = service_manager.search_user(user_id=user_id)
+    user_data = service_manager.search_user(user_id=user_id, exclusive=True)
     if None is user_data:
         message = {
             'status': 404,
@@ -288,7 +288,7 @@ def api_key_tag_search(tag_id):
 
 @app.route('/api/key/get/<int:key_id>', methods=['GET'])
 def api_key_get(key_id):
-    key_data = service_manager.search_key(key_id=key_id)
+    key_data = service_manager.search_key(key_id=key_id, exclusive=True)
     if None is key_data:
         message = {
             'status': 404,
