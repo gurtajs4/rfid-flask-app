@@ -19,7 +19,7 @@
         }
 
         function getSessionsByUser(userId) {
-            return $http.get('/api/sessions/user/' + userId.toString());
+            return $http.get('/api/sessions/user/', userId.toString());
         }
     }
 })();
