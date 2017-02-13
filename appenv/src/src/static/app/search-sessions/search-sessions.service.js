@@ -5,7 +5,7 @@
         .module('appMain')
         .service('searchSessionsService', searchSessionsService);
 
-    searchSessionsService.$inject = ['searchSessionsService'];
+    searchSessionsService.$inject = ['$http'];
     function searchSessionsService($http) {
         var service = {
             getSessionsByKey:getSessionsByKey,
