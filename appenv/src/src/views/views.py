@@ -383,8 +383,10 @@ def api_session_new():
         elif None is user or None is key:
             session = None
         else:
-            session = service_manager.search_session(user_id=user.id, key_id=key.id,
-                                                     started_on=data_deserialized['timestamp'])
+            session = service_manager.search_session(user_id=user.id,
+                                                     key_id=key.id,
+                                                     started_on=data_deserialized['timestamp'],
+                                                     exclusive=True)
         print('From server - is existing session? %s' % (False if session is None else True))
         if None is not session:
             session.closed_on = data_deserialized['timestamp']
