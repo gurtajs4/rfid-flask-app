@@ -139,7 +139,7 @@ def api_user_tag_search(tag_id):
 @app.route('/api/user/get/<int:user_id>', methods=['GET'])
 def api_user_get(user_id):
     user_data = service_manager.search_user(user_id=user_id)
-    if None is user:
+    if None is user_data:
         message = {
             'status': 404,
             'message': 'Not Found - user you are searching for is not registered'
