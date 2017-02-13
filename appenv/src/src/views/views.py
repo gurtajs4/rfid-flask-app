@@ -95,12 +95,14 @@ def api_user_register():
 @app.route('/api/users/search/<queryset>', methods=['GET'])
 def api_users_search(queryset):
     words = [word for word in queryset.split(' ')]
+    print('From server - users search - queryset is %s' % words)
     users = []
     for word in words:
         results = service_manager.search_user(first_name=word, last_name=word, limit=0)
         diff = [u for u in
                 (set(jserial.user_instances_serialize(results)) - set(jserial.user_instances_serialize(users)))]
         users = sorted((users + diff), lambda x: x.id)
+    print('From server - users search - users returned: %s' % users)
     if None is users or 1 > len(users):
         message = {
             'status': 404,

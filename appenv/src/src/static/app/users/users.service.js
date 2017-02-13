@@ -13,7 +13,7 @@
         return service;
 
         function search(queryset) {
-            return $http.get('/api/user/search/' + queryset);
+            return $http.get('/api/users/search/' + queryset);
         }
 
         function getItems() {
