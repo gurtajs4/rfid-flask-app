@@ -1,13 +1,13 @@
 <div class="container">
     <div class="row">
-        <button class="btn btn-default" ng-href="/user-details/{{user.user_id}}">Details</button>
+        <div class="btn btn-default"><a class="no-decoration" ng-href="/user-details/{{user.user_id}}">Details</a></div>
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h4>User number: {{user.user_id}}</h4>
                 <h5>Role: {{user.role_title}}</h5>
             </div>
             <div class="panel-body">
-                <div class="user-field drop-box-container inline-field border-right"><img class="img-thumbnail img-responsive" ng-src="{{user.pic_url}}" alt="avatar"></div>
+                <div class="user-field drop-box-container img-field border-right"><img class="img-rounded img-responsive img-field" ng-src="{{user.pic_url}}" alt="avatar"></div>
                 <span class="user-field">{{user.first_name}} {{user.last_name}}</span>
                 <span class="user-field"><i>{{user.email}}</i></span>
                 <span class="user-field">{{user.tag_id}}</span>

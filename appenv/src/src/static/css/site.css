@@ -49,16 +49,24 @@ body {
     background-color: #8c8c8c;
 }
 
+.inline-field {
+    display: inline-block;
+}
+
 .user-field {
     max-width: 30%;
 }
 
-.inline-field {
-    display: inline-block;
-    /*max-height: 10%;*/
+.img-field {
+    max-height: 150px;
+    max-width: 150px;
 }
 
 .border-right {
     border-right-style: solid;
     border-right-color: cadetblue;
+}
+
+a.no-decoration {
+    text-decoration: none;
 }
