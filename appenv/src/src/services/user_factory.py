@@ -50,7 +50,7 @@ def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, emai
                                     'role_id = ? ' if role_id is not None else '',
                                     'pic_id = ? ' if pic_id is not None else '']))
         sql_command = 'SELECT * FROM User WHERE ' + sql_conditions
-        print('From server - user factory - search sql command %s' % sql_command)
+        print('From server - user factory - search sql command %s %s' % (sql_command, params))
         cur.execute(sql_command, params)
         results = [cur.fetchone()] if limit == 1 else cur.fetchall()
         print('From server - user factory - search results %s' % results)
