@@ -5,10 +5,9 @@
         .module('appMain')
         .controller('UserSessionsController', UserSessionsController);
 
-    UserSessionsController.$inject = ['$scope', '$routeParams', '$timeout', 'searchSessionsService'];
-    function UserSessionsController($scope, $routeParams, $timeout, searchSessionsService) {
+    UserSessionsController.$inject = ['$scope', '$timeout', 'searchSessionsService'];
+    function UserSessionsController($scope, $timeout, searchSessionsService) {
         var service = searchSessionsService;
-        $scope.userId = $routeParams.id;
 
         init();
 

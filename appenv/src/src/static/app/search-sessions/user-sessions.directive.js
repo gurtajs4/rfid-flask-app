@@ -11,7 +11,7 @@
         return {
             restrict: 'EA',
             scope: {
-                user: '=userId'
+                userId: '=user'
             },
             templateUrl: appBaseUrl + '/search-sessions/user-sessions.html',
             controller: 'UserSessionsController'
