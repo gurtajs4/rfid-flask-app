@@ -1,6 +1,8 @@
 <div class="container">
     <div ng-init="user.isSelected=false" class="row">
-        <div class="btn btn-default inline-field"><a class="no-decoration" ng-href="/user-details/{{user.user_id}}">Details</a></div>
+        <div class="btn btn-default inline-field">
+            <a class="no-decoration" ng-href="/user-details/{{user.user_id}}">Details</a>
+        </div>
         <button ng-click="user.isSelected=!user.isSelected" class="btn btn-danger">
             {{ user.isSelected ? 'Deselect' : 'Select' }}
         </button>
@@ -10,8 +12,9 @@
                 <h5>Role: {{user.role_title}}</h5>
             </div>
             <div class="panel-body">
-                <div class="img-container inline-field border-right"><img class="img-rounded img-responsive img-field"
-                                                                       ng-src="{{user.pic_url}}" alt="avatar"></div>
+                <div class="img-container inline-field border-right">
+                    <img class="img-rounded img-responsive img-field" ng-src="{{user.pic_url}}" alt="avatar">
+                </div>
                 <div class="inline-field">
                     <span class="user-field">{{user.first_name}} {{user.last_name}}</span>
                     <span class="user-field"><i>{{user.email}}</i></span>

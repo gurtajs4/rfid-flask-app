@@ -3,8 +3,8 @@
 
     angular.module('appMain').controller('UserDetailsController', UserDetailsController);
 
-    UserDetailsController.$inject = ['$scope', '$routeParams', 'usersService'];
-    function UserDetailsController($scope, $routeParams, usersService) {
+    UserDetailsController.$inject = ['$scope', '$routeParams', '$location', 'usersService'];
+    function UserDetailsController($scope, $routeParams, $location, usersService) {
         var service = usersService;
 
         $scope.userId = $routeParams.id;
@@ -16,6 +16,16 @@
                 var data = response.data;
                 $scope.userData = JSON.parse(data);
             });
+        }
+
+        function deleteItem() {
+            if ($scope.userData.isSelected) {
+                service.userDelete($scope.userId).then(function (response) {
+                    $location.url('/users');
+                }).catch(function (error) {
+                    window.alert(' error: ' + error);
+                });
+            }
         }
     }
 })();

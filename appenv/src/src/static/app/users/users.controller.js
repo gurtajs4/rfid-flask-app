@@ -41,9 +41,10 @@
         }
 
         function deleteSelected() {
-            var selectedList = self.list.filter(function (session) {
-                return session.isSelected;
+            var selectedList = self.list.filter(function (user) {
+                return user.isSelected;
             });
+            $log.info('Selected users: ', selectedList);
             for (var i = 0; i < selectedList.length; i++) {
                 if (!deleteById(selectedList[i].id)) {
                     $log.error('Failed to delete session with id ' + id.toString());

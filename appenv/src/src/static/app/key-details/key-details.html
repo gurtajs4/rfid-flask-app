@@ -4,6 +4,11 @@
         <hr/>
     </div>
     <div>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <button ng-click="deleteItem()" class="btn btn-danger">Delete selected</button>
+            </div>
+        </div>
         <div ng-if="keyData!=null">
             <div key-info="keyData"></div>
             <div key-sessions key="keyId"></div>
