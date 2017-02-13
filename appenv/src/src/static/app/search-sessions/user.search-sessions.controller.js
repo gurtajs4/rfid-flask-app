@@ -5,14 +5,15 @@
         .module('appMain')
         .controller('UserSessionsController', UserSessionsController);
 
-    UserSessionsController.$inject = ['$scope', '$timeout', 'searchSessionsService'];
-    function UserSessionsController($scope, $timeout, searchSessionsService) {
+    UserSessionsController.$inject = ['$scope', '$routeParams', '$timeout', 'searchSessionsService'];
+    function UserSessionsController($scope, $routeParams, $timeout, searchSessionsService) {
         var service = searchSessionsService;
+        $scope.userId = $routeParams.id;
 
         init();
 
         function init() {
-            service.getSessionsByUser(self.userId).then(function (response) {
+            service.getSessionsByUser($scope.userId).then(function (response) {
                 $timeout(function () {
                     $scope.apply(function () {
                         var data = response.data;
