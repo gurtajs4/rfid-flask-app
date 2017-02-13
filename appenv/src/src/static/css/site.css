@@ -55,11 +55,16 @@ body {
 
 .user-field {
     max-width: 30%;
+    padding-right: 10px;
 }
 
 .img-field {
     max-height: 150px;
     max-width: 150px;
+}
+
+.img-container {
+    max-width: 165px;
 }
 
 .border-right {

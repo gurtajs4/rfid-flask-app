@@ -7,10 +7,13 @@
                 <h5>Role: {{user.role_title}}</h5>
             </div>
             <div class="panel-body">
-                <div class="user-field drop-box-container inline-field border-right"><img class="img-rounded img-responsive img-field" ng-src="{{user.pic_url}}" alt="avatar"></div>
-                <span class="user-field">{{user.first_name}} {{user.last_name}}</span>
-                <span class="user-field"><i>{{user.email}}</i></span>
-                <span class="user-field">{{user.tag_id}}</span>
+                <div class="img-container inline-field border-right"><img class="img-rounded img-responsive img-field"
+                                                                       ng-src="{{user.pic_url}}" alt="avatar"></div>
+                <div class="inline-field">
+                    <span class="user-field">{{user.first_name}} {{user.last_name}}</span>
+                    <span class="user-field"><i>{{user.email}}</i></span>
+                    <span class="user-field">{{user.tag_id}}</span>
+                </div>
             </div>
         </div>
     </div>
