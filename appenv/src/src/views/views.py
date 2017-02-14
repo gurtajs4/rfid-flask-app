@@ -267,8 +267,13 @@ def api_keys_search(room_id):
         return resp
     else:
         data = jserial.key_instance_serialize(key_instance=key)
-        resp = jsonify(data)
-        resp.status_code = 200
+        print('From server - keys search - data is %s' % data)
+        message = {
+            'status': 200,
+            'data': data
+        }
+        resp = jsonify(message)
+        resp.status_code = message['status']
         return resp
 
 
