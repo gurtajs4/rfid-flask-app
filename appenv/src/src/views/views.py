@@ -100,7 +100,8 @@ def api_users_search(queryset):
     for word in words:
         results = service_manager.search_user(first_name=word, last_name=word, limit=0)
         users = users + results
-    users = sorted(list(set(users)), key=attrgetter('id'))  #key=lambda x: x.id)
+    users = sorted(list(set(users)), key=lambda x: x.id)
+    # users.sort(list(set(users)), key=lambda x: x.id)
     print('From server - users search - users returned: %s' % users)
     if None is users or 1 > len(users):
         message = {
