@@ -99,7 +99,7 @@ def api_users_search(queryset):
     users = []
     for word in words:
         results = service_manager.search_user(first_name=word, last_name=word, limit=0)
-        diff = [u for u in
+        diff = [jserial.user_instance_deserialize(u) for u in
                 (set(jserial.user_instances_serialize(results)) - set(jserial.user_instances_serialize(users)))]
         users = sorted((users + diff), lambda x: x.id)
     print('From server - users search - users returned: %s' % users)
