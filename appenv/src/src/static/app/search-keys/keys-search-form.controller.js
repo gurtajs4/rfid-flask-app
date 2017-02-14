@@ -17,12 +17,11 @@
         function submit() {
             service.search(self.queryset).then(function (response) {
                 var data = response.data;
-                $log.info(data);
+                $log.info();
                 var viewModel = [];
-                angular.forEach(data, function (value, key) {
-                    var singleViewModel = JSON.parse(value);
-                    this.push(singleViewModel);
-                }, viewModel);
+                var key = JSON.parse(data['data']);
+                $log.info(key);
+                viewModel.push(key);
                 self.results = viewModel;
             }).catch(function (error) {
                 $log.error(error.data);
