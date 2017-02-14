@@ -17,11 +17,12 @@
         function submit() {
             service.search(self.queryset).then(function (response) {
                 var data = response.data;
-                $log.info();
+                $log.info(data);
                 var viewModel = [];
                 var key = JSON.parse(data['data']);
                 $log.info(key);
                 viewModel.push(key);
+                $log.info(viewModel);
                 self.results = viewModel;
             }).catch(function (error) {
                 $log.error(error.data);
