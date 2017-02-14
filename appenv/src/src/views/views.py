@@ -100,8 +100,8 @@ def api_users_search(queryset):
     for word in words:
         results = service_manager.search_user(first_name=word, last_name=word, limit=0)
         users = users + results
-    users = sorted(list(set(users)), key=lambda x: x.id)
-    # users.sort(list(set(users)), key=lambda x: x.id)
+    users = list(set(users))
+    users = sorted(users, key=lambda x: x.id)
     print('From server - users search - users returned: %s' % users)
     if None is users or 1 > len(users):
         message = {
@@ -254,7 +254,9 @@ def api_key_register():
 
 @app.route('/api/keys/search/<int:room_id>', methods=['GET'])
 def api_keys_search(room_id):
+    print('From server - keys search - type of room_id is %s' % type(room_id))
     key = service_manager.search_key(room_id=int(room_id))
+    print('From server - keys search - key is %s' % key.room_id)
     if None is key:
         message = {
             'status': 404,
