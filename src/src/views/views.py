@@ -98,8 +98,9 @@ def api_users_search(queryset):
     users = []
     for word in words:
         results = service_manager.search_user(first_name=word, last_name=word, limit=0)
-        map(lambda x: users.append(x) if x.id not in [y.id for y in users] else False, results)
-        users = sorted(users, key=lambda x: x.id)
+        if None is not results or 1 > len(results):
+            map(lambda x: users.append(x) if x.id not in [y.id for y in users] else False, results)
+            users = sorted(users, key=lambda x: x.id)
     if None is users or 1 > len(users):
         message = {
             'status': 404,
@@ -261,7 +262,7 @@ def api_keys_search(queryset):
             room_id = int(word)
             key = service_manager.search_key(room_id=int(room_id))
             print('From server - keys search - key found: %s' % key.room_id)
-            if key.id not in [y.id for y in keys]:
+            if key.id not in [y.id for y in keys] and key is not None:
                 keys.append(key)
             print('From server - keys search - keys count: %s' % len(keys))
     if None is keys or 1 > len(keys):
