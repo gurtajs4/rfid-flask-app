@@ -104,7 +104,6 @@ def api_users_search(queryset):
         map(lambda x: users.append(x) if x not in users else False, unique_results)
         # users = users + unique_results
     users = sorted(users, key=lambda x: x.id)
-    print('From server - users search - users returned: %s' % users)
     if None is users or 1 > len(users):
         message = {
             'status': 404,
@@ -116,6 +115,7 @@ def api_users_search(queryset):
     else:
         ui_models = [service_manager.get_user_ui_model(u) for u in users]
         data = jserial.user_instances_serialize(user_list=ui_models)
+        print('From server - users search - users returned: %s' % data)
         resp = jsonify(data)
         resp.status_code = 200
         return resp
