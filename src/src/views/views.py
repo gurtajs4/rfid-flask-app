@@ -99,9 +99,9 @@ def api_users_search(queryset):
     users = []
     for word in words:
         results = service_manager.search_user(first_name=word, last_name=word, limit=0)
-        unique_results = []
-        map(lambda x: unique_results.append(x) if x not in unique_results else False, results)
-        map(lambda x: users.append(x) if x not in users else False, unique_results)
+        print('From server - users search - current users count: %s' % len(users))
+        map(lambda x: users.append(x) if x not in users else False, results)
+        print('From server - users search - current users count: %s' % len(users))
         # users = users + unique_results
     users = sorted(users, key=lambda x: x.id)
     if None is users or 1 > len(users):
