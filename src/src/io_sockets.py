@@ -12,7 +12,7 @@ current_user = {}
 
 @socket_io.on('connect')
 def make_connection():
-    session['uuid'] = uuid.uuid1()
+    session['uuid'] = uuid.uuid4()
     session['username'] = 'user-' + str(session['uuid'])
     current_user = {
         'sid': session['uuid'],
