@@ -1,7 +1,7 @@
 import os
 import json
 from ..models.models import Session
-from ..config import sqlite_dir_path as data_store_path
+from ..config import DATA_DIR_PATH as data_store_path
 
 
 # class that encapsulates session storage logic for managing session storage
