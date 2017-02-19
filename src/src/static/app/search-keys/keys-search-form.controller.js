@@ -19,10 +19,10 @@
                 var data = response.data;
                 $log.info(data);
                 var viewModel = [];
-                var key = JSON.parse(data['data']);
-                $log.info(key);
-                viewModel.push(key);
-                $log.info(viewModel);
+                angular.forEach(data, function (value, key) {
+                    var singleViewModel = JSON.parse(value);
+                    this.push(singleViewModel);
+                }, viewModel);
                 self.results = viewModel;
             }).catch(function (error) {
                 $log.error(error.data);

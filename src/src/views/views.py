@@ -95,15 +95,11 @@ def api_user_register():
 @app.route('/api/users/search/<queryset>', methods=['GET'])
 def api_users_search(queryset):
     words = [word for word in queryset.split(' ')]
-    print('From server - users search - queryset is %s' % words)
     users = []
     for word in words:
         results = service_manager.search_user(first_name=word, last_name=word, limit=0)
-        print('From server - users search - current users count: %s' % len(users))
         map(lambda x: users.append(x) if x.id not in [y.id for y in users] else False, results)
-        print('From server - users search - current users count: %s' % len(users))
-        # users = users + unique_results
-    users = sorted(users, key=lambda x: x.id)
+        users = sorted(users, key=lambda x: x.id)
     if None is users or 1 > len(users):
         message = {
             'status': 404,
@@ -254,12 +250,21 @@ def api_key_register():
         return resp
 
 
-@app.route('/api/keys/search/<int:room_id>', methods=['GET'])
-def api_keys_search(room_id):
-    print('From server - keys search - type of room_id is %s' % type(room_id))
-    key = service_manager.search_key(room_id=int(room_id))
-    print('From server - keys search - key is %s' % key.room_id)
-    if None is key:
+@app.route('/api/keys/search/<queryset>', methods=['GET'])
+def api_keys_search(queryset):
+    print('From server - keys search - queryset is %s' % queryset)
+    words = [word for word in queryset.split(' ')]
+    keys = []
+    for word in words:
+        if word.isdigit():
+            print('From server - keys search - keys count: %s' % len(keys))
+            room_id = int(word)
+            key = service_manager.search_key(room_id=int(room_id))
+            print('From server - keys search - key found: %s' % key.room_id)
+            if key.id not in [y.id for y in keys]:
+                keys.append(key)
+            print('From server - keys search - keys count: %s' % len(keys))
+    if None is keys or 1 > len(keys):
         message = {
             'status': 404,
             'message': 'Not Found' + request.url,
@@ -268,14 +273,10 @@ def api_keys_search(room_id):
         resp.status_code = 404
         return resp
     else:
-        data = jserial.key_instance_serialize(key_instance=key)
+        data = jserial.key_instances_serialize(key_list=keys)
         print('From server - keys search - data is %s' % data)
-        message = {
-            'status': 200,
-            'data': data
-        }
-        resp = jsonify(message)
-        resp.status_code = message['status']
+        resp = jsonify(data)
+        resp.status_code = 200
         return resp
 
 
