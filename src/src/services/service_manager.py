@@ -1,13 +1,13 @@
-from ..models.adapters import UserProfile
-from ..db import SqliteManager
-from .db_seed import DbInitializer
+import images_service
 import key_factory
-import user_factory
 import session_factory
 import user_auth_request_service
-import images_service
+import user_factory
+from .db_seed import DbInitializer
+from ..db import SqliteManager
 from ..embedded.mfrc_service import ServiceMFRC
 from ..io_sockets import reader_output, send_message
+from ..models.adapters import UserProfile
 
 
 class ServiceManager(object):
