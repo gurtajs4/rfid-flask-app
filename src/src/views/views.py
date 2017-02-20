@@ -261,9 +261,10 @@ def api_keys_search(queryset):
             print('From server - keys search - keys count: %s' % len(keys))
             room_id = int(word)
             key = service_manager.search_key(room_id=room_id)
-            if key.id not in [y.id for y in keys] and key is not None:
-                keys.append(key)
-                print('From server - keys search - key found: %s' % key.room_id)
+            if None is not key:
+                if key.id not in [y.id for y in keys]:
+                    keys.append(key)
+                    print('From server - keys search - key found: %s' % key.room_id)
             print('From server - keys search - keys count: %s' % len(keys))
     if None is keys or 1 > len(keys):
         message = {
