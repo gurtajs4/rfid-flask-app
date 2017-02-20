@@ -79,7 +79,8 @@ a.no-decoration {
 #hero-img {
     /*background-image: url("../images/hero-01.jpg");*/
     image-orientation: 90deg;
-    max-height: 70%;
+    height: 650px;
+    max-height: 60%;
     /*height: 70%;*/
 
     /*-webkit-transform: rotate(90deg);*/
