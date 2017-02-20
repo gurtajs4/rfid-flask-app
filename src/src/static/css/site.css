@@ -75,3 +75,9 @@ body {
 a.no-decoration {
     text-decoration: none;
 }
+
+.hero-img {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}

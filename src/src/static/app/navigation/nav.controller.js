@@ -29,9 +29,10 @@
         ];
 
         $scope.$on('$routeChangeSuccess', function (previous, current) {
-            console.log(current.$$route.originalPath);
-            var originalPath = current.$$route.originalPath.substring(1);
-            checkPath(originalPath);
+            if (current.$$route.callableFunction === 'function' && current.$$route.callableFunction()) {
+                var originalPath = current.$$route.originalPath.substring(1);
+                checkPath(originalPath);
+            }
         });
 
         function setActive(tabId) {
