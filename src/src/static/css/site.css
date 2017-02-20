@@ -77,6 +77,8 @@ a.no-decoration {
 }
 
 #hero-img {
+    content: "";
+    position: absolute;
     background-image: url("../images/hero-01.jpg");
     /*image-orientation: 90deg;*/
     height: 70%;
@@ -89,7 +91,7 @@ a.no-decoration {
     transform: rotate(90deg);
 }
 
-#hero-caption:before {
+#hero-img::after {
     -webkit-transform: rotate(-90deg);
     -moz-transform: rotate(-90deg);
     -ms-transform: rotate(-90deg);
