@@ -44,11 +44,17 @@
 
         function checkPath(originalPath) {
             var availableRoutes = $scope.leftNav.concat($scope.midNav.concat($scope.rightNav));
+            if (originalPath == 'home') {
+                setActive(0);
+                return true;
+            }
             for (var i = 0; i < availableRoutes.length; i++) {
                 if (availableRoutes[i].route == originalPath) {
                     setActive(availableRoutes[i].id);
+                    return true;
                 }
             }
+            return false;
         }
     }
 })();
