@@ -28,9 +28,10 @@
             {id: 7, route: 'users/register', name: 'Register User'}
         ];
 
-        $scope.$on('$routeChangeSuccess', function(current, previous) {
-            console.log(current);
+        $scope.$on('$routeChangeSuccess', function(previous, current) {
             console.log(previous);
+            console.log(current);
+            console.log(current.$route);
          });
 
         function setActive(tabId) {
