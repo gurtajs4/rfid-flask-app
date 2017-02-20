@@ -81,21 +81,10 @@ a.no-decoration {
     background-image: url("../images/hero-img.jpg");
     background-size: 100%;
     background-repeat: no-repeat;
-    /*image-orientation: 90deg;*/
-    /*-webkit-transform: rotate(90deg);*/
-    /*-moz-transform: rotate(90deg);*/
-    /*-ms-transform: rotate(90deg);*/
-    /*-o-transform: rotate(90deg);*/
-    /*transform: rotate(90deg);*/
 }
 
 #hero-caption {
     color: white;
     text-shadow: 3px 2px grey;
-    /*-webkit-transform: rotate(0deg);*/
-    /*-moz-transform: rotate(0deg);*/
-    /*-ms-transform: rotate(0deg);*/
-    /*-o-transform: rotate(0deg);*/
-    /*transform: rotate(0deg);*/
     margin-top: -500px;
 }
