@@ -28,12 +28,11 @@
             {id: 7, route: 'users/register', name: 'Register User'}
         ];
 
-        $scope.$on('$routeChangeSuccess', function(previous, current) {
-            console.log(previous);
-            console.log(current);
-            console.log(current.$$route);
+        $scope.$on('$routeChangeSuccess', function (previous, current) {
             console.log(current.$$route.originalPath);
-         });
+            var originalPath = current.$$route.originalPath.substring(1);
+            checkPath(originalPath);
+        });
 
         function setActive(tabId) {
             $scope.tab = tabId;
@@ -41,6 +40,15 @@
 
         function isActive(tabId) {
             return $scope.tab === tabId;
+        }
+
+        function checkPath(originalPath) {
+            var availableRoutes = $scope.leftNav.concat($scope.midNav.concat($scope.rightNav));
+            for (var i = 0; i < availableRoutes.length; i++) {
+                if (availableRoutes[i].route == originalPath) {
+                    setActive(availableRoutes[i].id);
+                }
+            }
         }
     }
 })();
