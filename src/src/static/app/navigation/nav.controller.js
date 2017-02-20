@@ -31,7 +31,8 @@
         $scope.$on('$routeChangeSuccess', function(previous, current) {
             console.log(previous);
             console.log(current);
-            console.log(current.$route);
+            console.log(current.$$route);
+            console.log(current.$$route.originalPath);
          });
 
         function setActive(tabId) {
