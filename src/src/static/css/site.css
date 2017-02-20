@@ -92,5 +92,10 @@ a.no-decoration {
 #hero-caption {
     color: white;
     text-shadow: 3px 2px grey;
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
     margin-top: -500px;
 }
