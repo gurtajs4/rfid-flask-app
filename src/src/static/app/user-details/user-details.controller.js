@@ -8,6 +8,7 @@
         var service = usersService;
 
         $scope.userId = $routeParams.id;
+        $scope.deleteItem = deleteItem;
 
         init();
 

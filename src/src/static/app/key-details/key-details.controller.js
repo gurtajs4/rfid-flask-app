@@ -8,6 +8,7 @@
         var service = keysService;
 
         $scope.keyId = $routeParams.id;
+        $scope.deleteItem = deleteItem;
 
         init();
 
