@@ -21,9 +21,14 @@ class JSONSerializer(object):
 
     @staticmethod
     def key_instance_deserialize(parsed_dict):
+        key_repr = parsed_dict['room_repr'] if parsed_dict['room_repr'] is not None else ''
         return Key(key_id=parsed_dict['id'],
                    tag_id=parsed_dict['tag_id'],
-                   room_id=parsed_dict['room_id'])
+                   room_id=parsed_dict['room_id'],
+                   block_name=parsed_dict['block_name'],
+                   sector_name=parsed_dict['sector_name'],
+                   floor=parsed_dict['floor'],
+                   room_repr=key_repr)
 
     @staticmethod
     def key_instance_serialize(key_instance):
@@ -83,9 +88,9 @@ class JSONSerializer(object):
     @staticmethod
     def unicode_to_ascii(unicode_string):
         if 'unicode' in type(unicode_string):
-            return a.encode('ascii','ignore')
+            return a.encode('ascii', 'ignore')
         else:
-            return unicode_string   # it is not unicode
+            return unicode_string  # it is not unicode
 
 
 class ImageB64Serializer(object):

@@ -12,20 +12,20 @@
         $scope.setActive = setActive;
         $scope.isActive = isActive;
 
-        $scope.title = 'RFID Sessions Site Dashboard';
+        $scope.title = 'RFID sustav';
         $scope.leftNav = [
-            {id: 0, route: '/', name: 'Home'},
-            {id: 1, route: 'sessions', name: 'Sessions'},
-            {id: 2, route: 'keys/search', name: 'Search Keys'},
-            {id: 3, route: 'users/search', name: 'Search Users'}
+            {id: 0, route: '/', name: 'Naslovnica'},
+            {id: 1, route: 'sessions', name: 'Preuzimanja ključeva'},
+            {id: 2, route: 'keys/search', name: 'Pretraga ključeva'},
+            {id: 3, route: 'users/search', name: 'Pretraga korisnika'}
         ];
         $scope.midNav = [
-            {id: 4, route: 'keys', name: 'Rooms/Keys'},
-            {id: 5, route: 'users', name: 'Users'}
+            {id: 4, route: 'keys', name: 'Prostorije'},
+            {id: 5, route: 'users', name: 'Korisnici'}
         ];
         $scope.rightNav = [
-            {id: 6, route: 'keys/register', name: 'Register Room/Key'},
-            {id: 7, route: 'users/register', name: 'Register User'}
+            {id: 6, route: 'keys/register', name: 'Registracija ključa'},
+            {id: 7, route: 'users/register', name: 'Registracija korisnika'}
         ];
 
         $scope.$on('$routeChangeSuccess', function (previous, current) {

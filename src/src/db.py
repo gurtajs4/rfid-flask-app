@@ -30,9 +30,13 @@ class SqliteManager:
             PRAGMA foreign_keys = "1";
 
             CREATE TABLE Key (
-                id         INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-                tag_id     INTEGER NOT NULL UNIQUE,
-                room_id    INTEGER NOT NULL UNIQUE
+                id            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+                tag_id        INTEGER UNIQUE,
+                room_id       INTEGER NOT NULL,
+                block_name    TEXT,
+                sector_name   TEXT,
+                floor         INTEGER NOT NULL,
+                room_repr     TEXT NOT NULL
             );
 
             CREATE TABLE UserRole (
@@ -78,8 +82,8 @@ class SqliteManager:
                 FOREIGN KEY(user_id) REFERENCES User(id)
             );
 
-            INSERT INTO UserRole (name) VALUES ("Professor");
-            INSERT INTO UserRole (name) VALUES ("Student");
+            INSERT INTO UserRole (name) VALUES ("profesor");
+            INSERT INTO UserRole (name) VALUES ("student");
             INSERT INTO ImageStore (name, location) VALUES ('/static/images/default.png', 'default');
             ''')
         db.commit()

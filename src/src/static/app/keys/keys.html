@@ -1,18 +1,20 @@
 <div class="container-fluid">
-    <h3>List of all available keys</h3>
+    <h3>Popis svih ključeva</h3>
     <hr/>
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <button ng-click="keys.deleteSelected()" class="btn btn-danger">Delete selected</button>
+                <button ng-click="keys.deleteSelected()" class="btn btn-danger">Obriši odabrane</button>
             </div>
         </div>
         <div>
-            Order keys by:
+            Poredati ključeve prema:
             <select ng-model="keys.orderProp" name="orderProp" id="orderProp">
-                <option value="id">Key ID</option>
-                <option value="tag_id">Tag ID</option>
-                <option value="room_id">Room number</option>
+                <option value="id">ID ključa</option>
+                <option value="tag_id">Tag ID ključa</option>
+                <option value="room_id">Broju prostorije</option>
+                <option value="sector_name">Odjelu</option>
+                <option value="room_repr">Punom zapisu</option>
             </select>
         </div>
         <hr/>

@@ -1,12 +1,12 @@
 <div class="container">
     <div>
-        <h3>Details for key # {{keyId}}</h3>
+        <h3>Informacije o ključu broj {{keyId}}</h3>
         <hr/>
     </div>
     <div>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <button ng-click="deleteItem()" class="btn btn-danger">Delete selected</button>
+                <button ng-click="deleteItem()" class="btn btn-danger">Obriši označene</button>
             </div>
         </div>
         <div ng-if="keyData!=null">
@@ -14,7 +14,7 @@
             <div key-sessions key="keyId"></div>
         </div>
         <div ng-if="!keyData">
-            Key data cannot be displayed...
+            Podaci o ključu ne mogu biti prikazani...
         </div>
     </div>
 </div>

@@ -1,8 +1,12 @@
 class Key:
-    def __init__(self, key_id, tag_id, room_id):
+    def __init__(self, key_id, tag_id, room_id, block_name, sector_name, floor, room_repr):
         self.id = key_id
         self.tag_id = tag_id
         self.room_id = room_id
+        self.block_name = block_name
+        self.sector_name = sector_name
+        self.floor = floor
+        self.room_repr = room_repr
 
 
 class User:

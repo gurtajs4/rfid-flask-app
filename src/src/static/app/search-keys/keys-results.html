@@ -1,12 +1,14 @@
 <div class="container" ng-if="results!=[]">
-    <h3>Search results:</h3>
+    <h3>Rezultati pretrage:</h3>
     <hr/>
     <div>
-        Order users by:
+        Poredati ključeve prema:
         <select ng-model="orderProp" name="orderProp" id="orderProp">
-            <option value="id">Key ID</option>
+            <option value="id">ID ključa</option>
+            <option value="room_id">Broj prostorije</option>
+            <option value="floor">Kat</option>
+            <option value="room_repr">Puna oznaka prostorije</option>
             <option value="tag_id">Tag ID</option>
-            <option value="room_id">Room ID</option>
         </select>
     </div>
     <hr/>

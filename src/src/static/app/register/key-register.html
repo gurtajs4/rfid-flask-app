@@ -4,8 +4,8 @@
         <div class="panel panel-primary">
             <div class="panel-heading">{{note}}</div>
             <div class="panel-body">
-                Please move the key tag (keychain) to the reader and the system will detect its unique number. The
-                number will be displayed shortly after, and you can enter the rest of information then.
+                Molim, primaknite RFID privjesak ključa iznad čitača kako bi sustav detektirao njegov jedinstveni identifikacijski broj.
+                Identifikacijski broj će se prikazati nedugo nakon i tada ćete moći unijeti ostale informacije vezane za prostoriju.
             </div>
         </div>
         <div class="panel">
@@ -16,15 +16,42 @@
             <div class="panel-body">{{message}}</div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading">Editing information regarding room key #{{tagData}}</div>
+            <div class="panel-heading">Uređivanje podataka vezanih za ključ broj {{tagData}}</div>
             <div class="panel-body">
+                <div ng-init="isRoom=true">
+                    <input ng-model="isRoom" placeholder="Enter room number..." type="checkbox"/>
+                    Učionica
+                    <input ng-model="!isRoom" placeholder="Enter room number..." type="checkbox"/>
+                    Amfiteatar
+                </div>
                 <div class="form-inline">
                     <div class="form-group">
-                        <label for="rid">Room number:</label>
-                        <input ng-model="roomId" class="form-control" placeholder="Enter room number..."
-                               id="rid" type="text"/>
-                        <button ng-click="register()" class="btn btn-primary">Register</button>
-                        <button ng-click="cancel()" class="btn btn-danger">Cancel</button>
+                        <div ng-show="isRoom" class="form-control">
+                            <label for="block">Blok zgrade:</label>
+                            <select ng-model="blockName" name="block" id="block">
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                            </select>
+                            <label for="sector">Odjel:</label>
+                            <select ng-model="sectorName" name="sector" id="sector">
+                                <option value="B">Biologija</option>
+                                <option value="FESB">FESB</option>
+                                <option value="F">Fizika</option>
+                                <option value="I">Informatika</option>
+                                <option value="M">Matematika</option>
+                                <option value="K">Kemija</option>
+                                <option value="P">Politehnika</option>
+                                <option value="BFK">Zajednička</option>
+                            </select>
+                        </div>
+                        <label for="floor">Kat:</label>
+                        <input ng-model="floor" class="form-control" id="floor"
+                               placeholder="Kat..." type="text">
+                        <label for="rid">Broj prostorije:</label>
+                        <input ng-model="roomId" class="form-control" id="rid"
+                               placeholder="Enter room number..." type="text"/>
+                        <button ng-click="register()" class="btn btn-primary">Izvrši</button>
+                        <button ng-click="cancel()" class="btn btn-danger">Odustani</button>
                     </div>
                 </div>
             </div>

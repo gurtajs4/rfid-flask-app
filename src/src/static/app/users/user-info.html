@@ -1,24 +1,36 @@
 <div class="container">
     <div ng-init="user.isSelected=false" class="row">
         <div class="btn btn-default inline-field">
-            <a class="no-decoration" ng-href="/user-details/{{user.user_id}}">Details</a>
+            <a class="no-decoration" ng-href="/user-details/{{user.user_id}}">Pojedinosti</a>
         </div>
         <button ng-click="user.isSelected=!user.isSelected" class="btn btn-danger">
             {{ user.isSelected ? 'Deselect' : 'Select' }}
         </button>
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h4>User number: {{user.user_id}}</h4>
-                <h5>Role: {{user.role_title}}</h5>
+                <h4>Broj korisnika: {{user.user_id}}</h4>
+                <h5>Titula: {{user.role_title}}</h5>
             </div>
             <div class="panel-body">
                 <div class="img-container inline-field border-right">
                     <img class="img-rounded img-responsive img-field" ng-src="{{user.pic_url}}" alt="avatar">
                 </div>
                 <div class="inline-field">
-                    <span class="user-field">{{user.first_name}} {{user.last_name}}</span>
-                    <span class="user-field"><i>{{user.email}}</i></span>
-                    <span class="user-field">{{user.tag_id}}</span>
+                    <div class="user-field inline-field">
+                        <div class="well">
+                            {{user.first_name}} {{user.last_name}}
+                        </div>
+                    </div>
+                    <div class="user-field inline-field">
+                        <div class="well">
+                            <i>{{user.email}}</i>
+                        </div>
+                    </div>
+                    <div class="user-field inline-field">
+                        <div class="well">
+                            {{user.tag_id}}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

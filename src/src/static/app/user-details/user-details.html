@@ -1,12 +1,12 @@
 <div class="container">
     <div>
-        <h3>Details for user # {{userId}}</h3>
+        <h3>Pojedinosti o korisniku broj {{userId}}</h3>
         <hr/>
     </div>
     <div>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <button ng-click="deleteItem()" class="btn btn-danger">Delete selected</button>
+                <button ng-click="deleteItem()" class="btn btn-danger">Obriši odabrane</button>
             </div>
         </div>
         <div ng-if="userData!=null">
@@ -14,7 +14,7 @@
             <div user-sessions user="userId"></div>
         </div>
         <div ng-if="!userData">
-            User cannot be displayed...
+            Podaci o korisniku se ne mogu trenutno prikazati...
         </div>
     </div>
 </div>

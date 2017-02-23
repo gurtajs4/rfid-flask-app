@@ -1,21 +1,19 @@
 <!--<div class="panel panel-default"></div>-->
 <div class="panel-group">
     <div class="panel panel-primary">
-        <div class="panel-heading">Reader active and awaiting input...</div>
-        <div class="panel-body">Move or hold your RFID tag over the reader to obtain tag data.</div>
+        <div class="panel-heading">Čitač je aktivan, čeka i osluškuje...</div>
+        <div class="panel-body">Približite RFID tag (token) i zadržite 2-3 sekunde iznad čitača za dohvat podataka.</div>
     </div>
     <div class="panel panel-success">
         <div class="panel-heading">
             <span>Tag ID: <span>{{tagData}}</span></span>
             <label for="'tagData'">Tag ID:</label>
             <input disabled name="'tagData'" ng-model="tagData" type="text"/>
-            <!--<input disabled name="'tagData'" ng-model="rdc.tagData" type="text"/>-->
         </div>
     </div>
     <div class="panel panel-danger">
         <div class="panel-heading">
             <p>{{message}}</p>
-            <!--<p>{{rdc.message}}</p>-->
         </div>
     </div>
 </div>

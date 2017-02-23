@@ -1,16 +1,16 @@
 <div class="container">
     <div>
-        <h3>Keys lookup page</h3>
+        <h3>Stranica za pretragu ključeva</h3>
         <hr/>
     </div>
     <div class="panel panel-primary">
-        <div class="panel-heading">Keys search form</div>
+        <div class="panel-heading">Forma za pretragu ključeva</div>
         <div class="panel-body">
-            <h5>Check for keys by entering tag ID or room number</h5>
+            <h5>Pretražite ključeve unosom pune oznake prostorije (npr. BI1-22) ili oznake RFID tokena (tag ID)</h5>
             <div class="form-group">
                 <input ng-model="keysSearch.queryset" placeholder="Enter tag or room ID..." type="text"/>
-                <button ng-click="keysSearch.submit()" type="submit" class="btn btn-primary">Search</button>
-                <button ng-click="keysSearch.cancel()" type="reset" class="btn btn-default">Cancel</button>
+                <button ng-click="keysSearch.submit()" type="submit" class="btn btn-primary">Pretraži</button>
+                <button ng-click="keysSearch.cancel()" type="reset" class="btn btn-default">Odustani</button>
             </div>
         </div>
     </div>

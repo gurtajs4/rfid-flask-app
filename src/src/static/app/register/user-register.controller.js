@@ -9,8 +9,8 @@
     function UserRegisterController($scope, $log, $location, Upload, registerService) {
         var service = registerService;
 
-        $scope.title = "Person Registration Page";
-        $scope.note = "Register person in the system by associating ID Card number with some personal information";
+        $scope.title = "Stranica za registraciju korisnika";
+        $scope.note = "Registrirajte korisnika pridruživanjem informacija o RFID kartici sa podacima o korisniku";
 
         $scope.tagData = "";
         $scope.message = "";
@@ -42,6 +42,7 @@
                 data: {file: $scope.image, 'user_json': JSON.stringify(user), 'user': user}
             }).then(function (response) {
                 $log.info('Success ' + response.config.data.file.name + 'uploaded. Response: ' + response.data);
+                $location.url('/users');
             }, function (error) {
                 $log.error('Error status: ' + error.status);
             }, function (evt) {

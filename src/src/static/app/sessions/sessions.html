@@ -1,23 +1,23 @@
 <div class="container-fluid">
     <div>
-        <h3>List of all sessions</h3>
+        <h3>Popis svih sesija</h3>
         <hr/>
     </div>
     <div>
         <div class="panel panel-default">
             <div class="panel-heading">
-                <button ng-click="sessions.deleteSelected()" class="btn btn-danger">Delete selected</button>
+                <button ng-click="sessions.deleteSelected()" class="btn btn-danger">Obriši odabrane</button>
             </div>
         </div>
         <div>
-            Select all <input ng-click="sessions.selectAll()" type="checkbox"/>
-            Order sessions by:
+            Odaberi sve <input ng-click="sessions.selectAll()" type="checkbox"/>
+            Poredati preuzimanja prema:
             <select ng-model="sessions.orderProp" name="orderProp" id="orderProp">
-                <option value="id">Session ID</option>
-                <option value="key_id">Key ID</option>
-                <option value="user_id">User ID</option>
-                <option value="started_on">Start date</option>
-                <option value="closed_on">End date</option>
+                <option value="id">ID sesije</option>
+                <option value="key_id">ID ključa</option>
+                <option value="user_id">ID korisnika</option>
+                <option value="started_on">Datum preuzimanja</option>
+                <option value="closed_on">Datum vraćanja</option>
             </select>
         </div>
         <hr/>

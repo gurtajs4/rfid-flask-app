@@ -33,20 +33,22 @@ class ServiceManager(object):
         return key_factory.get_keys()
 
     @staticmethod
-    def search_key(key_id=None, tag_id=None, room_id=None, limit=1, exclusive=False):
-        return key_factory.search_key(key_id, tag_id, room_id, limit, exclusive)
+    def search_key(key_id=None, tag_id=None, room_id=None, block_name=None,
+                   sector_name=None, floor=None, room_repr=None, limit=1, exclusive=False):
+        return key_factory.search_key(
+            key_id, tag_id, room_id, block_name, sector_name, floor, room_repr, limit, exclusive)
 
     @staticmethod
-    def create_key(tag_id, room_id):
-        return key_factory.create_key(tag_id, room_id)
+    def create_key(tag_id, room_id, block_name, sector_name, floor, room_repr):
+        return key_factory.create_key(tag_id, room_id, block_name, sector_name, floor, room_repr)
 
     @staticmethod
-    def delete_key(key_id=None, tag_id=None, room_id=None, delete_history=False):
-        return key_factory.delete_key(key_id, tag_id, room_id, delete_history)
+    def delete_key(key_id=None, tag_id=None, delete_history=False):
+        return key_factory.delete_key(key_id, tag_id, delete_history)
 
     @staticmethod
-    def update_key(key_id, tag_id=None, room_id=None):
-        return key_factory.delete_key(key_id, tag_id, room_id)
+    def update_key(key_id, tag_id=None, room_id=None, block_name=None, sector_name=None, floor=None, room_repr=None):
+        return key_factory.update_key(key_id, tag_id, room_id, block_name, sector_name, floor, room_repr)
 
     # api for users
     @staticmethod
@@ -54,8 +56,10 @@ class ServiceManager(object):
         return user_factory.get_users()
 
     @staticmethod
-    def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, email=None, role_id=None, pic_id=None, limit=1, exclusive=False):
-        return user_factory.search_user(user_id, tag_id, first_name, last_name, email, role_id, pic_id, limit, exclusive)
+    def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, email=None, role_id=None, pic_id=None,
+                    limit=1, exclusive=False):
+        return user_factory.search_user(user_id, tag_id, first_name, last_name, email, role_id, pic_id, limit,
+                                        exclusive)
 
     @staticmethod
     def create_user(tag_id, first_name=None, last_name=None, email=None, role_id=2, pic_id=None):
@@ -94,7 +98,8 @@ class ServiceManager(object):
     @staticmethod
     def search_session(session_id=None, user_id=None, key_id=None, started_on=None, closed_on=None, limit=1,
                        exclusive=False, is_active=False):
-        return session_factory.search_session(session_id, user_id, key_id, started_on, closed_on, limit, exclusive, is_active)
+        return session_factory.search_session(session_id, user_id, key_id, started_on, closed_on, limit, exclusive,
+                                              is_active)
 
     @staticmethod
     def create_session(user_id=None, key_id=None, started_on=None):

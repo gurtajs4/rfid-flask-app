@@ -1,14 +1,14 @@
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h5>Session ID: {{ session.id }}</h5>
+            <h5>ID sesije: {{ session.id }}</h5>
         </div>
         <div class="panel-body">
-            <div>Select: <input ng-model="session.isSelected" type="checkbox"></div>
-            <div>User ID: <bold>{{ session.user_id }}</bold></div>
-            <div>Key ID: <bold>{{ session.key_id }}</bold></div>
-            <div>Key taken on: {{ session.started_on }}</div>
-            <div>Key returned on: {{ session.closed_on ? session.closed_on : "still active" }}</div>
+            <div>Oabir: <input ng-model="session.isSelected" type="checkbox"></div>
+            <div>ID korisnika: <bold>{{ session.user_id }}</bold></div>
+            <div>ID: ključa <bold>{{ session.key_id }}</bold></div>
+            <div>Ključ preuzet: {{ session.started_on }}</div>
+            <div>Ključ vraćen: {{ session.closed_on ? session.closed_on : " još aktivan " }}</div>
         </div>
     </div>
 </div>

@@ -7,7 +7,7 @@
 
     HomeController.$inject = ['$scope'];
     function HomeController($scope) {
-        $scope.title = "Keys storage management system - RFID tag reader application interface";
-        $scope.message = 'Welcome! This the web application interface of the keys management system';
+        $scope.title = "Sustav za upravljanje i organizaciju ključeva od prostorija temeljen na RFID tehnologiji";
+        $scope.message = 'Web aplikacija za upravljanje, preuzimanje i vraćanje preuzetih ključeva prostorija.';
     }
 })();

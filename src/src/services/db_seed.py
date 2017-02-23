@@ -4,7 +4,6 @@ from ..models.models import Session
 from ..config import DATA_DIR_PATH as data_store_path
 
 
-# class that encapsulates session storage logic for managing session storage
 class DbInitializer(object):
     def __init__(self):
         self.data_storage_path = os.path.join(data_store_path, "tagReadings.txt")

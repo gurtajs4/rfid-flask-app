@@ -233,8 +233,15 @@ def api_keys_get():
 @app.route('/api/keys/register', methods=['POST'])
 def api_key_register():
     key = jserial.key_instance_deserialize(request.get_json())
+    key.room_repr = block_name + sector_name + floor + '-' + str(key.room_id)
     print('From server - key register - key tag is %s' % key.tag_id)
-    key = service_manager.create_key(tag_id=key.tag_id, room_id=key.room_id)
+    print('From server - key register - key repr is %s' % key.room_repr)
+    key = service_manager.create_key(tag_id=key.tag_id,
+                                     room_id=key.room_id,
+                                     block_name=key.block_name,
+                                     sector_name=key.sector_name,
+                                     floor=key.floor,
+                                     room_repr=key.room_repr)
     print('From server - key register - stored key id is %s' % key.id)
     if None is key or -1 == key.id:
         message = {
@@ -261,6 +268,14 @@ def api_keys_search(queryset):
             print('From server - keys search - keys count: %s' % len(keys))
             room_id = int(word)
             key = service_manager.search_key(room_id=room_id)
+            if None is not key:
+                if key.id not in [y.id for y in keys]:
+                    keys.append(key)
+                    print('From server - keys search - key found: %s' % key.room_id)
+            print('From server - keys search - keys count: %s' % len(keys))
+        else:
+            print('From server - keys search - keys count: %s' % len(keys))
+            key = service_manager.search_key(room_repr=word)
             if None is not key:
                 if key.id not in [y.id for y in keys]:
                     keys.append(key)

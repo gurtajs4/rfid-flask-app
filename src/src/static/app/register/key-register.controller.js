@@ -9,8 +9,8 @@
     function KeyRegisterController($scope, $log, $location, registerService) {
         var service = registerService;
 
-        $scope.title = "Key/Room Registration Page";
-        $scope.note = "Register room key in the system by associating ID of key tag with some additional information about the room";
+        $scope.title = "Stranica za registraciju ključeva";
+        $scope.note = "Registrirajte ključ i prostoriju pridjeljujući broj prostorije s ostalim podacima poput odjela.";
 
         $scope.tagData = "";
         $scope.message = "";
@@ -22,7 +22,10 @@
             var key = {
                 id: -1,
                 tag_id: $scope.tagData,
-                room_id: $scope.roomId
+                room_id: $scope.roomId,
+                block_name: $scope.blockName,
+                sector_name: $scope.sectorName,
+                floor: $scope.floor
             };
             $log.info('Key: ', key);
             service.registerKey(key)
