@@ -1,0 +1,28 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Grupni unos podataka za ključeve (unos kolekcije ključeva)
+    </div>
+    <div class="panel-body">
+        <div template-download></div>
+        <div>
+            <p>Prenesite ispunjen predložak za unos ključeva.
+                Ispunite predložak sa kolekcijom ključeva, zatim prenesite u polje za prijenos datoteke.</p>
+        </div>
+        <div>
+            <label for="file">Datoteka:</label>
+            <input ng-model="keysSeed.seed"
+                   ngf-select=""
+                   ngf-drop=""
+                   ngf-pattern="'.xls'"
+                   name="file" id="file"
+                   accept=".xls"
+                   type="file"/>
+            <label for="download-alt">Preuzmi ako link poviše ne radi:</label>
+            <button ng-click="keysSeed.getTemplate()" id="download-alt" name="download-alt" class="btn btn-default">Preuzmi</button>
+        </div>
+        <div>
+            <button ng-click="keysSeed.send()" class="btn btn-primary">Izvrši</button>
+            <button ng-click="keysSeed.cancel()" class="btn btn-danger">Odustani</button>
+        </div>
+    </div>
+</div>

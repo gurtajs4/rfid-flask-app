@@ -4,6 +4,7 @@ from . import emit
 from . import session
 from . import socket_io
 from .embedded.mfrc_service import ServiceMFRC
+from .services.service_manager import ServiceManager
 
 messages = {}
 users = []
@@ -16,7 +17,8 @@ def make_connection():
     session['username'] = 'user-' + str(session['uuid'])
     current_user = {
         'sid': session['uuid'],
-        'username': session['username']
+        'username': session['username'],
+        'room': session.get('room')
     }
     users.append(current_user)
     message = 'User %s connected' % session['username']
@@ -29,15 +31,10 @@ def get_client_session_id():
 
 
 def send_message(message, event, room=None):
-    # last_id = max(messages.keys()) if len(messages) > 0 else 0
-    # messages[last_id + 1] = {
-    #     'message': message
-    # }
-    # print('Sending message-text: %s' % messages[last_id + 1])
     print('Sending message-text: %s' % message)
     if room is not None:
-        unique_event = event + ' ' + room
-        emit(unique_event, message)
+        # unique_event = event + ' ' + room
+        emit(event, message, room=room)
     else:
         emit(event, message)
 
@@ -56,9 +53,15 @@ def reader_output(data, room=None):
         'message': data['message'],
         'data': data['data']
     }
-    # last_id = max(messages.keys()) if len(messages) > 0 else 0
-    # messages[last_id + 1] = {
-    #     'message': message
-    # }
     event = 'reader done'
     send_message(message=message, event=event, room=room)
+
+
+@socket_io.on('download template')
+def download_template():
+    print('From server - socket event - download template')
+    file = ServiceManager.get_excel_template()
+    room = session.get('room')
+    message = {'file': file}
+    print('From server - socket response - room is %s' % room)
+    send_message(message=message, event='download begins', room=room)

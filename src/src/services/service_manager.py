@@ -4,6 +4,8 @@ import session_factory
 import user_auth_request_service
 import user_factory
 from .db_seed import DbInitializer
+from .db_backup import backup_db
+from .storage_manager import StorageManager
 from ..db import SqliteManager
 from ..embedded.mfrc_service import ServiceMFRC
 from ..io_sockets import reader_output, send_message
@@ -12,20 +14,42 @@ from ..models.adapters import UserProfile
 
 class ServiceManager(object):
     @staticmethod
-    def start_db(drop_create=False, seed_data=False):
-        db = SqliteManager(drop_create)
+    def start_db(drop_create=False, seed_data=False, backup_data=False):
+        # db = SqliteManager(drop_create)
+        if backup_data:
+            if not backup_db():
+                return False
+        if drop_create:
+            SqliteManager.db_init()
         if seed_data:
-            seed = DbInitializer()
-            for session in seed.get_sessions():
-                user_factory.create_user(tag_id=session.user_id)
-                user = user_factory.search_user(tag_id=session.user_id)
-                if None is user:
-                    pass
-                key_factory.create_key(tag_id=session.key_id, room_id=session.key_id)
-                key = key_factory.search_key(tag_id=session.key_id)
-                if None is key:
-                    pass
-                session_factory.create_session(user_id=user.id, key_id=key.id, started_on=session.started_on)
+            stm = StorageManager()
+            file = stm.default_excel_seed_file
+            ServiceManager.seed_from_excel(file)
+        return True
+
+    @staticmethod
+    def seed_from_excel(file):
+        seed = DbInitializer()
+        return seed.seed_from_excel(file)
+
+    @staticmethod
+    def get_excel_template():
+        seed = DbInitializer()
+        return seed.get_excel_template()
+
+    @staticmethod
+    def seed_from_json():
+        seed = DbInitializer()
+        # for session in seed.get_sessions():
+        #     user_factory.create_user(tag_id=session.user_id)
+        #     user = user_factory.search_user(tag_id=session.user_id)
+        #     if None is user:
+        #         pass
+        #     key_factory.create_key(tag_id=session.key_id, room_id=session.key_id)
+        #     key = key_factory.search_key(tag_id=session.key_id)
+        #     if None is key:
+        #         pass
+        #     session_factory.create_session(user_id=user.id, key_id=key.id, started_on=session.started_on)
 
     # api for keys
     @staticmethod

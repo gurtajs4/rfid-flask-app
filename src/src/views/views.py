@@ -1,8 +1,9 @@
 from .. import app
 from ..services.service_manager import ServiceManager
+from ..services.storage_manager import StorageManager
 from ..services.serializers import JSONSerializer as jserial
 from ..services.serializers import ImageB64Serializer as img64
-from flask import jsonify, request, Response
+from flask import jsonify, request, Response, send_file
 
 service_manager = ServiceManager()
 
@@ -493,3 +494,53 @@ def api_session_delete(session_id):
         resp = jsonify(message)
         resp.status_code = 200
         return resp
+
+
+# *********** file storage ***********
+
+
+@app.route('/api/data/template', methods=['GET'])
+def api_data_template():
+    file = ServiceManager.get_excel_template()
+    return send_file(file)
+
+
+@app.route('/api/data/import', methods=['POST'])
+def api_data_import():
+    file = None
+    files = request.files
+    if 'file' in files:
+        file = files['file']
+    stm = StorageManager()
+    file_path = stm.store_file(file=file, type=0)
+    results = service_manager.seed_from_excel(file_path)
+    if None is results or None is results[0].id:
+        message = {
+            'status': 404,
+            'message': 'Unable to import data'
+        }
+    else:
+        message = {
+            'status': 200,
+            'message': 'Successfully updated the database!'
+        }
+    resp = jsonify(message)
+    resp.status_code = message['status']
+    return resp
+
+
+@app.route('/api/clean-slate', methods=[GET])  # dev only
+def api_clean_slate():
+    if service_manager.start_db(drop_create=True, seed_data=True, backup_data=True):
+        message = {
+            'status': 200,
+            'message': 'Successfully cleaned the database!'
+        }
+    else:
+        message = {
+            'status': 404,
+            'message': 'Unable to backup data!'
+        }
+    resp = jsonify(message)
+    resp.status_code = message['status']
+    return resp

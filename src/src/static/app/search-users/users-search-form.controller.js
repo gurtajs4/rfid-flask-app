@@ -12,6 +12,7 @@
 
         self.submit = submit;
         self.cancel = cancel;
+        self.doSubmit = doSubmit;
         self.results = [];
 
         function submit() {
@@ -27,6 +28,12 @@
             }).catch(function (error) {
                 $log.error(error.data);
             });
+        }
+
+        function doSubmit(event) {
+            if (event.which == 13) {
+                self.submit();
+            }
         }
 
         function cancel() {

@@ -3,6 +3,7 @@ import xlrd
 import xlwt
 from ..db import SqliteManager as dbm
 from ..models.models import Key
+from ..config import DATA_DIR_PATH as data_store_path
 from ..config import DATA_EXCEL_PATH as xls_store_path
 
 
@@ -18,8 +19,7 @@ def switch(argument):
     return switcher.get(argument, 'nothing')
 
 
-def seed(filename):
-    file_location = os.path.join(xls_store_path, filename)
+def seed(file_location):
     workbook = xlrd.open_workbook(file_location)
     sheet = workbook.sheet_by_name('keys')
     data = []
@@ -61,5 +61,20 @@ def make_template():
     for s in range(1, 6):
         col_name = switch(s)
         sheet.write(0, s, col_name)
-    file_location = os.path.join(xls_store_path, 'data_template.xls')
+    file_location = os.path.join(data_store_path, 'data_template.xls')
     workbook.save(file_location)
+
+
+def template_exists(file_location=None):
+    if None is file_location:
+        file_location = os.path.join(xls_store_path, 'data_template.xls')
+    if not os.path.isfile(file_location):
+        return False
+    else:
+        return True
+
+
+def get_template():
+    if template_exists():
+        file_location = os.path.join(xls_store_path, 'data_template.xls')
+        return file_location

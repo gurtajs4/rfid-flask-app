@@ -3,9 +3,9 @@ from .config import DATABASE_URI
 
 
 class SqliteManager:
-    def __init__(self, drop_create=False):
-        if drop_create:
-            self.db_init()
+    # def __init__(self, drop_create=False):
+    #     if drop_create:
+    #         self.db_init()
 
     @staticmethod
     def get_db():
@@ -17,8 +17,9 @@ class SqliteManager:
         if db is not None:
             db.close()
 
-    def db_init(self):
-        db = self.get_db()
+    @staticmethod
+    def db_init():
+        db = SqliteManager.get_db()
         db.executescript('''
             DROP TABLE IF EXISTS UserSession;
             DROP TABLE IF EXISTS Session;

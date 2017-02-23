@@ -56,6 +56,10 @@
         }).when('/keys/register', {
             templateUrl: appBaseUrl + '/register/key-register.html',
             controller: 'KeyRegisterController'
+        }).when('/keys/seed', {
+            templateUrl: appBaseUrl + '/keys-seed/keys-seed.html',
+            controller: 'KeysSeedController',
+            controllerAs: 'keysSeed'
         }).otherwise({redirectTo: '/home'});
     }
 })();
