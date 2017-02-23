@@ -4,7 +4,8 @@ from . import emit
 from . import session
 from . import socket_io
 from .embedded.mfrc_service import ServiceMFRC
-from .services.service_manager import ServiceManager
+from .views.views import ServiceManager
+# from .services.service_manager import ServiceManager
 
 messages = {}
 users = []
