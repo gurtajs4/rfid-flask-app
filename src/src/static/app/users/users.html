@@ -21,6 +21,8 @@
             </select>
         </div>
         <hr/>
-        <div class="row" ng-repeat="item in users.list | orderBy:users.orderProp" user-info="item"></div>
+        <div class="row">
+            <div ng-repeat="item in users.list | orderBy:users.orderProp" user-info="item"></div>
+        </div>
     </div>
 </div>

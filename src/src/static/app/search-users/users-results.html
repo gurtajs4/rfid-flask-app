@@ -13,5 +13,7 @@
         </select>
     </div>
     <hr/>
-    <div class="row" ng-repeat="item in results | orderBy:orderProp track by $index" user-info="item"></div>
+    <div class="row">
+        <div ng-repeat="item in results | orderBy:orderProp track by $index" user-info="item"></div>
+    </div>
 </div>
