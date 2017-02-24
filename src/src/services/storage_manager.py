@@ -23,6 +23,6 @@ class StorageManager(object):
 
     def get_path_by_type(self, file_name, type_id):
         if 0 == type_id:
-            return os.path.join(xls_store_path, file_name)
+            return os.path.join(excel_path, file_name)
         else:
             return os.path.join(data_path, file_name)
