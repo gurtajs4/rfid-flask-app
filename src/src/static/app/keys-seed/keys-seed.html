@@ -27,13 +27,6 @@
                                accept=".xls"
                                type="file"/>
                     </div>
-                    <div ng-if="keysSeed.file" class="progress">
-                        <div class="progress-bar" role="progressbar"
-                             aria-valuenow="{{ keysSeed.progressPercentage }}" aria-valuemin="0" aria-valuemax="100"
-                             style="width: 60%;">
-                            {{ keysSeed.progressPercentage }}
-                        </div>
-                    </div>
                     <div>
                         <button ng-click="keysSeed.send()" class="btn btn-primary">Izvrši</button>
                         <button ng-click="keysSeed.cancel()" class="btn btn-danger">Odustani</button>

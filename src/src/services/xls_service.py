@@ -9,18 +9,18 @@ from ..config import DATA_EXCEL_PATH as xls_store_path
 
 def switch(argument):
     switcher = {
-        0: 'key_id',
-        1: 'block',
-        2: 'sector',
-        3: 'floor',
-        4: 'room_id'
+        0: 'id',
+        1: 'predio zgrade',
+        2: 'odjel',
+        3: 'kat',
+        4: 'broj prostorije'
     }
-    return switcher.get(argument, 'nothing')
+    return switcher.get(argument, 'nepoznato')
 
 
 def seed(file_location):
     workbook = xlrd.open_workbook(file_location)
-    sheet = workbook.sheet_by_name('keys')
+    sheet = workbook.sheet_by_name('kljucevi')
     data = []
     for i in range(1, sheet.nrows):
         room_dict = {
@@ -41,7 +41,6 @@ def seed(file_location):
         sector_name = row[switch(2)]
         floor = int(row[switch(3)])
         room_repr = block_name + sector_name + str(floor) + '-' + str(room_id)
-        # tag_id = row['tag_id']
         params = tuple([p for p in (room_id, block_name, sector_name, floor, room_repr)])
         cur.execute('''INSERT OR IGNORE INTO Key (room_id, block_name, sector_name, floor, room_repr)
             VALUES ( ?, ?, ?, ?, ?, )''', params)
@@ -56,7 +55,7 @@ def seed(file_location):
 
 def make_template():
     workbook = xlwt.Workbook()
-    sheet = workbook.add_sheet('keys')
+    sheet = workbook.add_sheet('kljucevi')
     for s in range(0, 5):
         col_name = switch(s)
         sheet.write(0, s, col_name)

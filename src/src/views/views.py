@@ -513,8 +513,11 @@ def api_data_import():
         file = files['file']
     stm = StorageManager()
     file_path = stm.store_file(file=file, type=0)
+    check_location = service_manager.get_excel_template(filename=file.filename)
+    print('From server - seed file upload - file uploaded at location: %s' % check_location)
     results = service_manager.seed_from_excel(file_location=file_path)
-    if None is results or None is results[0].id:
+    print('From server - seed file upload - seed results %s' % results)
+    if None is results:
         message = {
             'status': 404,
             'message': 'Unable to import data'

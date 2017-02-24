@@ -29,9 +29,6 @@
                 $location.url('/keys');
             }, function (error) {
                 $log.error('Error status: ', error);
-            }, function (evt) {
-                self.progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                $log.info('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
             });
         }
 
