@@ -3,8 +3,8 @@
 
     angular.module('appMain').controller('KeysSeedController', KeysSeedController);
 
-    KeysSeedController.$inject = ['$http', '$location', '$window', '$log', 'Upload'];
-    function KeysSeedController($http, $location, $window, $log, Upload) {
+    KeysSeedController.$inject = ['$http', '$location', '$log', 'Upload'];
+    function KeysSeedController($http, $location, $log, Upload) {
 
         var self = this;
 
@@ -20,7 +20,7 @@
                 var blob = new Blob([data], {
                     type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
                 });
-                $window.saveAs(blob, 'seed_data.xlsx');
+                window.saveAs(blob, 'seed_data.xlsx');
             });
         }
 
