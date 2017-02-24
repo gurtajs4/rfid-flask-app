@@ -4,7 +4,6 @@ from . import emit
 from . import session
 from . import socket_io
 from .embedded.mfrc_service import ServiceMFRC
-from .views.views import ServiceManager
 # from .services.service_manager import ServiceManager
 
 messages = {}
@@ -57,12 +56,12 @@ def reader_output(data, room=None):
     event = 'reader done'
     send_message(message=message, event=event, room=room)
 
-
-@socket_io.on('download template')
-def download_template():
-    print('From server - socket event - download template')
-    file = ServiceManager.get_excel_template()
-    room = session.get('room')
-    message = {'file': file}
-    print('From server - socket response - room is %s' % room)
-    send_message(message=message, event='download begins', room=room)
+#
+# @socket_io.on('download template')
+# def download_template():
+#     print('From server - socket event - download template')
+#     file = ServiceManager.get_excel_template()
+#     room = session.get('room')
+#     message = {'file': file}
+#     print('From server - socket response - room is %s' % room)
+#     send_message(message=message, event='download begins', room=room)

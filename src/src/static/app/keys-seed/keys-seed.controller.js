@@ -3,8 +3,8 @@
 
     angular.module('appMain').controller('KeysSeedController', KeysSeedController);
 
-    KeysSeedController.$inject = ['$socket', '$location', '$window', '$log', 'Upload'];
-    function KeysSeedController($socket, $location, $window, $log, Upload) {
+    KeysSeedController.$inject = ['$http', '$location', '$window', '$log', 'Upload'];
+    function KeysSeedController($http, $location, $window, $log, Upload) {
 
         var self = this;
 
@@ -13,31 +13,14 @@
         self.cancel = cancel;
 
         function getTemplate() {
-
-            $socket().then(function (socket) {
-
-                $log.info('creating socket instance');
-
-                socket.on('connect', function (message) {
-                    socket.emit('client sid request', {});
+            $http.get('/api/data/template').then(function (response) {
+                var data = response['file'];
+                // var splitPath = data.split('/');
+                // var filename = splitPath.split(splitPath.length - 1);
+                var blob = new Blob([data], {
+                    type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
                 });
-
-                socket.on('response sid', function (message) {
-                    var uid = message;
-                    socket.emit('download template', {
-                        room: uid
-                    });
-                });
-
-                socket.on('download begins', function (response) {
-                    var data = response['file'];
-                    // var splitPath = data.split('/');
-                    // var filename = splitPath.split(splitPath.length - 1);
-                    var blob = new Blob([data], {
-                        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-                    });
-                    $window.saveAs(blob, 'seed_data.xlsx');
-                });
+                $window.saveAs(blob, 'seed_data.xlsx');
             });
         }
 
