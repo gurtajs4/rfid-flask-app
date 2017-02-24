@@ -88,4 +88,4 @@ class SqliteManager:
             INSERT INTO ImageStore (name, location) VALUES ('/static/images/default.png', 'default');
             ''')
         db.commit()
-        self.close_connection(db)
+        SqliteManager.close_connection(db)
