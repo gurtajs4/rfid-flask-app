@@ -24,8 +24,9 @@
             {id: 5, route: 'users', name: 'Korisnici'}
         ];
         $scope.rightNav = [
-            {id: 6, route: 'keys/register', name: 'Registracija ključa'},
-            {id: 7, route: 'users/register', name: 'Registracija korisnika'}
+            {id: 6, route: '/keys/seed', name: 'Uvoz ključeva'},
+            {id: 7, route: 'keys/register', name: 'Registracija ključa'},
+            {id: 8, route: 'users/register', name: 'Registracija korisnika'}
         ];
 
         $scope.$on('$routeChangeSuccess', function (previous, current) {

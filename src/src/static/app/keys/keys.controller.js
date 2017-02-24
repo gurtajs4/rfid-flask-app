@@ -2,12 +2,13 @@
     'use strict';
     angular.module('appMain').controller('KeysController', KeysController);
 
-    KeysController.$inject = ['$log', 'keysService'];
-    function KeysController($log, keysService) {
+    KeysController.$inject = ['$location', '$log', 'keysService'];
+    function KeysController($location, $log, keysService) {
         var self = this;
         var service = keysService;
 
         self.deleteSelected = deleteSelected;
+        self.toImport = toImport;
 
         init();
 
@@ -46,6 +47,10 @@
             self.list = self.list.filter(function (session) {
                 return selectedList.indexOf(session) < 0;
             });
+        }
+
+        function toImport() {
+            $location.url('/keys/seed');
         }
     }
 })();
