@@ -24,18 +24,21 @@ class ServiceManager(object):
         if seed_data:
             stm = StorageManager()
             file = stm.default_excel_seed_file
-            ServiceManager.seed_from_excel(file)
+            ServiceManager.seed_from_excel(filename=file)
         return True
 
     @staticmethod
-    def seed_from_excel(file):
+    def seed_from_excel(file_location=None, filename=None):
         seed = DbInitializer()
-        return seed.seed_from_excel(file)
+        if None is not filename:
+            return seed.seed_from_excel(filename)
+        else:
+            return seed.seed_from_excel(file_location)
 
     @staticmethod
-    def get_excel_template():
+    def get_excel_template(filename=None):
         seed = DbInitializer()
-        return seed.get_excel_template()
+        return seed.get_excel_template(filename=filename)
 
     @staticmethod
     def seed_from_json():

@@ -502,7 +502,7 @@ def api_session_delete(session_id):
 @app.route('/api/data/template', methods=['GET'])
 def api_data_template():
     file = ServiceManager.get_excel_template()
-    return send_file(file)
+    return send_file(file, mimetype='text/csv', attachment_filename='data_template.xls', as_attachment=True)
 
 
 @app.route('/api/data/import', methods=['POST'])
@@ -513,7 +513,7 @@ def api_data_import():
         file = files['file']
     stm = StorageManager()
     file_path = stm.store_file(file=file, type=0)
-    results = service_manager.seed_from_excel(file_path)
+    results = service_manager.seed_from_excel(file_location=file_path)
     if None is results or None is results[0].id:
         message = {
             'status': 404,

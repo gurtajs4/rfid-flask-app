@@ -65,8 +65,10 @@ def make_template():
     workbook.save(file_location)
 
 
-def template_exists(file_location=None):
-    if None is file_location:
+def template_exists(file_location=None, filename=None):
+    if None is not filename:
+        file_location = os.path.join(xls_store_path, filename)
+    elif None is file_location:
         file_location = os.path.join(xls_store_path, 'data_template.xls')
     if not os.path.isfile(file_location):
         return False
@@ -74,7 +76,12 @@ def template_exists(file_location=None):
         return True
 
 
-def get_template():
-    if template_exists():
+def get_template(filename=None):
+    if None is not filename:
+        file_location = os.path.join(xls_store_path, filename)
+        return file_location
+    else:
+        if not template_exists():
+            make_template()
         file_location = os.path.join(xls_store_path, 'data_template.xls')
         return file_location
