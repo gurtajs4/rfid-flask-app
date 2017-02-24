@@ -17,17 +17,13 @@
                 var data = response['file'];
                 $log.info('Filename is ', data);
                 $window.open('/api/data/template');
-                // var blob = new Blob([data], {
-                //     type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-                // });
-                // window.saveAs(blob, 'seed_data.xlsx');
             });
         }
 
         function send() {
             Upload.upload({
                 url: '/api/data/import',
-                data: {file: $scope.file}
+                data: {file: self.file}
             }).then(function (response) {
                 $log.info('Success ', response);
                 $location.url('/keys');
