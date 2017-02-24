@@ -513,6 +513,7 @@ def api_data_import():
         file = files['file']
     stm = StorageManager()
     file_path = stm.store_file(file=file, type=0)
+    print('From server - data import - file location is: %s' % file_path)
     check_location = service_manager.get_excel_template(filename=file.filename)
     print('From server - seed file upload - file uploaded at location: %s' % check_location)
     results = service_manager.seed_from_excel(file_location=file_path)

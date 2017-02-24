@@ -4,9 +4,8 @@
             Grupni unos podataka za ključeve (unos kolekcije ključeva)
         </div>
         <div class="panel-body">
-            <div template-download></div>
             <div>
-                <label for="download-alt">Preuzmi ako link poviše ne radi:</label>
+                <label for="download-alt">Preuzmi Excel datoteku (predložak) za uvoz ključeva:</label>
                 <button ng-click="keysSeed.getTemplate()" id="download-alt" name="download-alt" class="btn btn-default">
                     Preuzmi
                 </button>
@@ -19,7 +18,7 @@
                 <div class="panel-body">
                     <div>
                         <label for="file">Datoteka:</label>
-                        <input ng-model="keysSeed.seed"
+                        <input ng-model="keysSeed.file"
                                ngf-select=""
                                ngf-drop=""
                                ngf-pattern="'.xls'"
