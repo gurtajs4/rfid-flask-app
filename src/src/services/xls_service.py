@@ -43,7 +43,7 @@ def seed(file_location):
         room_repr = block_name + sector_name + str(floor) + '-' + str(room_id)
         params = tuple([p for p in (room_id, block_name, sector_name, floor, room_repr)])
         cur.execute('''INSERT OR IGNORE INTO Key (room_id, block_name, sector_name, floor, room_repr)
-            VALUES ( ?, ?, ?, ?, ?, )''', params)
+            VALUES ( ?, ?, ?, ?, ? )''', params)
         db.commit()
         cur.execute('SELECT id FROM Room WHERE room_id = ? ', (room_id,))
         room_pk = cur.fetchone()[0]
