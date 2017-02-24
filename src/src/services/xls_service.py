@@ -69,7 +69,7 @@ def template_exists(file_location=None, filename=None):
     if None is not filename:
         file_location = os.path.join(xls_store_path, filename)
     elif None is file_location:
-        file_location = os.path.join(xls_store_path, 'data_template.xls')
+        file_location = os.path.join(data_store_path, 'data_template.xls')
     if not os.path.isfile(file_location):
         return False
     else:
@@ -83,5 +83,5 @@ def get_template(filename=None):
     else:
         if not template_exists():
             make_template()
-        file_location = os.path.join(xls_store_path, 'data_template.xls')
+        file_location = os.path.join(data_store_path, 'data_template.xls')
         return file_location
