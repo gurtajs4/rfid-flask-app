@@ -5,6 +5,12 @@
     <div class="panel-body">
         <div template-download></div>
         <div>
+            <label for="download-alt">Preuzmi ako link poviše ne radi:</label>
+            <button ng-click="keysSeed.getTemplate()" id="download-alt" name="download-alt" class="btn btn-default">
+                Preuzmi
+            </button>
+        </div>
+        <div>
             <p>Prenesite ispunjen predložak za unos ključeva.
                 Ispunite predložak sa kolekcijom ključeva, zatim prenesite u polje za prijenos datoteke.</p>
         </div>
@@ -17,12 +23,15 @@
                    name="file" id="file"
                    accept=".xls"
                    type="file"/>
-            <label for="download-alt">Preuzmi ako link poviše ne radi:</label>
-            <button ng-click="keysSeed.getTemplate()" id="download-alt" name="download-alt" class="btn btn-default">Preuzmi</button>
-        </div>
-        <div>
             <button ng-click="keysSeed.send()" class="btn btn-primary">Izvrši</button>
             <button ng-click="keysSeed.cancel()" class="btn btn-danger">Odustani</button>
+        </div>
+        <div ng-if="keysSeed.file" class="progress">
+            <div class="progress-bar" role="progressbar"
+                 aria-valuenow="{{ keysSeed.progressPercentage }}" aria-valuemin="0" aria-valuemax="100"
+                 style="width: 60%;">
+                {{ keysSeed.progressPercentage }}
+            </div>
         </div>
     </div>
 </div>

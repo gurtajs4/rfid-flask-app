@@ -10,13 +10,13 @@ service_manager = ServiceManager()
 
 @app.route('/', methods=['GET'])
 def api_root():
-    ServiceManager.start_db(drop_create=True, seed_data=True)
+    ServiceManager.start_db(drop_create=False, seed_data=False, backup_data=False)
     return app.send_static_file('index.html')
 
 
 @app.route('/door-lock', methods=['GET'])
 def api_door_lock_root():
-    ServiceManager.start_db(drop_create=False, seed_data=False)
+    ServiceManager.start_db(drop_create=False, seed_data=False, backup_data=False)
     return app.send_static_file('index2.html')
 
 
