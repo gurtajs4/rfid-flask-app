@@ -45,7 +45,7 @@ def seed(file_location):
         cur.execute('''INSERT OR IGNORE INTO Key (room_id, block_name, sector_name, floor, room_repr)
             VALUES ( ?, ?, ?, ?, ? )''', params)
         db.commit()
-        cur.execute('SELECT id FROM Room WHERE room_id = ? ', (room_id,))
+        cur.execute('SELECT id FROM Key WHERE room_id = ? ', (room_id,))
         room_pk = cur.fetchone()[0]
         data[i]['id'] = room_pk
         results.append(Key(room_pk, tag_id, room_id, block_name, sector_name, floor, room_repr))
