@@ -1,6 +1,6 @@
 /* Common styling */
 body {
-    background-color: yellowgreen;
+    /*background-color: yellowgreen;*/
     color: #4682B4;
 }
 
@@ -53,9 +53,20 @@ body {
     display: inline-block;
 }
 
-.user-field {
-    max-width: 30%;
+.padding-right-sm {
     padding-right: 10px;
+}
+
+.padding-right {
+    padding-right: 30px;
+}
+
+.padding-left-sm {
+    padding-right: 10px;
+}
+
+.padding-left {
+    padding-right: 30px;
 }
 
 .img-field {
@@ -70,6 +81,11 @@ body {
 .border-right {
     border-right-style: solid;
     border-right-color: cadetblue;
+}
+
+.border-left {
+    border-left-style: solid;
+    border-left-color: cadetblue;
 }
 
 a.no-decoration {

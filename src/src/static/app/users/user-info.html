@@ -1,5 +1,5 @@
-<div class="container">
-    <div ng-init="user.isSelected=false" class="row">
+<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
+    <div ng-init="user.isSelected=false" class="container">
         <div class="btn btn-default inline-field">
             <a class="no-decoration" ng-href="/user-details/{{user.user_id}}">Pojedinosti</a>
         </div>
@@ -12,22 +12,22 @@
                 <h5>Titula: {{user.role_title}}</h5>
             </div>
             <div class="panel-body">
-                <div class="img-container inline-field border-right">
+                <div class="img-container inline-field padding-right">
                     <img class="img-rounded img-responsive img-field" ng-src="{{user.pic_url}}" alt="avatar">
                 </div>
-                <div class="inline-field">
-                    <div class="user-field inline-field">
-                        <div class="well">
+                <div class="inline-field border-left padding-left">
+                    <div class="padding-right-sm">
+                        <div class="well-sm">
                             {{user.first_name}} {{user.last_name}}
                         </div>
                     </div>
-                    <div class="user-field inline-field">
-                        <div class="well">
+                    <div class="padding-right-sm">
+                        <div class="well-sm">
                             <i>{{user.email}}</i>
                         </div>
                     </div>
-                    <div class="user-field inline-field">
-                        <div class="well">
+                    <div class="padding-right-sm">
+                        <div class="well-sm">
                             {{user.tag_id}}
                         </div>
                     </div>
