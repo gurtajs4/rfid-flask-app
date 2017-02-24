@@ -57,7 +57,7 @@ def seed(file_location):
 def make_template():
     workbook = xlwt.Workbook()
     sheet = workbook.add_sheet('keys')
-    for s in range(0, 6):
+    for s in range(0, 5):
         col_name = switch(s)
         sheet.write(0, s, col_name)
     file_location = os.path.join(data_store_path, 'data_template.xls')
