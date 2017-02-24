@@ -34,34 +34,37 @@ signal.signal(signal.SIGINT, end_read)
 print("Reader active and awaiting input...")
 
 while continue_reading:
-    if current_userTTL <= time.time() and not current_userTTL == -1:
-        print("2 minutes elapsed.\nPlease register your ID card again...")
-        current_userId = -1
-        current_keyId = -1
-        current_userTTL = -1
-        continue
-    (status, TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
-    if status == MIFAREReader.MI_OK:
-        print("Tag detected")
-        (status, backData) = MIFAREReader.MFRC522_Anticoll()
-        if "" == backData or None is backData:
-            continue
-        tag_data = int(str(backData[0]) + str(backData[1]) + str(backData[2]) + str(backData[3]) + str(backData[4]))
-        if len(str(tag_data)) == 13:
-            current_userTTL = time.time() + 120
-            current_userId = tag_data
-            print("User ID: %s" % current_userId)
-        elif len(str(tag_data)) == 12:
-            if current_userId == -1:
-                current_userTTL = time.time() + 120
-            current_keyId = tag_data
-            print("Key ID: %s" % current_keyId)
-        if current_keyId > -1 and current_userId > -1:
-            session = {
-                'user_id': str(current_userId),
-                'key_id': str(current_keyId),
-                'timestamp': str(datetime.datetime.now())
-            }
-            post_tag_data(session)
+    try:
+        if current_userTTL <= time.time() and not current_userTTL == -1:
+            print("2 minutes elapsed.\nPlease register your ID card again...")
+            current_userId = -1
             current_keyId = -1
-            time.sleep(2)
+            current_userTTL = -1
+            continue
+        (status, TagType) = MIFAREReader.MFRC522_Request(MIFAREReader.PICC_REQIDL)
+        if status == MIFAREReader.MI_OK:
+            print("Tag detected")
+            (status, backData) = MIFAREReader.MFRC522_Anticoll()
+            if "" == backData or None is backData:
+                continue
+            tag_data = int(str(backData[0]) + str(backData[1]) + str(backData[2]) + str(backData[3]) + str(backData[4]))
+            if len(str(tag_data)) == 13:
+                current_userTTL = time.time() + 120
+                current_userId = tag_data
+                print("User ID: %s" % current_userId)
+            elif len(str(tag_data)) == 12:
+                if current_userId == -1:
+                    current_userTTL = time.time() + 120
+                current_keyId = tag_data
+                print("Key ID: %s" % current_keyId)
+            if current_keyId > -1 and current_userId > -1:
+                session = {
+                    'user_id': str(current_userId),
+                    'key_id': str(current_keyId),
+                    'timestamp': str(datetime.datetime.now())
+                }
+                post_tag_data(session)
+                current_keyId = -1
+                time.sleep(2)
+    except:
+        continue
