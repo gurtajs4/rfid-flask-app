@@ -48,6 +48,7 @@ def seed(file_location):
         cur.execute('SELECT id FROM Key WHERE room_id = ? ', (room_id,))
         room_pk = cur.fetchone()[0]
         data[i]['id'] = room_pk
+        tag_id = ''
         results.append(Key(room_pk, tag_id, room_id, block_name, sector_name, floor, room_repr))
     dbm.close_connection(db)
     return results
