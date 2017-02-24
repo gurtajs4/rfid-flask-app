@@ -10,7 +10,7 @@ service_manager = ServiceManager()
 
 @app.route('/', methods=['GET'])
 def api_root():
-    ServiceManager.start_db(drop_create=False, seed_data=False)
+    ServiceManager.start_db(drop_create=True, seed_data=True)
     return app.send_static_file('index.html')
 
 
@@ -529,7 +529,7 @@ def api_data_import():
     return resp
 
 
-@app.route('/api/clean-slate', methods=[GET])  # dev only
+@app.route('/api/clean-slate', methods=['GET'])  # dev only
 def api_clean_slate():
     if service_manager.start_db(drop_create=True, seed_data=True, backup_data=True):
         message = {
