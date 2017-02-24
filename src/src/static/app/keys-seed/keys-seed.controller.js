@@ -3,8 +3,8 @@
 
     angular.module('appMain').controller('KeysSeedController', KeysSeedController);
 
-    KeysSeedController.$inject = ['$http', '$location', '$log', 'Upload'];
-    function KeysSeedController($http, $location, $log, Upload) {
+    KeysSeedController.$inject = ['$http', '$location', '$window', '$log', 'Upload'];
+    function KeysSeedController($http, $location, $window, $log, Upload) {
 
         var self = this;
 
@@ -15,12 +15,12 @@
         function getTemplate() {
             $http.get('/api/data/template').then(function (response) {
                 var data = response['file'];
-                // var splitPath = data.split('/');
-                // var filename = splitPath.split(splitPath.length - 1);
-                var blob = new Blob([data], {
-                    type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
-                });
-                window.saveAs(blob, 'seed_data.xlsx');
+                $log.info('Filename is ', data);
+                $window.open('/api/data/template');
+                // var blob = new Blob([data], {
+                //     type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+                // });
+                // window.saveAs(blob, 'seed_data.xlsx');
             });
         }
 
