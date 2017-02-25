@@ -265,23 +265,19 @@ def api_keys_search(queryset):
     words = [word for word in queryset.split(' ')]
     keys = []
     for word in words:
-        if word.isdigit():
-            print('From server - keys search - keys count: %s' % len(keys))
-            room_id = int(word)
-            key = service_manager.search_key(room_id=room_id)
+        pattern = int(word) if word.isdigit() else word
+        print('From server - keys search - keys count: %s' % len(keys))
+        results = service_manager.search_key(room_id=pattern,
+                                             room_repr=pattern,
+                                             block_name=pattern,
+                                             sector_name=pattern,
+                                             floor=pattern, limit=0)
+        for key in results:
             if None is not key:
                 if key.id not in [y.id for y in keys]:
                     keys.append(key)
                     print('From server - keys search - key found: %s' % key.room_id)
-            print('From server - keys search - keys count: %s' % len(keys))
-        else:
-            print('From server - keys search - keys count: %s' % len(keys))
-            key = service_manager.search_key(room_repr=word)
-            if None is not key:
-                if key.id not in [y.id for y in keys]:
-                    keys.append(key)
-                    print('From server - keys search - key found: %s' % key.room_id)
-            print('From server - keys search - keys count: %s' % len(keys))
+        print('From server - keys search - keys count: %s' % len(keys))
     if None is keys or 1 > len(keys):
         message = {
             'status': 404,
