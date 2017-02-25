@@ -49,7 +49,7 @@ def search_session(session_id=None, user_id=None, key_id=None, started_on=None, 
                                     ' closed_on IS NULL' if is_active else
                                     ' closed_on = ? ' if closed_on is not None else '']))
         sql_command = 'SELECT * FROM Session WHERE ' + sql_conditions
-        print('From server - session factory - search sql command is %s' % sql_command)
+        print('From server - session factory - search sql command is %s %s' % (sql_command, params))
         cur.execute(sql_command, params)
         results = [cur.fetchone()] if limit == 1 else cur.fetchall()
         print('From server - session factory - search results: %s' % results)

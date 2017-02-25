@@ -272,11 +272,12 @@ def api_keys_search(queryset):
                                              block_name=pattern,
                                              sector_name=pattern,
                                              floor=pattern, limit=0)
-        for key in results:
-            if None is not key:
-                if key.id not in [y.id for y in keys]:
-                    keys.append(key)
-                    print('From server - keys search - key found: %s' % key.room_id)
+        if None is not results:
+            for key in results:
+                if None is not key:
+                    if key.id not in [y.id for y in keys]:
+                        keys.append(key)
+                        print('From server - keys search - key found: %s' % key.room_id)
         print('From server - keys search - keys count: %s' % len(keys))
     if None is keys or 1 > len(keys):
         message = {

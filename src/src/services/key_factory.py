@@ -62,7 +62,7 @@ def search_key(key_id=None, tag_id=None, room_id=None, block_name=None, sector_n
                                     ' floor = ? ' if floor is not None else '',
                                     ' room_repr = ? ' if room_repr is not None else '']))
         sql_command = 'SELECT * FROM Key WHERE ' + sql_conditions
-        print('From server - key factory - search sql command: %s' % sql_command)
+        print('From server - key factory - search sql command: %s %s' % (sql_command, params))
         cur.execute(sql_command, params)
         results = [cur.fetchone()] if limit == 1 else cur.fetchall()
         print('From server - key factory - search results: %s' % results)
