@@ -4,7 +4,7 @@
             <a class="no-decoration" ng-href="/user-details/{{user.user_id}}">Pojedinosti</a>
         </div>
         <button ng-click="user.isSelected=!user.isSelected" class="btn btn-danger">
-            {{ user.isSelected ? 'Deselect' : 'Select' }}
+            {{ user.isSelected ? 'Odoznači' : 'Označi' }}
         </button>
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -18,17 +18,17 @@
                 <div class="inline-field border-left padding-left">
                     <div class="padding-right-sm">
                         <div class="well">
-                            {{user.first_name}} {{user.last_name}}
+                            Ime i prezime: {{user.first_name}} {{user.last_name}}
                         </div>
                     </div>
                     <div class="padding-right-sm">
                         <div class="well">
-                            <i>{{user.email}}</i>
+                            Email: <i>{{user.email}}</i>
                         </div>
                     </div>
                     <div class="padding-right-sm">
                         <div class="well">
-                            {{user.tag_id}}
+                            Serijska oznaka: {{user.tag_id}}
                         </div>
                     </div>
                 </div>

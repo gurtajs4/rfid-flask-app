@@ -3,13 +3,13 @@
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
-        <div class="well-sm"><em>{{key.room_repr}}</em></div>
-        <div class="well-sm">ID ključa: {{key.id}}</div>
-        <div class="well-sm">Tag ID: {{key.tag_id}}</div>
-        <div class="well-sm">Broj ključa: {{key.room_id}}</div>
-        <div class="well-sm">Kat: {{key.floor}}</div>
-        <div class="well-sm">Oznaka odjela: {{key.sector_name}}</div>
-        <div class="well-sm">Predio zgrade: {{key.block_name}}</div>
+        <div class="well-sm inline-field"><em>{{key.room_repr}}</em></div>
+        <div class="well-sm inline-field">Broj ključa: {{key.room_id}}</div>
+        <div class="well-sm inline-field">Oznaka odjela: {{key.sector_name}}</div>
+        <div class="well-sm inline-field">Kat: {{key.floor}}</div>
+        <div class="well-sm inline-field">Predio zgrade: {{key.block_name}}</div>
+        <div class="well-sm inline-field">Tag ID: {{key.tag_id}}</div>
+        <div class="well-sm inline-field">ID ključa: {{key.id}}</div>
         <div ng-init="key.isSelected = false">
             <button class="btn btn-primary">Uređivanje</button>
             <button ng-click="key.isSelected=!key.isSelected" class="btn btn-danger">

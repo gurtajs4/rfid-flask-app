@@ -53,20 +53,20 @@ body {
     display: inline-block;
 }
 
-.padding-right-sm {
-    padding-right: 10px;
-}
-
 .padding-right {
     padding-right: 30px;
 }
 
-.padding-left-sm {
-    padding-right: 10px;
+.padding-right-sm {
+padding-right: 10px;
 }
 
 .padding-left {
-    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.padding-left-sm {
+padding-left: 10px;
 }
 
 .img-field {
