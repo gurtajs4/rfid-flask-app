@@ -51,10 +51,10 @@
             controller: 'UsersSearchController',
             controllerAs: 'usersSearch'
         }).when('/users/register', {
-            templateUrl: appBaseUrl + '/register/user-register.html',
+            templateUrl: appBaseUrl + '/forms/user-form.html',
             controller: 'UserRegisterController'
         }).when('/keys/register', {
-            templateUrl: appBaseUrl + '/register/key-register.html',
+            templateUrl: appBaseUrl + '/forms/key-form.html',
             controller: 'KeyRegisterController'
         }).when('/keys/seed', {
             templateUrl: appBaseUrl + '/keys-seed/keys-seed.html',

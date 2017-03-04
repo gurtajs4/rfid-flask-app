@@ -43,16 +43,6 @@ class ServiceManager(object):
     @staticmethod
     def seed_from_json():
         seed = DbInitializer()
-        # for session in seed.get_sessions():
-        #     user_factory.create_user(tag_id=session.user_id)
-        #     user = user_factory.search_user(tag_id=session.user_id)
-        #     if None is user:
-        #         pass
-        #     key_factory.create_key(tag_id=session.key_id, room_id=session.key_id)
-        #     key = key_factory.search_key(tag_id=session.key_id)
-        #     if None is key:
-        #         pass
-        #     session_factory.create_session(user_id=user.id, key_id=key.id, started_on=session.started_on)
 
     # api for keys
     @staticmethod
