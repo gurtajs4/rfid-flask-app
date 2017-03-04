@@ -74,14 +74,6 @@ def delete_user(user_id, delete_history=False):
         db = dbm.get_db()
         cur = db.cursor()
         params = (user_id,)
-        # delete user
-        sql_command = 'DELETE FROM User WHERE id = ? '
-        cur.execute(sql_command, params)
-        db.commit()
-        # check if user deleted
-        sql_command = 'SELECT * FROM User WHERE id = ? '
-        cur.execute(sql_command, params)
-        result = cur.fetchone()
         # delete all sessions where user_id matches selected user
         linked_sessions = None
         if True == delete_history:
@@ -92,13 +84,21 @@ def delete_user(user_id, delete_history=False):
             sql_command = 'SELECT * FROM Session WHERE user_id = ? '
             cur.execute(sql_command, params)
             linked_sessions = cur.fetchall()
+        # delete user
+        sql_command = 'DELETE FROM User WHERE id = ? '
+        cur.execute(sql_command, params)
+        db.commit()
+        # check if user deleted
+        sql_command = 'SELECT * FROM User WHERE id = ? '
+        cur.execute(sql_command, params)
+        result = cur.fetchone()
         dbm.close_connection(db)
         return None is result and None is linked_sessions
     else:
         return False
 
 
-def update_user(user_id, tag_id=None, first_name=None, last_name=None, email=None, role_id=1, pic_id=1):
+def update_user(user_id, tag_id=None, first_name=None, last_name=None, email=None, role_id=None, pic_id=None):
     if not (tag_id is None and first_name is None and email is None and last_name is None) and user_id is not None:
         db = dbm.get_db()
         cur = db.cursor()
@@ -113,9 +113,8 @@ def update_user(user_id, tag_id=None, first_name=None, last_name=None, email=Non
                                        'pic_id = ? ' if pic_id is not None else '']))
         # update user
         sql_command = 'UPDATE User SET' + sql_updates + 'WHERE id = ?'
-        print('From server - user factory - sql command is %s' % sql_command)
+        print('From server - user factory - sql command is %s %s' % (sql_command, params))
         params += (user_id,)
-        # params *= 2
         cur.execute(sql_command, params)
         db.commit()
         # return updated user

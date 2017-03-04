@@ -81,19 +81,32 @@ def search_key(key_id=None, tag_id=None, room_id=None, block_name=None, sector_n
         return None
 
 
-def delete_key(key_id=None, tag_id=None, delete_history=False):
-    if not (None is key_id and None is tag_id):
+def delete_key(key_id=None, room_id=None, delete_history=False):
+    if not (None is key_id and None is room_id):
         db = dbm.get_db()
         cur = db.cursor()
-        params = tuple([p for p in [key_id, tag_id] if p is not None])
+        params = tuple([p for p in [key_id, room_id] if p is not None])
         condition_operator = ' AND '
         sql_conditions = condition_operator.join(filter(
             lambda x: x is not '', [' id = ? ' if key_id is not None else '',
-                                    ' tag_id = ? ' if tag_id is not None else '']))
-        if True == delete_history and None is key_id:
-            sql_command = 'SELECT * FROM Key WHERE ' + sql_conditions + ' LIMIT 1 '
-            cur.execute(sql_command, params)
-            key_id = cur.fetchone()[0]
+                                    ' room_id = ? ' if room_id is not None else '']))
+        # delete all sessions where key_id matches selected key
+        linked_sessions = None
+        if True == delete_history:
+            if None is key_id:
+                sql_command = 'SELECT * FROM Key WHERE ' + sql_conditions
+                cur.execute(sql_command, params)
+                key_ids = tuple([i[0] for i in cur.fetchall()])
+            else:
+                key_ids = (key_id,)
+            other_values = 'key_id = ?' * (len(key_ids) - 1)
+            sql_command = 'DELETE FROM Session WHERE key_id = ?' + other_values
+            cur.execute(sql_command, key_ids)
+            db.commit()
+            # check if matched sessions deleted
+            sql_command = 'SELECT * FROM Session WHERE key_id = ? ' + other_values
+            cur.execute(sql_command, key_ids)
+            linked_sessions = cur.fetchall()
         # delete key
         sql_command = 'DELETE FROM Key WHERE ' + sql_conditions
         cur.execute(sql_command, params)
@@ -102,17 +115,6 @@ def delete_key(key_id=None, tag_id=None, delete_history=False):
         sql_command = 'SELECT * FROM Key WHERE ' + sql_conditions + ' LIMIT 1 '
         cur.execute(sql_command, params)
         result = cur.fetchone()
-        # delete all sessions where key_id matches selected key
-        linked_sessions = None
-        if True == delete_history:
-            sql_command = 'DELETE FROM Session WHERE key_id = ? '
-            params = key_id
-            cur.execute(sql_command, params)
-            db.commit()
-            # check if matched sessions deleted
-            sql_command = 'SELECT * FROM Session WHERE key_id = ? '
-            cur.execute(sql_command, params)
-            linked_sessions = cur.fetchall()
         dbm.close_connection(db)
         return None is result and None is linked_sessions
     else:
