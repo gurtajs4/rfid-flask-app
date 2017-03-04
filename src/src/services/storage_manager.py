@@ -5,7 +5,7 @@ from ..config import DATA_EXCEL_PATH as excel_path
 
 class StorageManager(object):
     def __init__(self):
-        self.default_excel_seed_file = 'data_seed0.xls'
+        self.default_excel_seed_file = excel_path + 'data_template.xls'
         self.default_json_seed_file = 'tagReadings.txt'
 
     def store_file(self, file, type):
