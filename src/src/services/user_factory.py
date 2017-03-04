@@ -69,7 +69,7 @@ def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, emai
         return None
 
 
-def delete_user(user_id, delete_history=False):
+def delete_user(user_id, delete_history=True):
     if None is not user_id:
         db = dbm.get_db()
         cur = db.cursor()

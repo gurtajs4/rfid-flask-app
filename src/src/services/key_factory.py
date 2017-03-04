@@ -99,12 +99,14 @@ def delete_key(key_id=None, room_id=None, delete_history=False):
                 key_ids = tuple([i[0] for i in cur.fetchall()])
             else:
                 key_ids = (key_id,)
-            other_values = 'key_id = ?' * (len(key_ids) - 1)
-            sql_command = 'DELETE FROM Session WHERE key_id = ?' + other_values
+            if 0 > len(key_ids) or None is key_ids:
+                return False
+            session_sql_conditions = ' OR '.join('key_id = ?' for i in range(len(key_ids)))
+            sql_command = 'DELETE FROM Session WHERE ' + session_sql_conditions
             cur.execute(sql_command, key_ids)
             db.commit()
             # check if matched sessions deleted
-            sql_command = 'SELECT * FROM Session WHERE key_id = ? ' + other_values
+            sql_command = 'SELECT * FROM Session WHERE ' + session_sql_conditions
             cur.execute(sql_command, key_ids)
             linked_sessions = cur.fetchall()
         # delete key

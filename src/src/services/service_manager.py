@@ -70,8 +70,8 @@ class ServiceManager(object):
         return key_factory.create_key(tag_id, room_id, block_name, sector_name, floor, room_repr)
 
     @staticmethod
-    def delete_key(key_id=None, tag_id=None, delete_history=False):
-        return key_factory.delete_key(key_id, tag_id, delete_history)
+    def delete_key(key_id=None, room_id=None, delete_history=False):
+        return key_factory.delete_key(key_id, room_id, delete_history)
 
     @staticmethod
     def update_key(key_id, tag_id=None, room_id=None, block_name=None, sector_name=None, floor=None, room_repr=None):
@@ -93,7 +93,7 @@ class ServiceManager(object):
         return user_factory.create_user(tag_id, first_name, last_name, email, role_id, pic_id)
 
     @staticmethod
-    def delete_user(user_id, delete_history=False):
+    def delete_user(user_id, delete_history=True):
         return user_factory.delete_user(user_id, delete_history)
 
     @staticmethod
