@@ -53,7 +53,7 @@ def api_users_get():
         ui_models = [service_manager.get_user_ui_model(u) for u in users]
         print('From server - users - pic_url of first user is: %s' % ui_models[0].pic_url)
         data = jserial.user_instances_serialize(user_list=ui_models)
-        resp = jsonify(data)
+        resp = jsonify(data)  # list of users - jsonify iterates over list
         resp.status_code = 200
         return resp
 
@@ -91,7 +91,8 @@ def api_user_register():
         # data = jserial.user_instance_serialize(user_instance=user)
         user_ui_model = service_manager.get_user_ui_model(user)
         data = jserial.user_instance_serialize(user_instance=user_ui_model)
-        resp = jsonify(data)
+        # resp = jsonify(data)
+        resp = Response(data, status=200, mimetype='application/json')
         resp.status_code = 200
         return resp
 
@@ -117,7 +118,7 @@ def api_users_search(queryset):
         ui_models = [service_manager.get_user_ui_model(u) for u in users]
         data = jserial.user_instances_serialize(user_list=ui_models)
         print('From server - users search - users returned: %s' % data)
-        resp = jsonify(data)
+        resp = jsonify(data)  # list of users - so jsonify iterates over list
         resp.status_code = 200
         return resp
 
@@ -136,7 +137,8 @@ def api_user_tag_search(tag_id):
     else:
         user = service_manager.get_user_ui_model(result)
         data = jserial.user_instance_serialize(user_instance=user)
-        resp = jsonify(data)
+        # resp = jsonify(data)
+        resp = Response(data, status=200, mimetype='application/json')
         resp.status_code = 200
         return resp
 
@@ -156,7 +158,8 @@ def api_user_get(user_id):
     else:
         user = service_manager.get_user_ui_model(user_data)
         data = jserial.user_instance_serialize(user)
-        resp = jsonify(data)
+        resp = Response(data, status=200, mimetype='application/json')
+        # resp = jsonify(data)
         resp.status_code = 200
         return resp
 
@@ -210,7 +213,9 @@ def user_edit():
         resp.status_code = message['status']
     else:
         data = jserial.user_instance_serialize(user_instance=user)
-        resp = jsonify(data)
+        resp = Response(data, status=200, mimetype='application/json')
+        resp.status_code = 200
+        # resp = jsonify(data)
     return resp
 
 
@@ -264,7 +269,7 @@ def api_keys_get():
     else:
         print('From server - keys - %s' % keys)
         data = jserial.key_instances_serialize(key_list=keys)
-        resp = jsonify(data)
+        resp = jsonify(data)  # list of keys - jsonify iterates over list
         resp.status_code = 200
         return resp
 
@@ -328,7 +333,7 @@ def api_keys_search(queryset):
     else:
         data = jserial.key_instances_serialize(key_list=keys)
         print('From server - keys search - data is %s' % data)
-        resp = jsonify(data)
+        resp = jsonify(data)  # list of keys - jsonfiy iterates over list
         resp.status_code = 200
         return resp
 
@@ -364,7 +369,8 @@ def api_key_get(key_id):
         return resp
     else:
         data = jserial.key_instance_serialize(key_data)
-        resp = jsonify(data)
+        # resp = jsonify(data)
+        resp = Response(data, status=200, mimetype='application/json')
         resp.status_code = 200
         return resp
 
@@ -427,7 +433,7 @@ def api_sessions_get():
         resp.status_code = 200
     else:
         message = {'status': 404, 'message': 'Not Found'}
-        resp = jsonify(message)
+        resp = jsonify(message)  # list of sessions - jsonify iterates over list
         resp.status_code = 404
     return resp
 
@@ -445,7 +451,9 @@ def api_session_get(session_id):
         resp.status_code = 404
         return resp
     else:
-        resp = jsonify(session)
+        data = jserial.session_instance_serialize(session_instance=session)
+        # resp = jsonify(session)
+        resp = Response(data, status=200, mimetype='application/json')
         resp.status_code = 200
         return resp
 
@@ -473,7 +481,7 @@ def api_sessions_get_by_user(user_id):
     # service_manager.send
     if None is not results:
         data = jserial.session_instances_serialize(session_list=results)
-        resp = jsonify(data)
+        resp = jsonify(data)    # sessions of single user - jsonify iterates over list
         resp.status_code = 200
     else:
         message = {'status': 404, 'message': 'Not Found'}
