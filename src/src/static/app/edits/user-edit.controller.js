@@ -22,8 +22,9 @@
 
         function init() {
             service.getUser(userId).then(function (response) {
-                $log.info('User info loaded: ' + response.data);
-                var user = JSON.parse(response.data);
+                // var user = JSON.parse(response.data);
+                var user = response.data;
+                $log.info('User info loaded: ' + user);
                 $scope.tagData = user.tag_id;
                 $scope.email = user.email;
                 $scope.firstName = user.first_name;

@@ -3,8 +3,8 @@
 
     angular.module('appMain').controller('KeyDetailsController', KeyDetailsController);
 
-    KeyDetailsController.$inject = ['$scope', '$routeParams', '$location', 'keysService'];
-    function KeyDetailsController($scope, $routeParams, $location, keysService) {
+    KeyDetailsController.$inject = ['$scope', '$routeParams', '$location', '$log', 'keysService'];
+    function KeyDetailsController($scope, $routeParams, $location, $log, keysService) {
         var service = keysService;
 
         $scope.keyId = $routeParams.id;
@@ -15,7 +15,9 @@
         function init() {
             service.getItem($scope.keyId).then(function (response) {
                 var data = response.data;
-                $scope.keyData = JSON.parse(data);
+                $log.info('Raw data from response is: ' + data);
+                // $scope.keyData = JSON.parse(data);
+                $scope.keyData = data;
             });
         }
 

@@ -20,7 +20,9 @@
 
         function init() {
             service.getKey(keyId).then(function (response) {
-                var key = JSON.parse(response.data);
+                // var key = JSON.parse(response.data);
+                var key = response.data;
+                $log.info('Key info loaded: ' + key);
                 $scope.tagData = key.tag_id;
                 $scope.roomId = key.room_id;
                 $scope.blockName = key.block_name;

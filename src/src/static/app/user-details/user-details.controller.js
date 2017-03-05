@@ -3,8 +3,8 @@
 
     angular.module('appMain').controller('UserDetailsController', UserDetailsController);
 
-    UserDetailsController.$inject = ['$scope', '$routeParams', '$location', 'usersService'];
-    function UserDetailsController($scope, $routeParams, $location, usersService) {
+    UserDetailsController.$inject = ['$scope', '$routeParams', '$location', '$log', 'usersService'];
+    function UserDetailsController($scope, $routeParams, $location, $log, usersService) {
         var service = usersService;
 
         $scope.userId = $routeParams.id;
@@ -15,7 +15,9 @@
         function init() {
             service.getItem($scope.userId).then(function (response) {
                 var data = response.data;
-                $scope.userData = JSON.parse(data);
+                $log.info('Raw data from response' + data);
+                // $scope.userData = JSON.parse(data);
+                $scope.userData = data;
             });
         }
 
