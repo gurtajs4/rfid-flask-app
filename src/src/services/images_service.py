@@ -54,7 +54,7 @@ def save_img(image):
     params = (file_name, file_src,)
     cur.execute(sql_command, params)
     stored_pic = cur.fetchone()
-    if None is not stored_pic and os.isfile(file_src):
+    if None is not stored_pic and os.path.isfile(file_src):
         pic_id = stored_pic[0]
         print('From server image service - already stored image - id is %s' % pic_id)
     else:
