@@ -112,7 +112,7 @@ def update_user(user_id, tag_id=None, first_name=None, last_name=None, email=Non
                                        'role_id = ? ' if role_id is not None else '',
                                        'pic_id = ? ' if pic_id is not None else '']))
         # update user
-        sql_command = 'UPDATE User SET' + sql_updates + 'WHERE id = ?'
+        sql_command = 'UPDATE User SET ' + sql_updates + ' WHERE id = ?'
         print('From server - user factory - sql command is %s %s' % (sql_command, params))
         params += (user_id,)
         cur.execute(sql_command, params)
