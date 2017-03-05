@@ -1,5 +1,5 @@
 <div class="btn btn-default">
-    <a ng-href="/key-details/{{key.id}}" class="no-decoration">Pojedinosti</a>
+    <a ng-href="/key-details/{{ key.id }}" class="no-decoration">Pojedinosti</a>
 </div>
 <div class="panel panel-default">
     <div class="panel-heading">
@@ -11,7 +11,7 @@
         <div class="well-sm inline-field">Tag ID: {{key.tag_id}}</div>
         <div class="well-sm inline-field">ID ključa: {{key.id}}</div>
         <div ng-init="key.isSelected = false">
-            <button class="btn btn-primary">Uređivanje</button>
+            <a ng-href="/users/edit/{{ key.id }}" class="btn btn-primary">Uređivanje</a>
             <button ng-click="key.isSelected=!key.isSelected" class="btn btn-danger">
                 {{ key.isSelected ? 'Odoznači' : 'Označi' }}
             </button>

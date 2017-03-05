@@ -56,6 +56,12 @@
         }).when('/keys/register', {
             templateUrl: appBaseUrl + '/forms/key-form.html',
             controller: 'KeyRegisterController'
+        }).when('/users/edit/:id', {
+            templateUrl: appBaseUrl + '/forms/user-form.html',
+            controller: 'UserEditController'
+        }).when('/keys/edit/:id', {
+            templateUrl: appBaseUrl + '/forms/key-form.html',
+            controller: 'KeyEditController'
         }).when('/keys/seed', {
             templateUrl: appBaseUrl + '/keys-seed/keys-seed.html',
             controller: 'KeysSeedController',

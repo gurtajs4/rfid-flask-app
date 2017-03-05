@@ -60,28 +60,29 @@ def api_users_get():
 
 @app.route('/api/users/register', methods=['POST'])
 def api_user_register():
-    file = None
     files = request.files
-    if 'file' in files:
+    if 'file' not in files:
+        file = None
+    else:
         file = files['file']
     pic_url, pic_id = service_manager.upload_image(file)
     user_dict = jserial.json_deserialize(request.form['user_json'])
     print('From server - on image upload - JSON data: %s' % user_dict)
-    user_dict = service_manager.create_user_dict(user_dict, pic_id[0])
+    user_dict = service_manager.create_user_dict(user_dict, pic_id)
     print('From server - user register (POST) - user json is %s' % user_dict)
     user = jserial.user_instance_deserialize(user_dict)
-    print('From server - user register (POST) - user is %s' % user)
+    print('From server - user register (POST) - user email is %s' % user.email)
     user = service_manager.create_user(tag_id=user.tag_id,
                                        first_name=user.first_name,
                                        last_name=user.last_name,
                                        email=user.email,
                                        role_id=user.role_id,
                                        pic_id=user.pic_id)
-    print('From server - api-user-register (post) - user from db is %s' % user)
+    print('From server - api-user-register (post) - id of stored user is %s' % user.id)
     if None is user or -1 == user.id:
         message = {
             'status': 404,
-            'message': 'Not Found - unable to register user',
+            'message': 'Not found - Unable to register user',
         }
         resp = jsonify(message)
         resp.status_code = 404
@@ -125,7 +126,7 @@ def api_user_tag_search(tag_id):
     if None is result:
         message = {
             'status': 404,
-            'message': 'Not Found - user you are searching for is not registered'
+            'message': 'Not found - user you are searching for is not registered'
         }
         resp = jsonify(message)
         resp.status_code = 404
@@ -145,7 +146,7 @@ def api_user_get(user_id):
     if None is user_data:
         message = {
             'status': 404,
-            'message': 'Not Found - user you are searching for is not registered'
+            'message': 'Not found - user you are searching for is not registered'
         }
         resp = jsonify(message)
         resp.status_code = 404
@@ -173,6 +174,41 @@ def api_user_delete(user_id):
         }
     resp = jsonify(message)
     resp.status_code = message['status']
+    return resp
+
+
+@app.route('/api/user/edit', methods=['PUT'])
+def user_edit():
+    files = request.files
+    if 'file' not in files:
+        file = None
+    else:
+        file = files['file']
+    pic_url, pic_id = service_manager.upload_image(file)
+    user_dict = jserial.json_deserialize(request.form['user_json'])
+    print('From server - on image upload - JSON data: %s' % user_dict)
+    user_dict = service_manager.create_user_dict(user_dict, pic_id)
+    print('From server - user edit (POST) - user json is %s' % user_dict)
+    user = jserial.user_instance_deserialize(user_dict)
+    print('From server - user edit (PUT) - user email is %s' % user.email)
+    user = service_manager.update_user(user_id=user.id,
+                                       tag_id=user.tag_id,
+                                       first_name=user.first_name,
+                                       last_name=user.last_name,
+                                       email=user.email,
+                                       role_id=user.role_id,
+                                       pic_id=user.pic_id)
+    print('From server - api-user-edit (PUT) - id of stored user is %s' % user.id)
+    if None is user or -1 == user.id:
+        message = {
+            'status': 404,
+            'message': 'Not Found'
+        }
+        resp = jsonify(message)
+        resp.status_code = message['status']
+    else:
+        data = jserial.user_instance_serialize(user_instance=user)
+        resp = jsonify(data)
     return resp
 
 
@@ -347,6 +383,35 @@ def api_key_delete(key_id):
     resp = jsonify(message)
     resp.status_code = message['status']
     return resp
+
+
+@app.route('/api/key/edit', methods=['PUT'])
+def key_edit():
+    key = jserial.key_instance_deserialize(request.get_json())
+    key.room_repr = block_name + sector_name + floor + '-' + str(key.room_id)
+    print('From server - key edit - key tag is %s' % key.tag_id)
+    print('From server - key edit - key repr is %s' % key.room_repr)
+    key = service_manager.update_key(key_id=key.id,
+                                     tag_id=key.tag_id,
+                                     room_id=key.room_id,
+                                     block_name=key.block_name,
+                                     sector_name=key.sector_name,
+                                     floor=key.floor,
+                                     room_repr=key.room_repr)
+    print('From server - key edit - stored key repr is %s' % key.room_repr)
+    if None is key or -1 == key.id:
+        message = {
+            'status': 404,
+            'message': 'Not found - Unable to edit key data',
+        }
+        resp = jsonify(message)
+        resp.status_code = 404
+        return resp
+    else:
+        data = jserial.key_instance_serialize(key_instance=key)
+        resp = Response(data, status=200, mimetype='application/json')
+        resp.status_code = 200
+        return resp
 
 
 # *********** sessions ***********

@@ -2,22 +2,39 @@
     'use strict';
     angular.module('appMain').controller('KeyEditController', KeyEditController);
 
-    KeyEditController.$inject = ['$scope', '$log', '$location'];
-    function KeyEditController($scope, $log, $location) {
-        var service = null; // treba service za edit
+    KeyEditController.$inject = ['$scope', '$log', '$routeParams', '$location', 'updateService'];
+    function KeyEditController($scope, $log, $routeParams, $location, updateService) {
+        var keyId = $routeParams.id;
+        var service = updateService;
 
         $scope.title = "Stranica za uređivanje podataka o ključu";
-        $scope.note = "Uredite podatke o ključu i prostoriji pridjeljujući broj prostorije s ostalim podacima poput odjela.";
 
+        $scope.note = "Uredite podatke o ključu i prostoriji pridjeljujući broj prostorije s ostalim podacima poput odjela.";
         $scope.tagData = "";
         $scope.message = "";
 
-        $scope.update = update;
+        $scope.proceed = proceed;
         $scope.cancel = cancel;
 
-        function update() {
+        init();
+
+        function init() {
+            service.getKey(keyId)
+                .then(function (response) {
+                    if (response.status == 200) {
+                        $location.url('/home');
+                    }
+                    else {
+                        $log.debug('Response status is not 200 on editing key data: ' + response.data);
+                    }
+                }).catch(function (error) {
+                    $log.error('Failed to load key data... ' + error.data);
+                });
+        }
+
+        function proceed() {
             var key = {
-                id: -1,
+                id: keyId,
                 tag_id: $scope.tagData,
                 room_id: $scope.roomId,
                 block_name: $scope.blockName,

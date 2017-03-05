@@ -15,10 +15,10 @@
         $scope.tagData = "";
         $scope.message = "";
 
-        $scope.register = register;
+        $scope.proceed = proceed;
         $scope.cancel = cancel;
 
-        function register() {
+        function proceed() {
             var key = {
                 id: -1,
                 tag_id: $scope.tagData,

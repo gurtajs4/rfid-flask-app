@@ -18,6 +18,7 @@ def create_key(tag_id, room_id, block_name, sector_name, floor, room_repr):
             print(result)
             key_id = int(result[0])
             dbm.close_connection(db)
+            dbm.close_connection(db)
             return Key(
                 key_id=key_id,
                 tag_id=tag_id,
@@ -29,9 +30,8 @@ def create_key(tag_id, room_id, block_name, sector_name, floor, room_repr):
         else:
             raise "Affected rows: ", affected_count
     except:
-        return None
-    finally:
         dbm.close_connection(db)
+        return None
 
 
 def get_keys(limit=0):

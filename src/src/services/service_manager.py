@@ -79,7 +79,7 @@ class ServiceManager(object):
                                         exclusive)
 
     @staticmethod
-    def create_user(tag_id, first_name=None, last_name=None, email=None, role_id=2, pic_id=None):
+    def create_user(tag_id, first_name=None, last_name=None, email=None, role_id=None, pic_id=None):
         return user_factory.create_user(tag_id, first_name, last_name, email, role_id, pic_id)
 
     @staticmethod
@@ -87,8 +87,10 @@ class ServiceManager(object):
         return user_factory.delete_user(user_id, delete_history)
 
     @staticmethod
-    def update_user(user_id, tag_id=None, first_name=None, last_name=None, pic_url=None):
-        return user_factory.update_user(user_id, tag_id, first_name, last_name, pic_url)
+    def update_user(user_id, tag_id=None, first_name=None, last_name=None, email=None, role_id=None, pic_id=None):
+        return user_factory.update_user(user_id=user_id, tag_id=tag_id,
+                                        first_name=first_name, last_name=last_name,
+                                        email=email, role_id=role_id, pic_id=pic_id)
 
     @staticmethod
     def create_user_dict(user, pic_id):

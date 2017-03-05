@@ -42,24 +42,32 @@ def save_img(image):
     if None is image:
         return os.path.join(upu, 'default.png'), 1
     print('From server - image service - image file received %s' % image)
-    # print('From server - image service - image file has %s' % dir(image))
     if '' == image.filename:
         return os.path.join(upu, 'default.png'), 1
     file = image
     file_name = image.filename
     print('From server - image service - image filename is %s' % file_name)
     file_src = os.path.join(upu, file_name)
-    file.save(file_src)
-    print('From server - image service - new file src is %s' % file_src)
     db = dbm.get_db()
     cur = db.cursor()
-    sql_command = 'INSERT OR IGNORE INTO ImageStore (name, location) VALUES (?, ?)'
+    sql_command = 'SELECT id FROM ImageStore WHERE name = ? AND location = ?'
     params = (file_name, file_src,)
     cur.execute(sql_command, params)
-    db.commit()
-    sql_command = 'SELECT id FROM ImageStore WHERE name = ? AND location = ?'
-    cur.execute(sql_command, params)
-    pic_id = cur.fetchone()
-    print('From server image service - newly stored image id is %s' % pic_id)
+    stored_pic = cur.fetchone()
+    if None is not stored_pic and os.isfile(file_src):
+        pic_id = stored_pic[0]
+        print('From server image service - already stored image - id is %s' % pic_id)
+    else:
+        file.save(file_src)
+        print('From server - image service - new file src is %s' % file_src)
+        sql_command = 'INSERT OR IGNORE INTO ImageStore (name, location) VALUES (?, ?)'
+        params = (file_name, file_src,)
+        cur.execute(sql_command, params)
+        db.commit()
+        sql_command = 'SELECT id FROM ImageStore WHERE name = ? AND location = ?'
+        cur.execute(sql_command, params)
+        stored_pic = cur.fetchone()
+        pic_id = stored_pic[0]
+        print('From server image service - newly stored image - id is %s' % pic_id)
     dbm.close_connection(db)
     return file_src, pic_id

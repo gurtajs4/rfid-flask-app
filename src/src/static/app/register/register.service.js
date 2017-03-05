@@ -5,8 +5,8 @@
         .module('appMain')
         .service('registerService', registerService);
 
-    registerService.$inject = ['$http'];
-    function registerService($http) {
+    registerService.$inject = ['$http', 'Upload'];
+    function registerService($http, Upload) {
         var service = {
             userId: userId,
             keyId: keyId,
@@ -20,8 +20,13 @@
             return $http.post('/api/keys/register', JSON.stringify(key));
         }
 
-        function registerUser(user) {
-            return $http.post('/api/users/register', JSON.stringify(user));
+        // function registerUser(user) {
+        function registerUser(user, image) {
+            return Upload.upload({
+                url: '/api/users/register',
+                data: {file: image, 'user_json': JSON.stringify(user), 'user': user}
+            });
+            // return $http.post('/api/users/register', JSON.stringify(user));
         }
 
         function userId(tagData) {
