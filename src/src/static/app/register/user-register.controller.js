@@ -17,6 +17,7 @@
 
         $scope.tagData = "";
         $scope.message = "";
+        $scope.isPreloading = false;
 
         $scope.proceed = proceed;
         $scope.cancel = cancel;
@@ -42,16 +43,12 @@
             //     url: '/api/users/register',
             //     data: {file: $scope.image, 'user_json': JSON.stringify(user), 'user': user}
             // }).then(function (response) {
-            service.registerUser(user, image)
-                .then(function (response) {
-                    $log.info('Success ' + response.config.data.file.name + 'uploaded. Response: ' + response.data);
-                    $location.url('/users');
-                }, function (error) {
-                    $log.error('Error status: ' + error.status);
-                }, function (evt) {
-                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                    $log.info('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-                });
+            service.registerUser(user, image).then(function (response) {
+                $log.info('Success ' + response.data['pic_url'] + 'uploaded. Response: ' + response.data);
+                $location.url('/users');
+            }).catch(function (error) {
+                $log.error('Error status: ' + error.status);
+            });
         }
 
         function cancel() {

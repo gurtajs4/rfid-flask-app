@@ -88,7 +88,9 @@ def api_user_register():
         resp.status_code = 404
         return resp
     else:
-        data = jserial.user_instance_serialize(user_instance=user)
+        # data = jserial.user_instance_serialize(user_instance=user)
+        user_ui_model = service_manager.get_user_ui_model(user)
+        data = jserial.user_instance_serialize(user_instance=user_ui_model)
         resp = jsonify(data)
         resp.status_code = 200
         return resp

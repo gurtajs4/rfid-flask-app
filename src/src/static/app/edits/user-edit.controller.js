@@ -12,6 +12,7 @@
 
         $scope.tagData = "";
         $scope.message = "";
+        $scope.isPreloading = true;
 
         $scope.proceed = proceed;
         $scope.cancel = cancel;
@@ -20,17 +21,19 @@
         init();
 
         function init() {
-            service.getUser(userId)
-                .then(function (response) {
-                    if (response.status == 200) {
-                        $location.url('/home');
-                    }
-                    else {
-                        $log.debug('Response status is not 200 on editing user data: ' + response.data);
-                    }
-                }).catch(function (error) {
-                    $log.error('Failed to load user data... ' + error.data);
-                });
+            service.getUser(userId).then(function (response) {
+                $log.info('User info loaded: ' + response.data);
+                var user = JSON.parse(response.data);
+                $scope.tag_id = user.tag_id;
+                $scope.email = user.email;
+                $scope.first_name = user.first_name;
+                $scope.last_name = user.last_name;
+                $scope.role_id = user.role_id;
+                $scope.pic_url = user.pic_url;
+            }).catch(function (error) {
+                $log.error('Failed to load user data... ' + error.data);
+                $location.url('/home');
+            });
         }
 
         function isNotValid() {
@@ -49,16 +52,12 @@
             $log.info('User data is ', user);
             var image = $scope.image;
             $log.info('Image name is ', image);
-            service.updateUser(user, image)
-                .then(function (response) {
-                    $log.info('Success ' + response.config.data.file.name + 'uploaded. Response: ' + response.data);
-                    $location.url('/users');
-                }, function (error) {
-                    $log.error('Error status: ' + error.status);
-                }, function (evt) {
-                    var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-                    $log.info('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-                });
+            service.updateUser(user, image).then(function (response) {
+                $log.info('Success ' + response.data['pic_url'] + 'uploaded. Response: ' + response.data);
+                $location.url('/users');
+            }).catch(function (error) {
+                $log.error('Error status: ' + error.status);
+            });
         }
 
         function cancel() {

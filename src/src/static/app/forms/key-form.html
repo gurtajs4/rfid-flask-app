@@ -8,7 +8,7 @@
                 Identifikacijski broj će se prikazati nedugo nakon i tada ćete moći unijeti ostale informacije vezane za prostoriju.
             </div>
         </div>
-        <div class="panel">
+        <div ng-if="!isPreloading" class="panel">
             <div reader tag_data="tagData" message="message"></div>
         </div>
         <div class="panel panel-info">
