@@ -105,7 +105,7 @@ def update_user(user_id, tag_id=None, first_name=None, last_name=None, email=Non
         params = tuple([p for p in [tag_id, first_name, last_name, email, role_id, pic_id] if p is not None])
         updates_separator = ' , '
         sql_updates = updates_separator.join(filter(
-            lambda x, y: x is not '', ['tag_id = ? ' if tag_id is not None else '',
+            lambda x: x is not '', ['tag_id = ? ' if tag_id is not None else '',
                                        'first_name = ? ' if first_name is not None else '',
                                        'last_name = ? ' if last_name is not None else '',
                                        'email = ? ' if email is not None else '',
