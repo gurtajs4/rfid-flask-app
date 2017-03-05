@@ -13,6 +13,10 @@
         $scope.tagData = "";
         $scope.message = "";
         $scope.isPreloading = true;
+        $scope.roleOptions = [
+            {id: 1, name: 'Profesor'},
+            {id: 2, name: 'Student'}
+        ];
 
         $scope.proceed = proceed;
         $scope.cancel = cancel;
@@ -24,12 +28,14 @@
             service.getUser(userId).then(function (response) {
                 // var user = JSON.parse(response.data);
                 var user = response.data;
-                $log.info('User info loaded: ' + user);
+                $log.info('User info loaded: ', user);
                 $scope.tagData = user.tag_id;
                 $scope.email = user.email;
                 $scope.firstName = user.first_name;
                 $scope.lastName = user.last_name;
-                $scope.role = user.role_id;
+                $scope.role = $scope.roleOptions.filter(function (roleOpt) {
+                    return roleOpt.id == user.role_id;
+                })[0];
                 $scope.image = user.pic_url;
             }).catch(function (error) {
                 $log.error('Failed to load user data... ' + error.data);
@@ -48,7 +54,7 @@
                 first_name: $scope.firstName,
                 last_name: $scope.lastName,
                 email: $scope.email,
-                role_id: $scope.role
+                role_id: $scope.role.id
             };
             $log.info('User data is ', user);
             var image = $scope.image;

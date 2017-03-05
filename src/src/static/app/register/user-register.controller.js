@@ -5,9 +5,6 @@
         .module('appMain')
         .controller('UserRegisterController', UserRegisterController);
 
-    // UserRegisterController.$inject = ['$scope', '$log', '$location', 'Upload', 'registerService'];
-    // function UserRegisterController($scope, $log, $location, Upload, registerService) {
-
     UserRegisterController.$inject = ['$scope', '$log', '$location', 'registerService'];
     function UserRegisterController($scope, $log, $location, registerService) {
         var service = registerService;
@@ -18,6 +15,10 @@
         $scope.tagData = "";
         $scope.message = "";
         $scope.isPreloading = false;
+        $scope.roleOptions = [
+            {id: 1, name: 'Profesor'},
+            {id: 2, name: 'Student'}
+        ];
 
         $scope.proceed = proceed;
         $scope.cancel = cancel;
@@ -34,15 +35,11 @@
                 first_name: $scope.firstName,
                 last_name: $scope.lastName,
                 email: $scope.email,
-                role_id: $scope.role
+                role_id: $scope.role.id
             };
             $log.info('User data is: ', user);
             var image = $scope.image;
             $log.info('Image is ', image);
-            // Upload.upload({
-            //     url: '/api/users/register',
-            //     data: {file: $scope.image, 'user_json': JSON.stringify(user), 'user': user}
-            // }).then(function (response) {
             service.registerUser(user, image).then(function (response) {
                 $log.info('Success ' + response.data['pic_url'] + 'uploaded. Response: ' + response.data);
                 $location.url('/users');
