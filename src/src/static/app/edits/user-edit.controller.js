@@ -59,11 +59,15 @@
             $log.info('User data is ', user);
             var image = $scope.image;
             $log.info('Image name is ', image);
-            service.updateUser(user, image).then(function (response) {
-                $log.info('Success ' + response.data['pic_url'] + 'uploaded. Response: ' + response.data);
-                $location.url('/users');
+            service.updateUser(user, image).then(function (status) {
+                if (status == 200) {
+                    $location.url('/users');
+                }
+                else {
+                    $log.error('Error status: ', status);
+                }
             }).catch(function (error) {
-                $log.error('Error status: ' + error.status);
+                $log.error('Error status: ', error);
             });
         }
 

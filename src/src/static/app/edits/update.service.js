@@ -28,8 +28,13 @@
         function updateUser(user, image) {
             return Upload.upload({
                 url: '/api/user/edit',
-                data: {file: image, 'user_json': JSON.stringify(user), 'user': user}
-            });
+                data: {file: image, 'user_json': JSON.stringify(user), 'user': user},
+                method: 'PUT'
+            }).then(function (response) {
+                return response.status;
+            }, function (error) {
+                return error.status;
+            })
         }
     }
 })();

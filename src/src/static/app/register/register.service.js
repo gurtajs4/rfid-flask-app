@@ -24,7 +24,8 @@
         function registerUser(user, image) {
             return Upload.upload({
                 url: '/api/users/register',
-                data: {file: image, 'user_json': JSON.stringify(user), 'user': user}
+                data: {file: image, 'user_json': JSON.stringify(user), 'user': user},
+                method: 'POST'
             });
             // return $http.post('/api/users/register', JSON.stringify(user));
         }

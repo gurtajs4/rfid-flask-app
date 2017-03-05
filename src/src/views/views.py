@@ -182,7 +182,7 @@ def api_user_delete(user_id):
     return resp
 
 
-@app.route('/api/user/edit', methods=['PUT'])
+@app.route('/api/user/edit', methods=['PUT', 'POST'])
 def user_edit():
     files = request.files
     if 'file' not in files:
@@ -393,7 +393,7 @@ def api_key_delete(key_id):
     return resp
 
 
-@app.route('/api/key/edit', methods=['PUT'])
+@app.route('/api/key/edit', methods=['PUT', 'POST'])
 def key_edit():
     key = jserial.key_instance_deserialize(request.get_json())
     key.room_repr = block_name + sector_name + floor + '-' + str(key.room_id)
@@ -481,7 +481,7 @@ def api_sessions_get_by_user(user_id):
     # service_manager.send
     if None is not results:
         data = jserial.session_instances_serialize(session_list=results)
-        resp = jsonify(data)    # sessions of single user - jsonify iterates over list
+        resp = jsonify(data)  # sessions of single user - jsonify iterates over list
         resp.status_code = 200
     else:
         message = {'status': 404, 'message': 'Not Found'}
