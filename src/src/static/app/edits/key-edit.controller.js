@@ -8,8 +8,8 @@
         var service = updateService;
 
         $scope.title = "Stranica za uređivanje podataka o ključu";
-
         $scope.note = "Uredite podatke o ključu i prostoriji pridjeljujući broj prostorije s ostalim podacima poput odjela.";
+
         $scope.tagData = "";
         $scope.message = "";
 
@@ -19,17 +19,17 @@
         init();
 
         function init() {
-            service.getKey(keyId)
-                .then(function (response) {
-                    if (response.status == 200) {
-                        $location.url('/home');
-                    }
-                    else {
-                        $log.debug('Response status is not 200 on editing key data: ' + response.data);
-                    }
-                }).catch(function (error) {
-                    $log.error('Failed to load key data... ' + error.data);
-                });
+            service.getKey(keyId).then(function (response) {
+                var key = JSON.parse(response.data);
+                $scope.tag_id = key.tag_id;
+                $scope.room_id = key.room_id;
+                $scope.block_name = key.block_name;
+                $scope.sector_name = key.sector_name;
+                $scope.floor = key.floor;
+            }).catch(function (error) {
+                $log.error('Failed to load key data... ' + error.data);
+                $location.url('/home');
+            });
         }
 
         function proceed() {
@@ -42,18 +42,12 @@
                 floor: $scope.floor
             };
             $log.info('Key: ', key);
-            service.registerKey(key)
-                .then(function (response) {
-                    if (response.status == 200) {
-                        $location.url('/home');
-                    }
-                    else {
-                        $log.debug('Response status is not 200 on registering key: ' + response.data);
-                    }
-                })
-                .catch(function (error) {
-                    $log.error('Failed to create key... ' + error.data);
-                });
+            service.updateKey(key).then(function (response) {
+                $log.info('Updated key: ' + response.data);
+                $location.url('/keys');
+            }).catch(function (error) {
+                $log.error('Failed to create key... ' + error.data);
+            });
         }
 
         function cancel() {
