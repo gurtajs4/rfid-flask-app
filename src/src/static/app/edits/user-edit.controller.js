@@ -35,7 +35,7 @@
                 $scope.lastName = user.last_name;
                 $scope.role = $scope.roleOptions.filter(function (roleOpt) {
                     return roleOpt.id == user.role_id;
-                })[0];
+                })[0].id;
                 $scope.image = user.pic_url;
             }).catch(function (error) {
                 $log.error('Failed to load user data... ' + error.data);
@@ -54,7 +54,7 @@
                 first_name: $scope.firstName,
                 last_name: $scope.lastName,
                 email: $scope.email,
-                role_id: $scope.role.id
+                role_id: $scope.role
             };
             $log.info('User data is ', user);
             var image = $scope.image;

@@ -35,7 +35,7 @@
                 first_name: $scope.firstName,
                 last_name: $scope.lastName,
                 email: $scope.email,
-                role_id: $scope.role.id
+                role_id: $scope.role
             };
             $log.info('User data is: ', user);
             var image = $scope.image;
