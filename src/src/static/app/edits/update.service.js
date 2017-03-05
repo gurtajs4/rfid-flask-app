@@ -2,8 +2,8 @@
     'use strict';
     angular.module('appMain').service('updateService', updateService);
 
-    updateService.$inject = ['$http', 'keysService', 'usersService', 'Upload'];
-    function updateService($http, keysService, usersService, Upload) {
+    updateService.$inject = ['$http', 'Upload'];
+    function updateService($http, Upload) {
         var service = {
             getKey: getKey,
             getUser: getUser,
@@ -14,11 +14,11 @@
         return service;
 
         function getKey(keyId) {
-            return keysService.getKey(keyId);
+            return $http.get('/api/key/get/' + keyId.toString());
         }
 
         function getUser(userId) {
-            return usersService.getUser(userId);
+            return $http.get('/api/user/get/' + userId.toString());
         }
 
         function keyUpdate(key) {
