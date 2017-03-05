@@ -21,10 +21,10 @@
         function init() {
             service.getKey(keyId).then(function (response) {
                 var key = JSON.parse(response.data);
-                $scope.tag_id = key.tag_id;
-                $scope.room_id = key.room_id;
-                $scope.block_name = key.block_name;
-                $scope.sector_name = key.sector_name;
+                $scope.tagData = key.tag_id;
+                $scope.roomId = key.room_id;
+                $scope.blockName = key.block_name;
+                $scope.sectorName = key.sector_name;
                 $scope.floor = key.floor;
             }).catch(function (error) {
                 $log.error('Failed to load key data... ' + error.data);

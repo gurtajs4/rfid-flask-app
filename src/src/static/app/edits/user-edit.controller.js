@@ -24,12 +24,12 @@
             service.getUser(userId).then(function (response) {
                 $log.info('User info loaded: ' + response.data);
                 var user = JSON.parse(response.data);
-                $scope.tag_id = user.tag_id;
+                $scope.tagData = user.tag_id;
                 $scope.email = user.email;
-                $scope.first_name = user.first_name;
-                $scope.last_name = user.last_name;
-                $scope.role_id = user.role_id;
-                $scope.pic_url = user.pic_url;
+                $scope.firstName = user.first_name;
+                $scope.lastName = user.last_name;
+                $scope.role = user.role_id;
+                $scope.image = user.pic_url;
             }).catch(function (error) {
                 $log.error('Failed to load user data... ' + error.data);
                 $location.url('/home');
