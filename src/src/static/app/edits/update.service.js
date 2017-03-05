@@ -5,13 +5,21 @@
     updateService.$inject = ['$http', 'keysService', 'usersService', 'Upload'];
     function updateService($http, keysService, usersService, Upload) {
         var service = {
-            getKey: keysService.getKey(),
-            getUser: usersService.getUser(),
+            getKey: getKey,
+            getUser: getUser,
             keyUpdate: keyUpdate,
             userUpdate: userUpdate
         };
 
         return service;
+
+        function getKey(keyId) {
+            return keysService.getKey(keyId);
+        }
+
+        function getUser(userId) {
+            return usersService.getUser(userId);
+        }
 
         function keyUpdate(key) {
             return $http.put('/api/key/edit', JSON.stringify(key));
