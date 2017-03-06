@@ -121,6 +121,8 @@ def update_user(user_id, tag_id=None, first_name=None, last_name=None, email=Non
         sql_command = 'SELECT * FROM User WHERE id = ? LIMIT 1 '
         cur.execute(sql_command, (user_id,))
         result = cur.fetchone()
+        if None is result:
+            return None
         user = User(user_id=result[0], tag_id=result[1], first_name=result[2], last_name=result[3], email=result[4],
                     role_id=result[5], pic_id=result[6])
         dbm.close_connection(db)

@@ -93,18 +93,6 @@ class ServiceManager(object):
                                         email=email, role_id=role_id, pic_id=pic_id)
 
     @staticmethod
-    def create_user_dict(user, pic_id):
-        return {
-            'id': -1,
-            'tag_id': user['tag_id'],
-            'first_name': user['first_name'],
-            'last_name': user['last_name'],
-            'email': user['email'],
-            'role_id': user['role_id'],
-            'pic_id': pic_id
-        }
-
-    @staticmethod
     def get_user_ui_model(user):
         pic_url = images_service.get_img_url(user.pic_id, True)
         return UserProfile(user.id, user.tag_id, user.first_name, user.last_name, user.email, user.role_id, pic_url)

@@ -74,6 +74,18 @@ class JSONSerializer(object):
         return [JSONSerializer.user_instance_serialize(user) for user in user_list]
 
     @staticmethod
+    def create_user_dict(user, pic_id):
+        return {
+            'id': user['user_id'] if 'user_id' in user else user['id'] if 'id' in user else -1,
+            'tag_id': user['tag_id'],
+            'first_name': user['first_name'],
+            'last_name': user['last_name'],
+            'email': user['email'],
+            'role_id': user['role_id'],
+            'pic_id': pic_id
+        }
+
+    @staticmethod
     def user_session_instance_deserialize(parsed_dict):
         return {
             'user_id': parsed_dict['user_id'],
