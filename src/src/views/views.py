@@ -396,7 +396,6 @@ def api_key_delete(key_id):
 @app.route('/api/key/edit', methods=['PUT', 'POST'])
 def key_edit():
     key = jserial.key_instance_deserialize(request.get_json())
-    key.room_repr = block_name + sector_name + floor + '-' + str(key.room_id)
     print('From server - key edit - key tag is %s' % key.tag_id)
     print('From server - key edit - key repr is %s' % key.room_repr)
     key = service_manager.update_key(key_id=key.id,

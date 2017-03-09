@@ -28,6 +28,7 @@
                 $scope.blockName = key.block_name;
                 $scope.sectorName = key.sector_name;
                 $scope.floor = key.floor;
+                $scope.roomRepr=key.room_repr;
             }).catch(function (error) {
                 $log.error('Failed to load key data... ' + error.data);
                 $location.url('/home');
@@ -41,7 +42,8 @@
                 room_id: $scope.roomId,
                 block_name: $scope.blockName,
                 sector_name: $scope.sectorName,
-                floor: $scope.floor
+                floor: $scope.floor,
+                room_repr: $scope.roomRepr
             };
             $log.info('Key: ', key);
             service.updateKey(key).then(function (response) {
