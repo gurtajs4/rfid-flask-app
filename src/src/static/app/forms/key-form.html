@@ -19,10 +19,14 @@
             <div class="panel-heading">Uređivanje podataka vezanih za ključ broj {{tagData}}</div>
             <div class="panel-body">
                 <div ng-init="isRoom=true">
-                    <input ng-model="isRoom" type="checkbox"/>
-                    Učionica
-                    <input ng-model="!isRoom" type="checkbox"/>
-                    Amfiteatar
+                    <label class="radio-inline">
+                        <input ng-model="isRoom" type="radio" value="isRoom"/>
+                        Učionica
+                    </label>
+                    <label class="radio-inline">
+                        <input ng-model="isRoom" type="radio" value="!isRoom"/>
+                        Amfiteatar
+                    </label>
                 </div>
                 <div class="form-inline">
                     <div class="form-group">
