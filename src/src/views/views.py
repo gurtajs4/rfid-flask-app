@@ -257,7 +257,6 @@ def api_user_auth_requests(user_id):
 @app.route('/api/keys', methods=['GET'])
 def api_keys_get():
     keys = service_manager.get_keys()
-    print(keys)
     if None is keys or 1 > len(keys):
         message = {
             'status': 404,
@@ -267,8 +266,8 @@ def api_keys_get():
         resp.status_code = 404
         return resp
     else:
-        print('From server - keys - %s' % keys)
         data = jserial.key_instances_serialize(key_list=keys)
+        print('From server - keys - %s' % data)
         resp = jsonify(data)  # list of keys - jsonify iterates over list
         resp.status_code = 200
         return resp

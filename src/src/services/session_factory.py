@@ -101,10 +101,10 @@ def update_session(session_id, user_id=None, key_id=None, started_on=None, close
         params = tuple([p for p in [user_id, key_id, started_on, closed_on] if p is not None])
         updates_separator = ' , '
         sql_updates = updates_separator.join(filter(
-            lambda x: x is not '', [' user_id = ? ' if user_id is not None else '',
-                                    ' key_id = ? ' if key_id is not None else '',
-                                    ' started_on = ? ' if started_on is not None else '',
-                                    ' closed_on = ? ' if closed_on is not None else '']))
+            lambda x: x is not '', [' user_id = ? , ' if user_id is not None else '',
+                                    ' key_id = ? , ' if key_id is not None else '',
+                                    ' started_on = ? , ' if started_on is not None else '',
+                                    ' closed_on = ? , ' if closed_on is not None else '']))
         # update session
         sql_command = 'UPDATE Session SET ' + sql_updates + ' WHERE id = ? '
         params += (session_id,)

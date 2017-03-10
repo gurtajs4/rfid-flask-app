@@ -132,17 +132,17 @@ def update_key(key_id, tag_id=None, room_id=None, block_name=None, sector_name=N
             [p for p in [tag_id, room_id, block_name, sector_name, floor, room_repr] if p is not None])
         condition_operator = ' AND '
         sql_updates = condition_operator.join(filter(
-            lambda x: x is not '', [' tag_id = ? ' if tag_id is not None else '',
-                                    ' room_id = ? ' if room_id is not None else '',
-                                    ' block_name = ? ' if block_name is not None else '',
-                                    ' sector_name = ? ' if sector_name is not None else '',
-                                    ' floor = ? ' if floor is not None else '',
-                                    ' room_repr = ? ' if room_repr is not None else '']))
+            lambda x: x is not '', [' tag_id = ? , ' if tag_id is not None else '',
+                                    ' room_id = ? , ' if room_id is not None else '',
+                                    ' block_name = ? , ' if block_name is not None else '',
+                                    ' sector_name = ? , ' if sector_name is not None else '',
+                                    ' floor = ? , ' if floor is not None else '',
+                                    ' room_repr = ? , ' if room_repr is not None else '']))
         # update key
         sql_command = 'UPDATE Key SET ' + sql_updates + ' WHERE id = ?'
         params += (key_id,)
-        affected_count=cur.execute(sql_command, params)
-        print('The command: %s ; resulted in affecting %s number of rows'%(sql_command,affected_count))
+        cur.execute(sql_command, params)
+        print('The command: %s ' % sql_command)
         db.commit()
         # return updated key
         sql_command = 'SELECT * FROM Key WHERE id = ? LIMIT 1 '
