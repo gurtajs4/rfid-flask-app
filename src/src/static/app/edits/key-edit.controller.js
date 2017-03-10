@@ -13,6 +13,7 @@
         $scope.tagData = "";
         $scope.message = "";
         $scope.isRoom = 1;
+        $scope.isPreloading = false;
 
         $scope.proceed = proceed;
         $scope.cancel = cancel;
@@ -30,6 +31,7 @@
                 $scope.sectorName = key.sector_name;
                 $scope.floor = key.floor;
                 $scope.roomRepr = key.room_repr;
+                $scope.isPreloading = false;
             }).catch(function (error) {
                 $log.error('Failed to load key data... ' + error.data);
                 $location.url('/home');

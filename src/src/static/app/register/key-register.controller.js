@@ -15,6 +15,7 @@
         $scope.tagData = "";
         $scope.message = "";
         $scope.isRoom = 1;
+        $scope.isPreloading = false;
 
         $scope.proceed = proceed;
         $scope.cancel = cancel;
