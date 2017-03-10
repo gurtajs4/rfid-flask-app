@@ -276,7 +276,6 @@ def api_keys_get():
 @app.route('/api/keys/register', methods=['POST'])
 def api_key_register():
     key = jserial.key_instance_deserialize(request.get_json())
-    # key.room_repr = block_name + sector_name + floor + '-' + str(key.room_id)
     print('From server - key register - key tag is %s' % key.tag_id)
     print('From server - key register - key repr is %s' % key.room_repr)
     key = service_manager.create_key(tag_id=key.tag_id,
