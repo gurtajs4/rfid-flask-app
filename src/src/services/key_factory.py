@@ -142,21 +142,24 @@ def update_key(key_id, tag_id=None, room_id=None, block_name=None, sector_name=N
         # update key
         sql_command = 'UPDATE Key SET ' + sql_updates + ' WHERE id = ?'
         params += (key_id,)
-        cur.execute(sql_command, params)
+        affected_count=cur.execute(sql_command, params)
+        print('The command: %s ; resulted in affecting %s number of rows'%(sql_command,affected_count))
         db.commit()
         # return updated key
         sql_command = 'SELECT * FROM Key WHERE id = ? LIMIT 1 '
         cur.execute(sql_command, (key_id,))
         result = cur.fetchone()
-        key = Key(
-            key_id=result[0],
-            tag_id=result[1],
-            room_id=result[2],
-            block_name=result[3],
-            sector_name=result[4],
-            floor=result[5],
-            room_repr=result[6])
+        if None is not result:
+            key = Key(
+                key_id=result[0],
+                tag_id=result[1],
+                room_id=result[2],
+                block_name=result[3],
+                sector_name=result[4],
+                floor=result[5],
+                room_repr=result[6])
+            return key
         dbm.close_connection(db)
-        return key
+        return None
     else:
         return None
