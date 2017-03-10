@@ -13,7 +13,7 @@
         $scope.tagData = "";
         $scope.message = "";
         $scope.isRoom = 1;
-        $scope.isPreloading = false;
+        $scope.isPreloading = true;
 
         $scope.proceed = proceed;
         $scope.cancel = cancel;
