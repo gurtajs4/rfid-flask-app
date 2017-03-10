@@ -12,6 +12,7 @@
 
         $scope.tagData = "";
         $scope.message = "";
+        $scope.isRoom = 1;
 
         $scope.proceed = proceed;
         $scope.cancel = cancel;
@@ -20,15 +21,15 @@
 
         function init() {
             service.getKey(keyId).then(function (response) {
-                // var key = JSON.parse(response.data);
                 var key = response.data;
                 $log.info('Key info loaded: ' + key);
+                $scope.isRoom = (key.block_name.includes('F') && key.sector_name.includes('A')) ? 2 : 1;
                 $scope.tagData = key.tag_id;
                 $scope.roomId = key.room_id;
                 $scope.blockName = key.block_name;
                 $scope.sectorName = key.sector_name;
                 $scope.floor = key.floor;
-                $scope.roomRepr=key.room_repr;
+                $scope.roomRepr = key.room_repr;
             }).catch(function (error) {
                 $log.error('Failed to load key data... ' + error.data);
                 $location.url('/home');

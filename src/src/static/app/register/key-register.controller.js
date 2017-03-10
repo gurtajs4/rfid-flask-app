@@ -14,6 +14,7 @@
 
         $scope.tagData = "";
         $scope.message = "";
+        $scope.isRoom = 1;
 
         $scope.proceed = proceed;
         $scope.cancel = cancel;
