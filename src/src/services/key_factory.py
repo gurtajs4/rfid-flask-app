@@ -129,11 +129,10 @@ def update_key(key_id, tag_id=None, room_id=None, block_name=None, sector_name=N
         db = dbm.get_db()
         cur = db.cursor()
         params = tuple(
-            [p for p in [key_id, tag_id, room_id, block_name, sector_name, floor, room_repr] if p is not None])
+            [p for p in [tag_id, room_id, block_name, sector_name, floor, room_repr] if p is not None])
         condition_operator = ' AND '
         sql_updates = condition_operator.join(filter(
-            lambda x: x is not '', [' id = ? ' if key_id is not None else '',
-                                    ' tag_id = ? ' if tag_id is not None else '',
+            lambda x: x is not '', [' tag_id = ? ' if tag_id is not None else '',
                                     ' room_id = ? ' if room_id is not None else '',
                                     ' block_name = ? ' if block_name is not None else '',
                                     ' sector_name = ? ' if sector_name is not None else '',
