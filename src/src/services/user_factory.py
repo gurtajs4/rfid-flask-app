@@ -105,12 +105,12 @@ def update_user(user_id, tag_id=None, first_name=None, last_name=None, email=Non
         params = tuple([p for p in [tag_id, first_name, last_name, email, role_id, pic_id] if p is not None])
         updates_separator = ' , '
         sql_updates = updates_separator.join(filter(
-            lambda x: x is not '', ['tag_id = ? , ' if tag_id is not None else '',
-                                       'first_name = ? , ' if first_name is not None else '',
-                                       'last_name = ? , ' if last_name is not None else '',
-                                       'email = ? , ' if email is not None else '',
-                                       'role_id = ? , ' if role_id is not None else '',
-                                       'pic_id = ? , ' if pic_id is not None else '']))
+            lambda x: x is not '', ['tag_id = ? ' if tag_id is not None else '',
+                                       'first_name = ? ' if first_name is not None else '',
+                                       'last_name = ? ' if last_name is not None else '',
+                                       'email = ? ' if email is not None else '',
+                                       'role_id = ? ' if role_id is not None else '',
+                                       'pic_id = ? ' if pic_id is not None else '']))
         # update user
         sql_command = 'UPDATE User SET ' + sql_updates + ' WHERE id = ?'
         print('From server - user factory - sql command is %s %s' % (sql_command, params))
