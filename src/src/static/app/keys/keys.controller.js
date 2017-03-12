@@ -19,7 +19,7 @@
                 var viewModel = [];
                 for (var i = 0; i < data.length; i++) {
                     var singleViewModel = data[i];
-                    $log.info(singleViewModel);
+                    // $log.info(singleViewModel);
                     viewModel.push(JSON.parse(singleViewModel));
                 }
                 self.list = viewModel;
