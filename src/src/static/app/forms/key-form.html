@@ -8,15 +8,15 @@
                 Identifikacijski broj će se prikazati nedugo nakon i tada ćete moći unijeti ostale informacije vezane za prostoriju.
             </div>
         </div>
-        <div class="panel panel-info">
-            <div class="panel-heading">{{tagData}} status</div>
-            <div class="panel-body">{{message}}</div>
-        </div>
         <div ng-if="!isPreloading" class="panel">
             <reader tag-data="tagData" message="message"></reader>
         </div>
+        <div class="panel panel-info">
+            <div class="panel-heading"><span ng-bind="tagData"></span> status</div>
+            <div class="panel-body"><span ng-bind="message"></span></div>
+        </div>
         <div class="panel panel-default">
-            <div class="panel-heading">Uređivanje podataka vezanih za ključ broj {{tagData}}</div>
+            <div class="panel-heading">Uređivanje podataka vezanih za ključ <span ng-bind="roomRepr"></span></div>
             <div class="panel-body">
                 <div>
                     <label class="radio-inline">
