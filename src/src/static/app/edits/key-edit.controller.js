@@ -18,6 +18,11 @@
         $scope.proceed = proceed;
         $scope.cancel = cancel;
 
+        $scope.$watch('tagData', function (previous, updated) {
+            $log.info('Previous tag data: ', previous);
+            $log.info('New tag data: ', updated);
+        });
+
         init();
 
         function init() {
