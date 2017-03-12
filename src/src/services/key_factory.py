@@ -157,7 +157,8 @@ def update_key(key_id, tag_id=None, room_id=None, block_name=None, sector_name=N
                 sector_name=result[4],
                 floor=result[5],
                 room_repr=result[6])
-            print('From server - key factory - retrieved key %s' % key)
+            print('From server - key factory - retrieved key %s' % key.room_repr)
+            print('From server - key factory - retrieved key-tag %s' % key.tag_id)
             return key
         dbm.close_connection(db)
         return None
