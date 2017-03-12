@@ -20,6 +20,7 @@
         $scope.cancel = cancel;
 
         function proceed() {
+            $log.info('Tagdata: ', $scope.tagData);
             var key = {
                 id: -1,
                 tag_id: $scope.tagData,

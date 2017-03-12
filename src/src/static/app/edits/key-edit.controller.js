@@ -32,6 +32,7 @@
                 $scope.floor = key.floor;
                 $scope.roomRepr = key.room_repr;
                 $scope.isPreloading = false;
+                $log.info('Tagdata: ', $scope.tagData);
             }).catch(function (error) {
                 $log.error('Failed to load key data... ' + error.data);
                 $location.url('/home');
@@ -39,6 +40,7 @@
         }
 
         function proceed() {
+            $log.info('Tagdata: ', $scope.tagData);
             var key = {
                 id: keyId,
                 tag_id: $scope.tagData,
