@@ -267,7 +267,7 @@ def api_keys_get():
         return resp
     else:
         data = jserial.key_instances_serialize(key_list=keys)
-        print('From server - keys - %s' % data)
+        # print('From server - keys - %s' % data)
         resp = jsonify(data)  # list of keys - jsonify iterates over list
         resp.status_code = 200
         return resp

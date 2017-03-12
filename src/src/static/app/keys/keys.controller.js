@@ -15,7 +15,7 @@
         function init() {
             service.getItems().then(function (response) {
                 var data = response.data;
-                $log.info(data);
+                // $log.info(data);
                 var viewModel = [];
                 for (var i = 0; i < data.length; i++) {
                     var singleViewModel = data[i];
