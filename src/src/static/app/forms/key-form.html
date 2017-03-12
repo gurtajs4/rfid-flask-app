@@ -4,19 +4,26 @@
         <div class="panel panel-primary">
             <div class="panel-heading">{{note}}</div>
             <div class="panel-body">
-                Molim, primaknite RFID privjesak ključa iznad čitača kako bi sustav detektirao njegov jedinstveni identifikacijski broj.
-                Identifikacijski broj će se prikazati nedugo nakon i tada ćete moći unijeti ostale informacije vezane za prostoriju.
+                Molim, primaknite RFID privjesak ključa iznad čitača kako bi sustav detektirao njegov jedinstveni
+                identifikacijski broj.
+                Identifikacijski broj će se prikazati nedugo nakon i tada ćete moći unijeti ostale informacije vezane za
+                prostoriju.
             </div>
         </div>
         <div ng-if="!isPreloading" class="panel">
             <reader tag-data="tagData" message="message"></reader>
         </div>
         <div class="panel panel-info">
-            <div class="panel-heading"><span ng-bind-template="'{{tagData}}'"></span> status</div>
-            <div class="panel-body"><span ng-bind-template="'{{message}}'"></span></div>
+            <!--<div class="panel-heading"><span ng-bind-template="'{{tagData}}'"></span> status</div>-->
+            <!--<div class="panel-body"><span ng-bind-template="'{{message}}'"></span></div>-->
+            <div class="panel-heading"><span ng-bind-template="tagData"></span> status</div>
+            <div class="panel-body"><span ng-bind-template="message"></span></div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading">Uređivanje podataka vezanih za ključ <span ng-bind-template="'{{roomRepr}}'"></span></div>
+            <div class="panel-heading">Uređivanje podataka vezanih za ključ
+                <span ng-bind-template="roomRepr"></span>
+                <!--<span ng-bind-template="'{{roomRepr}}'"></span>-->
+            </div>
             <div class="panel-body">
                 <div>
                     <label class="radio-inline">

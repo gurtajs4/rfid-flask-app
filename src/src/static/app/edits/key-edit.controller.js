@@ -25,7 +25,7 @@
                 var key = response.data;
                 $log.info('Key info loaded: ' + key);
                 $scope.isRoom = (key.block_name.includes('F') && key.sector_name.includes('A')) ? 2 : 1;
-                $scope.tagData = key.tag_id;
+                // $scope.tagData = key.tag_id;
                 $scope.roomId = key.room_id;
                 $scope.blockName = key.block_name;
                 $scope.sectorName = key.sector_name;
