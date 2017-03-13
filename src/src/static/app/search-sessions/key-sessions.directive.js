@@ -11,7 +11,7 @@
         return {
             restrict: 'EA',
             scope: {
-                keyId: '=key'
+                keyId: '='
             },
             templateUrl: appBaseUrl + '/search-sessions/key-sessions.html',
             controller: 'KeySessionsController'

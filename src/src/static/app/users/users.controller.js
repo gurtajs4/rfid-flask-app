@@ -55,8 +55,8 @@
             });
             $log.info('Selected users: ', selectedList);
             for (var i = 0; i < selectedList.length; i++) {
-                if (!deleteById(selectedList[i].id)) {
-                    $log.error('Failed to delete session with id ' + id.toString());
+                if (!deleteById(selectedList[i].user_id)) {
+                    $log.error('Failed to delete session with id ' + selectedList[i].user_id.toString());
                 }
             }
             self.list = self.list.filter(function (session) {

@@ -7,23 +7,25 @@
     function UserDetailsController($scope, $routeParams, $location, $log, usersService) {
         var service = usersService;
 
-        $scope.userId = $routeParams.id;
+        $scope.model = {
+            userId: $routeParams.id,
+            userData: {}
+        };
         $scope.deleteItem = deleteItem;
 
         init();
 
         function init() {
-            service.getItem($scope.userId).then(function (response) {
+            service.getItem($scope.model.userId).then(function (response) {
                 var data = response.data;
-                $log.info('Raw data from response' + data);
-                // $scope.userData = JSON.parse(data);
-                $scope.userData = data;
+                $log.info('Raw data from response', data);
+                $scope.model.userData = data;
             });
         }
 
         function deleteItem() {
-            if ($scope.userData.isSelected) {
-                service.userDelete($scope.userId).then(function (response) {
+            if ($scope.model.userData.isSelected) {
+                service.userDelete($scope.model.userId).then(function (response) {
                     $location.url('/users');
                 }).catch(function (error) {
                     window.alert(' error: ' + error);
