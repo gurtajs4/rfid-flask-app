@@ -9,7 +9,7 @@ class UserProfile:
         self.last_name = last_name
         self.email = email
         self.role_id = role_id
-        self.role_title = 'Professor' if role_id == 1 else 'Student'
+        self.role_title = 'Profesor' if role_id == 1 else 'Student'
         self.pic_url = pic_url
 
 # class SessionInfo:
