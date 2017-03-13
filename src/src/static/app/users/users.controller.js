@@ -11,6 +11,15 @@
         var service = usersService;
         var images = imagesService;
 
+        self.orderOptions = [
+            {id: 'user_id', name: 'ID korisnika'},
+            {id: 'tag_id', name: 'Tag ID'},
+            {id: 'role_id', name: 'Titula'},
+            {id: 'first_name', name: 'Ime'},
+            {id: 'last_name', name: 'Prezime'},
+            {id: 'email', name: 'Email'}
+        ];
+
         self.deleteSelected = deleteSelected;
 
         init();

@@ -11,6 +11,14 @@
         var service = sessionService;
 
         self.list = [];
+        self.orderOptions = [
+            {id: 'id', name: 'ID sesije'},
+            {id: 'key_id', name: 'ID ključa'},
+            {id: 'user_id', name: 'ID korisnika'},
+            {id: 'started_on', name: 'Datum preuzimanja'},
+            {id: 'closed_on', name: 'Datum vraćanja'}
+        ];
+
         self.selectAll = selectAll;
         self.deleteById = deleteById;
         self.deleteSelected = deleteSelected;

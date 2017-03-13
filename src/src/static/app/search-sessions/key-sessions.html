@@ -8,13 +8,15 @@
         </div>
         <div class="panel-body">
             <div>
-                Poredati preuzimanja prema:
-                <select ng-model="orderProp" name="orderProp" id="orderProp">
-                    <option value="id">ID sesije</option>
-                    <option value="key_id">ID ključa</option>
-                    <option value="user_id">ID korisnika</option>
-                    <option value="started_on">Datum preuzimanja</option>
-                    <option value="closed_on">Datum vraćanja</option>
+                <label for="orderProp">Poredati preuzimanja prema:</label>
+                <select ng-model="orderProp"
+                        ng-options="selectedProp.id as selectedProp.name for selectedProp in orderOptions"
+                        name="orderProp" id="orderProp">
+                    <!--<option value="id">ID sesije</option>-->
+                    <!--<option value="key_id">ID ključa</option>-->
+                    <!--<option value="user_id">ID korisnika</option>-->
+                    <!--<option value="started_on">Datum preuzimanja</option>-->
+                    <!--<option value="closed_on">Datum vraćanja</option>-->
                 </select>
             </div>
             <hr/>

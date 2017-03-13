@@ -12,10 +12,10 @@
         return {
             restrict: 'EA',
             scope: {
-                tagData: "=tagData",
-                message: "=message"
-                // tagData: "=",
-                // message: "="
+                // tagData: "=tagData",
+                // message: "=message"
+                tagData: "=",
+                message: "="
             },
             templateUrl: appBaseUrl + '/reader/reader.html',
             controller: 'ReaderController'//,

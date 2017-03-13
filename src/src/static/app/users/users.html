@@ -10,14 +10,16 @@
             </div>
         </div>
         <div>
-            Poredati korisnike prema:
-            <select ng-model="users.orderProp" name="orderProp" id="orderProp">
-                <option value="user_id">ID korisnika</option>
-                <option value="tag_id">Tag ID</option>
-                <option value="role_id">Titula</option>
-                <option value="first_name">Ime</option>
-                <option value="last_name">Prezime</option>
-                <option value="email">Email</option>
+            <label for="orderProp">Poredati korisnike prema:</label>
+            <select ng-model="users.orderProp"
+                    ng-options="selectedProp.id as selectedProp.name for selectedProp in users.orderOptions"
+                    name="orderProp" id="orderProp">
+                <!--<option value="user_id">ID korisnika</option>-->
+                <!--<option value="tag_id">Tag ID</option>-->
+                <!--<option value="role_id">Titula</option>-->
+                <!--<option value="first_name">Ime</option>-->
+                <!--<option value="last_name">Prezime</option>-->
+                <!--<option value="email">Email</option>-->
             </select>
         </div>
         <hr/>

@@ -11,10 +11,10 @@
             </div>
         </div>
         <div ng-if="!isPreloading" class="panel">
-            <reader tag-data="tagData" message="message"></reader>
+            <reader tag-data="tagId" message="message"></reader>
         </div>
         <div class="panel panel-info">
-            <div class="panel-heading"><span ng-bind-template="'{{tagData}}'"></span> status</div>
+            <div class="panel-heading"><span ng-bind-template="'{{tagId}}'"></span> status</div>
             <div class="panel-body"><span ng-bind-template="'{{message}}'"></span></div>
         </div>
         <div class="panel panel-default">

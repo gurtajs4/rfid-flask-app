@@ -9,6 +9,14 @@
     function KeySessionsController($scope, $timeout, searchSessionsService) {
         var service = searchSessionsService;
 
+        $scope.orderOptions = [
+            {id: 'id', name: 'ID sesije'},
+            {id: 'key_id', name: 'ID ključa'},
+            {id: 'user_id', name: 'ID korisnika'},
+            {id: 'started_on', name: 'Datum preuzimanja'},
+            {id: 'closed_on', name: 'Datum vraćanja'}
+        ];
+
         init();
 
         function init() {

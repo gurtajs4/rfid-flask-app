@@ -9,6 +9,13 @@
 
         self.deleteSelected = deleteSelected;
         self.toImport = toImport;
+        self.orderOptions = [
+            {id: 'id', name: 'ID ključa'},
+            {id: 'tag_id', name: 'Tag ID ključa'},
+            {id: 'room_id', name: 'Broju prostorije'},
+            {id: 'sector_name', name: 'Odjelu'},
+            {id: 'room_repr', name: 'Punom zapisu'}
+        ];
 
         init();
 
