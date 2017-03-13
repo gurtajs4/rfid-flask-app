@@ -103,22 +103,22 @@ class ServiceManager(object):
         return session_factory.get_sessions()
 
     @staticmethod
-    def search_session(session_id=None, user_id=None, key_id=None, started_on=None, closed_on=None, limit=1,
+    def search_session(session_id=None, key_id=None, user_id=None, started_on=None, closed_on=None, limit=1,
                        exclusive=False, is_active=False):
-        return session_factory.search_session(session_id, user_id, key_id, started_on, closed_on, limit, exclusive,
+        return session_factory.search_session(session_id, key_id, user_id, started_on, closed_on, limit, exclusive,
                                               is_active)
 
     @staticmethod
-    def create_session(user_id=None, key_id=None, started_on=None):
-        return session_factory.create_session(user_id, key_id, started_on)
+    def create_session(key_id=None, user_id=None, started_on=None):
+        return session_factory.create_session(key_id, user_id, started_on)
 
     @staticmethod
-    def delete_session(session_id=None, user_id=None, key_id=None, started_on=None, closed_on=None):
-        return session_factory.delete_session(session_id, user_id, key_id, started_on, closed_on)
+    def delete_session(session_id=None, key_id=None, user_id=None, started_on=None, closed_on=None):
+        return session_factory.delete_session(session_id, key_id, user_id, started_on, closed_on)
 
     @staticmethod
-    def update_session(session_id, user_id=None, key_id=None, started_on=None, closed_on=None):
-        return session_factory.update_session(session_id, user_id, key_id, started_on, closed_on)
+    def update_session(session_id, key_id=None, user_id=None, started_on=None, closed_on=None):
+        return session_factory.update_session(session_id, key_id, user_id, started_on, closed_on)
 
     # api for user auth requests
     @staticmethod

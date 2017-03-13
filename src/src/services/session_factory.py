@@ -3,12 +3,12 @@ from ..db import SqliteManager as dbm
 from ..models.models import Session
 
 
-def create_session(user_id=0, key_id=0, started_on=datetime.datetime.now()):
+def create_session(key_id, user_id, started_on=datetime.datetime.now()):
     db = dbm.get_db()
     try:
         cur = db.cursor()
-        affected_count = cur.execute('''INSERT OR IGNORE INTO Session (user_id, key_id, started_on)
-                    VALUES ( ?, ?, ? )''', (user_id, key_id, started_on))
+        affected_count = cur.execute('''INSERT OR IGNORE INTO Session (key_id, user_id, started_on)
+                    VALUES ( ?, ?, ? )''', (key_id, user_id, started_on))
         db.commit()
         if affected_count > 0:
             cur.execute('SELECT id FROM Session WHERE key_id = ? AND user_id = ? ', (key_id, user_id,))
@@ -34,17 +34,17 @@ def get_sessions(limit=0):
     return sessions
 
 
-def search_session(session_id=None, user_id=None, key_id=None, started_on=None, closed_on=None, limit=1,
+def search_session(session_id=None, key_id=None, user_id=None, started_on=None, closed_on=None, limit=1,
                    exclusive=False, is_active=False):
-    if not (session_id is None and user_id is None and key_id is None and started_on is None and closed_on is None):
+    if not (session_id is None and key_id is None and user_id is None and started_on is None and closed_on is None):
         db = dbm.get_db()
         cur = db.cursor()
-        params = tuple([p for p in [session_id, user_id, key_id, started_on, closed_on] if p is not None])
+        params = tuple([p for p in [session_id, key_id, user_id, started_on, closed_on] if p is not None])
         condition_operator = ' AND ' if exclusive else ' OR '
         sql_conditions = condition_operator.join(filter(
             lambda x: x is not '', [' id = ? ' if session_id is not None else '',
-                                    ' user_id = ? ' if user_id is not None else '',
                                     ' key_id = ? ' if key_id is not None else '',
+                                    ' user_id = ? ' if user_id is not None else '',
                                     ' started_on = ? ' if started_on is not None else '',
                                     ' closed_on IS NULL' if is_active else
                                     ' closed_on = ? ' if closed_on is not None else '']))
@@ -68,16 +68,16 @@ def search_session(session_id=None, user_id=None, key_id=None, started_on=None, 
         return None
 
 
-def delete_session(session_id=None, user_id=None, key_id=None, started_on=None, closed_on=None):
-    if not (session_id is None and user_id is None and key_id is None and started_on is None and closed_on is None):
+def delete_session(session_id=None, key_id=None, user_id=None, started_on=None, closed_on=None):
+    if not (session_id is None and key_id is None and user_id is None and started_on is None and closed_on is None):
         db = dbm.get_db()
         cur = db.cursor()
-        params = tuple([p for p in [session_id, user_id, key_id, started_on, closed_on] if p is not None])
+        params = tuple([p for p in [session_id, key_id, user_id, started_on, closed_on] if p is not None])
         condition_operator = ' AND '
         sql_conditions = condition_operator.join(filter(
             lambda x: x is not '', [' id = ? ' if session_id is not None else '',
-                                    ' user_id = ? ' if user_id is not None else '',
                                     ' key_id = ? ' if key_id is not None else '',
+                                    ' user_id = ? ' if user_id is not None else '',
                                     ' started_on = ? ' if started_on is not None else '',
                                     ' closed_on = ? ' if closed_on is not None else '']))
         # delete session
@@ -94,15 +94,15 @@ def delete_session(session_id=None, user_id=None, key_id=None, started_on=None, 
         return None
 
 
-def update_session(session_id, user_id=None, key_id=None, started_on=None, closed_on=None):
-    if not (user_id is None and key_id is None and started_on is None and closed_on is None) and session_id is not None:
+def update_session(session_id, key_id=None, user_id=None, started_on=None, closed_on=None):
+    if not (key_id is None and user_id is None and started_on is None and closed_on is None) and session_id is not None:
         db = dbm.get_db()
         cur = db.cursor()
-        params = tuple([p for p in [user_id, key_id, started_on, closed_on] if p is not None])
+        params = tuple([p for p in [key_id, user_id, started_on, closed_on] if p is not None])
         updates_separator = ' , '
         sql_updates = updates_separator.join(filter(
-            lambda x: x is not '', [' user_id = ? ' if user_id is not None else '',
-                                    ' key_id = ? ' if key_id is not None else '',
+            lambda x: x is not '', [' key_id = ? ' if key_id is not None else '',
+                                    ' user_id = ? ' if user_id is not None else '',
                                     ' started_on = ? ' if started_on is not None else '',
                                     ' closed_on = ? ' if closed_on is not None else '']))
         # update session
@@ -115,7 +115,10 @@ def update_session(session_id, user_id=None, key_id=None, started_on=None, close
         sql_command = 'SELECT * FROM Session WHERE id = ? LIMIT 1 '
         cur.execute(sql_command, (session_id,))
         result = cur.fetchone()
-        session = Session(session_id=result[0], user_id=result[1], key_id=result[2], started_on=result[3],
+        session = Session(session_id=result[0],
+                          key_id=result[1],
+                          user_id=result[2],
+                          started_on=result[3],
                           closed_on=result[4])
         dbm.close_connection(db)
         return session

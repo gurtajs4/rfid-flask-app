@@ -4,11 +4,22 @@
             <h5>ID sesije: {{ session.id }}</h5>
         </div>
         <div class="panel-body">
-            <div>Oabir: <input ng-model="session.isSelected" type="checkbox"></div>
-            <div>ID korisnika: <bold>{{ session.user_id }}</bold></div>
-            <div>ID: ključa <bold>{{ session.key_id }}</bold></div>
-            <div>Ključ preuzet: {{ session.started_on }}</div>
-            <div>Ključ vraćen: {{ session.closed_on ? session.closed_on : " još aktivan " }}</div>
+            <div class="well-sm inline-field">
+                <label for="sessionSelect">Odabir:</label>
+                <input ng-model="session.isSelected" id="sessionSelect" name="sessionSelect" type="checkbox">
+            </div>
+            <div class="well-sm inline-field">
+                ID korisnika: <b>{{ session.user_id }}</b>
+            </div>
+            <div class="well-sm inline-field">
+                ID: ključa <b>{{ session.key_id }}</b>
+            </div>
+            <div class="well-sm inline-field">
+                Ključ preuzet: {{ session.started_on }}
+            </div>
+            <div class="well-sm inline-field">
+                Ključ vraćen: {{ session.closed_on ? session.closed_on : " još aktivan " }}
+            </div>
         </div>
     </div>
 </div>

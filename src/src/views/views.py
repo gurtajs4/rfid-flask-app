@@ -519,24 +519,24 @@ def api_session_new():
         elif None is user or None is key:
             session = None
         else:
-            session = service_manager.search_session(user_id=user.id,
-                                                     key_id=key.id,
+            session = service_manager.search_session(key_id=key.id,
+                                                     user_id=user.id,
                                                      exclusive=True,
                                                      is_active=True)
         print('From server - is existing session? %s' % (False if session is None else True))
         if None is not session:
             session.closed_on = data_deserialized['timestamp']
             service_manager.update_session(
-                session.id, session.user_id, session.key_id, session.started_on, session.closed_on
+                session.id, session.key_id, session.user_id, session.started_on, session.closed_on
             )
-            print('From server - Session closed: %s user_id: %s key_id: %s started: %s closed: %s' % (
-                session.id, session.user_id, session.key_id, session.started_on, session.closed_on
+            print('From server - closed session id: %s, key_id: %s, user_id: %s, started: %s, closed: %s' % (
+                session.id, session.key_id, session.user_id, session.started_on, session.closed_on
             ))
         else:
             if not (-1 == key_id or -1 == user_id):
-                session = service_manager.create_session(user.id, key.id, data_deserialized['timestamp'])
+                session = service_manager.create_session(key.id, user.id, data_deserialized['timestamp'])
                 print('From server - data stored - id: %s user_id: %s key_id: %s started_on: %s' % (
-                    session.id, session.user_id, session.key_id, session.started_on
+                    session.id, session.key_id, session.user_id, session.started_on
                 ))
         message['data'] = jserial.session_instance_serialize(session)
         resp = jsonify(message)
