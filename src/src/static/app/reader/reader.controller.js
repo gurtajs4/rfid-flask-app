@@ -8,8 +8,6 @@
     ReaderController.$inject = ['$scope', '$log', '$timeout', 'readerService'];
     function ReaderController($scope, $log, $timeout, readerService) {
         var service = readerService;
-        // $scope.tagData = "";
-        // $scope.message = "";
 
         activate();
 
@@ -24,7 +22,7 @@
                             $scope.message = tMessage;
                             $scope.tagData = tData;
                         });
-                    }, 0);
+                    }, 200);
                 })
                 .catch(function (error) {
                     $log.error('No data detected, reload page and move your tag closer to reader... ' + error.data);

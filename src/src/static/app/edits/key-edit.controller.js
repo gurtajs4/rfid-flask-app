@@ -28,9 +28,9 @@
         function init() {
             service.getKey(keyId).then(function (response) {
                 var key = response.data;
-                $log.info('Key info loaded: ' + key);
+                $log.info('Key info loaded: ', key);
                 $scope.isRoom = (key.block_name.includes('F') && key.sector_name.includes('A')) ? 2 : 1;
-                // $scope.tagId = key.tag_id;
+                $scope.tagId = key.tag_id;
                 $scope.roomId = key.room_id;
                 $scope.blockName = key.block_name;
                 $scope.sectorName = key.sector_name;
