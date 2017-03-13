@@ -5,20 +5,29 @@
         </div>
         <div class="panel-body">
             <div class="well-sm inline-field">
-                <label for="sessionSelect">Odabir:</label>
-                <input ng-model="session.isSelected" id="sessionSelect" name="sessionSelect" type="checkbox">
+                <!--<label for="sessionSelect">Odabir:</label>-->
+                <!--<input ng-model="session.isSelected" id="sessionSelect" name="sessionSelect" type="checkbox">-->
+                <button ng-click="session.isSelected=!session.isSelected" class="btn btn-danger">
+                    {{ session.isSelected ? 'Odoznači' : 'Označi' }}
+                </button>
             </div>
             <div class="well-sm inline-field">
-                ID korisnika: <b>{{ session.user_id }}</b>
+                Prostorija: <em>{{ session.room_repr }}</em>
             </div>
             <div class="well-sm inline-field">
-                ID: ključa <b>{{ session.key_id }}</b>
+                Preuzeo korisnik: <em>{{ session.first_name }} {{ session.last_name }}</em>
             </div>
             <div class="well-sm inline-field">
-                Ključ preuzet: {{ session.started_on }}
+                ID ključa: {{ session.key_id }}
             </div>
             <div class="well-sm inline-field">
-                Ključ vraćen: {{ session.closed_on ? session.closed_on : " još aktivan " }}
+                ID korisnika: {{ session.user_id }}
+            </div>
+            <div class="well-sm inline-field">
+                Ključ preuzet: <b>{{ session.started_on }}</b>
+            </div>
+            <div class="well-sm inline-field">
+                Ključ vraćen: <b>{{ session.closed_on ? session.closed_on : ' još aktivan ' }}</b>
             </div>
         </div>
     </div>
