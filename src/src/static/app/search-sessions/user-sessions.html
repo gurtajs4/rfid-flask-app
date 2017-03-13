@@ -20,7 +20,7 @@
                 </select>
             </div>
             <hr/>
-            <div ng-repeat="session in result | orderBy:orderProp track by $index" user-info="session"></div>
+            <div ng-repeat="session in result | orderBy:orderProp track by $index" session-info="session"></div>
             <!--<div ng-repeat="session in result | orderBy:orderProp track by $index">-->
                 <!--<span>ID sesije: <a ng-href="sessions/{{ session.id }}">{{ session.id }}</a> |</span>-->
                 <!--<span>ID korisnika: {{ session.user_id }} |</span>-->
