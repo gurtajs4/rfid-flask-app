@@ -12,18 +12,20 @@
         $scope.title = "Stranica za registraciju ključeva";
         $scope.note = "Registrirajte ključ i prostoriju pridjeljujući broj prostorije s ostalim podacima poput odjela.";
 
-        $scope.tagId = "";
-        $scope.message = "";
+        $scope.tagInfo = {
+            tagId: "",
+            message: ""
+        };
         $scope.isRoom = 1;
 
         $scope.proceed = proceed;
         $scope.cancel = cancel;
 
         function proceed() {
-            $log.info('Tag ID: ', $scope.tagId);
+            $log.info('Tag ID: ', $scope.tagInfo.tagId);
             var key = {
                 id: -1,
-                tag_id: $scope.tagId,
+                tag_id: $scope.tagInfo.tagId,
                 room_id: $scope.roomId,
                 block_name: $scope.blockName,
                 sector_name: $scope.sectorName,

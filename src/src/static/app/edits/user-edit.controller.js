@@ -10,8 +10,10 @@
         $scope.title = "Stranica za uređivanje podataka korisnika";
         $scope.note = "Uredite podatke korisnika pridruživanjem informacija o RFID kartici sa podacima o korisniku";
 
-        $scope.tagId = "";
-        $scope.message = "";
+        $scope.tagInfo = {
+            tagId: "",
+            message: ""
+        };
         $scope.isPreloading = true;
         $scope.roleOptions = [
             {id: 1, name: 'Profesor'},
@@ -28,7 +30,7 @@
             service.getUser(userId).then(function (response) {
                 var user = response.data;
                 $log.info('User info loaded: ', user);
-                $scope.tagId = user.tag_id;
+                $scope.tagInfo.tagId = user.tag_id;
                 $scope.email = user.email;
                 $scope.firstName = user.first_name;
                 $scope.lastName = user.last_name;
@@ -43,13 +45,13 @@
         }
 
         function isNotValid() {
-            return ($scope.tagId == '' || $scope.firstName == '' || $scope.lastName == '' || $scope.email == '' || $scope.role == '');
+            return ($scope.tagInfo.tagId == '' || $scope.firstName == '' || $scope.lastName == '' || $scope.email == '' || $scope.role == '');
         }
 
         function proceed() {
             var user = {
                 id: userId,
-                tag_id: $scope.tagId,
+                tag_id: $scope.tagInfo.tagId,
                 first_name: $scope.firstName,
                 last_name: $scope.lastName,
                 email: $scope.email,

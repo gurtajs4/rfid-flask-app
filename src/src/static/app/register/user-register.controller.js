@@ -12,8 +12,10 @@
         $scope.title = "Stranica za registraciju korisnika";
         $scope.note = "Registrirajte korisnika pridruživanjem informacija o RFID kartici sa podacima o korisniku";
 
-        $scope.tagId = "";
-        $scope.message = "";
+        $scope.tagInfo = {
+            tagId: "",
+            message: ""
+        };
         $scope.isPreloading = false;
         $scope.roleOptions = [
             {id: 1, name: 'Profesor'},
@@ -26,12 +28,12 @@
 
 
         function isNotValid() {
-            return ($scope.tagId == '' || $scope.firstName == '' || $scope.lastName == '' || $scope.email == '' || $scope.role == '');
+            return ($scope.tagInfo.tagId == '' || $scope.firstName == '' || $scope.lastName == '' || $scope.email == '' || $scope.role == '');
         }
 
         function proceed() {
             var user = {
-                tag_id: $scope.tagId,
+                tag_id: $scope.tagInfo.tagId,
                 first_name: $scope.firstName,
                 last_name: $scope.lastName,
                 email: $scope.email,

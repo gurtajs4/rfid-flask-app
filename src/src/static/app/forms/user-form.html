@@ -9,14 +9,16 @@
             </div>
         </div>
         <div ng-if="!isPreloading" class="panel">
-            <div reader tag-data="tagId" message="message"></div>
+            <div reader tag-data="tagInfo.tagId" message="tagInfo.message"></div>
         </div>
         <div class="panel panel-info">
-            <div class="panel-heading">{{tagId}}</div>
-            <div class="panel-body">{{message}}</div>
+            <div class="panel-heading">{{tagInfo.tagId}}</div>
+            <div class="panel-body">{{tagInfo.message}}</div>
         </div>
         <div class="panel panel-default">
-            <div class="panel-heading">Uređivanje podataka o korisniku s brojem <span>{{tagId}}</span></div>
+            <div class="panel-heading">Uređivanje podataka o korisniku s brojem
+                <span ng-bind-template="'{{tagInfo.tagId}}'"></span>
+            </div>
             <div class="panel-body">
                 <div class="form-inline">
                     <div class="form-group">
