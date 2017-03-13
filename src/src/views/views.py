@@ -463,10 +463,11 @@ def api_session_get(session_id):
 @app.route('/api/sessions/key/<int:key_id>', methods=['GET'])
 def api_sessions_get_by_key(key_id):
     results = service_manager.search_session(key_id=key_id, limit=0)
-    print('From server - sessions by key id - (key_id: %s, results: %s)' % (key_id, results))
     # send_message(results, 'key session result', session['uuid'])
     if None is not results:
-        data = jserial.session_instances_serialize(session_list=results)
+        sessions = [service_manager.get_session_ui_model(session=session) for session in results]
+        data = jserial.session_instances_serialize(session_list=sessions)
+        print('From server - sessions by key id - (key_id: %s, results: %s)' % (key_id, data))
         resp = jsonify(data)
         resp.status_code = 200
     else:
@@ -479,11 +480,11 @@ def api_sessions_get_by_key(key_id):
 @app.route('/api/sessions/user/<int:user_id>', methods=['GET'])
 def api_sessions_get_by_user(user_id):
     results = service_manager.search_session(user_id=user_id, limit=0)
-    print('From server - sessions by user id - (user_id: %s, results: %s)' % (user_id, results))
     # service_manager.send
     if None is not results:
         sessions = [service_manager.get_session_ui_model(session) for session in results]
         data = jserial.session_instances_serialize(session_list=sessions)
+        print('From server - sessions by user id - (user_id: %s, results: %s)' % (user_id, data))
         resp = jsonify(data)  # sessions of single user - jsonify iterates over list
         resp.status_code = 200
     else:
