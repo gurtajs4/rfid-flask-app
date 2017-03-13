@@ -424,7 +424,11 @@ def key_edit():
 
 @app.route('/api/sessions', methods=['GET'])
 def api_sessions_get():
-    data = jserial.session_instances_serialize(service_manager.get_sessions())
+    raw_sessions = service_manager.get_sessions()
+    sessions = []
+    for session in raw_sessions:
+        sessions.append(service_manager.get_session_ui_model(session=session))
+    data = jserial.session_instances_serialize(session_list=sessions)
     if None is not data:
         resp = jsonify(data)
         resp.status_code = 200
@@ -437,9 +441,9 @@ def api_sessions_get():
 
 @app.route('/api/sessions/<int:session_id>', methods=['GET'])
 def api_session_get(session_id):
-    session = jserial.session_instance_serialize(service_manager.search_session(session_id=session_id))
-    print('From server - session get - (session_id: %s, session: %s)' % (session_id, session))
-    if None is session:
+    session_raw = service_manager.search_session(session_id=session_id)
+    print('From server - session get - (session_id: %s, session: %s)' % (session_id, session_raw))
+    if None is session_raw:
         message = {
             'status': 404,
             'message': 'Not Found' + request.url,
@@ -448,6 +452,7 @@ def api_session_get(session_id):
         resp.status_code = 404
         return resp
     else:
+        session = service_manager.get_session_ui_model(session=session_raw)
         data = jserial.session_instance_serialize(session_instance=session)
         # resp = jsonify(session)
         resp = Response(data, status=200, mimetype='application/json')
@@ -477,7 +482,8 @@ def api_sessions_get_by_user(user_id):
     print('From server - sessions by user id - (user_id: %s, results: %s)' % (user_id, results))
     # service_manager.send
     if None is not results:
-        data = jserial.session_instances_serialize(session_list=results)
+        sessions = [service_manager.get_session_ui_model(session) for session in results]
+        data = jserial.session_instances_serialize(session_list=sessions)
         resp = jsonify(data)  # sessions of single user - jsonify iterates over list
         resp.status_code = 200
     else:
@@ -538,7 +544,7 @@ def api_session_new():
                 print('From server - data stored - id: %s user_id: %s key_id: %s started_on: %s' % (
                     session.id, session.key_id, session.user_id, session.started_on
                 ))
-        message['data'] = jserial.session_instance_serialize(session)
+        message['data'] = jserial.session_instance_serialize(service_manager.get_session_ui_model(session))
         resp = jsonify(message)
         resp.status_code = 200
         return resp

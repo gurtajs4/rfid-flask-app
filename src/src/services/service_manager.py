@@ -9,7 +9,7 @@ from .storage_manager import StorageManager
 from ..db import SqliteManager
 from ..embedded.mfrc_service import ServiceMFRC
 from ..io_sockets import reader_output, send_message
-from ..models.adapters import UserProfile
+from ..models.adapters import UserProfile, SessionView
 
 
 class ServiceManager(object):
@@ -119,6 +119,15 @@ class ServiceManager(object):
     @staticmethod
     def update_session(session_id, key_id=None, user_id=None, started_on=None, closed_on=None):
         return session_factory.update_session(session_id, key_id, user_id, started_on, closed_on)
+
+    @staticmethod
+    def get_session_ui_model(session):
+        room_repr = (ServiceManager.search_key(key_id=session.key_id)).room_repr
+        user = ServiceManager.search_user(user_id=session.user_id)
+        first_name, last_name = user.first_name, user.last_name
+        return SessionView(session_id=session.id, key_id=session.key_id, room_repr=room_repr,
+                           user_id=session.user_id, first_name=first_name, last_name=last_name,
+                           started_on=session.started_on, closed_on=session.closed_on)
 
     # api for user auth requests
     @staticmethod
