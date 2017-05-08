@@ -3,10 +3,10 @@
 
     angular
         .module('appMain')
-        .service('AuthService', AuthService);
+        .service('authService', authService);
 
-    AuthService.$inject = ['$http', '$cookies'];
-    function AuthService($http, $cookies) {
+    authService.$inject = ['$http', '$cookies'];
+    function authService($http, $cookies) {
         var service = {
             login: login,
             logout: logout,
