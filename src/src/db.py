@@ -18,6 +18,7 @@ class SqliteManager:
         db = SqliteManager.get_db()
         db.executescript('''
             DROP TABLE IF EXISTS UserSession;
+            DROP TABLE IF EXISTS AuthUser;
             DROP TABLE IF EXISTS Session;
             DROP TABLE IF EXISTS User;
             DROP TABLE IF EXISTS UserRole;
@@ -58,6 +59,13 @@ class SqliteManager:
                 pic_id          INTEGER NOT NULL,
                 FOREIGN KEY (pic_id) REFERENCES ImageStore(id),
                 FOREIGN KEY (role_id) REFERENCES UserRole(id)
+            );
+
+            CREATE TABLE AuthUser (
+                id            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+                user_id       INTEGER NOT NULL UNIQUE,
+                password      TEXT,
+                FOREIGN KEY (user_id) REFERENCES User(id),
             );
 
             CREATE TABLE UserSession (

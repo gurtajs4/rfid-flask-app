@@ -20,6 +20,9 @@
             templateUrl: appBaseUrl + '/home/home.html',
             controller: 'HomeController',
             controllerAs: 'home'
+        }).when('/login', {
+            templateUrl: appBaseUrl + '/login/login.html',
+            controller: 'LoginController'
         }).when('/sessions', {
             templateUrl: appBaseUrl + '/sessions/sessions.html',
             controller: 'SessionsController',

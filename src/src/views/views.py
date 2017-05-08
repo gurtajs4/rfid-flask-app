@@ -1,4 +1,4 @@
-from .. import app
+from .. import app, auth
 from ..services.service_manager import ServiceManager
 from ..services.storage_manager import StorageManager
 from ..services.serializers import JSONSerializer as jserial
@@ -34,11 +34,44 @@ def api_reader():
     return resp
 
 
+# *********** auth ***********
+
+
+@app.route('/api/login')
+def api_user_login():
+    try:
+        auth_data = request.get_json()
+        email = auth_data['username']
+        password = auth_data['password']
+        user_qs = service_manager.search_user(email=email, limit=1)
+        if user_qs is None:
+            raise Exception('User email not registered!')
+        password_qs = service_manager.get_password(user_id=user_qs.id)
+        if password_qs is None or password != password_qs:
+            raise Exception('User password incorrect!')
+        token = service_manager.generate_token(user=user_qs, password=password)
+        resp = jsonify(token)
+        resp.status_code = 200
+        return resp
+    except Exception as e:
+        return Response(repr(e), status=404, mimetype='application/json')
+
+
+@app.route("/api/logout")
+@auth.login_required
+def logout():
+    logout_user()
+    return redirect(somewhere)
+
+
 # *********** users ***********
 
 
 # <editor-fold desc="Users Views">
+
+
 @app.route('/api/users', methods=['GET'])
+@auth.login_required
 def api_users_get():
     users = service_manager.get_users()
     if None is users or 1 > len(users):
@@ -68,6 +101,8 @@ def api_user_register():
         file = files['file']
     pic_url, pic_id = service_manager.upload_image(file)
     user_dict = jserial.json_deserialize(request.form['user_json'])
+    raw_password = request.form['user_json']['password']  # raw password
+    password = service_manager.secure_password(raw_password=raw_password)  # creates secure password
     print('From server - on image upload - JSON data: %s' % user_dict)
     user_dict = jserial.create_user_dict(user_dict, pic_id)
     print('From server - user register (POST) - user json is %s' % user_dict)
@@ -77,6 +112,7 @@ def api_user_register():
                                        first_name=user.first_name,
                                        last_name=user.last_name,
                                        email=user.email,
+                                       password=password,
                                        role_id=user.role_id,
                                        pic_id=user.pic_id)
     print('From server - api-user-register (post) - id of stored user is %s' % user.id)
@@ -90,13 +126,16 @@ def api_user_register():
         return resp
     else:
         user_ui_model = service_manager.get_user_ui_model(user)
-        data = jserial.user_instance_serialize(user_instance=user_ui_model)
+        user_data = jserial.user_instance_serialize(user_instance=user_ui_model)
+        token = service_manager.generate_token(user=user, password=password)
+        data = jserial.jwt_cookie_serialize(serialized_user_data=user_data, auth_token=token)
         resp = Response(data, status=200, mimetype='application/json')
         resp.status_code = 200
         return resp
 
 
 @app.route('/api/users/search/<queryset>', methods=['GET'])
+@auth.login_required
 def api_users_search(queryset):
     words = [word for word in queryset.split(' ')]
     users = []
@@ -123,6 +162,7 @@ def api_users_search(queryset):
 
 
 @app.route('/api/users/tag/search/<tag_id>', methods=['GET'])
+@auth.login_required
 def api_user_tag_search(tag_id):
     result = service_manager.search_user(tag_id=tag_id)
     if None is result:
@@ -143,6 +183,7 @@ def api_user_tag_search(tag_id):
 
 
 @app.route('/api/user/get/<int:user_id>', methods=['GET'])
+@auth.login_required
 def api_user_get(user_id):
     print('From server - user get - user id: %s' % user_id)
     user_data = service_manager.search_user(user_id=user_id, exclusive=True)
@@ -163,6 +204,7 @@ def api_user_get(user_id):
 
 
 @app.route('/api/user/delete/<int:user_id>', methods=['DELETE'])
+@auth.login_required
 def api_user_delete(user_id):
     print('From server - delete user %s' % user_id)
     if service_manager.delete_user(user_id=user_id):
@@ -181,6 +223,7 @@ def api_user_delete(user_id):
 
 
 @app.route('/api/user/edit', methods=['PUT', 'POST'])
+@auth.login_required
 def user_edit():
     files = request.files
     if 'file' not in files:
@@ -223,6 +266,8 @@ def user_edit():
 
 
 # <editor-fold desc="User Auth Views">
+
+
 @app.route('/api/user/auth-request', methods=['POST'])
 def api_user_auth_request_new():
     user = (request.get_json())
@@ -259,7 +304,10 @@ def api_user_auth_requests(user_id):
 
 
 # <editor-fold desc="Keys Views">
+
+
 @app.route('/api/keys', methods=['GET'])
+@auth.login_required
 def api_keys_get():
     keys = service_manager.get_keys()
     if None is keys or 1 > len(keys):
@@ -278,6 +326,7 @@ def api_keys_get():
 
 
 @app.route('/api/keys/register', methods=['POST'])
+@auth.login_required
 def api_key_register():
     key = jserial.key_instance_deserialize(request.get_json())
     print('From server - key register - key tag is %s' % key.tag_id)
@@ -305,6 +354,7 @@ def api_key_register():
 
 
 @app.route('/api/keys/search/<queryset>', methods=['GET'])
+@auth.login_required
 def api_keys_search(queryset):
     print('From server - keys search - queryset is %s' % queryset)
     words = [word for word in queryset.split(' ')]
@@ -341,6 +391,7 @@ def api_keys_search(queryset):
 
 
 @app.route('/api/keys/tag/search/<tag_id>', methods=['GET'])
+@auth.login_required
 def api_key_tag_search(tag_id):
     key = service_manager.search_key(tag_id=int(tag_id))
     if None is key:
@@ -359,6 +410,7 @@ def api_key_tag_search(tag_id):
 
 
 @app.route('/api/key/get/<int:key_id>', methods=['GET'])
+@auth.login_required
 def api_key_get(key_id):
     key_data = service_manager.search_key(key_id=key_id, exclusive=True)
     if None is key_data:
@@ -377,6 +429,7 @@ def api_key_get(key_id):
 
 
 @app.route('/api/key/delete/<int:key_id>', methods=['DELETE'])
+@auth.login_required
 def api_key_delete(key_id):
     print('From server - delete key %s' % key_id)
     if service_manager.delete_key(key_id=key_id):
@@ -395,6 +448,7 @@ def api_key_delete(key_id):
 
 
 @app.route('/api/key/edit', methods=['PUT', 'POST'])
+@auth.login_required
 def key_edit():
     key = jserial.key_instance_deserialize(request.get_json())
     print('From server - key edit - key tag is %s' % key.tag_id)
@@ -429,7 +483,10 @@ def key_edit():
 
 
 # <editor-fold desc="Sessions Views">
+
+
 @app.route('/api/sessions', methods=['GET'])
+@auth.login_required
 def api_sessions_get():
     raw_sessions = service_manager.get_sessions()
     sessions = []
@@ -447,6 +504,7 @@ def api_sessions_get():
 
 
 @app.route('/api/sessions/<int:session_id>', methods=['GET'])
+@auth.login_required
 def api_session_get(session_id):
     session_raw = service_manager.search_session(session_id=session_id)
     print('From server - session get - (session_id: %s, session: %s)' % (session_id, session_raw))
@@ -467,6 +525,7 @@ def api_session_get(session_id):
 
 
 @app.route('/api/sessions/key/<int:key_id>', methods=['GET'])
+@auth.login_required
 def api_sessions_get_by_key(key_id):
     results = service_manager.search_session(key_id=key_id, limit=0)
     if None is not results:
@@ -483,6 +542,7 @@ def api_sessions_get_by_key(key_id):
 
 
 @app.route('/api/sessions/user/<int:user_id>', methods=['GET'])
+@auth.login_required
 def api_sessions_get_by_user(user_id):
     results = service_manager.search_session(user_id=user_id, limit=0)
     if None is not results:
@@ -499,6 +559,7 @@ def api_sessions_get_by_user(user_id):
 
 
 @app.route('/api/sessions/new', methods=['POST'])
+@auth.login_required
 def api_session_new():
     data = request.get_json()
     print('From server - received from reader - session: %s' % data)
@@ -556,6 +617,7 @@ def api_session_new():
 
 
 @app.route('/api/sessions/delete/<int:session_id>', methods=['DELETE'])
+@auth.login_required
 def api_session_delete(session_id):
     print('From server - delete session with id %s' % session_id)
     if service_manager.delete_session(session_id=session_id):
@@ -583,13 +645,16 @@ def api_session_delete(session_id):
 
 
 # <editor-fold desc="File storage Views">
+
 @app.route('/api/data/template', methods=['GET'])
+@auth.login_required
 def api_data_template():
     file = ServiceManager.get_excel_template()
     return send_file(file, mimetype='text/csv', attachment_filename='data_template.xls', as_attachment=True)
 
 
 @app.route('/api/data/import', methods=['POST'])
+@auth.login_required
 def api_data_import():
     file = None
     files = request.files
@@ -618,6 +683,7 @@ def api_data_import():
 
 
 @app.route('/api/clean-slate', methods=['GET'])  # dev only
+@auth.login_required
 def api_clean_slate():
     if service_manager.start_db(drop_create=True, seed_data=True, backup_data=True):
         message = {

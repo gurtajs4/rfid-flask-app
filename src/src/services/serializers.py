@@ -21,7 +21,8 @@ class JSONSerializer(object):
 
     @staticmethod
     def key_instance_deserialize(parsed_dict):
-        key_repr = parsed_dict['room_repr'] if 'room_repr' in parsed_dict and parsed_dict['room_repr'] is not None else parsed_dict['block_name'] + parsed_dict['sector_name'] + parsed_dict['floor'] + '-' + parsed_dict['room_id']
+        key_repr = parsed_dict['room_repr'] if 'room_repr' in parsed_dict and parsed_dict['room_repr'] is not None else \
+        parsed_dict['block_name'] + parsed_dict['sector_name'] + parsed_dict['floor'] + '-' + parsed_dict['room_id']
         return Key(key_id=parsed_dict['id'],
                    tag_id=parsed_dict['tag_id'],
                    room_id=parsed_dict['room_id'],
@@ -84,6 +85,14 @@ class JSONSerializer(object):
             'role_id': user['role_id'],
             'pic_id': pic_id
         }
+
+    @staticmethod
+    def jwt_cookie_serialize(serialized_user_data, auth_token):
+        data = {
+            'data': serialized_user_data,
+            'token': auth_token
+        }
+        return json.dumps(data)
 
     @staticmethod
     def user_session_instance_deserialize(parsed_dict):

@@ -2,26 +2,39 @@ from ..db import SqliteManager as dbm
 from ..models.models import User
 
 
-def create_user(tag_id, first_name="", last_name="", email="", role_id=1, pic_id=1):
+def create_user(tag_id, first_name="", last_name="", email="", password="", role_id=1, pic_id=1):
     if None is tag_id:
         return None
     db = dbm.get_db()
     cur = db.cursor()
-    affected_count = cur.execute('''INSERT OR REPLACE INTO User (tag_id, first_name, last_name, email, role_id, pic_id)
-                VALUES ( ?, ?, ?, ?, ?, ? )''', (tag_id, first_name, last_name, email, role_id, pic_id,))
-    db.commit()
-    if affected_count > 0:
-        cur.execute(
-            'SELECT id FROM User WHERE tag_id = ? AND first_name = ? AND last_name = ? AND email = ? AND role_id = ? AND pic_id = ?',
-            (tag_id, first_name, last_name, email, role_id, pic_id,))
-        result = cur.fetchone()
-        user_id = int(result[0])
+    try:
+        sql_command = '''INSERT OR REPLACE INTO User (tag_id, first_name, last_name, email, role_id, pic_id) VALUES ( ?, ?, ?, ?, ?, ? )'''
+        affected_count = cur.execute(sql_command, (tag_id, first_name, last_name, email, role_id, pic_id,))
+        db.commit()
+        if affected_count > 0:
+            cur.execute(
+                'SELECT id FROM User WHERE tag_id = ? AND first_name = ? AND last_name = ? AND email = ? AND role_id = ? AND pic_id = ?',
+                (tag_id, first_name, last_name, email, role_id, pic_id,))
+            result = cur.fetchone()
+            user_id = int(result[0])
+            sql_command = '''INSERT OR REPLACE INTO AuthUser (user_id, password) VALUES ( ?, ?, )'''
+            affected_count = cur.execute(sql_command, (user_id, password,))
+            db.commit()
+            dbm.close_connection(db)
+            if affected_count > 0:
+                return User(user_id=user_id,
+                            tag_id=tag_id,
+                            first_name=first_name,
+                            last_name=last_name,
+                            email=email,
+                            role_id=role_id, pic_id=pic_id)
+            else:
+                raise Exception('Error saving password...')
+        raise Exception('Unknown database error...')
+    except Exception as e:
+        print(repr(e))
         dbm.close_connection(db)
-        return User(user_id=user_id, tag_id=tag_id, first_name=first_name, last_name=last_name, email=email,
-                    role_id=role_id, pic_id=pic_id)
-    else:
-        dbm.close_connection(db)
-        return None
+    return None
 
 
 def get_users(limit=0):
@@ -34,7 +47,8 @@ def get_users(limit=0):
     return users
 
 
-def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, email=None, role_id=None, pic_id=None, limit=1,
+def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, email=None, role_id=None, pic_id=None,
+                limit=1,
                 exclusive=False):
     if not (user_id is None and tag_id is None and first_name is None and last_name is None and email is None):
         db = dbm.get_db()
@@ -106,11 +120,11 @@ def update_user(user_id, tag_id=None, first_name=None, last_name=None, email=Non
         updates_separator = ' , '
         sql_updates = updates_separator.join(filter(
             lambda x: x is not '', ['tag_id = ? ' if tag_id is not None else '',
-                                       'first_name = ? ' if first_name is not None else '',
-                                       'last_name = ? ' if last_name is not None else '',
-                                       'email = ? ' if email is not None else '',
-                                       'role_id = ? ' if role_id is not None else '',
-                                       'pic_id = ? ' if pic_id is not None else '']))
+                                    'first_name = ? ' if first_name is not None else '',
+                                    'last_name = ? ' if last_name is not None else '',
+                                    'email = ? ' if email is not None else '',
+                                    'role_id = ? ' if role_id is not None else '',
+                                    'pic_id = ? ' if pic_id is not None else '']))
         # update user
         sql_command = 'UPDATE User SET ' + sql_updates + ' WHERE id = ?'
         print('From server - user factory - sql command is %s %s' % (sql_command, params))
@@ -127,5 +141,43 @@ def update_user(user_id, tag_id=None, first_name=None, last_name=None, email=Non
                     role_id=result[5], pic_id=result[6])
         dbm.close_connection(db)
         return user
+    else:
+        return None
+
+
+def get_password(user_id):
+    if None is not user_id:
+        db = dbm.get_db()
+        cur = db.cursor()
+        try:
+            cur.execute('SELECT password FROM AuthUser WHERE user_id = ?', (user_id,))
+            result = cur.fetchone()
+            password = str(result[0])
+            dbm.close_connection(db)
+            if password is not None:
+                return password
+            raise Exception('Wrong user!')
+        except Exception as e:
+            dbm.close_connection(db)
+            return repr(e)
+    else:
+        return None
+
+
+def set_password(user_id, new_password):
+    if None is not user_id and None is not new_password:
+        db = dbm.get_db()
+        cur = db.cursor()
+        try:
+            sql_command = '''INSERT OR REPLACE INTO AuthUser (user_id, password) VALUES ( ?, ? )'''
+            affected_count = cur.execute(sql_command, (user_id, new_password,))
+            db.commit()
+            if affected_count > 0:
+                dbm.close_connection(db)
+                return new_password
+            raise Exception('Unable to reset password! Server error...')
+        except Exception as e:
+            dbm.close_connection(db)
+        return repr(e)
     else:
         return None

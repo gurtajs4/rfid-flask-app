@@ -13,7 +13,7 @@
         startCounting();
 
         function startCounting() {
-            while ($scope.counter > 0) {
+            while (parseInt($scope.counter.toString()) > 0) {
                 $timeout(function () {
                     $scope.$apply(function () {
                         $scope.counter -= 1;

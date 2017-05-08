@@ -119,3 +119,7 @@ a.no-decoration {
     text-shadow: 3px 2px grey;
     margin-top: -500px;
 }
+
+input[type="file"] {
+    max-width: 100%;
+}
