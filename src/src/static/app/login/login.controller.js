@@ -9,7 +9,7 @@
     function LoginController($scope, authService) {
         var service = authService;
 
-        $scope.loginErrro = {};
+        $scope.loginErrror = {};
 
         $scope.doLogin = doLogin;
         $scope.isValid = isValid;
