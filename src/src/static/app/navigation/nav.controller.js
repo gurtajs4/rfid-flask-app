@@ -26,7 +26,7 @@
             {id: 7, route: 'users/search', name: 'Pretraga korisnika'}
         ];
         $scope.rightNav = [
-            {id: 8, route: 'users/login', name: 'Prijava korisnika'},
+            {id: 8, route: '/login', name: 'Prijava korisnika'},
             {id: 9, route: 'users/register', name: 'Registracija korisnika'}
         ];
 
