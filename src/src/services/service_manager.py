@@ -8,14 +8,12 @@ from .db_backup import backup_db
 from .storage_manager import StorageManager
 from ..db import SqliteManager
 from ..embedded.mfrc_service import ServiceMFRC
-from ..io_sockets import reader_output, send_message
 from ..models.adapters import UserProfile, SessionView
 
 
 class ServiceManager(object):
     @staticmethod
     def start_db(drop_create=False, seed_data=False, backup_data=False):
-        # db = SqliteManager(drop_create)
         if backup_data:
             if not backup_db():
                 return False
@@ -45,6 +43,7 @@ class ServiceManager(object):
         seed = DbInitializer()
 
     # api for keys
+    # <editor-fold desc="API for managing Keys">
     @staticmethod
     def get_keys():
         return key_factory.get_keys()
@@ -66,8 +65,10 @@ class ServiceManager(object):
     @staticmethod
     def update_key(key_id, tag_id=None, room_id=None, block_name=None, sector_name=None, floor=None, room_repr=None):
         return key_factory.update_key(key_id, tag_id, room_id, block_name, sector_name, floor, room_repr)
+    # </editor-fold>
 
     # api for users
+    # <editor-fold desc="API for managing Users">
     @staticmethod
     def get_users():
         return user_factory.get_users()
@@ -96,8 +97,10 @@ class ServiceManager(object):
     def get_user_ui_model(user):
         pic_url = images_service.get_img_url(user.pic_id, True)
         return UserProfile(user.id, user.tag_id, user.first_name, user.last_name, user.email, user.role_id, pic_url)
+    # </editor-fold>
 
     # api for sessions
+    # <editor-fold desc="API for managing Sessions">
     @staticmethod
     def get_sessions():
         return session_factory.get_sessions()
@@ -128,8 +131,10 @@ class ServiceManager(object):
         return SessionView(session_id=session.id, key_id=session.key_id, room_repr=room_repr,
                            user_id=session.user_id, first_name=first_name, last_name=last_name,
                            started_on=session.started_on, closed_on=session.closed_on)
+    # </editor-fold>
 
     # api for user auth requests
+    # <editor-fold desc="API for User-Auth requests">
     @staticmethod
     def create_user_auth_request(user_id, timestamp):
         return user_auth_request_service.create_user_auth_request(user_id=user_id, timestamp=timestamp)
@@ -137,6 +142,7 @@ class ServiceManager(object):
     @staticmethod
     def get_user_auth_requests(user_id, limit=0):
         return user_auth_request_service.get_user_auth_requests(user_id=user_id, limit=limit)
+    # </editor-fold>
 
     # api for matching
     @staticmethod

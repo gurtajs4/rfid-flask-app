@@ -3,7 +3,6 @@
     angular.module('appMain', [
         'ngRoute',
         'ui.bootstrap',
-        'ngSocketIO',
         'ngFileUpload'
     ]);
 })();

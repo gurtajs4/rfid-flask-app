@@ -37,6 +37,7 @@ def api_reader():
 # *********** users ***********
 
 
+# <editor-fold desc="Users Views">
 @app.route('/api/users', methods=['GET'])
 def api_users_get():
     users = service_manager.get_users()
@@ -88,10 +89,8 @@ def api_user_register():
         resp.status_code = 404
         return resp
     else:
-        # data = jserial.user_instance_serialize(user_instance=user)
         user_ui_model = service_manager.get_user_ui_model(user)
         data = jserial.user_instance_serialize(user_instance=user_ui_model)
-        # resp = jsonify(data)
         resp = Response(data, status=200, mimetype='application/json')
         resp.status_code = 200
         return resp
@@ -159,7 +158,6 @@ def api_user_get(user_id):
         user = service_manager.get_user_ui_model(user_data)
         data = jserial.user_instance_serialize(user)
         resp = Response(data, status=200, mimetype='application/json')
-        # resp = jsonify(data)
         resp.status_code = 200
         return resp
 
@@ -215,13 +213,16 @@ def user_edit():
         data = jserial.user_instance_serialize(user_instance=user)
         resp = Response(data, status=200, mimetype='application/json')
         resp.status_code = 200
-        # resp = jsonify(data)
     return resp
+
+
+# </editor-fold>
 
 
 # *********** user auth requests ***********
 
 
+# <editor-fold desc="User Auth Views">
 @app.route('/api/user/auth-request', methods=['POST'])
 def api_user_auth_request_new():
     user = (request.get_json())
@@ -251,9 +252,13 @@ def api_user_auth_requests(user_id):
         return resp
 
 
+# </editor-fold>
+
+
 # *********** keys ***********
 
 
+# <editor-fold desc="Keys Views">
 @app.route('/api/keys', methods=['GET'])
 def api_keys_get():
     keys = service_manager.get_keys()
@@ -267,7 +272,6 @@ def api_keys_get():
         return resp
     else:
         data = jserial.key_instances_serialize(key_list=keys)
-        # print('From server - keys - %s' % data)
         resp = jsonify(data)  # list of keys - jsonify iterates over list
         resp.status_code = 200
         return resp
@@ -367,7 +371,6 @@ def api_key_get(key_id):
         return resp
     else:
         data = jserial.key_instance_serialize(key_data)
-        # resp = jsonify(data)
         resp = Response(data, status=200, mimetype='application/json')
         resp.status_code = 200
         return resp
@@ -419,9 +422,13 @@ def key_edit():
         return resp
 
 
+# </editor-fold>
+
+
 # *********** sessions ***********
 
 
+# <editor-fold desc="Sessions Views">
 @app.route('/api/sessions', methods=['GET'])
 def api_sessions_get():
     raw_sessions = service_manager.get_sessions()
@@ -454,7 +461,6 @@ def api_session_get(session_id):
     else:
         session = service_manager.get_session_ui_model(session=session_raw)
         data = jserial.session_instance_serialize(session_instance=session)
-        # resp = jsonify(session)
         resp = Response(data, status=200, mimetype='application/json')
         resp.status_code = 200
         return resp
@@ -463,7 +469,6 @@ def api_session_get(session_id):
 @app.route('/api/sessions/key/<int:key_id>', methods=['GET'])
 def api_sessions_get_by_key(key_id):
     results = service_manager.search_session(key_id=key_id, limit=0)
-    # send_message(results, 'key session result', session['uuid'])
     if None is not results:
         sessions = [service_manager.get_session_ui_model(session=session) for session in results]
         data = jserial.session_instances_serialize(session_list=sessions)
@@ -480,7 +485,6 @@ def api_sessions_get_by_key(key_id):
 @app.route('/api/sessions/user/<int:user_id>', methods=['GET'])
 def api_sessions_get_by_user(user_id):
     results = service_manager.search_session(user_id=user_id, limit=0)
-    # service_manager.send
     if None is not results:
         sessions = [service_manager.get_session_ui_model(session) for session in results]
         data = jserial.session_instances_serialize(session_list=sessions)
@@ -572,9 +576,13 @@ def api_session_delete(session_id):
         return resp
 
 
+# </editor-fold>
+
+
 # *********** file storage ***********
 
 
+# <editor-fold desc="File storage Views">
 @app.route('/api/data/template', methods=['GET'])
 def api_data_template():
     file = ServiceManager.get_excel_template()
@@ -624,3 +632,5 @@ def api_clean_slate():
     resp = jsonify(message)
     resp.status_code = message['status']
     return resp
+
+# </editor-fold>

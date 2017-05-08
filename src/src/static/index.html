@@ -15,11 +15,8 @@
     <script src="static/vendor/angular-route/angular-route.min.js"></script>
     <script src="static/vendor/angular-bootstrap/ui-bootstrap.min.js"></script>
     <script src="static/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
-    <script src="static/vendor/ngSocketIO/dist/angular-socketio.min.js"></script>
     <script src="static/vendor/ng-file-upload/ng-file-upload.min.js"></script>
     <script src="static/vendor/ng-file-upload-shim/ng-file-upload-shim.min.js"></script> <!-- for no html5 browsers support -->
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="https://cdn.socket.io/socket.io-1.4.0.js"></script>
 
     <script src="static/app/app.js"></script>
     <script src="static/app/config.js"></script>
@@ -27,10 +24,15 @@
     <script src="static/app/shared/template.provider.js"></script>
     <script src="static/app/shared/main.controller.js"></script>
     <script src="static/app/home/home.controller.js"></script>
-    <script src="static/app/shared/images.service.js"></script>
+    <script src="static/app/shared-services/images.service.js"></script>
+    <script src="static/app/shared-services/keys.service.js"></script>
+    <script src="static/app/shared-services/users.service.js"></script>
 
     <script src="static/app/navigation/nav.controller.js"></script>
     <script src="static/app/navigation/nav.directive.js"></script>
+
+    <script src="static/app/counter/counter.counter.js"></script>
+    <script src="static/app/counter/counter.directive.js"></script>
 
     <script src="static/app/reader/reader.service.js"></script>
     <script src="static/app/reader/reader.controller.js"></script>
@@ -40,13 +42,11 @@
     <script src="static/app/sessions/session-info.directive.js"></script>
     <script src="static/app/sessions/sessions.controller.js"></script>
 
-    <script src="static/app/keys/keys.service.js"></script>
     <script src="static/app/keys/keys.controller.js"></script>
     <script src="static/app/keys/key-info.directive.js"></script>
     <script src="static/app/search-keys/keys-results.directive.js"></script>
     <script src="static/app/search-keys/keys-search-form.controller.js"></script>
 
-    <script src="static/app/users/users.service.js"></script>
     <script src="static/app/users/users.controller.js"></script>
     <script src="static/app/users/user-info.directive.js"></script>
     <script src="static/app/search-users/users-results.directive.js"></script>

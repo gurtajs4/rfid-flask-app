@@ -3,10 +3,6 @@ from .config import DATABASE_URI
 
 
 class SqliteManager:
-    # def __init__(self, drop_create=False):
-    #     if drop_create:
-    #         self.db_init()
-
     @staticmethod
     def get_db():
         db = sqlite3.connect(database=DATABASE_URI, timeout=5)

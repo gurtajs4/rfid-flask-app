@@ -1,7 +1,7 @@
 /* Common styling */
 body {
-    /*background-color: yellowgreen;*/
-    color: #4682B4;
+    /*color: #4682B4;*/
+    color: #33383C;
 }
 
 /* Bootstrap overrides */
@@ -33,6 +33,20 @@ body {
     color: yellowgreen;
 }
 
+.panel-default, .panel-primary {
+    background: #33383C;
+    color: #33383C;
+}
+
+.panel-default > .panel-heading, .panel-primary > .panel-heading {
+    border-color: #33383C;
+    color: yellowgreen;
+}
+
+.panel-body {
+    color: #33383C;
+}
+
 /* Custom rules */
 .preview-panel {
     background-color: cadetblue;
@@ -58,7 +72,7 @@ body {
 }
 
 .padding-right-sm {
-padding-right: 10px;
+    padding-right: 10px;
 }
 
 .padding-left {
@@ -66,7 +80,7 @@ padding-right: 10px;
 }
 
 .padding-left-sm {
-padding-left: 10px;
+    padding-left: 10px;
 }
 
 .img-field {

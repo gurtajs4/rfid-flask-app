@@ -3,7 +3,6 @@
 
     angular.module('doorLock', [
         'ngRoute',
-        'ui.bootstrap',
-        'ngSocketIO'
+        'ui.bootstrap'
     ]);
 })();
