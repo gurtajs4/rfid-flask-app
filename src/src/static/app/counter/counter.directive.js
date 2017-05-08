@@ -2,7 +2,7 @@
     'use-strict';
 
     angular
-        .module('')
+        .module('appMain')
         .directive('counter', counter);
 
     counter.$inject = ['templateServiceProvider'];

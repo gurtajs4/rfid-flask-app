@@ -27,7 +27,6 @@
         function init() {
             service.getItems().then(function (response) {
                 var data = response.data;
-                // $log.info(data);
                 var viewModel = [];
                 angular.forEach(data, function (value, key) {
                     var singleViewModel = JSON.parse(value);

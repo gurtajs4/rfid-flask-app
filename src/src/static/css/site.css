@@ -34,12 +34,13 @@ body {
 }
 
 .panel-default, .panel-primary {
-    background: #33383C;
+    border-color: #33383C;
     color: #33383C;
 }
 
 .panel-default > .panel-heading, .panel-primary > .panel-heading {
     border-color: #33383C;
+    background-color: #33383C;
     color: yellowgreen;
 }
 
