@@ -5,24 +5,41 @@
         .module('appMain')
         .controller('CounterController', CounterController);
 
-    CounterController.$inject = ['$scope', '$timeout'];
-    function CounterController($scope, $timeout) {
+    CounterController.$inject = ['$scope', '$interval'];
+    function CounterController($scope, $interval) {
         $scope.message = ' OPREZ! Vremena preostalo za očitanje: ';
         $scope.counter = 20;
 
-        startCounting();
+        var stop;
 
-        function startCounting() {
-            while (parseInt($scope.counter.toString()) > 0) {
-                $timeout(function () {
-                    $scope.$apply(function () {
-                        $scope.counter -= 1;
-                    });
-                }, 1000);
-                if ($scope.tagData != undefined && $scope.tagData != '' && $scope.tagData != null) {
-                    $scope.counter = 0;
-                }
+        $scope.$watch('tagData', function (value) {
+            if (value != undefined && value != '' && value != null) {
+                $scope.stopCounting();
             }
-        }
+        });
+
+        $scope.startCounting = function () {
+            if (angular.isDefined(stop)) return;
+
+            stop = $interval(function () {
+                if (parseInt($scope.counter.toString()) > 0) {
+                    $scope.counter = parseInt($scope.counter.toString()) - 1;
+                }
+                else {
+                    $scope.stopCounting();
+                }
+            }, 100);
+        };
+
+        $scope.stopCounting = function () {
+            if (angular.isDefined(stop)) {
+                $interval.cancel(stop);
+                stop = undefined;
+            }
+        };
+
+        $scope.$on('$destroy', function () {
+            $scope.stopCounting();
+        });
     }
 })();
