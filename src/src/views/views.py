@@ -1,4 +1,4 @@
-from .. import app, auth
+from .. import app
 from ..services.service_manager import ServiceManager
 from ..services.storage_manager import StorageManager
 from ..services.serializers import JSONSerializer as jserial
@@ -37,6 +37,29 @@ def api_reader():
 # *********** auth ***********
 
 
+def get_request_auth(request):
+    try:
+        auth_header_value = request.headers.get('Authorization', None)
+        if not auth_header_value:
+            raise Exception('Invalid JWT header: No authorization headers')
+        header_parts = auth_header_value.split(' ')
+
+        if header_parts[0].lower() != 'token':
+            raise Exception('Invalid JWT header: Unsupported authorization type')
+        elif len(header_parts) == 1:
+            raise Exception('Invalid JWT header: Token missing')
+        elif len(header_parts) > 2:
+            raise Exception('Invalid JWT header: Token contains spaces')
+
+        return '1%s' % header_parts[1]
+    except e:
+        return '0%s' % repr(e)
+
+
+def verify_token(token):
+    return service_manager.validate_token(auth_token=token) is None
+
+
 @app.route('/api/login', methods=['POST'])
 def api_user_login():
     try:
@@ -57,16 +80,19 @@ def api_user_login():
         return Response(e, status=404, mimetype='application/json')
 
 
-@auth.verify_token
-def verify_token(token):
-    return service_manager.validate_token(auth_token=token) is None
-
-
 @app.route("/api/logout")
-@auth.login_required
 def logout():
-    logout_user()
-    return redirect(somewhere)
+    if request.headers.get('Authorization'):
+        logout_user()
+        return jsonify({'message': 'ok', 'status': 200})
+    else:
+        message = {
+            'message': 'Failed',
+            'status': 404
+        }
+        resp = jsonify(message)
+        resp.status_code = message['status']
+        return resp
 
 
 # *********** users ***********
@@ -76,8 +102,12 @@ def logout():
 
 
 @app.route('/api/users', methods=['GET'])
-@auth.login_required
 def api_users_get():
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     users = service_manager.get_users()
     if None is users or 1 > len(users):
         message = {
@@ -99,6 +129,11 @@ def api_users_get():
 
 @app.route('/api/users/register', methods=['POST'])
 def api_user_register():
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     files = request.files
     if 'file' not in files:
         file = None
@@ -140,8 +175,12 @@ def api_user_register():
 
 
 @app.route('/api/users/search/<queryset>', methods=['GET'])
-@auth.login_required
 def api_users_search(queryset):
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     words = [word for word in queryset.split(' ')]
     users = []
     for word in words:
@@ -167,8 +206,12 @@ def api_users_search(queryset):
 
 
 @app.route('/api/users/tag/search/<tag_id>', methods=['GET'])
-@auth.login_required
 def api_user_tag_search(tag_id):
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     result = service_manager.search_user(tag_id=tag_id)
     if None is result:
         message = {
@@ -188,9 +231,12 @@ def api_user_tag_search(tag_id):
 
 
 @app.route('/api/user/get/<int:user_id>', methods=['GET'])
-@auth.login_required
 def api_user_get(user_id):
-    print('From server - user get - user id: %s' % user_id)
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     user_data = service_manager.search_user(user_id=user_id, exclusive=True)
     if None is user_data:
         message = {
@@ -209,9 +255,12 @@ def api_user_get(user_id):
 
 
 @app.route('/api/user/delete/<int:user_id>', methods=['DELETE'])
-@auth.login_required
 def api_user_delete(user_id):
-    print('From server - delete user %s' % user_id)
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     if service_manager.delete_user(user_id=user_id):
         message = {
             'status': 200,
@@ -228,8 +277,12 @@ def api_user_delete(user_id):
 
 
 @app.route('/api/user/edit', methods=['PUT', 'POST'])
-@auth.login_required
 def user_edit():
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     files = request.files
     if 'file' not in files:
         file = None
@@ -237,11 +290,8 @@ def user_edit():
         file = files['file']
     pic_url, pic_id = service_manager.upload_image(file)
     user_dict = jserial.json_deserialize(request.form['user_json'])
-    print('From server - on image upload - JSON data: %s' % user_dict)
     user_dict = jserial.create_user_dict(user_dict, pic_id)
-    print('From server - user edit (POST) - user json is %s' % user_dict)
     user = jserial.user_instance_deserialize(user_dict)
-    print('From server - user edit (PUT) - user email is %s' % user.email)
     user = service_manager.update_user(user_id=user.id,
                                        tag_id=user.tag_id,
                                        first_name=user.first_name,
@@ -249,7 +299,6 @@ def user_edit():
                                        email=user.email,
                                        role_id=user.role_id,
                                        pic_id=user.pic_id)
-    print('From server - api-user-edit (PUT) - id of stored user is %s' % user.id)
     if None is user or -1 == user.id:
         message = {
             'status': 404,
@@ -275,18 +324,27 @@ def user_edit():
 
 @app.route('/api/user/auth-request', methods=['POST'])
 def api_user_auth_request_new():
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     user = (request.get_json())
-    print('From server - received from reader - auth request: %s' % user)
     if None is not user:
-        print('From server - user auth request - (user: %s, timestamp %s)' % (user['user_id'], user['timestamp']))
         user_session = service_manager.create_user_auth_request(user['user_id'], user['timestamp'])
-        print("From server - user auth request - stored request: %s" % user_session)
+        return jsonify(user_session)
+    else:
+        return Response('Faild action', status=404, mimetype='application/json')
 
 
 @app.route('/api/user/auth-requests/<int:user_id>', methods=['GET'])
 def api_user_auth_requests(user_id):
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     sessions = service_manager.get_user_auth_requests(user_id=user_id)
-    print('From server - user auth requests - requests count: %s' % len(sessions))
     if None is sessions:
         message = {
             'status': 404,
@@ -312,8 +370,12 @@ def api_user_auth_requests(user_id):
 
 
 @app.route('/api/keys', methods=['GET'])
-@auth.login_required
 def api_keys_get():
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     keys = service_manager.get_keys()
     if None is keys or 1 > len(keys):
         message = {
@@ -331,18 +393,19 @@ def api_keys_get():
 
 
 @app.route('/api/keys/register', methods=['POST'])
-@auth.login_required
 def api_key_register():
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     key = jserial.key_instance_deserialize(request.get_json())
-    print('From server - key register - key tag is %s' % key.tag_id)
-    print('From server - key register - key repr is %s' % key.room_repr)
     key = service_manager.create_key(tag_id=key.tag_id,
                                      room_id=key.room_id,
                                      block_name=key.block_name,
                                      sector_name=key.sector_name,
                                      floor=key.floor,
                                      room_repr=key.room_repr)
-    print('From server - key register - stored key id is %s' % key.id)
     if None is key or -1 == key.id:
         message = {
             'status': 404,
@@ -359,9 +422,12 @@ def api_key_register():
 
 
 @app.route('/api/keys/search/<queryset>', methods=['GET'])
-@auth.login_required
 def api_keys_search(queryset):
-    print('From server - keys search - queryset is %s' % queryset)
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     words = [word for word in queryset.split(' ')]
     keys = []
     for word in words:
@@ -378,7 +444,6 @@ def api_keys_search(queryset):
                     if key.id not in [y.id for y in keys]:
                         keys.append(key)
                         print('From server - keys search - key found: %s' % key.room_id)
-        print('From server - keys search - keys count: %s' % len(keys))
     if None is keys or 1 > len(keys):
         message = {
             'status': 404,
@@ -389,15 +454,18 @@ def api_keys_search(queryset):
         return resp
     else:
         data = jserial.key_instances_serialize(key_list=keys)
-        print('From server - keys search - data is %s' % data)
         resp = jsonify(data)  # list of keys - jsonfiy iterates over list
         resp.status_code = 200
         return resp
 
 
 @app.route('/api/keys/tag/search/<tag_id>', methods=['GET'])
-@auth.login_required
 def api_key_tag_search(tag_id):
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     key = service_manager.search_key(tag_id=int(tag_id))
     if None is key:
         message = {
@@ -415,8 +483,12 @@ def api_key_tag_search(tag_id):
 
 
 @app.route('/api/key/get/<int:key_id>', methods=['GET'])
-@auth.login_required
 def api_key_get(key_id):
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     key_data = service_manager.search_key(key_id=key_id, exclusive=True)
     if None is key_data:
         message = {
@@ -434,9 +506,12 @@ def api_key_get(key_id):
 
 
 @app.route('/api/key/delete/<int:key_id>', methods=['DELETE'])
-@auth.login_required
 def api_key_delete(key_id):
-    print('From server - delete key %s' % key_id)
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     if service_manager.delete_key(key_id=key_id):
         message = {
             'status': 200,
@@ -453,11 +528,13 @@ def api_key_delete(key_id):
 
 
 @app.route('/api/key/edit', methods=['PUT', 'POST'])
-@auth.login_required
 def key_edit():
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     key = jserial.key_instance_deserialize(request.get_json())
-    print('From server - key edit - key tag is %s' % key.tag_id)
-    print('From server - key edit - key repr is %s' % key.room_repr)
     key = service_manager.update_key(key_id=key.id,
                                      tag_id=key.tag_id,
                                      room_id=key.room_id,
@@ -465,7 +542,6 @@ def key_edit():
                                      sector_name=key.sector_name,
                                      floor=key.floor,
                                      room_repr=key.room_repr)
-    print('From server - key edit - stored key repr is %s' % key.room_repr)
     if None is key or -1 == key.id:
         message = {
             'status': 404,
@@ -491,8 +567,12 @@ def key_edit():
 
 
 @app.route('/api/sessions', methods=['GET'])
-@auth.login_required
 def api_sessions_get():
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     raw_sessions = service_manager.get_sessions()
     sessions = []
     for session in raw_sessions:
@@ -509,10 +589,13 @@ def api_sessions_get():
 
 
 @app.route('/api/sessions/<int:session_id>', methods=['GET'])
-@auth.login_required
 def api_session_get(session_id):
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     session_raw = service_manager.search_session(session_id=session_id)
-    print('From server - session get - (session_id: %s, session: %s)' % (session_id, session_raw))
     if None is session_raw:
         message = {
             'status': 404,
@@ -530,13 +613,16 @@ def api_session_get(session_id):
 
 
 @app.route('/api/sessions/key/<int:key_id>', methods=['GET'])
-@auth.login_required
 def api_sessions_get_by_key(key_id):
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     results = service_manager.search_session(key_id=key_id, limit=0)
     if None is not results:
         sessions = [service_manager.get_session_ui_model(session=session) for session in results]
         data = jserial.session_instances_serialize(session_list=sessions)
-        print('From server - sessions by key id - (key_id: %s, results: %s)' % (key_id, data))
         resp = jsonify(data)
         resp.status_code = 200
     else:
@@ -547,13 +633,16 @@ def api_sessions_get_by_key(key_id):
 
 
 @app.route('/api/sessions/user/<int:user_id>', methods=['GET'])
-@auth.login_required
 def api_sessions_get_by_user(user_id):
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     results = service_manager.search_session(user_id=user_id, limit=0)
     if None is not results:
         sessions = [service_manager.get_session_ui_model(session) for session in results]
         data = jserial.session_instances_serialize(session_list=sessions)
-        print('From server - sessions by user id - (user_id: %s, results: %s)' % (user_id, data))
         resp = jsonify(data)  # sessions of single user - jsonify iterates over list
         resp.status_code = 200
     else:
@@ -564,12 +653,14 @@ def api_sessions_get_by_user(user_id):
 
 
 @app.route('/api/sessions/new', methods=['POST'])
-@auth.login_required
 def api_session_new():
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     data = request.get_json()
-    print('From server - received from reader - session: %s' % data)
     if None is data:
-        print('Data not received')
         message = {
             'status': 404,
             'message': 'Not Found' + request.url,
@@ -583,16 +674,14 @@ def api_session_new():
             'data': ''
         }
         data_deserialized = jserial.json_deserialize(data)
-        print('From server - reader data deserialized: %s' % data_deserialized)
-        print('From server - user id from data deserialized is %s' % data_deserialized['user_id'])
         user_id = int(data_deserialized['user_id'])
         user = service_manager.search_user(tag_id=user_id)
-        print('From server - key id from data deserialized is %s' % data_deserialized['key_id'])
         key_id = int(data_deserialized['key_id'])
         key = service_manager.search_key(tag_id=key_id)
         session = None
         if None is key_id or '' == key_id or None is user_id or '' == user_id:
-            print('Key ID or user ID not found so no session can be registered, retry...')
+            return Response('Key ID or user ID not found so no session can be registered, retry...', status=404,
+                            mimetype='application/json')
         elif None is user or None is key:
             session = None
         else:
@@ -600,21 +689,14 @@ def api_session_new():
                                                      user_id=user.id,
                                                      exclusive=True,
                                                      is_active=True)
-        print('From server - is existing session? %s' % (False if session is None else True))
         if None is not session:
             session.closed_on = data_deserialized['timestamp']
             service_manager.update_session(
                 session.id, session.key_id, session.user_id, session.started_on, session.closed_on
             )
-            print('From server - closed session id: %s, key_id: %s, user_id: %s, started: %s, closed: %s' % (
-                session.id, session.key_id, session.user_id, session.started_on, session.closed_on
-            ))
         else:
             if not (-1 == key_id or -1 == user_id):
                 session = service_manager.create_session(key.id, user.id, data_deserialized['timestamp'])
-                print('From server - data stored - id: %s user_id: %s key_id: %s started_on: %s' % (
-                    session.id, session.key_id, session.user_id, session.started_on
-                ))
         message['data'] = jserial.session_instance_serialize(service_manager.get_session_ui_model(session))
         resp = jsonify(message)
         resp.status_code = 200
@@ -622,9 +704,12 @@ def api_session_new():
 
 
 @app.route('/api/sessions/delete/<int:session_id>', methods=['DELETE'])
-@auth.login_required
 def api_session_delete(session_id):
-    print('From server - delete session with id %s' % session_id)
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     if service_manager.delete_session(session_id=session_id):
         message = {
             'status': 200,
@@ -652,26 +737,31 @@ def api_session_delete(session_id):
 # <editor-fold desc="File storage Views">
 
 @app.route('/api/data/template', methods=['GET'])
-@auth.login_required
 def api_data_template():
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     file = ServiceManager.get_excel_template()
     return send_file(file, mimetype='text/csv', attachment_filename='data_template.xls', as_attachment=True)
 
 
 @app.route('/api/data/import', methods=['POST'])
-@auth.login_required
 def api_data_import():
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     file = None
     files = request.files
     if 'file' in files:
         file = files['file']
     stm = StorageManager()
     file_path = stm.store_file(file=file, type=0)
-    print('From server - data import - file location is: %s' % file_path)
     check_location = service_manager.get_excel_template(filename=file.filename)
-    print('From server - seed file upload - file uploaded at location: %s' % check_location)
     results = service_manager.seed_from_excel(file_location=file_path)
-    print('From server - seed file upload - seed results %s' % results)
     if None is results:
         message = {
             'status': 404,
@@ -688,8 +778,12 @@ def api_data_import():
 
 
 @app.route('/api/clean-slate', methods=['GET'])  # dev only
-@auth.login_required
 def api_clean_slate():
+    auth_data = get_request_auth(request=request)
+    if auth_data[0] == '0':
+        return jsonify(auth_data[1:])
+    if not verify_token(auth_data[1:]):
+        return Response('Login required', status=404, mimetype='application/json')
     if service_manager.start_db(drop_create=True, seed_data=True, backup_data=True):
         message = {
             'status': 200,

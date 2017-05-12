@@ -52,11 +52,7 @@ class AuthManager():
         """
         try:
             payload = jwt.decode(auth_token, key)
-            is_blacklisted_token = BlacklistToken.check_blacklist(auth_token)
-            if is_blacklisted_token:
-                return 'ERROR: Token blacklisted. Please log in again.'
-            else:
-                return payload['sub']
+            return payload['sub']
         except jwt.ExpiredSignatureError:
             return 'ERROR: Signature expired. Please log in again.'
         except jwt.InvalidTokenError:
