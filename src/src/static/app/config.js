@@ -5,9 +5,9 @@
         .module('appMain')
         .config(config);
 
-    config.$inject = ['$routeProvider', '$locationProvider'];
+    config.$inject = ['$routeProvider', '$locationProvider', '$httpProvider'];
 
-    function config($routeProvider, $locationProvider) {
+    function config($routeProvider, $locationProvider, $httpProvider) {
         var appBaseUrl = angular.element(document.querySelector('base')).attr('href') + 'static/app';
 
         $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
