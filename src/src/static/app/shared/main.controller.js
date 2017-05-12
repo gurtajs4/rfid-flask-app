@@ -41,7 +41,7 @@
 
                 var locationAllowed = false;
                 angular.forEach(_guestRoutes, function (value, key) {
-                    if ($location.path.host + value == originalPath) {
+                    if (value == originalPath) {
                         locationAllowed = true;
                     }
                 });
@@ -62,7 +62,6 @@
 
         function guestRoutes() {
             return [
-                '/',
                 '/home',
                 '/login',
                 '/users/register'
