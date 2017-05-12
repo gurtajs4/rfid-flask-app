@@ -37,7 +37,7 @@ def api_reader():
 # *********** auth ***********
 
 
-@app.route('/api/login')
+@app.route('/api/login', methods=['POST'])
 def api_user_login():
     try:
         auth_data = request.get_json()
