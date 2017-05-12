@@ -52,7 +52,7 @@ def get_request_auth(request):
             raise Exception('Invalid JWT header: Token contains spaces')
 
         return '1%s' % header_parts[1]
-    except e:
+    except Exception as e:
         return '0%s' % repr(e)
 
 
