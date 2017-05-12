@@ -54,7 +54,7 @@ def api_user_login():
         resp.status_code = 200
         return resp
     except Exception as e:
-        return Response(repr(e), status=404, mimetype='application/json')
+        return Response(e, status=404, mimetype='application/json')
 
 
 @auth.verify_token
