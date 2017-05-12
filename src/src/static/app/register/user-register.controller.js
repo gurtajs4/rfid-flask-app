@@ -82,7 +82,7 @@
                     $log.info(token);
                     authService.setCredentials(user.email, token, function () {
                         callback(response.data);
-                        $location.url('/users');
+                        $location.url('/home');
                     });
                 }).catch(function (error) {
                     $log.error('Error status: ', error);
