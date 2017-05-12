@@ -36,12 +36,12 @@
 
         $scope.$on('$routeChangeStart', function (previous, next) {
             if (next.$$route != undefined) {
-                var originalPath = next.$$route.originalPath.substring(1);
+                var originalPath = next.$$route.originalPath;
                 var _guestRoutes = guestRoutes();
 
                 var locationAllowed = false;
                 angular.forEach(_guestRoutes, function (value, key) {
-                    if (value == originalPath) {
+                    if ($location.path.host + value == originalPath) {
                         locationAllowed = true;
                     }
                 });
