@@ -60,7 +60,7 @@
                 $scope.errorRegistering.password = 'Lozinka je sigurna kao ima više od 8 znakova!';
                 _isValid = false;
             }
-            if ($scope.tagInfo.tagInfo || isNaN($scope.tagInfo.tagInfo)) {
+            if ($scope.tagInfo.tagId || isNaN($scope.tagInfo.tagId)) {
                 $scope.errorRegistering.firstname = 'Niste prošli karticom preko čitača! Osvježite stranicu i pokušajte ponovno...';
                 _isValid = false;
             }
