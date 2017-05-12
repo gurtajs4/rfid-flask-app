@@ -31,11 +31,11 @@
 
         function isValid() {
             var _isValid = true;
-            if (!$scope.firstname) {
+            if (!$scope.firstName) {
                 $scope.errorRegistering.firstname = 'Ovo polje je obavezno!';
                 _isValid = false;
             }
-            if (!$scope.lastname) {
+            if (!$scope.lastName) {
                 $scope.errorRegistering.lastname = 'Ovo polje je obavezno!';
                 _isValid = false;
             }
@@ -58,6 +58,10 @@
             }
             if ($scope.password.length < 9) {
                 $scope.errorRegistering.password = 'Lozinka je sigurna kao ima više od 8 znakova!';
+                _isValid = false;
+            }
+            if ($scope.tagInfo.tagInfo || isNaN($scope.tagInfo.tagInfo)) {
+                $scope.errorRegistering.firstname = 'Niste prošli karticom preko čitača! Osvježite stranicu i pokušajte ponovno...';
                 _isValid = false;
             }
             return _isValid;
