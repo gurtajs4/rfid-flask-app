@@ -57,6 +57,11 @@ def api_user_login():
         return Response(repr(e), status=404, mimetype='application/json')
 
 
+@auth.verify_token
+def verify_token(token):
+    return service_manager.validate_token(auth_token=token) is None
+
+
 @app.route("/api/logout")
 @auth.login_required
 def logout():
