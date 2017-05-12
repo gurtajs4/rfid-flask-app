@@ -62,6 +62,7 @@
 
         function guestRoutes() {
             return [
+                '/',
                 '/home',
                 '/login',
                 '/users/register'
