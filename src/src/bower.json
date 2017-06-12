@@ -1,14 +1,15 @@
 {
-  "name": "flask-app",
+  "name": "rfid-flask-app",
   "authors": [
     "Matija Čvrk <matijacvrk@gmail.com>"
   ],
-  "description": "web app in flask",
+  "description": "rfid management iot app for raspberry pi",
   "main": "static/app.js",
   "keywords": [
+    "rifd",
     "flask",
-    "web",
-    "app"
+    "angularjs",
+    "gulp"
   ],
   "license": "MIT",
   "homepage": "templates/index.html",

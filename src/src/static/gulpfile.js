@@ -2,9 +2,9 @@ var gulp = require('gulp')
     , uglify = require('gulp-uglify')
     , concat = require('gulp-concat')
     , inject = require('gulp-inject')
-    , prefix = require('gulp-prefix')
     , angularFilesort = require('gulp-angular-filesort');
 
+var prefixUrl = 'static';
 
 gulp.task('scripts', function () {
     gulp.src('index.html')
@@ -17,18 +17,22 @@ gulp.task('scripts', function () {
                 './vendor/ng-file-upload/ng-file-upload.min.js',
                 './vendor/ng-file-upload-shim/ng-file-upload-shim.min.js',
                 './vendor/angular-cookies/angular-cookies.js',
-                './app/*.js', './app/*/*.js'])
+                './app/*.js',
+                './app/*/*.js'])
                 .pipe(angularFilesort())
                 .pipe(concat('angular.app.min.js'))
                 .pipe(uglify())
-                .pipe(gulp.dest('./'))
+                .pipe(gulp.dest('./')),
+            {
+                addPrefix: prefixUrl,
+                addRootSlash: false
+            }
         ))
         .pipe(gulp.dest('./'));
 });
 
 
 gulp.task('styles', function () {
-    var prefixUrl = 'static/';
     var target = gulp.src('index.html');
     var sources = gulp.src([
         './vendor/bootstrap-css-only/css/bootstrap.min.css',
@@ -36,5 +40,5 @@ gulp.task('styles', function () {
         './css/site.css'
     ], {read: false});
 
-    return target.pipe(inject(sources.pipe(prefix(prefixUrl)))).pipe(gulp.dest('./'))
+    return target.pipe(inject(sources, {addPrefix: prefixUrl, addRootSlash: false})).pipe(gulp.dest('./'))
 });
