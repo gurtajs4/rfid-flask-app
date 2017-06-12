@@ -1,0 +1,25 @@
+{
+  "name": "flask-rfid-app-client",
+  "version": "1.0.0",
+  "description": "rfid management client side app",
+  "main": "app.js",
+  "scripts": {
+    "build": "gulp scripts && gulp styles"
+  },
+  "keywords": [
+    "angularjs",
+    "gulp",
+    "rfid",
+    "flask"
+  ],
+  "author": "Matija Čvrk",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-angular-filesort": "^1.1.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-inject": "^4.2.0",
+    "gulp-prefix": "0.0.15",
+    "gulp-uglify": "^3.0.0"
+  }
+}

@@ -1,3 +1,7 @@
 .idea/*
 .idea/*.*
 .idea/*/*.*
+src/src/static/node_modules/
+src/src/static/node_modules/*
+src/src/static/node_modules/*.*
+src/src/static/node_modules/*/*.* 

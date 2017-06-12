@@ -2,6 +2,7 @@ var gulp = require('gulp')
     , uglify = require('gulp-uglify')
     , concat = require('gulp-concat')
     , inject = require('gulp-inject')
+    , prefix = require('gulp-prefix')
     , angularFilesort = require('gulp-angular-filesort');
 
 
@@ -19,10 +20,13 @@ gulp.task('scripts', function () {
 
 
 gulp.task('styles', function () {
+    var prefixUrl = 'static/';
     var target = gulp.src('index.html');
     var sources = gulp.src([
-        './vendor/bootstrap/dist/css/bootstrap.min.css'
+        './vendor/bootstrap-css-only/css/bootstrap.min.css',
+        './vendor/angular-bootstrap/ui-bootstrap-csp.css',
+        './css/site.css'
     ], {read: false});
 
-    return target.pipe(inject(sources)).pipe(gulp.dest('./'))
+    return target.pipe(inject(sources.pipe(prefix(prefixUrl)))).pipe(gulp.dest('./'))
 });
