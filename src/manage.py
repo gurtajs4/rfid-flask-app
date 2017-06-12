@@ -1,6 +1,6 @@
 import json
-import sys, getopt
-from .src.services.service_manager import ServiceManager
+import sys
+from src.src.services.service_manager import ServiceManager
 
 
 def clean():
@@ -118,6 +118,7 @@ try:
         create_super_user()
     if 'help' in args or '--help' in args:
         show_help()
-except getopt.GetoptError:
+    sys.exit(0)
+except Exception:
     print('Failed command or not recognised!')
     sys.exit(2)
