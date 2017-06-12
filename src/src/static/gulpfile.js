@@ -9,7 +9,15 @@ var gulp = require('gulp')
 gulp.task('scripts', function () {
     gulp.src('index.html')
         .pipe(inject(
-            gulp.src(['./app/*.js', './app/*/*.js'])
+            gulp.src([
+                './vendor/angular/angular.min.js',
+                './vendor/angular-route/angular-route.min.js',
+                './vendor/angular-bootstrap/ui-bootstrap.min.js',
+                './vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
+                './vendor/ng-file-upload/ng-file-upload.min.js',
+                './vendor/ng-file-upload-shim/ng-file-upload-shim.min.js',
+                './vendor/angular-cookies/angular-cookies.js',
+                './app/*.js', './app/*/*.js'])
                 .pipe(angularFilesort())
                 .pipe(concat('angular.app.min.js'))
                 .pipe(uglify())
