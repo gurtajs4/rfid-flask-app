@@ -1,6 +1,6 @@
 import json
 import sys
-from src.src.services.service_manager import ServiceManager
+from src.services.service_manager import ServiceManager
 
 
 def clean():
