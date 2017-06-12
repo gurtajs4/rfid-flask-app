@@ -1,3 +1,4 @@
+import jwt
 import datetime
 from ..config import SECRET_KEY as key
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -14,13 +15,13 @@ class AuthManager():
         return generate_password_hash(raw_password)
 
     @staticmethod
-    def check_password(password):
+    def check_password(password_hash, password):
         """
         Validates the password hash using werkzeug.security.check_password_hash function
         :param password:
         :return: bool
         """
-        return check_password(password)
+        return check_password_hash(password_hash, password)
 
     @staticmethod
     def encode_auth_token(user):

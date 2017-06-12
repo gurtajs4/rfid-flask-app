@@ -13,3 +13,9 @@ def backup_db():
         return False
     else:
         return True
+
+
+def backup_file_names():
+    file_names = [f for f in os.listdir(data_dir_path) if os.path.isfile(
+        os.path.join(data_dir_path, f)) if 'backup' in f]
+    return file_names

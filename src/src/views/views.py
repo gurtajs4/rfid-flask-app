@@ -70,29 +70,24 @@ def api_user_login():
         if user_qs is None:
             raise Exception('User email not registered!')
         password_qs = service_manager.get_password(user_id=user_qs.id)
-        if password_qs is None or password != password_qs:
-            raise Exception('User password incorrect!')
-        token = service_manager.generate_token(user=user_qs, password=password)
+        if password_qs is None:
+            raise Exception('User has not set the password yet!')
+        user_auth = service_manager.check_password(password_qs, password)
+        if user_auth is None:
+            raise Exception('Incorrect password!')
+        token = service_manager.generate_token(user=user_qs, password=password_qs)
+        if token is None:
+            raise Exception('Failed to generate a user token...')
+        # TODO: generating csrf for http headers in ajax calls (during login)
+        # csrf = service_manager.generate_csrf()
+        # if csrf is None:
+        #     raise Exception('Failed to generate a csrf token...')
         resp = jsonify(token)
         resp.status_code = 200
         return resp
     except Exception as e:
+        print(e)
         return Response(e, status=404, mimetype='application/json')
-
-
-@app.route("/api/logout")
-def logout():
-    if request.headers.get('Authorization'):
-        logout_user()
-        return jsonify({'message': 'ok', 'status': 200})
-    else:
-        message = {
-            'message': 'Failed',
-            'status': 404
-        }
-        resp = jsonify(message)
-        resp.status_code = message['status']
-        return resp
 
 
 # *********** users ***********
@@ -129,11 +124,11 @@ def api_users_get():
 
 @app.route('/api/users/register', methods=['POST'])
 def api_user_register():
-    auth_data = get_request_auth(request=request)
-    if auth_data[0] == '0':
-        return jsonify(auth_data[1:])
-    if not verify_token(auth_data[1:]):
-        return Response('Login required', status=404, mimetype='application/json')
+    # auth_data = get_request_auth(request=request)
+    # if auth_data[0] == '0':
+    #     return jsonify(auth_data[1:])
+    # if not verify_token(auth_data[1:]):
+    #     return Response('Login required', status=404, mimetype='application/json')
     files = request.files
     if 'file' not in files:
         file = None
@@ -142,7 +137,11 @@ def api_user_register():
     pic_url, pic_id = service_manager.upload_image(file)
     user_dict = jserial.json_deserialize(request.form['user_json'])
     raw_password = request.form['user_json']['password']  # raw password
-    password = service_manager.secure_password(raw_password=raw_password)  # creates secure password
+    if raw_password is None:
+        return Response(
+            {'message': 'No password provided!', 'status': 404}, status=404, mimetype='application/json')
+    else:
+        password = service_manager.secure_password(raw_password=raw_password)  # creates secure password
     print('From server - on image upload - JSON data: %s' % user_dict)
     user_dict = jserial.create_user_dict(user_dict, pic_id)
     print('From server - user register (POST) - user json is %s' % user_dict)
@@ -166,9 +165,11 @@ def api_user_register():
         return resp
     else:
         user_ui_model = service_manager.get_user_ui_model(user)
-        user_data = jserial.user_instance_serialize(user_instance=user_ui_model)
-        token = service_manager.generate_token(user=user, password=password)
-        data = jserial.jwt_cookie_serialize(serialized_user_data=user_data, auth_token=token)
+        data = jserial.user_instance_serialize(user_instance=user_ui_model)
+        # user_data = jserial.user_instance_serialize(user_instance=user_ui_model)
+        # token = service_manager.generate_token(user=user, password=password)
+        # data = jserial.jwt_cookie_serialize(serialized_user_data=user_data, auth_token=token)
+        # resp = Response(data, status=200, mimetype='application/json')
         resp = Response(data, status=200, mimetype='application/json')
         resp.status_code = 200
         return resp
@@ -771,28 +772,6 @@ def api_data_import():
         message = {
             'status': 200,
             'message': 'Successfully updated the database!'
-        }
-    resp = jsonify(message)
-    resp.status_code = message['status']
-    return resp
-
-
-@app.route('/api/clean-slate', methods=['GET'])  # dev only
-def api_clean_slate():
-    auth_data = get_request_auth(request=request)
-    if auth_data[0] == '0':
-        return jsonify(auth_data[1:])
-    if not verify_token(auth_data[1:]):
-        return Response('Login required', status=404, mimetype='application/json')
-    if service_manager.start_db(drop_create=True, seed_data=True, backup_data=True):
-        message = {
-            'status': 200,
-            'message': 'Successfully cleaned the database!'
-        }
-    else:
-        message = {
-            'status': 404,
-            'message': 'Unable to backup data!'
         }
     resp = jsonify(message)
     resp.status_code = message['status']

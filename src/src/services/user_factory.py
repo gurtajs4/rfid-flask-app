@@ -175,7 +175,7 @@ def set_password(user_id, new_password):
             if affected_count > 0:
                 dbm.close_connection(db)
                 return new_password
-            raise Exception('Unable to reset password! Server error...')
+            raise Exception('Unable to set the password! Server error...')
         except Exception as e:
             dbm.close_connection(db)
         return repr(e)

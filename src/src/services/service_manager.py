@@ -1,11 +1,12 @@
-import images_service
-import key_factory
-import session_factory
-import user_auth_request_service
-import user_factory
+from . import images_service
+from . import key_factory
+from . import session_factory
+from . import user_auth_request_service
+from . import user_factory
 from .auth_service import AuthManager
+from .csrf_service import generate_csrf
 from .db_seed import DbInitializer
-from .db_backup import backup_db
+from .db_backup import backup_db, backup_file_names
 from .storage_manager import StorageManager
 from ..db import SqliteManager
 from ..embedded.mfrc_service import ServiceMFRC
@@ -43,6 +44,10 @@ class ServiceManager(object):
     def seed_from_json():
         seed = DbInitializer()
 
+    @staticmethod
+    def get_backup_file_names():
+        return backup_file_names()
+
     # api for keys
     # <editor-fold desc="API for managing Keys">
     @staticmethod
@@ -70,7 +75,7 @@ class ServiceManager(object):
     # </editor-fold>
 
     # api for users
-    # <editor-fold desc="API for managing Users">
+    # <editor-fold desc="API for managing Users and Auth">
     @staticmethod
     def get_users():
         return user_factory.get_users()
@@ -82,22 +87,6 @@ class ServiceManager(object):
                                         exclusive)
 
     @staticmethod
-    def secure_password(raw_password):
-        return AuthManager.secure_password(raw_password=raw_password)
-
-    @staticmethod
-    def set_password(user, password):
-        return user_factory.set_password(user_id=user.id, new_password=password)
-
-    @staticmethod
-    def generate_token(user, password):
-        return AuthManager.encode_auth_token(user=user)
-
-    @staticmethod
-    def validate_token(auth_token):
-        return AuthManager.decode_auth_token(auth_token=auth_token)
-
-    @staticmethod
     def create_user(tag_id, first_name=None, last_name=None, email=None, password=None, role_id=None, pic_id=None):
         return user_factory.create_user(tag_id, first_name, last_name, email, password, role_id, pic_id)
 
@@ -106,14 +95,41 @@ class ServiceManager(object):
         return user_factory.delete_user(user_id, delete_history)
 
     @staticmethod
-    def get_password(user_id):
-        return user_factory.get_password(user_id=user_id)
-
-    @staticmethod
     def update_user(user_id, tag_id=None, first_name=None, last_name=None, email=None, role_id=None, pic_id=None):
         return user_factory.update_user(user_id=user_id, tag_id=tag_id,
                                         first_name=first_name, last_name=last_name,
                                         email=email, role_id=role_id, pic_id=pic_id)
+
+    @staticmethod
+    def get_password(user_id):
+        return user_factory.get_password(user_id=user_id)
+
+    @staticmethod
+    def secure_password(raw_password):
+        return AuthManager.secure_password(raw_password=raw_password)
+
+    @staticmethod
+    def set_password(user, password):
+        return user_factory.set_password(user_id=user.id, new_password=password)
+
+    @staticmethod
+    def check_password(password_hash, password):
+        return AuthManager.check_password(password_hash=password_hash, password=password)
+
+    @staticmethod
+    def generate_token(user, password):
+        return AuthManager.encode_auth_token(user=user)
+
+    @staticmethod
+    def validate_token(auth_token):
+        email = AuthManager.decode_auth_token(auth_token=auth_token)
+        if email is None or 'ERROR' in email:
+            return False
+        return user_factory.search_user(email=email) is not None
+
+    @staticmethod
+    def generate_csrf():
+        return generate_csrf()
 
     @staticmethod
     def get_user_ui_model(user):
