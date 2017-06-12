@@ -6,32 +6,6 @@ var gulp = require('gulp')
 
 var prefixUrl = 'static';
 
-gulp.task('scripts', function () {
-    gulp.src('index.html')
-        .pipe(inject(
-            gulp.src([
-                './vendor/angular/angular.min.js',
-                './vendor/angular-route/angular-route.min.js',
-                './vendor/angular-bootstrap/ui-bootstrap.min.js',
-                './vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
-                './vendor/ng-file-upload/ng-file-upload.min.js',
-                './vendor/ng-file-upload-shim/ng-file-upload-shim.min.js',
-                './vendor/angular-cookies/angular-cookies.js',
-                './app/*.js',
-                './app/*/*.js'])
-                .pipe(angularFilesort())
-                .pipe(concat('angular.app.min.js'))
-                .pipe(uglify())
-                .pipe(gulp.dest('./')),
-            {
-                addPrefix: prefixUrl,
-                addRootSlash: false
-            }
-        ))
-        .pipe(gulp.dest('./'));
-});
-
-
 gulp.task('styles', function () {
     var target = gulp.src('index.html');
     var sources = gulp.src([
@@ -41,4 +15,36 @@ gulp.task('styles', function () {
     ], {read: false});
 
     return target.pipe(inject(sources, {addPrefix: prefixUrl, addRootSlash: false})).pipe(gulp.dest('./'))
+});
+
+gulp.task('app-scripts', function () {
+    return gulp.src(['./app/*.js', './app/*/*.js'])
+        .pipe(angularFilesort())
+        .pipe(concat('angular.app.min.js'))
+        .pipe(uglify())
+        .pipe(gulp.dest('./'));
+});
+
+gulp.task('scripts', ['app-scripts'], function () {
+    return gulp.src('index.html')
+        .pipe(inject(gulp.src(
+            [
+                './vendor/angular/angular.min.js',
+                './vendor/angular-route/angular-route.min.js',
+                './vendor/angular-bootstrap/ui-bootstrap.min.js',
+                './vendor/angular-bootstrap/ui-bootstrap-tpls.min.js',
+                './vendor/ng-file-upload/ng-file-upload.min.js',
+                './vendor/ng-file-upload-shim/ng-file-upload-shim.min.js',
+                './vendor/angular-cookies/angular-cookies.js',
+                './angular.app.min.js'
+            ]),
+            {
+                addPrefix: prefixUrl,
+                addRootSlash: false
+            }
+        ))
+        .pipe(gulp.dest('./'));
+});
+
+gulp.task('build', ['scripts', 'styles'], function () {
 });

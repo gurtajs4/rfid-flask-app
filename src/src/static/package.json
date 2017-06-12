@@ -4,6 +4,7 @@
   "description": "rfid management iot app for raspberry pi",
   "main": "angular.app.js",
   "scripts": {
+    "build": "gulp build",
     "scripts": "gulp scripts",
     "styles": " gulp styles"
   },

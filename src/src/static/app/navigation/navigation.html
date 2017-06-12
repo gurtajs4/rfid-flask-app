@@ -24,7 +24,7 @@
             <ul ng-show="isAuthenticated" class="nav navbar-nav">
                 <auth-dashboard></auth-dashboard>
             </ul>
-            <ul ng-hide="isAuthenticated" class="nav navbar-nav navbar-right">
+            <ul ng-hide="isAuthenticated" class="nav navbar-nav">
                 <li ng-repeat="route3 in rightNav" ng-class="{ active: isActive(route3.id) }"><a
                         ng-click="navCollapsed = !navCollapsed"
                         ng-href="{{route3.route}}">{{route3.name}}</a></li>
