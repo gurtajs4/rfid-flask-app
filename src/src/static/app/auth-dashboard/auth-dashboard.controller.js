@@ -12,15 +12,19 @@
         $scope.logout = logout;
 
         function logout(callback) {
-            service.logout()
-                .then(function (response) {
-                    console.log(response);
-                    service.clearCredentials(callback);
-                    $location.url('/');
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+            service.clearCredentials(callback);
+            $location.url('/home');
+            /*
+             service.logout()
+             .then(function (response) {
+             console.log(response);
+             service.clearCredentials(callback);
+             $location.url('/home');
+             })
+             .catch(function (error) {
+             console.log(error);
+             });
+             */
         }
     }
 })();

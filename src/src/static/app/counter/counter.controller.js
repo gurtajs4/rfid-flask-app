@@ -28,7 +28,7 @@
                 else {
                     $scope.stopCounting();
                 }
-            }, 100);
+            }, 20);
         };
 
         $scope.stopCounting = function () {

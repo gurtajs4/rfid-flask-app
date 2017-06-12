@@ -7,13 +7,8 @@
 
     config.$inject = ['$routeProvider', '$locationProvider', '$httpProvider'];
 
-    function config($routeProvider, $locationProvider, $httpProvider) {
+    function config($routeProvider, $locationProvider) {
         var appBaseUrl = angular.element(document.querySelector('base')).attr('href') + 'static/app';
-
-        $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
-        $httpProvider.defaults.xsrfCookieName = 'csrftoken';
-        $httpProvider.defaults.xsrfHeaderName = 'X-CSRFToken';
-        // $httpProvider.defaults.withCredentials = true;
 
         $locationProvider.html5Mode({
             enabled: true,

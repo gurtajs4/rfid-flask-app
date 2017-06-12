@@ -9,7 +9,6 @@
     function authService($http, $cookies) {
         var service = {
             login: login,
-            logout: logout,
             setCredentials: setCredentials,
             clearCredentials: clearCredentials
         };
@@ -19,10 +18,6 @@
         function login(username, password) {
             var authData = {username: username, password: password};
             return $http.post('/api/login', angular.toJson(authData));
-        }
-
-        function logout() {
-            return $http.get('/api/logout');
         }
 
         function setCredentials(username, token, callback) {

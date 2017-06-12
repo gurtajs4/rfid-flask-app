@@ -81,13 +81,18 @@
                 var image = $scope.image;
                 $log.info('Image is ', image);
                 service.registerUser(user, image).then(function (response) {
+                    /*
                     var token = response.data.token;
-                    $log.info(response.data.data);
                     $log.info(token);
+                    */
+                    $log.info(response.data.data);
+                    /*
                     authService.setCredentials(user.email, token, function () {
                         callback(response.data);
                         $location.url('/home');
-                    });
+                    });*/
+                    // if (authService.hasCredentials()) { $location.url('/users') }
+                    // else { $location.url('/home') } ili '/login'
                 }).catch(function (error) {
                     $log.error('Error status: ', error);
                 });
