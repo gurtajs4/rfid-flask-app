@@ -65,7 +65,7 @@ class SqliteManager:
                 id            INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
                 user_id       INTEGER NOT NULL UNIQUE,
                 password      TEXT,
-                FOREIGN KEY (user_id) REFERENCES User(id),
+                FOREIGN KEY (user_id) REFERENCES User(id)
             );
 
             CREATE TABLE UserSession (

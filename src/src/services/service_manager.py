@@ -87,7 +87,7 @@ class ServiceManager(object):
                                         exclusive)
 
     @staticmethod
-    def create_user(tag_id, first_name=None, last_name=None, email=None, password=None, role_id=None, pic_id=None):
+    def create_user(tag_id, first_name=None, last_name=None, email=None, password=None, role_id=1, pic_id=1):
         return user_factory.create_user(tag_id, first_name, last_name, email, password, role_id, pic_id)
 
     @staticmethod

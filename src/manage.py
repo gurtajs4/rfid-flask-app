@@ -1,3 +1,4 @@
+import getpass
 import json
 import sys
 from src.services.service_manager import ServiceManager
@@ -69,10 +70,10 @@ def create_user(is_void=True):
         print('Reader did not detect your tag, enter this command again and move your tag closer...')
     else:
         tag_id = reader_data['data']
-        first_name = input('Type in the first name of the user: ')
-        last_name = input('Type in the last name of the user: ')
-        email = input('Type in email for the user: ')
-        password = input('Type in password for the user: ')
+        first_name = raw_input('Type in the first name of the user: ')
+        last_name = raw_input('Type in the last name of the user: ')
+        email = raw_input('Type in email for the user: ')
+        password = getpass.getpass('Type in password for the user: ')
         role_id = 2
         user = ServiceManager.create_user(tag_id=tag_id,
                                           email=email,
@@ -119,6 +120,7 @@ try:
     if 'help' in args or '--help' in args:
         show_help()
     sys.exit(0)
-except Exception:
+except Exception as e:
     print('Failed command or not recognised!')
+    print('FUll error: %s' % e)
     sys.exit(2)
