@@ -74,6 +74,9 @@ def create_user(is_void=True):
         last_name = raw_input('Type in the last name of the user: ')
         email = raw_input('Type in email for the user: ')
         password = getpass.getpass('Type in password for the user: ')
+        if isinstance(password, bytes):
+            password = password.decode(sys.stdin.encoding)
+        password = password.encode('utf-8')
         role_id = 2
         user = ServiceManager.create_user(tag_id=tag_id,
                                           email=email,
