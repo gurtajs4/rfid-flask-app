@@ -165,19 +165,20 @@ def get_password(user_id):
 
 
 def set_password(user_id, new_password):
-    if None is not user_id and None is not new_password:
-        db = dbm.get_db()
-        cur = db.cursor()
-        try:
-            sql_command = '''INSERT OR REPLACE INTO AuthUser (user_id, password) VALUES ( ?, ? )'''
-            affected_count = cur.execute(sql_command, (user_id, new_password,))
-            db.commit()
-            if affected_count > 0:
-                dbm.close_connection(db)
-                return new_password
-            raise Exception('Unable to set the password! Server error...')
-        except Exception as e:
-            dbm.close_connection(db)
-        return repr(e)
-    else:
+    if None is user_id or None is new_password:
         return None
+    db = dbm.get_db()
+    db.text_factory = lambda x: unicode(x, "utf-8", "ignore")
+    cur = db.cursor()
+    try:
+        sql_command = '''INSERT OR REPLACE INTO AuthUser (user_id, password) VALUES ( ?, ? )'''
+        affected_count = cur.execute(sql_command, (user_id, new_password,))
+        db.commit()
+        if affected_count > 0:
+            dbm.close_connection(db)
+            return new_password
+        raise Exception('Unable to set the password! Server error...')
+    except Exception as e:
+        return repr(e)
+    finally:
+        dbm.close_connection(db)
