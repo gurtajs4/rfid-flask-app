@@ -11,7 +11,7 @@
         $scope.counter = 20;
 
         var updateCounter = function () {
-            $scope.counter++;
+            $scope.counter--;
             if ($scope.counter >= 0 || $scope.tagData != '') {
                 $timeout(updateCounter, 1000);
             }
@@ -21,43 +21,5 @@
         };
 
         updateCounter();
-
-        /*
-         var stop;
-
-
-         $scope.$watch('tagData', function (value) {
-         if (value != undefined && value != '' && value != null) {
-         $scope.stopCounting();
-         }
-         });
-
-         $scope.timedCount = function () {
-         if (angular.isDefined(stop)) return;
-
-         stop = $interval(function () {
-         if (parseInt($scope.counter.toString()) > 0) {
-         $scope.counter = parseInt($scope.counter.toString()) - 1;
-         }
-         else {
-         $scope.stopCounting();
-         }
-         }, 1000);
-         };
-
-         $scope.resetCount = function () {
-         $scope.counter = 20;
-         };
-
-         $scope.stopCounting = function () {
-         if (angular.isDefined(stop)) {
-         $interval.cancel(stop);
-         stop = undefined;
-         }
-         };
-
-         $scope.$on('$destroy', function () {
-         $scope.stopCounting();
-         });*/
     }
 })();
