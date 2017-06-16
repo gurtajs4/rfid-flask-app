@@ -69,6 +69,7 @@
 
         function proceed(callback) {
             if (isValid()) {
+                $log.info(callback.toString());
                 var user = {
                     tag_id: $scope.tagInfo.tagId,
                     first_name: $scope.firstName,

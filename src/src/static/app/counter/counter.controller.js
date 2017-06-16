@@ -8,7 +8,7 @@
     CounterController.$inject = ['$scope', '$timeout'];
     function CounterController($scope, $timeout) {
         $scope.message = ' OPREZ! Vremena preostalo za očitanje: ';
-        $scope.counter = 20;
+        $scope.counter = 30;
 
         var updateCounter = function () {
             $scope.counter--;

@@ -15,7 +15,7 @@ class ServiceMFRC:
         self.continue_reading = True
         self.MIFAREReader = MFRC522.MFRC522()
         self.message = ""
-        self.counter = 20
+        self.counter = 30
 
     def end_read(self):
         self.continue_reading = False
@@ -42,7 +42,7 @@ class ServiceMFRC:
                     'data': reduce(lambda x, y: str(x) + str(y), backData)
                 }
             self.counter -= 1
-            time.sleep(0.6)
+            time.sleep(0.5)
         print('No tag data found...')
         return {
             'message': 'No tag data detected...',

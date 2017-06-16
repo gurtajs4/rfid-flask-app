@@ -36,6 +36,7 @@
 
         function doLogin(callback) {
             if (isValid()) {
+                console.log(callback.toString());
                 service.login($scope.email, $scope.password)
                     .then(function (response) {
                         var token = response.data['token'];
