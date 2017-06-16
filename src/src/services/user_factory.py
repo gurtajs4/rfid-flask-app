@@ -9,7 +9,7 @@ def create_user(tag_id, first_name="", last_name="", email="", password="", role
     cur = db.cursor()
     try:
         sql_command = '''INSERT OR REPLACE INTO User (tag_id, first_name, last_name, email, role_id, pic_id) VALUES ( ?, ?, ?, ?, ?, ? )'''
-        affected_count = cur.execute(sql_command, (tag_id, first_name, last_name, email, role_id, pic_id,))
+        affected_count = cur.execute(sql_command, (tag_id, first_name, last_name, email, role_id, pic_id))
         db.commit()
         if affected_count > 0:
             cur.execute(
@@ -17,8 +17,8 @@ def create_user(tag_id, first_name="", last_name="", email="", password="", role
                 (tag_id, first_name, last_name, email, role_id, pic_id,))
             result = cur.fetchone()
             user_id = int(result[0])
-            sql_command = '''INSERT OR REPLACE INTO AuthUser (user_id, password) VALUES ( ?, ?, )'''
-            affected_count = cur.execute(sql_command, (user_id, password,))
+            sql_command = '''INSERT OR REPLACE INTO AuthUser (user_id, password) VALUES ( ?, ? )'''
+            affected_count = cur.execute(sql_command, (user_id, password))
             db.commit()
             dbm.close_connection(db)
             if affected_count > 0:

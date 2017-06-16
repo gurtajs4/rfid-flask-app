@@ -149,7 +149,6 @@ def api_user_register():
                                        password=password,
                                        role_id=user.role_id,
                                        pic_id=user.pic_id)
-    print('From server - api-user-register (post) - id of stored user is %s' % user.id)
     if None is user or -1 == user.id:
         message = {
             'status': 404,
@@ -159,6 +158,7 @@ def api_user_register():
         resp.status_code = 404
         return resp
     else:
+        print('From server - api-user-register (post) - id of stored user is %s' % user.id)
         user_ui_model = service_manager.get_user_ui_model(user)
         data = jserial.user_instance_serialize(user_instance=user_ui_model)
         # user_data = jserial.user_instance_serialize(user_instance=user_ui_model)
