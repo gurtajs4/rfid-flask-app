@@ -124,11 +124,6 @@ def api_users_get():
 
 @app.route('/api/users/register', methods=['POST'])
 def api_user_register():
-    # auth_data = get_request_auth(request=request)
-    # if auth_data[0] == '0':
-    #     return jsonify(auth_data[1:])
-    # if not verify_token(auth_data[1:]):
-    #     return Response('Login required', status=404, mimetype='application/json')
     files = request.files
     if 'file' not in files:
         file = None
@@ -136,7 +131,7 @@ def api_user_register():
         file = files['file']
     pic_url, pic_id = service_manager.upload_image(file)
     user_dict = jserial.json_deserialize(request.form['user_json'])
-    raw_password = request.form['user_json']['password']  # raw password
+    raw_password = user_dict['password']
     if raw_password is None:
         return Response(
             {'message': 'No password provided!', 'status': 404}, status=404, mimetype='application/json')
