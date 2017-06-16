@@ -14,17 +14,6 @@
         function logout(callback) {
             service.clearCredentials(callback);
             $location.url('/home');
-            /*
-             service.logout()
-             .then(function (response) {
-             console.log(response);
-             service.clearCredentials(callback);
-             $location.url('/home');
-             })
-             .catch(function (error) {
-             console.log(error);
-             });
-             */
         }
     }
 })();

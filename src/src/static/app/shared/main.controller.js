@@ -25,13 +25,11 @@
         function setCredentials(globals) {
             $scope.globals = globals;
             $scope.isAuthenticated = true;
-            $location.url('/home');
         }
 
         function clearCredentials() {
             $scope.globals = {};
             $scope.isAuthenticated = false;
-            $location.url('/home');
         }
 
         $scope.$on('$routeChangeStart', function (previous, next) {

@@ -28,7 +28,7 @@
             $cookies.putObject('token', globals);
 
             $http.defaults.headers.common['Authorization'] = 'Token ' + token;
-            callback(username);
+            callback(globals);
         }
 
         function clearCredentials(callback) {
