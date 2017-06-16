@@ -1,8 +1,8 @@
 <div class="container">
-    <h3>{{title}}</h3>
+    <h3>{{ title }}</h3>
     <div class="panel-group">
         <div class="panel panel-primary">
-            <div class="panel-heading">{{note}}</div>
+            <div class="panel-heading">{{ note }}</div>
             <div class="panel-body">
                 Molim, primaknite korisnički RFID privjesak ključa ili karticu iznad čitača kako bi sustav detektirao
                 jedinstveni identifikacijski broj.
@@ -13,20 +13,20 @@
             <div reader tag-data="tagInfo.tagId" message="tagInfo.message"></div>
         </div>
         <div class="panel panel-info">
-            <div class="panel-heading">{{tagInfo.tagId}}</div>
-            <div class="panel-body">{{tagInfo.message}}</div>
+            <div class="panel-heading">{{ tagInfo.tagId }}</div>
+            <div class="panel-body">{{ tagInfo.message }}</div>
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">Uređivanje podataka o korisniku s brojem
-                <span ng-bind-template="'{{tagInfo.tagId}}'"></span>
+                <span ng-bind-template="'{{ tagInfo.tagId }}'"></span>
             </div>
             <div class="panel-body">
-                <div class="form-inline">
-                    <div class="form-group">
-                        <div ng-class="{'drop-box': !image}" class="drop-box-container">
-                            <img ng-hide="!image" class="img-responsive img-rounded" ngf-src="image" alt="avatar"/>
-                        </div>
+                <div class="form-group">
+                    <div ng-class="{'drop-box': !image}" class="drop-box-container">
+                        <img ng-hide="!image" class="img-responsive img-rounded" ngf-src="image" alt="avatar"/>
                     </div>
+                </div>
+                <div>
                     <div class="form-group">
                         <label for="fname">Ime:</label>
                         <input ng-model="firstName" class="form-control" placeholder="Unesite ime"
