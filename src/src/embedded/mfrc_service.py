@@ -42,7 +42,7 @@ class ServiceMFRC:
                     'data': reduce(lambda x, y: str(x) + str(y), backData)
                 }
             self.counter -= 1
-            time.sleep(1)
+            time.sleep(0.6)
         print('No tag data found...')
         return {
             'message': 'No tag data detected...',
