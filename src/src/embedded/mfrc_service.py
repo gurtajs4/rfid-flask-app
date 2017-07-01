@@ -26,7 +26,7 @@ class ServiceMFRC:
     def do_read(self):
         self.continue_reading = True
         while self.continue_reading and self.counter > 0:
-            print('Reader TTL: %s' % self.counter)
+            # print('Reader TTL: %s' % self.counter)
             (status, TagType) = self.MIFAREReader.MFRC522_Request(self.MIFAREReader.PICC_REQIDL)
             if status == self.MIFAREReader.MI_OK:
                 self.message += "Card detected. "
