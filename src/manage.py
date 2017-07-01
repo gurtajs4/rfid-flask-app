@@ -121,6 +121,5 @@ try:
         show_help()
     sys.exit(0)
 except Exception as e:
-    print('Failed command or not recognised!')
-    print('FUll error: %s' % e)
+    print('Full error: %s' % e)
     sys.exit(2)

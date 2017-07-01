@@ -20,14 +20,16 @@ def create_user(tag_id, first_name="", last_name="", email="", password="", role
             sql_command = '''INSERT OR REPLACE INTO AuthUser (user_id, password) VALUES ( ?, ? )'''
             affected_count = cur.execute(sql_command, (user_id, password))
             db.commit()
-            dbm.close_connection(db)
             if affected_count > 0:
-                return User(user_id=user_id,
-                            tag_id=tag_id,
-                            first_name=first_name,
-                            last_name=last_name,
-                            email=email,
-                            role_id=role_id, pic_id=pic_id)
+                dbm.close_connection(db)
+                # return User(user_id=user_id,
+                #             tag_id=tag_id,
+                #             first_name=first_name,
+                #             last_name=last_name,
+                #             email=email,
+                #             role_id=role_id,
+                #             pic_id=pic_id)
+                return User(user_id, tag_id, first_name, last_name, email, role_id, pic_id)
             else:
                 raise Exception('Error saving password...')
         raise Exception('Unknown database error...')
