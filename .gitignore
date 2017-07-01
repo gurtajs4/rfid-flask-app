@@ -5,3 +5,5 @@ src/src/static/node_modules/
 src/src/static/node_modules/*
 src/src/static/node_modules/*.*
 src/src/static/node_modules/*/*.* 
+data/rfid-db.sqlite
+.data/rfid-db.sqlite
