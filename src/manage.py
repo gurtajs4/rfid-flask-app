@@ -87,7 +87,7 @@ def create_user(is_void=True):
 
 def create_super_user():
     user = create_user(is_void=False)
-    ServiceManager.update_user(user_id=user.user_id, role_id=1)
+    ServiceManager.update_user(user_id=user.id, role_id=1)
 
 
 def show_help():
