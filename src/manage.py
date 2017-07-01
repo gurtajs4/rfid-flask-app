@@ -70,13 +70,10 @@ def create_user(is_void=True):
         print('Reader did not detect your tag, enter this command again and move your tag closer...')
     else:
         tag_id = reader_data['data']
-        first_name = raw_input('Type in the first name of the user: ')
-        last_name = raw_input('Type in the last name of the user: ')
-        email = raw_input('Type in email for the user: ')
-        password = getpass.getpass('Type in password for the user: ')
-        if isinstance(password, bytes):
-            password = password.decode(sys.stdin.encoding)
-        password = password.encode('utf-8')
+        first_name = raw_input('Type in the first name of the user: ').encode('utf-8')
+        last_name = raw_input('Type in the last name of the user: ').encode('utf-8')
+        email = raw_input('Type in email for the user: ').encode('utf-8')
+        password = getpass.getpass('Type in password for the user: ').encode('utf-8')
         role_id = 2
         user = ServiceManager.create_user(tag_id=tag_id,
                                           email=email,
