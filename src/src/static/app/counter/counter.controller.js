@@ -12,7 +12,7 @@
 
         var updateCounter = function () {
             $scope.counter--;
-            if ($scope.counter >= 0 || $scope.tagData != '') {
+            if ($scope.counter >= 0 && $scope.tagData != '') {
                 $timeout(updateCounter, 1000);
             }
             else {
