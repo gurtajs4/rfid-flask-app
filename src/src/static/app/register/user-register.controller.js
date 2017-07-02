@@ -77,11 +77,11 @@
                 $log.info('Image is ', image);
 
                 registerService.registerUser(user, image).then(function (response) {
-                    $log.info(response.data.data);
+                    $log.info(response.data);
 
                     authService.login(user.username, user.password)
                         .then(function (response2) {
-                            $log.info(response.data);
+                            $log.info(response2.data);
 
                             var token = response2.data['token'];
                             authService.setCredentials(user.email, token, function () {
@@ -91,7 +91,7 @@
                         $log.error('Error during login action: ', error);
                     });
                 }).catch(function (error) {
-                    $log.error('Error during register aciton: ', error);
+                    $log.error('Error during register action: ', error);
                 });
             }
         }

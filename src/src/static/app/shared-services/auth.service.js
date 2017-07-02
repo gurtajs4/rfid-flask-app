@@ -19,7 +19,7 @@
 
         function login(username, password) {
             var authData = {username: username, password: password};
-            return $http.post('/api/login', angular.toJson(authData));
+            return $http.post('/api/login', JSON.stringify(authData));
         }
 
         function setCredentials(username, token, callback) {
