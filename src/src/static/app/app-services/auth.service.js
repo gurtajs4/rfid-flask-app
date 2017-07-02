@@ -17,8 +17,8 @@
 
         return service;
 
-        function login(username, password) {
-            var authData = {username: username, password: password};
+        function login(email, password) {
+            var authData = {email: email, password: password};
             return $http.post('/api/login', JSON.stringify(authData));
         }
 

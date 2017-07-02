@@ -64,7 +64,7 @@ def verify_token(token):
 def api_user_login():
     try:
         auth_data = request.get_json()
-        email = auth_data['username']
+        email = auth_data['email']
         password = auth_data['password']
         print('Entered api login route on server side...')
         print('Email is %s' % email)
