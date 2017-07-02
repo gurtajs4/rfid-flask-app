@@ -66,6 +66,9 @@ def api_user_login():
         auth_data = request.get_json()
         email = auth_data['username']
         password = auth_data['password']
+        print('Entered api login route on server side...')
+        print('Email is %s' % email)
+        print('Password is %s' % password)
         user_qs = service_manager.search_user(email=email, limit=1)
         if user_qs is None:
             raise Exception('User email not registered!')

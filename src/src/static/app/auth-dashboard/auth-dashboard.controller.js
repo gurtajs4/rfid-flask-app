@@ -5,8 +5,8 @@
         .module('appMain')
         .controller('AuthDashboardController', AuthDashboardController);
 
-    AuthDashboardController.$inject = ['$scope', '$location', 'authService', 'userService'];
-    function AuthDashboardController($scope, $location, authService, userService) {
+    AuthDashboardController.$inject = ['$scope', '$location', 'authService', 'usersService'];
+    function AuthDashboardController($scope, $location, authService, usersService) {
         $scope.logout = logout;
         $scope.editProfile = editProfile;
 
@@ -28,7 +28,7 @@
         }
 
         function editProfile() {
-            userService.search($scope.username)
+            usersService.search($scope.username)
                 .then(function (response) {
                     var userId = null;
                     angular.forEach(response.data, function (value, key) {
