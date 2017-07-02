@@ -5,8 +5,8 @@
         .module('appMain')
         .controller('NavController', NavController);
 
-    NavController.$inject = ['$scope', 'authService'];
-    function NavController($scope, authService) {
+    NavController.$inject = ['$scope', '$location', 'authService'];
+    function NavController($scope, $location, authService) {
         $scope.isAuthenticated = false;
         $scope.tab = 0;
         $scope.setActive = setActive;
@@ -30,9 +30,9 @@
             {id: 9, route: '/users/register', name: 'Registracija korisnika'}
         ];
 
-        $scope.$on('$routeChangeStart', function (previous, next) {
-            if (next.$$route != undefined) {
-                var originalPath = next.$$route.originalPath;
+        $scope.$on('$routeChangeStart', function (event, newUrl, oldUrl) {
+            if (newUrl.$$route != undefined) {
+                var originalPath = newUrl.$$route.originalPath;
                 var _guestRoutes = guestRoutes();
                 $scope.isAuthenticated = !!authService.getCredentials();
                 var locationAllowed = $scope.isAuthenticated;
@@ -44,14 +44,15 @@
                 });
 
                 if (!locationAllowed) {
+                    event.preventDefault();
                     $location.url('/login');
                 }
             }
         });
 
-        $scope.$on('$routeChangeSuccess', function (previous, current) {
-            if (current.$$route != undefined) {
-                var originalPath = current.$$route.originalPath.substring(1);
+        $scope.$on('$routeChangeSuccess', function (event, newUrl, oldUrl) {
+            if (newUrl.$$route != undefined) {
+                var originalPath = newUrl.$$route.originalPath.substring(1);
                 checkPath(originalPath);
             }
         });

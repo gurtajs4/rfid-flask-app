@@ -12,7 +12,7 @@
 
         init();
 
-        $scope.$on('$routeChangeStart', function (previous, next) {
+        $scope.$on('$routeChangeStart', function (event, newUrl, oldUrl) {
             var currentServiceUsername = authService.getCredentials().username;
             if ($scope.username != currentServiceUsername) {
                 setUsername(currentServiceUsername);
