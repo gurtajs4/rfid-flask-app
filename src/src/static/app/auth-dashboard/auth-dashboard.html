@@ -1,10 +1,8 @@
 <li class="dropdown-nav">
-    <div class="btn-group">
-        <button class="btn btn-default">
-            Icon|{{ globals.username }}
-        </button>
-        <button class="btn btn-default" ng-click="logout(clearCredentials)">
-            Logout
-        </button>
-    </div>
+    <button class="btn btn-default" ng-click="editProfile()">
+        {{ username }} <span class="glyphicon-wrench"></span>
+    </button>
+    <button class="btn btn-default" ng-click="logout()">
+        Logout
+    </button>
 </li>
