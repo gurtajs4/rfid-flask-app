@@ -34,16 +34,16 @@
             if (newUrl.$$route != undefined) {
                 var originalPath = newUrl.$$route.originalPath;
                 var _guestRoutes = guestRoutes();
-                $scope.isAuthenticated = !!authService.getCredentials();
-                var locationAllowed = $scope.isAuthenticated;
 
                 angular.forEach(_guestRoutes, function (value, key) {
                     if (value == originalPath) {
-                        locationAllowed = true;
+                        return;
                     }
                 });
 
-                if (!locationAllowed) {
+                $scope.isAuthenticated = !!authService.getCredentials();
+
+                if (!$scope.isAuthenticated) {
                     event.preventDefault();
                     $location.url('/login');
                 }
