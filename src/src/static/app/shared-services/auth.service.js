@@ -10,7 +10,9 @@
         var service = {
             login: login,
             setCredentials: setCredentials,
-            clearCredentials: clearCredentials
+            clearCredentials: clearCredentials,
+            getCredentials: getCredentials,
+            isAuthenticated: isAuthenticated
         };
 
         return service;
@@ -28,13 +30,20 @@
             $cookies.putObject('token', globals);
 
             $http.defaults.headers.common['Authorization'] = 'Token ' + token;
-            callback(globals);
+            callback();
         }
 
-        function clearCredentials(callback) {
-            callback();     // clear credentials in main ctrl
+        function clearCredentials() {
             $cookies.remove('globals');
             $http.defaults.headers.common['Authorization'] = 'Token ';
+        }
+
+        function getCredentials() {
+            return $cookies.getObject('globals')
+        }
+
+        function isAuthenticated() {
+            return !!$cookies.getObject('globals')
         }
     }
 })();

@@ -5,9 +5,9 @@
         .module('appMain')
         .controller('NavController', NavController);
 
-    NavController.$inject = ['$scope'];
-    function NavController($scope) {
-
+    NavController.$inject = ['$scope', 'authService'];
+    function NavController($scope, authService) {
+        $scope.isAuthenticated = false;
         $scope.tab = 0;
         $scope.setActive = setActive;
         $scope.isActive = isActive;
@@ -29,6 +29,25 @@
             {id: 8, route: '/login', name: 'Prijava korisnika'},
             {id: 9, route: '/users/register', name: 'Registracija korisnika'}
         ];
+
+        $scope.$on('$routeChangeStart', function (previous, next) {
+            if (next.$$route != undefined) {
+                var originalPath = next.$$route.originalPath;
+                var _guestRoutes = guestRoutes();
+                $scope.isAuthenticated = !!authService.getCredentials();
+                var locationAllowed = $scope.isAuthenticated;
+
+                angular.forEach(_guestRoutes, function (value, key) {
+                    if (value == originalPath) {
+                        locationAllowed = true;
+                    }
+                });
+
+                if (!locationAllowed) {
+                    $location.url('/login');
+                }
+            }
+        });
 
         $scope.$on('$routeChangeSuccess', function (previous, current) {
             if (current.$$route != undefined) {
@@ -58,6 +77,14 @@
                 }
             }
             return false;
+        }
+
+        function guestRoutes() {
+            return [
+                '/home',
+                '/login',
+                '/users/register'
+            ]
         }
     }
 })();
