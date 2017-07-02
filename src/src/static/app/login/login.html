@@ -4,7 +4,7 @@
             <h1>Prijava</h1>
         </div>
         <div class="panel-body">
-            <form action="">
+            <form ng-submit="doLogin(setCredentials)" novalidate>
                 <div class="form-group">
                     <label for="email">Email: </label>
                     <input class="form-control" type="email" ng-model="email" id="email"/>
@@ -16,7 +16,7 @@
                     <span class="has-error">{{ loginError.password }}</span>
                 </div>
                 <div class="form-group">
-                    <button class="btn btn-primary" ng-click="doLogin(setCredentials)">U redu</button>
+                    <button class="btn btn-primary">U redu</button>
                 </div>
             </form>
         </div>
