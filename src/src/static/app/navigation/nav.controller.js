@@ -35,11 +35,15 @@
                 var originalPath = newUrl.$$route.originalPath;
                 var _guestRoutes = guestRoutes();
 
+                var doReturn = false;
                 angular.forEach(_guestRoutes, function (value, key) {
                     if (value == originalPath) {
-                        return;
+                        doReturn = true;
                     }
                 });
+                if (doReturn) {
+                    return;
+                }
 
                 $scope.isAuthenticated = !!authService.getCredentials();
 
