@@ -7,8 +7,6 @@
 
     LoginController.$inject = ['$scope', '$log', '$location', 'authService'];
     function LoginController($scope, $log, $location, authService) {
-        var service = authService;
-
         $scope.loginErrror = {};
 
         $scope.doLogin = doLogin;
@@ -34,14 +32,14 @@
             return _isValid;
         }
 
-        function doLogin(callback) {
+        function doLogin() {
             if (isValid()) {
                 $log.info('Entered the login controller...');
-                service.login($scope.email, $scope.password)
+                authService.login($scope.email, $scope.password)
                     .then(function (response) {
+
                         var token = response.data['token'];
-                        service.setCredentials($scope.email, token, function () {
-                            callback(response.data);
+                        authService.setCredentials($scope.email, token, function () {
                             $location.url('/home');
                         });
                     })

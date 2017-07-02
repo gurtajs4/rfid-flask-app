@@ -7,7 +7,6 @@
 
     UserRegisterController.$inject = ['$scope', '$log', '$location', 'registerService', 'authService'];
     function UserRegisterController($scope, $log, $location, registerService, authService) {
-        var service = registerService;
 
         $scope.title = "Stranica za registraciju korisnika";
         $scope.note = "Registrirajte korisnika pridruživanjem informacija o RFID kartici sa podacima o korisniku";
@@ -67,38 +66,49 @@
             return _isValid;
         }
 
-        function proceed(callback) {
+        function proceed() {
             if (isValid()) {
-                $log.info(callback.toString());
-                var user = {
-                    tag_id: $scope.tagInfo.tagId,
-                    first_name: $scope.firstName,
-                    last_name: $scope.lastName,
-                    email: $scope.email,
-                    password: $scope.password,
-                    role_id: $scope.role
-                };
+                $log.debug('Entered the register controller...');
+
+                var user = scrapeUserInfo();
                 $log.info('User data is: ', user);
+
                 var image = $scope.image;
                 $log.info('Image is ', image);
-                service.registerUser(user, image).then(function (response) {
+
+                registerService.registerUser(user, image).then(function (response) {
                     $log.info(response.data.data);
-                    authService.login(user.username, user.password).then(function (response2) {
-                        $log.info(response.data);
-                        var token = response2.data['token'];
-                        authService.setCredentials(user.email, token, function (globals) {
-                            callback(globals);
-                            $location.url('/home');
-                        });
+
+                    authService.login(user.username, user.password)
+                        .then(function (response2) {
+                            $log.info(response.data);
+
+                            var token = response2.data['token'];
+                            authService.setCredentials(user.email, token, function () {
+                                $location.url('/home');
+                            });
+                        }).catch(function (error) {
+                        $log.error('Error during login action: ', error);
                     });
                 }).catch(function (error) {
-                    $log.error('Error status: ', error);
+                    $log.error('Error during register aciton: ', error);
                 });
             }
         }
 
         function cancel() {
             $location.url('/home');
+        }
+
+        function scrapeUserInfo() {
+            return {
+                tag_id: $scope.tagInfo.tagId,
+                first_name: $scope.firstName,
+                last_name: $scope.lastName,
+                email: $scope.email,
+                password: $scope.password,
+                role_id: $scope.role
+            };
         }
     }
 })();
