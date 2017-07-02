@@ -79,7 +79,7 @@
                 registerService.registerUser(user, image).then(function (response) {
                     $log.info(response.data);
 
-                    authService.login(user.username, user.password)
+                    authService.login(user.email, user.password)
                         .then(function (response2) {
                             $log.info(response2.data);
 
