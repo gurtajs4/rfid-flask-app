@@ -39,10 +39,11 @@
                     .then(function (response) {
                         $log.debug('Login response data: ', response.data);
                         var token = response.data;
-                        authService.setCredentials($scope.email, token, function () {
-                            $log.debug('Login token is: ', authService.getCredentials());
+                        var globals = authService.setCredentials($scope.email, token);
+                        if (globals) {
+                            $log.debug('Auth data after login: ', globals);
                             $location.url('/home');
-                        });
+                        }
                     })
                     .catch(function (error) {
                         $log.error(error);

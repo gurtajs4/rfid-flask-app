@@ -22,7 +22,7 @@
             return $http.post('/api/login', JSON.stringify(authData));
         }
 
-        function setCredentials(username, token, callback) {
+        function setCredentials(username, token) {
             var globals = {
                 username: username,
                 token: token
@@ -30,7 +30,7 @@
             $cookies.putObject('token', globals);
 
             $http.defaults.headers.common['Authorization'] = 'Token ' + token;
-            callback();
+            return getCredentials();
         }
 
         function clearCredentials() {
