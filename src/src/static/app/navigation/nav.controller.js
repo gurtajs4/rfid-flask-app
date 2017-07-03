@@ -55,14 +55,12 @@
                 }
 
                 console.log('From naviagation ', doReturn);
-                if (doReturn) {
-                    return;
-                }
-
-                console.log('From naviagation ', $scope.isAuthenticated);
-                if (!$scope.isAuthenticated) {
-                    event.preventDefault();
-                    $location.url('/login');
+                if (!doReturn) {
+                    console.log('From naviagation ', $scope.isAuthenticated);
+                    if (!$scope.isAuthenticated) {
+                        event.preventDefault();
+                        $location.url('/login');
+                    }
                 }
             }
         });
