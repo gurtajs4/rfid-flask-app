@@ -26,6 +26,7 @@
 
         function init() {
             service.getItems().then(function (response) {
+                console.log('Response data: ', response.data);
                 var data = response.data;
                 var viewModel = [];
                 angular.forEach(data, function (value, key) {
@@ -36,7 +37,9 @@
                     this.push(singleViewModel)
                 }, viewModel);
                 self.list = viewModel;
-            });
+            }).catch(function (error) {
+                console.log('Error loading users: ', error);
+            })
         }
 
         function deleteById(id) {
