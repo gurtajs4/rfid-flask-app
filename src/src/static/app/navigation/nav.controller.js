@@ -32,19 +32,26 @@
 
         $scope.$on('$routeChangeStart', function (event, newUrl, oldUrl) {
             if (newUrl.$$route != undefined) {
+                console.log('From naviagation ', event);
+                console.log('From naviagation ', newUrl);
+                console.log('From naviagation ', oldUrl);
                 var originalPath = newUrl.$$route.originalPath;
                 var _guestRoutes = guestRoutes();
-
+                console.log('From naviagation ', originalPath);
+                console.log('From naviagation ', _guestRoutes);
                 var doReturn = false;
                 angular.forEach(_guestRoutes, function (value, key) {
                     if (value == originalPath) {
                         doReturn = true;
                     }
                 });
+
+                console.log('From naviagation ', doReturn);
                 if (doReturn) {
                     return;
                 }
 
+                console.log('From naviagation ', $scope.isAuthenticated);
                 if (authService.getCredentials != undefined) {
                     $scope.isAuthenticated = !!authService.getCredentials();
                 }
@@ -52,6 +59,7 @@
                     $scope.isAuthenticated = false;
                 }
 
+                console.log('From naviagation ', $scope.isAuthenticated);
                 if (!$scope.isAuthenticated) {
                     event.preventDefault();
                     $location.url('/login');
