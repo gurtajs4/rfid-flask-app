@@ -34,16 +34,16 @@
         }
 
         function clearCredentials() {
-            $cookies.remove('globals');
+            $cookies.remove('token');
             $http.defaults.headers.common['Authorization'] = 'Token ';
         }
 
         function getCredentials() {
-            return $cookies.getObject('globals')
+            return $cookies.getObject('token')
         }
 
         function isAuthenticated() {
-            return !!$cookies.getObject('globals')
+            return !!$cookies.getObject('token')
         }
     }
 })();
