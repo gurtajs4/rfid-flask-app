@@ -38,7 +38,7 @@
                 authService.login($scope.email, $scope.password)
                     .then(function (response) {
                         $log.debug('Login response data: ', response.data);
-                        var token = response.data['token'];
+                        var token = response.data;
                         authService.setCredentials($scope.email, token, function () {
                             $log.debug('Login token is: ', authService.getCredentials());
                             $location.url('/home');
