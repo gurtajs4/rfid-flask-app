@@ -78,18 +78,19 @@
 
                 registerService.registerUser(user, image).then(function (response) {
                     $log.info(response.data);
+                    $location.url('/login');
 
-                    authService.login(user.email, user.password)
-                        .then(function (response2) {
-                            $log.info(response2.data);
-
-                            var token = response2.data['token'];
-                            authService.setCredentials(user.email, token, function () {
-                                $location.url('/home');
-                            });
-                        }).catch(function (error) {
-                        $log.error('Error during login action: ', error);
-                    });
+                    // authService.login(user.email, user.password)
+                    //     .then(function (response2) {
+                    //         $log.info(response2.data);
+                    //
+                    //         var token = response2.data['token'];
+                    //         authService.setCredentials(user.email, token, function () {
+                    //             $location.url('/home');
+                    //         });
+                    //     }).catch(function (error) {
+                    //     $log.error('Error during login action: ', error);
+                    // });
                 }).catch(function (error) {
                     $log.error('Error during register action: ', error);
                 });

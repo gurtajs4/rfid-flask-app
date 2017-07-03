@@ -37,9 +37,10 @@
                 $log.info('Entered the login controller...');
                 authService.login($scope.email, $scope.password)
                     .then(function (response) {
-
+                        $log.debug('Login response data: ', response.data);
                         var token = response.data['token'];
                         authService.setCredentials($scope.email, token, function () {
+                            $log.debug('Login token is: ', authService.getCredentials());
                             $location.url('/home');
                         });
                     })
