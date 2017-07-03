@@ -90,6 +90,8 @@ def api_user_login():
         # csrf = service_manager.generate_csrf()
         # if csrf is None:
         #     raise Exception('Failed to generate a csrf token...')
+        print('Printing the token from get auth...')
+        print(token)
         resp = jsonify(token)
         resp.status_code = 200
         return resp
