@@ -41,18 +41,23 @@ def get_request_auth(request):
     try:
         auth_header_value = request.headers.get('Authorization', None)
         if not auth_header_value:
+            print('Invalid JWT header: No authorization headers')
             raise Exception('Invalid JWT header: No authorization headers')
         header_parts = auth_header_value.split(' ')
 
         if header_parts[0].lower() != 'token':
+            print('Invalid JWT header: Unsupported authorization type')
             raise Exception('Invalid JWT header: Unsupported authorization type')
         elif len(header_parts) == 1:
+            print('Invalid JWT header: Token missing')
             raise Exception('Invalid JWT header: Token missing')
         elif len(header_parts) > 2:
+            print('Invalid JWT header: Token contains spaces')
             raise Exception('Invalid JWT header: Token contains spaces')
 
         return '1%s' % header_parts[1]
     except Exception as e:
+        print('Exception hit on get request auth')
         return '0%s' % repr(e)
 
 
