@@ -46,17 +46,17 @@
                     }
                 });
 
-                console.log('From naviagation ', doReturn);
-                if (doReturn) {
-                    return;
-                }
-
                 console.log('From naviagation ', $scope.isAuthenticated);
                 if (authService.getCredentials != undefined) {
                     $scope.isAuthenticated = !!authService.getCredentials();
                 }
                 else {
                     $scope.isAuthenticated = false;
+                }
+
+                console.log('From naviagation ', doReturn);
+                if (doReturn) {
+                    return;
                 }
 
                 console.log('From naviagation ', $scope.isAuthenticated);
