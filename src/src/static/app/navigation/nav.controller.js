@@ -45,7 +45,12 @@
                     return;
                 }
 
-                $scope.isAuthenticated = !!authService.getCredentials();
+                if (authService.getCredentials != undefined) {
+                    $scope.isAuthenticated = !!authService.getCredentials();
+                }
+                else {
+                    $scope.isAuthenticated = false;
+                }
 
                 if (!$scope.isAuthenticated) {
                     event.preventDefault();

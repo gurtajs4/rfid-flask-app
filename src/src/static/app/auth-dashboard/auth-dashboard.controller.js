@@ -10,23 +10,19 @@
         $scope.logout = logout;
         $scope.editProfile = editProfile;
 
-        init();
-
         $scope.$on('$routeChangeStart', function (event, newUrl, oldUrl) {
-            var userCredentials = authService.getCredentials();
-            if (userCredentials) {
-                if (userCredentials.hasOwnProperty('username')) {
-                    var currentServiceUsername = userCredentials.username;
-                    if ($scope.username != currentServiceUsername) {
-                        setUsername(currentServiceUsername);
+            if (authService.getCredentials != undefined) {
+                var userCredentials = authService.getCredentials();
+                if (userCredentials) {
+                    if (userCredentials.hasOwnProperty('username')) {
+                        var currentServiceUsername = userCredentials.username;
+                        if ($scope.username != currentServiceUsername) {
+                            setUsername(currentServiceUsername);
+                        }
                     }
                 }
             }
         });
-
-        function init() {
-            setUsername(authService.getCredentials().username);
-        }
 
         function setUsername(username) {
             $scope.username = username;
