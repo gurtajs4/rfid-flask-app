@@ -109,6 +109,7 @@ def api_user_login():
 @app.route('/api/users', methods=['GET'])
 def api_users_get():
     auth_data = get_request_auth(request=request)
+    print(auth_data)
     if auth_data[0] == '0':
         return Response(auth_data[1:], status=404, mimetype='application/json')
     if not verify_token(auth_data[1:]):
