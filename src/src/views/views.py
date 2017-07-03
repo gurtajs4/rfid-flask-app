@@ -110,7 +110,7 @@ def api_user_login():
 def api_users_get():
     auth_data = get_request_auth(request=request)
     if auth_data[0] == '0':
-        return jsonify(auth_data[1:])
+        return Response(auth_data[1:], status=404, mimetype='application/json')
     if not verify_token(auth_data[1:]):
         return Response('Login required', status=404, mimetype='application/json')
     users = service_manager.get_users()
