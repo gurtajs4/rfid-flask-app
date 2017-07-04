@@ -1,8 +1,10 @@
-<li class="dropdown-nav">
-    <button class="btn btn-default" ng-click="editProfile()">
-        {{ username }} <span class="glyphicon-wrench"></span>
-    </button>
-    <button class="btn btn-default" ng-click="logout()">
+<li>
+    <a ng-click="editProfile()">
+        {{ username }} <i class="glyphicon glyphicon-wrench"></i>
+    </a>
+</li>
+<li>
+    <a ng-click="logout()">
         Logout
-    </button>
+    </a>
 </li>
