@@ -123,3 +123,7 @@ a.no-decoration {
 input[type="file"] {
     max-width: 100%;
 }
+
+.padding-top {
+    padding-top: 35px;
+}
