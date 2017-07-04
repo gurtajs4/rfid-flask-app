@@ -62,7 +62,7 @@ def get_request_auth(request):
 
 
 def verify_token(token):
-    return service_manager.validate_token(auth_token=token) is None
+    return service_manager.validate_token(auth_token=token)
 
 
 @app.route('/api/login', methods=['POST'])
