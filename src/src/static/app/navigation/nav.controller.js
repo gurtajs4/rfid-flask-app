@@ -8,7 +8,6 @@
     NavController.$inject = ['$scope', '$location', 'authService'];
     function NavController($scope, $location, authService) {
         $scope.isAuthenticated = false;
-        $scope.tab = 0;
         $scope.setActive = setActive;
         $scope.isActive = isActive;
 
@@ -78,10 +77,6 @@
             if (!$scope.isAuthenticated) {
                 availableRoutes = availableRoutes.concat($scope.rightNav);
             }
-            // if (originalPath == 'home') {
-            //     setActive(0);
-            //     return true;
-            // }
             for (var i = 0; i < availableRoutes.length; i++) {
                 if (availableRoutes[i].route == originalPath) {
                     setActive(availableRoutes[i].id);
