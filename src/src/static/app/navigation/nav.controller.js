@@ -58,6 +58,9 @@
         });
 
         $scope.$on('$routeChangeSuccess', function (event, newUrl, oldUrl) {
+            if (authService.getCredentials != undefined) {
+                $scope.isAuthenticated = !!authService.getCredentials();
+            }
             if (newUrl.$$route != undefined) {
                 var originalPath = newUrl.$$route.originalPath.substring(1);
                 checkPath(originalPath);
