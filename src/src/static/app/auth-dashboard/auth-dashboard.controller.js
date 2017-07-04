@@ -10,18 +10,12 @@
         $scope.logout = logout;
         $scope.editProfile = editProfile;
 
-        $scope.$on('$routeChangeStart', function (event, newUrl, oldUrl) {
-            if (authService.getCredentials != undefined) {
-                console.log('From auth dashboard ', event);
-                console.log('From auth dashboard ', newUrl);
-                console.log('From auth dashboard ', oldUrl);
+        $scope.$on('$routeChangeSuccess', function (event, newUrl, oldUrl) {
+            if (authService.getCredentials() != undefined) {
                 var userCredentials = authService.getCredentials();
-                console.log('From auth dashboard ', userCredentials);
                 if (userCredentials) {
                     if (userCredentials.hasOwnProperty('username')) {
                         var currentServiceUsername = userCredentials.username;
-                        console.log('From auth dashboard ', currentServiceUsername);
-                        console.log('From auth dashboard ', $scope.username);
                         if ($scope.username != currentServiceUsername) {
                             setUsername(currentServiceUsername);
                         }
