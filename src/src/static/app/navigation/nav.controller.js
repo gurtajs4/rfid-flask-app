@@ -59,7 +59,11 @@
 
         $scope.$on('$routeChangeSuccess', function (event, newUrl, oldUrl) {
             if (authService.getCredentials != undefined) {
-                $scope.isAuthenticated = !!authService.getCredentials();
+                $scope.isAuthenticated = authService.isAuthenticated();
+                if ($scope.isAuthenticated) {
+                    var globals = authService.getCredentials();
+                    authService.setCredentials(globals.username, globals.token);
+                }
             }
             if (newUrl.$$route != undefined) {
                 var originalPath = newUrl.$$route.originalPath.substring(1);
