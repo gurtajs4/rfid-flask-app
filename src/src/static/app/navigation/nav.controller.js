@@ -32,13 +32,8 @@
 
         $scope.$on('$routeChangeStart', function (event, newUrl, oldUrl) {
             if (newUrl.$$route != undefined) {
-                console.log('From naviagation ', event);
-                console.log('From naviagation ', newUrl);
-                console.log('From naviagation ', oldUrl);
                 var originalPath = newUrl.$$route.originalPath;
                 var _guestRoutes = guestRoutes();
-                console.log('From naviagation ', originalPath);
-                console.log('From naviagation ', _guestRoutes);
                 var doReturn = false;
                 angular.forEach(_guestRoutes, function (value, key) {
                     if (value == originalPath) {
@@ -54,9 +49,7 @@
                     $scope.isAuthenticated = false;
                 }
 
-                console.log('From naviagation ', doReturn);
                 if (!doReturn) {
-                    console.log('From naviagation ', $scope.isAuthenticated);
                     if (!$scope.isAuthenticated) {
                         event.preventDefault();
                         $location.url('/login');
@@ -81,7 +74,10 @@
         }
 
         function checkPath(originalPath) {
-            var availableRoutes = $scope.leftNav.concat($scope.midNav.concat($scope.rightNav));
+            var availableRoutes = $scope.leftNav.concat($scope.midNav);
+            if (!$scope.isAuthenticated) {
+                availableRoutes = availableRoutes.concat($scope.rightNav);
+            }
             if (originalPath == 'home') {
                 setActive(0);
                 return true;
