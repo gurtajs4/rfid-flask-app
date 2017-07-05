@@ -124,6 +124,6 @@ input[type="file"] {
     max-width: 100%;
 }
 
-.padding-top {
-    padding-top: 35px;
+.nav-padding-top {
+    padding-top: 15px;
 }
