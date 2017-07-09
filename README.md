@@ -1,6 +1,6 @@
 # rfid-flask-app
 
-Web application for supervising and managing keys in School and Faculty institutions using RFID hardware technology as a tracking middleware.
+Web application for supervising and managing keys in School and Faculty institutions using RFID hardware technology for automatic identification and data tracking.
 This application is complementary to a concept of keys management system for School and Faculty institutions devised by me, Matija Čvrk, for a student project.
 
 ## RFID hardware used
