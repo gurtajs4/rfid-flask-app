@@ -661,12 +661,9 @@ def api_sessions_get_by_user(user_id):
 
 @app.route('/api/sessions/new', methods=['POST'])
 def api_session_new():
-    auth_data = get_request_auth(request=request)
-    if auth_data[0] == '0':
-        return jsonify(auth_data[1:])
-    if not verify_token(auth_data[1:]):
-        return Response('Login required', status=404, mimetype='application/json')
+    print('From server - receiving data from new session')
     data = request.get_json()
+    print('From server - new session data: %s' % data)
     if None is data:
         message = {
             'status': 404,
