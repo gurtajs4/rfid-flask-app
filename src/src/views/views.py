@@ -687,7 +687,13 @@ def api_session_new():
             return Response('Key ID or user ID not found so no session can be registered, retry...', status=404,
                             mimetype='application/json')
         elif None is user or None is key:
-            session = None
+            message = {
+                'status': 404,
+                'message': 'Not Found' + request.url + ' - ' + ('user ' if None is user else 'key') + ' not registered',
+            }
+            resp = jsonify(message)
+            resp.status_code = 404
+            return resp
         else:
             session = service_manager.search_session(key_id=key.id,
                                                      user_id=user.id,
