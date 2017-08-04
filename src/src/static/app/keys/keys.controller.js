@@ -16,7 +16,6 @@
             {id: 'sector_name', name: 'Odjelu'},
             {id: 'room_repr', name: 'Punom zapisu'}
         ];
-        self.reverseOrder = true;
 
         init();
 

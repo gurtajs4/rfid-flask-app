@@ -19,7 +19,6 @@
             {id: 'last_name', name: 'Prezime'},
             {id: 'email', name: 'Email'}
         ];
-        self.reverseOrder = true;
 
         self.deleteSelected = deleteSelected;
 
