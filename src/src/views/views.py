@@ -191,7 +191,7 @@ def api_users_search(queryset):
     words = [word for word in queryset.split(' ')]
     users = []
     for word in words:
-        results = service_manager.search_user(first_name=word, last_name=word, limit=0)
+        results = service_manager.search_user(first_name=word, last_name=word, email=word, limit=0)
         if None is not results:
             map(lambda x: users.append(x) if x.id not in [y.id for y in users] else False, results)
             users = sorted(users, key=lambda x: x.id)
