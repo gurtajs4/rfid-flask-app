@@ -9,7 +9,7 @@
     function authDashboard(templateServiceProvider) {
         var appBaseUrl = templateServiceProvider.appBaseUrl();
         return {
-            restrict: 'E',
+            restrict: 'EA',
             scope: false,
             controller: 'AuthDashboardController',
             templateUrl: appBaseUrl + '/auth-dashboard/auth-dashboard.html'
