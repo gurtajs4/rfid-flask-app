@@ -15,14 +15,11 @@
             <select ng-model="keys.orderProp"
                     ng-options="selectedProp.id as selectedProp.name for selectedProp in keys.orderOptions"
                     name="orderProp" id="orderProp">
-                <!--<option value="id">ID ključa</option>-->
-                <!--<option value="tag_id">Tag ID ključa</option>-->
-                <!--<option value="room_id">Broju prostorije</option>-->
-                <!--<option value="sector_name">Odjelu</option>-->
-                <!--<option value="room_repr">Punom zapisu</option>-->
             </select>
+            <label for="reverseOrder"> Obrnuti redoslijed</label>
+            <input ng-model="reverseOrder" type="checkbox" id="reverseOrder"/>
         </div>
         <hr/>
-        <div ng-repeat="item in keys.list | orderBy:keys.orderProp" key-info="item"></div>
+        <div ng-repeat="item in keys.list | orderBy:keys.orderProp:reverseOrder" key-info="item"></div>
     </div>
 </div>
