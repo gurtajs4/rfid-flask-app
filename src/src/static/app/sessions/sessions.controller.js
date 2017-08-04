@@ -18,7 +18,7 @@
             {id: 'started_on', name: 'Datum preuzimanja'},
             {id: 'closed_on', name: 'Datum vraćanja'}
         ];
-        self.orderProp = {id: 'started_on', name: 'Datum preuzimanja'};
+        self.sessions.orderProp = {id: 'started_on', name: 'Datum preuzimanja'};
         self.reverseOrder = true;
 
         self.selectAll = selectAll;
