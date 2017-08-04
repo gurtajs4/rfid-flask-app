@@ -11,22 +11,17 @@
             </div>
         </div>
         <div>
-            <!--<label for="selectAllSessions">Odaberi sve</label>-->
-            <!--<input ng-click="sessions.selectAll()" id="selectAllSessions" name="selectAllSessions" type="checkbox"/>-->
             <label for="orderProp">Poredati preuzimanja prema:</label>
             <select ng-model="sessions.orderProp"
                     ng-options="selectedProp.id as selectedProp.name for selectedProp in sessions.orderOptions"
                     name="orderProp" id="orderProp">
-                <!--<option value="id">ID sesije</option>-->
-                <!--<option value="key_id">ID ključa</option>-->
-                <!--<option value="user_id">ID korisnika</option>-->
-                <!--<option value="started_on">Datum preuzimanja</option>-->
-                <!--<option value="closed_on">Datum vraćanja</option>-->
             </select>
+            <label for="reverseOrder"> Obrnuti redoslijed</label>
+            <input ng-model="reverseOrder" type="checkbox" id="reverseOrder"/>
         </div>
         <hr/>
-        <div ng-repeat="session in sessions.list | orderBy:sessions.orderProp track by $index" session-info="session">
-
+        <div ng-repeat="session in sessions.list | orderBy:sessions.orderProp:reverseOrder track by $index"
+             session-info="session">
         </div>
     </div>
 </div>
