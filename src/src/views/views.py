@@ -181,8 +181,9 @@ def api_user_register():
         return resp
 
 
-@app.route('/api/users/search/<queryset>', methods=['GET'])
-def api_users_search(queryset):
+@app.route('/api/users/search/<queryset>', defaults={'limit':0}, methods=['GET'])
+@app.route('/api/users/search/<queryset>/<limit>', methods=['GET'])
+def api_users_search(queryset, limit):
     auth_data = get_request_auth(request=request)
     if auth_data[0] == '0':
         return jsonify(auth_data[1:])
@@ -191,7 +192,7 @@ def api_users_search(queryset):
     words = [word for word in queryset.split(' ')]
     users = []
     for word in words:
-        results = service_manager.search_user(first_name=word, last_name=word, email=word, limit=0)
+        results = service_manager.search_user(first_name=word, last_name=word, email=word, limit=limit)
         if None is not results:
             map(lambda x: users.append(x) if x.id not in [y.id for y in users] else False, results)
             users = sorted(users, key=lambda x: x.id)
