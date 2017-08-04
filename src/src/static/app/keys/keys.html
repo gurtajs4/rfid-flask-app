@@ -17,9 +17,9 @@
                     name="orderProp" id="orderProp">
             </select>
             <label for="reverseOrder"> Obrnuti redoslijed</label>
-            <input ng-model="reverseOrder" type="checkbox" id="reverseOrder"/>
+            <input ng-model="keys.reverseOrder" type="checkbox" id="reverseOrder"/>
         </div>
         <hr/>
-        <div ng-repeat="item in keys.list | orderBy:keys.orderProp:reverseOrder" key-info="item"></div>
+        <div ng-repeat="item in keys.list | orderBy:keys.orderProp:keys.reverseOrder" key-info="item"></div>
     </div>
 </div>
