@@ -17,10 +17,10 @@
                     name="orderProp" id="orderProp">
             </select>
             <label for="reverseOrder"> Obrnuti redoslijed</label>
-            <input ng-model="reverseOrder" type="checkbox" id="reverseOrder"/>
+            <input ng-model="sessions.reverseOrder" type="checkbox" id="reverseOrder"/>
         </div>
         <hr/>
-        <div ng-repeat="session in sessions.list | orderBy:sessions.orderProp:reverseOrder track by $index"
+        <div ng-repeat="session in sessions.list | orderBy:sessions.orderProp:sessions.reverseOrder track by $index"
              session-info="session">
         </div>
     </div>
