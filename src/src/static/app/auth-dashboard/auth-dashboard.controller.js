@@ -35,7 +35,7 @@
                     angular.forEach(response.data, function (value, key) {
                         var user = JSON.parse(value);
                         if (user) {
-                            userId = user.id;
+                            userId = user.user_id;
                         }
                     });
                     if (userId) {
