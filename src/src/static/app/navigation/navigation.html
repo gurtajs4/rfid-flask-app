@@ -12,12 +12,12 @@
 
         <div class="collapse navbar-collapse" ng-class="{'in': !navCollapsed}">
             <ul class="nav navbar-nav">
-                <li ng-repeat="route1 in leftNav" ng-class="{ active: isActive(route1.id) }"><a
+                <li ng-repeat="route1 in commonRoutes" ng-class="{ active: isActive(route1.id) }"><a
                         ng-click="navCollapsed = !navCollapsed"
                         ng-href="{{route1.route}}">{{route1.name}}</a></li>
             </ul>
-            <ul class="nav navbar-nav">
-                <li ng-repeat="route2 in midNav" ng-class="{ active: isActive(route2.id) }"><a
+            <ul ng-show="isAuthenticated" class="nav navbar-nav">
+                <li ng-repeat="route2 in protectedRoutes" ng-class="{ active: isActive(route2.id) }"><a
                         ng-click="navCollapsed = !navCollapsed"
                         ng-href="{{route2.route}}">{{route2.name}}</a></li>
             </ul>
@@ -25,7 +25,7 @@
                 <!--<auth-dashboard class="navbar navbar-nav"></auth-dashboard>-->
             </ul>
             <ul ng-hide="isAuthenticated" class="nav navbar-nav">
-                <li ng-repeat="route3 in rightNav" ng-class="{ active: isActive(route3.id) }"><a
+                <li ng-repeat="route3 in authenticationRoutes" ng-class="{ active: isActive(route3.id) }"><a
                         ng-click="navCollapsed = !navCollapsed"
                         ng-href="{{route3.route}}">{{route3.name}}</a></li>
             </ul>

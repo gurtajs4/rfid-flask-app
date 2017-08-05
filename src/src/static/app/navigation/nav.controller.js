@@ -12,19 +12,19 @@
         $scope.isActive = isActive;
 
         $scope.title = 'RFID sustav';
-        $scope.leftNav = [
-            {id: 0, route: '/', name: 'Naslovnica'},
+        $scope.commonRoutes = [
+            {id: 0, route: '/', name: 'Naslovnica'}
+        ];
+        $scope.protectedRoutes = [
             {id: 1, route: '/sessions', name: 'Preuzimanja ključeva'},
             {id: 2, route: '/keys/search', name: 'Pretraga ključeva'},
             {id: 3, route: '/keys/seed', name: 'Uvoz ključeva'},
             {id: 4, route: '/keys/register', name: 'Registracija ključa'},
-            {id: 5, route: '/keys', name: 'Prostorije'}
-        ];
-        $scope.midNav = [
+            {id: 5, route: '/keys', name: 'Prostorije'},
             {id: 6, route: '/users', name: 'Korisnici'},
             {id: 7, route: '/users/search', name: 'Pretraga korisnika'}
         ];
-        $scope.rightNav = [
+        $scope.authenticationRoutes = [
             {id: 8, route: '/login', name: 'Prijava korisnika'},
             {id: 9, route: '/users/register', name: 'Registracija korisnika'}
         ];
@@ -80,9 +80,9 @@
         }
 
         function checkPath(originalPath) {
-            var availableRoutes = $scope.leftNav.concat($scope.midNav);
+            var availableRoutes = $scope.commonRoutes.concat($scope.protectedRoutes);
             if (!$scope.isAuthenticated) {
-                availableRoutes = availableRoutes.concat($scope.rightNav);
+                availableRoutes = availableRoutes.concat($scope.authenticationRoutes);
             }
             for (var i = 0; i < availableRoutes.length; i++) {
                 if (availableRoutes[i].route == originalPath) {
