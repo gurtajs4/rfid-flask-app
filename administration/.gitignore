@@ -2,6 +2,4 @@
 
 src/static/images/*
 !src/static/images/default.png
-!src/static/images/default-room.png
-!src/static/images/hero-01.jpg
 !src/static/images/hero-img.jpg
