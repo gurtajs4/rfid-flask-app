@@ -40,9 +40,11 @@ Client (AngularJS) side:
 
 ## Web layout
 Landing page:
+
 ![lander:mobile](https://github.com/traVaulta/rfid-flask-app/blob/master/docs/responsive.mobile-home-hero.png) ![navbar:mobile](https://github.com/traVaulta/rfid-flask-app/blob/master/docs/responsive.mobile-home-nav.png) 
 
 Common user interactions:
+
 ![register:mobile](https://github.com/traVaulta/rfid-flask-app/blob/master/docs/responsive.mobile-user-register.png) ![register:mobile](https://github.com/traVaulta/rfid-flask-app/blob/master/docs/responsive.mobile-user-login.png)
 
 ## Read the docs
