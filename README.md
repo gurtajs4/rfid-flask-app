@@ -39,7 +39,7 @@ Client (AngularJS) side:
 - navigate to static folder (rfid-flask-app/src/src/static/) and run `npm install`
 
 ## Web layout
-Image to be added later...
+![lander:mobile](https://github.com/traVaulta/rfid-flask-app/blob/master/docs/responsive.mobile-home-hero.png) ![navbar:mobile](https://github.com/traVaulta/rfid-flask-app/blob/master/docs/responsive.mobile-home-nav.png) ![register:mobile](https://github.com/traVaulta/rfid-flask-app/blob/master/docs/responsive.mobile-user-register.png)
 
 ## Read the docs
 Checkout [getting started]() for a quickstart on how to use.
