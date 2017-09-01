@@ -1,7 +1,7 @@
 {
   "name": "rfid-flask-app",
   "version": "1.0.0",
-  "description": "rfid management iot app for raspberry pi",
+  "description": "rfid administration iot app for raspberry pi",
   "main": "",
   "scripts": {
     "build": "gulp static:build",

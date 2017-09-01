@@ -3,7 +3,7 @@
   "authors": [
     "Matija Čvrk <matijacvrk@gmail.com>"
   ],
-  "description": "rfid management iot app for raspberry pi",
+  "description": "rfid administration iot app for raspberry pi",
   "main": "static/app.js",
   "keywords": [
     "rifd",
