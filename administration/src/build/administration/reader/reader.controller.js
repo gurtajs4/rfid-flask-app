@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('appMain')
+        .module('administration')
         .controller('ReaderController', ReaderController);
 
     ReaderController.$inject = ['$scope', '$log', '$timeout', 'readerService'];

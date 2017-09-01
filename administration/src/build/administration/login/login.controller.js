@@ -2,7 +2,7 @@
     'use-strict';
 
     angular
-        .module('appMain')
+        .module('administration')
         .controller('LoginController', LoginController);
 
     LoginController.$inject = ['$scope', '$log', '$location', 'authService'];

@@ -2,7 +2,7 @@
     'use-strict';
 
     angular
-        .module('appMain')
+        .module('administration')
         .controller('AuthDashboardController', AuthDashboardController);
 
     AuthDashboardController.$inject = ['$scope', '$location', 'authService', 'usersService'];

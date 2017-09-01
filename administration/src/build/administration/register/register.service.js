@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('appMain')
+        .module('administration')
         .service('registerService', registerService);
 
     registerService.$inject = ['$http', 'Upload'];

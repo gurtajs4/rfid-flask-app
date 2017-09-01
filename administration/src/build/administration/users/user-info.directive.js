@@ -1,7 +1,8 @@
 (function () {
     'use strict';
+
     angular
-        .module('appMain')
+        .module('administration')
         .directive('userInfo', userInfo);
 
     userInfo.$inject = ['templateServiceProvider'];

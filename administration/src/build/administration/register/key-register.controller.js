@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('appMain')
+        .module('administration')
         .controller('KeyRegisterController', KeyRegisterController);
 
     KeyRegisterController.$inject = ['$scope', '$log', '$location', 'registerService'];

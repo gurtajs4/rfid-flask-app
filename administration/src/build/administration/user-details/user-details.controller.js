@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('appMain').controller('UserDetailsController', UserDetailsController);
+    angular.module('administration').controller('UserDetailsController', UserDetailsController);
 
     UserDetailsController.$inject = ['$scope', '$routeParams', '$location', '$log', 'usersService'];
     function UserDetailsController($scope, $routeParams, $location, $log, usersService) {

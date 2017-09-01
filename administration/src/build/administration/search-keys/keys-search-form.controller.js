@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('appMain')
+        .module('administration')
         .controller('KeysSearchController', KeysSearchController);
 
     KeysSearchController.$inject = ['$location', '$log', 'keysService'];

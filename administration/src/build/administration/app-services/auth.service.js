@@ -2,7 +2,7 @@
     'use-strict';
 
     angular
-        .module('appMain')
+        .module('administration')
         .service('authService', authService);
 
     authService.$inject = ['$http', '$cookies'];

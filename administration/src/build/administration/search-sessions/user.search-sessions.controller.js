@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('appMain')
+        .module('administration')
         .controller('UserSessionsController', UserSessionsController);
 
     UserSessionsController.$inject = ['$scope', '$timeout', 'searchSessionsService'];

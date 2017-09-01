@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('appMain')
+        .module('administration')
         .controller('UserRegisterController', UserRegisterController);
 
     UserRegisterController.$inject = ['$scope', '$log', '$location', 'registerService', 'authService'];

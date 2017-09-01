@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('appMain')
+        .module('administration')
         .directive('userSessions', userSessions);
 
     userSessions.$inject = ['templateServiceProvider'];

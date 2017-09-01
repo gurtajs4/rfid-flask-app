@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('appMain').controller('KeysController', KeysController);
+    angular.module('administration').controller('KeysController', KeysController);
 
     KeysController.$inject = ['$location', '$log', 'keysService'];
     function KeysController($location, $log, keysService) {

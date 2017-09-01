@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('appMain').service('updateService', updateService);
+    angular.module('administration').service('updateService', updateService);
 
     updateService.$inject = ['$http', 'Upload'];
     function updateService($http, Upload) {

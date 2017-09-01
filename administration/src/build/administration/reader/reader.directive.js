@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('appMain')
+        .module('administration')
         .directive('reader', reader);
 
     reader.$inject = ['templateServiceProvider'];

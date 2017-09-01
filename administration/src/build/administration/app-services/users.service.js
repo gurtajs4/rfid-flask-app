@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('appMain').service('usersService', usersService);
+    angular.module('administration').service('usersService', usersService);
     usersService.$inject = ['$http'];
     function usersService($http) {
         var service = {

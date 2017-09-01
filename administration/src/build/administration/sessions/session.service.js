@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('appMain')
+        .module('administration')
         .service('sessionService', SessionService);
 
     SessionService.$inject = ['$http'];

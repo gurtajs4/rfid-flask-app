@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('appMain').controller('KeyDetailsController', KeyDetailsController);
+    angular.module('administration').controller('KeyDetailsController', KeyDetailsController);
 
     KeyDetailsController.$inject = ['$scope', '$routeParams', '$location', '$log', 'keysService'];
     function KeyDetailsController($scope, $routeParams, $location, $log, keysService) {

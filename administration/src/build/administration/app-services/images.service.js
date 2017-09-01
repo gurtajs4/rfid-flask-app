@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('appMain')
+        .module('administration')
         .service('imagesService', imagesService);
 
     imagesService.$inject = ['$http', '$log', '$window'];

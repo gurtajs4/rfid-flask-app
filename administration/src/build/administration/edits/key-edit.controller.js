@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('appMain').controller('KeyEditController', KeyEditController);
+    angular.module('administration').controller('KeyEditController', KeyEditController);
 
     KeyEditController.$inject = ['$scope', '$log', '$routeParams', '$location', 'updateService'];
     function KeyEditController($scope, $log, $routeParams, $location, updateService) {

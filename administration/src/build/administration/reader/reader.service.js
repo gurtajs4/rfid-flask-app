@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('appMain')
+        .module('administration')
         .service('readerService', readerService);
 
     readerService.$inject = ['$http'];

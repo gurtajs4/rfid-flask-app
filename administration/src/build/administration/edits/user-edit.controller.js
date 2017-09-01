@@ -1,6 +1,6 @@
 (function () {
     'use strict';
-    angular.module('appMain').controller('UserEditController', UserEditController);
+    angular.module('administration').controller('UserEditController', UserEditController);
 
     UserEditController.$inject = ['$scope', '$log', '$routeParams', '$location', 'updateService'];
     function UserEditController($scope, $log, $routeParams, $location, updateService) {

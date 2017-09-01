@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('appMain')
+        .module('administration')
         .service('searchSessionsService', searchSessionsService);
 
     searchSessionsService.$inject = ['$http'];

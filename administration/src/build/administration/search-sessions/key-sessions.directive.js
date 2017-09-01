@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('appMain')
+        .module('administration')
         .directive('keySessions', keySessions);
 
     keySessions.$inject = ['templateServiceProvider'];

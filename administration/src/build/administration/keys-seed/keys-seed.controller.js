@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('appMain').controller('KeysSeedController', KeysSeedController);
+    angular.module('administration').controller('KeysSeedController', KeysSeedController);
 
     KeysSeedController.$inject = ['$http', '$location', '$window', '$log', 'Upload'];
     function KeysSeedController($http, $location, $window, $log, Upload) {

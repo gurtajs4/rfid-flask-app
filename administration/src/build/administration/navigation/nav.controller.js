@@ -2,7 +2,7 @@
     'use strict';
 
     angular
-        .module('appMain')
+        .module('administration')
         .controller('NavController', NavController);
 
     NavController.$inject = ['$scope', '$location', 'authService'];
