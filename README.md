@@ -1,7 +1,7 @@
 # rfid-flask-app
 
 Web application for supervising and managing keys in School and Faculty institutions using RFID hardware technology for automatic identification and data tracking.
-This application is complementary to a concept of keys management system for School and Faculty institutions devised by me, Matija Čvrk, for a student project.
+This application is complementary to a concept of keys administration system for School and Faculty institutions devised by me, Matija Čvrk, for a student project.
 
 ## RFID hardware used
 
@@ -39,7 +39,11 @@ Client (AngularJS) side:
 - navigate to static folder (rfid-flask-app/src/src/static/) and run `npm install`
 
 ## Web layout
-![lander:mobile](https://github.com/traVaulta/rfid-flask-app/blob/master/docs/responsive.mobile-home-hero.png) ![navbar:mobile](https://github.com/traVaulta/rfid-flask-app/blob/master/docs/responsive.mobile-home-nav.png) ![register:mobile](https://github.com/traVaulta/rfid-flask-app/blob/master/docs/responsive.mobile-user-register.png)
+Landing page:
+![lander:mobile](https://github.com/traVaulta/rfid-flask-app/blob/master/docs/responsive.mobile-home-hero.png) ![navbar:mobile](https://github.com/traVaulta/rfid-flask-app/blob/master/docs/responsive.mobile-home-nav.png) 
+
+Common user interactions:
+![register:mobile](https://github.com/traVaulta/rfid-flask-app/blob/master/docs/responsive.mobile-user-register.png) ![register:mobile](https://github.com/traVaulta/rfid-flask-app/blob/master/docs/responsive.mobile-user-login.png)
 
 ## Read the docs
 Checkout [getting started]() for a quickstart on how to use.
