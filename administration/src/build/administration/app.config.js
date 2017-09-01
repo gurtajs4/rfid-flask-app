@@ -9,7 +9,7 @@
 
     function config($routeProvider, $locationProvider) {
         var appBaseUrl = angular.element(document.querySelector('base')).attr('href') +
-            'static/administration';
+            'static/html';
 
         $locationProvider.html5Mode({
             enabled: true,

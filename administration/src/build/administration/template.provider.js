@@ -17,7 +17,7 @@
 
             function appBaseUrl() {
                 return angular.element(document.querySelector('base')).attr('href') +
-                    'static/administration';
+                    'static/html';
             }
         }
     }
