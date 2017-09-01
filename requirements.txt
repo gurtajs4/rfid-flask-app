@@ -7,9 +7,11 @@ SPI-Py==1.0
 Werkzeug==0.11.10
 argparse==1.2.1
 click==6.6
+distribute==0.6.24dev-r0
 mimerender==0.6.0
 itsdangerous==0.24
 requests==2.12.4
 six==1.10.0
+smbus==1.1
 xlrd==1.0.0
 xlwt==1.2.0
