@@ -1,7 +1,7 @@
 *.pyc
 
 src/static/images/*
-!images/default.png
-!images/default-room.png
-!images/hero-01.jpg
-!images/hero-img.jpg
+!src/static/images/default.png
+!src/static/images/default-room.png
+!src/static/images/hero-01.jpg
+!src/static/images/hero-img.jpg
