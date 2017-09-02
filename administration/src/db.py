@@ -5,6 +5,7 @@ from .config import DATABASE_URI
 class SqliteManager:
     @staticmethod
     def get_db():
+        print(DATABASE_URI)
         db = sqlite3.connect(database=DATABASE_URI, timeout=5)
         return db
 

@@ -3,7 +3,7 @@ from . import config
 from flask import Flask, session
 
 app = Flask(__name__)
-app.debug = os.environ['FLASK_DEBUG']
+app.debug = config.DEBUG_MODE
 app.secret_key = config.SECRET_KEY
 
 from models import models
