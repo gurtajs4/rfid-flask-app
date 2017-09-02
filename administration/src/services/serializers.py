@@ -109,7 +109,7 @@ class JSONSerializer(object):
     @staticmethod
     def unicode_to_ascii(unicode_string):
         if 'unicode' in type(unicode_string):
-            return a.encode('ascii', 'ignore')
+            return unicode_string.encode('ascii', 'ignore')
         else:
             return unicode_string  # it is not unicode
 

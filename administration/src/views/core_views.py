@@ -2,7 +2,6 @@ from .. import app
 from ..services.service_manager import ServiceManager
 from ..services.storage_manager import StorageManager
 from ..services.serializers import JSONSerializer as jserial
-from ..services.serializers import ImageB64Serializer as img64
 from flask import jsonify, request, Response, send_file
 
 service_manager = ServiceManager()
