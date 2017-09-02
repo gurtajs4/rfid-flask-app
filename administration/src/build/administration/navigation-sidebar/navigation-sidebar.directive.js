@@ -5,9 +5,9 @@
         .module('administration')
         .directive('navigationSidebar', navigationSidebar);
 
-    navigationSidebar.$inject = ['templateProvider'];
-    function navigationSidebar(templateProvider) {
-        var appBaseUrl = templateProvider.appBaseUrl();
+    navigationSidebar.$inject = ['templateServiceProvider'];
+    function navigationSidebar(templateServiceProvider) {
+        var appBaseUrl = templateServiceProvider.appBaseUrl();
         return {
             retstrict: 'E',
             scope: false,

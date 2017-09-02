@@ -7,9 +7,9 @@
 
     SidebarController.$inject = ['$scope', '$log'];
     function SidebarController($scope, $log) {
-        $scope.common.label = 'Korisničke opcije';
-        $scope.extended.label = 'Korisničke opcije';
-        $scope.settings.label = 'Korisničke opcije';
+        $scope.common = {label: 'Korisničke opcije'};
+        $scope.extended = {label: 'Korisničke opcije'};
+        $scope.settings = {label: 'Korisničke opcije'};
 
         /* {id: 0, route: '/', name: 'Naslovnica'}*/
 
@@ -28,16 +28,16 @@
         ];
 
         /*
-        function displayOptions() {
-            if ($scope.common.showOptions) {
-                // getCommonOptions
-            }
-            if ($scope.extended.showOptions) {
-                // getCommonOptions
-            }
-            if ($scope.settings.showOptions) {
-                // getCommonOptions
-            }
-        }*/
+         function displayOptions() {
+         if ($scope.common.showOptions) {
+         // getCommonOptions
+         }
+         if ($scope.extended.showOptions) {
+         // getCommonOptions
+         }
+         if ($scope.settings.showOptions) {
+         // getCommonOptions
+         }
+         }*/
     }
 })();
