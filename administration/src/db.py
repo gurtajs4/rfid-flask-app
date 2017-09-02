@@ -87,6 +87,7 @@ class SqliteManager:
                 FOREIGN KEY(user_id) REFERENCES User(id)
             );
 
+            INSERT INTO UserRole (name) VALUES ("admin");
             INSERT INTO UserRole (name) VALUES ("profesor");
             INSERT INTO UserRole (name) VALUES ("student");
             INSERT INTO ImageStore (name, location) VALUES ('/static/images/default.png', 'default');
