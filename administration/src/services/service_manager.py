@@ -9,7 +9,10 @@ from .db_seed import DbInitializer
 from .db_backup import backup_db, backup_file_names
 from .storage_manager import StorageManager
 from ..db import SqliteManager
-from ..embedded.mfrc_service import ServiceMFRC
+from .. import app
+
+if not app.debug:
+    from ..embedded.mfrc_service import ServiceMFRC
 from ..models.adapters import UserProfile, SessionView
 
 
@@ -188,12 +191,18 @@ class ServiceManager(object):
     # api for matching
     @staticmethod
     def init_reader():
-        reader = ServiceMFRC()
-        print('From server - service manager - reader activated')
-        data = reader.do_read()
-        print('From server - service manager - reader message is %s' % data['message'])
-        print('From server - service manager - tag data is %s' % data['data'])
-        return data
+        if not app.debug:
+            reader = ServiceMFRC()
+            print('From server - service manager - reader activated')
+            data = reader.do_read()
+            print('From server - service manager - reader message is %s' % data['message'])
+            print('From server - service manager - tag data is %s' % data['data'])
+            return data
+        else:
+            return {
+                'message': 'No tag data detected...',
+                'data': '00000000'
+            }
 
     @staticmethod
     def upload_image(image):
