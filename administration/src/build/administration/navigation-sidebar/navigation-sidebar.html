@@ -1,0 +1,45 @@
+<!-- Sidebar -->
+<div id="sidebar-wrapper" ng-show="showSide" ng-class="{'side-condensed': !showSide}">
+    <ul class="sidebar-nav" ng-click="displayOptions()">
+        <li>
+            <i ng-if="!showSide" class="glyphicon glyphicon-user"></i>
+            <p ng-click="common.showOptions=!common.showOptions">
+                {{ common.label }}
+            </p>
+            <ul ng-show="common.showOptions">
+                <li ng-repeat="common in commonRoutes">
+                    <a ng-href="[[ common.route ]]">
+                        [[ common.name ]]
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <i ng-if="!showSide" class="glyphicon glyphicon-search"></i>
+            <p ng-click="extended.showOptions=!extended.showOptions">
+                {{ extended.label }}
+            </p>
+            <ul ng-show="extended.showOptions">
+                <li ng-repeat="extended in extendedRoutes">
+                    <a ng-href="[[ extended.route ]]">
+                        [[ extended.name ]]
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <i ng-if="!showSide" class="glyphicon glyphicon-cloud-upload"></i>
+            <p ng-click="settings.showOptions=!settings.showOptions">
+                {{ settings.label }}
+            </p>
+            <ul ng-show="settings.showOptions">
+                <li ng-repeat="settings in settingsRoutes">
+                    <a ng-href="[[ settings.route ]]">
+                        [[ settings.name ]]
+                    </a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+<!-- /#sidebar-wrapper -->
