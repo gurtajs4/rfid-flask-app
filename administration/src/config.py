@@ -8,7 +8,10 @@ UPLOAD_URI = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static/im
 TEST_DATABASE_URI = os.path.join(DATA_DIR_PATH, 'test-db.sqlite')
 DEV_DATABASE_URI = os.path.join(DATA_DIR_PATH, 'dev-db.sqlite')
 PROD_DATABASE_URI = os.path.join(DATA_DIR_PATH, 'rfid-db.sqlite')
-DATABASE_URI = PROD_DATABASE_URI if not os.environ['FLASK_DEBUG'] else DEV_DATABASE_URI
+DATABASE_URI = PROD_DATABASE_URI
+if os.environ.has_key('FLASK_DEBUG'):
+    if os.environ['FLASK_DEBUG'] == 1:
+        DATABASE_URI = DEV_DATABASE_URI
 
 DATA_EXCEL_PATH = os.path.join(DATA_DIR_PATH, 'seed_data')
 
