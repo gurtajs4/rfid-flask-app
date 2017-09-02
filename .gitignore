@@ -5,5 +5,9 @@ node_modules/
 .node_modules/
 data/rfid-db.sqlite
 .data/rfid-db.sqlite
+data/test-db.sqlite
+.data/test-db.sqlite
+data/dev-db.sqlite
+.data/dev-db.sqlite
 venv/
 .venv/
