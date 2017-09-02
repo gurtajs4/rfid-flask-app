@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
     <navigation-sidebar></navigation-sidebar>
     <button ng-init="displayResults=false" ng-click="displayResults=!displayResults" class="btn btn-primary">
         Pregled svih sesija korisnika
@@ -22,14 +22,6 @@
             </div>
             <hr/>
             <div ng-repeat="session in result | orderBy:orderProp track by $index" session-info="session"></div>
-            <!--<div ng-repeat="session in result | orderBy:orderProp track by $index">-->
-                <!--<span>ID sesije: <a ng-href="sessions/{{ session.id }}">{{ session.id }}</a> |</span>-->
-                <!--<span>ID korisnika: {{ session.user_id }} |</span>-->
-                <!--<span>ID ključa: {{ session.key_id }} |</span>-->
-                <!--<span>Ključ preuzet: {{ session.started_on }}</span>-->
-                <!--<span>Ključ vraćen: {{ session.closed_on ? session.closed_on : " još aktivan " }}</span>-->
-                <!--<br/><br/>-->
-            <!--</div>-->
         </div>
     </div>
     <div class="btn btn-default">
