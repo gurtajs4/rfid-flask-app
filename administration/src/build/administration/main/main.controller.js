@@ -8,10 +8,12 @@
     MainController.$inject = ['$scope', 'authService'];
     function MainController($scope, authService) {
 
-        $scope.isAuthenticated = isUserAuthenticated;
+        $scope.isUserAuthenticated = false;
 
-        function isUserAuthenticated() {
-            return authService.isAuthenticated();
+        init();
+
+        function init() {
+            $scope.isUserAuthenticated = authService.isAuthenticated();
         }
     }
 })();
