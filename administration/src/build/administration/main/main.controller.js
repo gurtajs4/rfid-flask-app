@@ -14,6 +14,7 @@
 
         function init() {
             $scope.isUserAuthenticated = authService.isAuthenticated();
+            console.log($scope.isUserAuthenticated);
         }
     }
 })();
