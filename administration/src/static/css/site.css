@@ -24,6 +24,16 @@ body {
     color: yellowgreen;
 }
 
+.navbar-fixed-top .navbar-collapse {
+    max-height: 90%;
+}
+
+.navbar-toggle .collapsed,
+.navbar-toggle .collapsed:hover,
+.navbar-toggle .collapsed:focus {
+    background-color: transparent;
+}
+
 .panel-default, .panel-primary {
     border-color: #33383C;
     color: #33383C;
