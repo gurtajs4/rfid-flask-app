@@ -28,9 +28,9 @@ body {
     max-height: 90%;
 }
 
-.navbar-toggle .collapsed,
-.navbar-toggle .collapsed:hover,
-.navbar-toggle .collapsed:focus {
+.navbar-toggle,
+.navbar-toggle:hover,
+.navbar-toggle:focus {
     background-color: transparent;
 }
 
