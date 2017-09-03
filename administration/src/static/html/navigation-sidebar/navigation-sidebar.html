@@ -1,5 +1,5 @@
 <!-- Sidebar -->
-<div id="sidebar-wrapper" ng-show="showSide" ng-class="{'side-condensed': !showSide}">
+<div id="sidebar-wrapper" ng-init="showSide=true" ng-show="showSide" ng-class="{'side-condensed': !showSide}">
     <ul class="sidebar-nav" ng-click="displayOptions()">
         <li ng-init="common.showOptions=false">
             <i ng-if="!showSide" class="glyphicon glyphicon-user"></i>
