@@ -7,9 +7,9 @@
 
     SidebarController.$inject = ['$scope', '$log'];
     function SidebarController($scope, $log) {
-        $scope.common = {label: 'Korisničke opcije'};
-        $scope.extended = {label: 'Korisničke opcije'};
-        $scope.settings = {label: 'Korisničke opcije'};
+        $scope.common = {label: 'Opcije brze pretrage'};
+        $scope.extended = {label: 'Pregled svih podataka'};
+        $scope.settings = {label: 'Opcije za pohranu'};
 
         /* {id: 0, route: '/', name: 'Naslovnica'}*/
 

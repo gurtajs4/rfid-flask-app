@@ -26,6 +26,7 @@
 </head>
 <body ng-controller="MainController">
 <nav-bar></nav-bar>
+<navigation-sidebar ng-if="isUserAuthenticated()"></navigation-sidebar>
 <br/>
 <br/>
 <div ng-view></div>

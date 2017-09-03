@@ -5,7 +5,13 @@
         .module('administration')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$scope'];
-    function MainController($scope) {
+    MainController.$inject = ['$scope', 'authService'];
+    function MainController($scope, authService) {
+
+        $scope.isAuthenticated = isUserAuthenticated;
+
+        function isUserAuthenticated() {
+            return authService.isAuthenticated();
+        }
     }
 })();
