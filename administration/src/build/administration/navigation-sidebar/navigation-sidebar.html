@@ -1,41 +1,41 @@
 <!-- Sidebar -->
 <div id="sidebar-wrapper" ng-init="showSide=true" ng-show="showSide" ng-class="{'side-condensed': !showSide}">
     <ul class="sidebar-nav">
-        <li ng-init="common.showOptions=false">
-            <a ng-if="!showSide"><i class="glyphicon glyphicon-user"></i></a>
-            <a ng-click="common.showOptions=!common.showOptions">
-                {{ common.label }}
+        <li ng-init="basic.showOptions=false">
+            <a ng-hide="showSide"><i class="glyphicon glyphicon-user"></i></a>
+            <a ng-click="basic.showOptions=!basic.showOptions" href="">
+                {{ basic.label }}
             </a>
-            <ul ng-show="common.showOptions">
-                <li ng-repeat="common in commonRoutes">
-                    <a ng-href="[[ common.route ]]">
-                        [[ common.name ]]
+            <ul ng-show="basic.showOptions">
+                <li ng-repeat="basic in basicRoutes">
+                    <a ng-href="{{ basic.route }}" ng-click="showSide=!showSide">
+                        {{ basic.name }}
                     </a>
                 </li>
             </ul>
         </li>
         <li ng-init="extended.showOptions=false">
-            <a ng-if="!showSide"><i class="glyphicon glyphicon-search"></i></a>
-            <a ng-click="extended.showOptions=!extended.showOptions">
+            <a ng-hide="showSide"><i class="glyphicon glyphicon-search"></i></a>
+            <a ng-click="extended.showOptions=!extended.showOptions" href="">
                 {{ extended.label }}
             </a>
             <ul ng-show="extended.showOptions">
                 <li ng-repeat="extended in extendedRoutes">
-                    <a ng-href="[[ extended.route ]]">
-                        [[ extended.name ]]
+                    <a ng-href="{{ extended.route }}" ng-click="showSide=!showSide">
+                        {{ extended.name }}
                     </a>
                 </li>
             </ul>
         </li>
         <li ng-init="settings.showOptions=false">
-            <a ng-if="!showSide"><i class="glyphicon glyphicon-cloud-upload"></i></a>
-            <a ng-click="settings.showOptions=!settings.showOptions">
+            <a ng-hide="showSide"><i class="glyphicon glyphicon-cloud-upload"></i></a>
+            <a ng-click="settings.showOptions=!settings.showOptions" href="">
                 {{ settings.label }}
             </a>
             <ul ng-show="settings.showOptions">
                 <li ng-repeat="settings in settingsRoutes">
-                    <a ng-href="[[ settings.route ]]">
-                        [[ settings.name ]]
+                    <a ng-href="{{ settings.route }}" ng-click="showSide=!showSide">
+                        {{ settings.name }}
                     </a>
                 </li>
             </ul>
