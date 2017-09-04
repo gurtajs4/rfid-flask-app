@@ -309,6 +309,10 @@ input[type="file"] {
     max-width: 90%;
 }
 
-#sidebar-wrapper .side-condensed {
-    width: 90px;
+#sidebar-wrapper.side-condensed {
+    width: 38px;
+}
+
+ul.sidebar-nav.side-condensed {
+    left: -30px;
 }

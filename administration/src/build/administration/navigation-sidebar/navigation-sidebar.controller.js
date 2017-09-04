@@ -11,6 +11,8 @@
         $scope.extended = {label: 'Pregled svih podataka'};
         $scope.settings = {label: 'Opcije za pohranu'};
 
+        $scope.slideSidebar = slideSidebar;
+
         $scope.basicRoutes = [
             {id: 7, route: '/users/search', name: 'Pretraga korisnika'},
             {id: 2, route: '/keys/search', name: 'Pretraga ključeva'}
@@ -24,5 +26,9 @@
             {id: 4, route: '/keys/register', name: 'Registracija ključa'},
             {id: 3, route: '/keys/seed', name: 'Uvoz ključeva'}
         ];
+
+        function slideSidebar() {
+            $scope.showSide = !$scope.showSide;
+        }
     }
 })();
