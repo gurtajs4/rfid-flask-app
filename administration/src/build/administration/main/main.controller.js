@@ -5,14 +5,16 @@
         .module('administration')
         .controller('MainController', MainController);
 
-    MainController.$inject = ['$scope', 'authService'];
-    function MainController($scope, authService) {
+    MainController.$inject = ['$scope'];
+    function MainController($scope) {
 
         init();
 
         function init() {
-            $scope.isUserAuthenticated = authService.isAuthenticated();
-            console.log($scope.isUserAuthenticated);
+            console.log(document.cookie);
+            if (!$scope.isUserAuthenticated) {
+                $scope.isUserAuthenticated = (document.cookie.indexOf('token') > -1);
+            }
         }
     }
 })();
