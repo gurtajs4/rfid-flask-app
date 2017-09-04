@@ -11,7 +11,7 @@
         $scope.editProfile = editProfile;
 
         $scope.$on('$routeChangeSuccess', function (event, newUrl, oldUrl) {
-            if (authService.getCredentials() != undefined) {
+            if (document.cookie.indexOf('token') > -1 && authService.isAuthenticated()) {
                 var userCredentials = authService.getCredentials();
                 if (userCredentials) {
                     if (userCredentials.hasOwnProperty('username')) {
@@ -44,7 +44,8 @@
                 });
         }
 
-        function logout() {
+        function logout(event) {
+            event.preventDefault();
             authService.clearCredentials();
             setTimeout(function () {
                 $location.url('/home');
