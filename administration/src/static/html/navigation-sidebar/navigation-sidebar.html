@@ -2,10 +2,10 @@
 <div id="sidebar-wrapper" ng-init="showSide=true" ng-show="showSide" ng-class="{'side-condensed': !showSide}">
     <ul class="sidebar-nav">
         <li ng-init="common.showOptions=false">
-            <i ng-if="!showSide" class="glyphicon glyphicon-user"></i>
-            <p ng-click="common.showOptions=!common.showOptions">
+            <a ng-if="!showSide"><i class="glyphicon glyphicon-user"></i></a>
+            <a ng-click="common.showOptions=!common.showOptions">
                 {{ common.label }}
-            </p>
+            </a>
             <ul ng-show="common.showOptions">
                 <li ng-repeat="common in commonRoutes">
                     <a ng-href="[[ common.route ]]">
@@ -15,10 +15,10 @@
             </ul>
         </li>
         <li ng-init="extended.showOptions=false">
-            <i ng-if="!showSide" class="glyphicon glyphicon-search"></i>
-            <p ng-click="extended.showOptions=!extended.showOptions">
+            <a ng-if="!showSide"><i class="glyphicon glyphicon-search"></i></a>
+            <a ng-click="extended.showOptions=!extended.showOptions">
                 {{ extended.label }}
-            </p>
+            </a>
             <ul ng-show="extended.showOptions">
                 <li ng-repeat="extended in extendedRoutes">
                     <a ng-href="[[ extended.route ]]">
@@ -28,10 +28,10 @@
             </ul>
         </li>
         <li ng-init="settings.showOptions=false">
-            <i ng-if="!showSide" class="glyphicon glyphicon-cloud-upload"></i>
-            <p ng-click="settings.showOptions=!settings.showOptions">
+            <a ng-if="!showSide"><i class="glyphicon glyphicon-cloud-upload"></i></a>
+            <a ng-click="settings.showOptions=!settings.showOptions">
                 {{ settings.label }}
-            </p>
+            </a>
             <ul ng-show="settings.showOptions">
                 <li ng-repeat="settings in settingsRoutes">
                     <a ng-href="[[ settings.route ]]">
