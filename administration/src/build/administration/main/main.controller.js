@@ -8,8 +8,6 @@
     MainController.$inject = ['$scope', 'authService'];
     function MainController($scope, authService) {
 
-        $scope.isUserAuthenticated = false;
-
         init();
 
         function init() {
