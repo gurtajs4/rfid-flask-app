@@ -21,6 +21,8 @@
             templateUrl: appBaseUrl + '/home/home.html',
             controller: 'HomeController',
             controllerAs: 'home'
+        }).when('/not-found', {
+            templateUrl: appBaseUrl + '/not-found/not-found.html'
         }).when('/login', {
             templateUrl: appBaseUrl + '/login/login.html',
             controller: 'LoginController'
