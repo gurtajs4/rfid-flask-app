@@ -56,7 +56,7 @@ def api_user_login():
         if password_qs is None:
             raise Exception('User has not set the password yet!')
         user_auth = service_manager.check_password(password_qs, password)
-        if user_auth is None:
+        if user_auth is None or user_auth is False:
             raise Exception('Incorrect password!')
         token = service_manager.generate_token(user=user_qs, password=password_qs)
         if token is None:
