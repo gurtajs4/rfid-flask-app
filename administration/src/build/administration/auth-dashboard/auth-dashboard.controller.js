@@ -57,7 +57,7 @@
         function logout() {
             authService.clearCredentials();
             setTimeout(function () {
-                $scope.$apply();
+                $location.path('/home');
             }, 200);
         }
     }
