@@ -5,7 +5,8 @@ from . import (
     service_manager,
     jsonify,
     request,
-    Response
+    Response,
+    StorageManager
 )
 from .auth_views import (
     verify_token,
@@ -25,7 +26,6 @@ def api_data_template():
     if not verify_token(auth_data[1:]):
         return Response('Login required', status=404, mimetype='application/json')
     file = service_manager.get_excel_template()
-    # file = service_manager.ServiceManager.get_excel_template()
     return send_file(file, mimetype='text/csv', attachment_filename='data_template.xls', as_attachment=True)
 
 
@@ -40,7 +40,7 @@ def api_data_import():
     files = request.files
     if 'file' in files:
         file = files['file']
-    stm = service_manager.StorageManager()
+    stm = StorageManager()
     file_path = stm.store_file(file=file, type=0)
     check_location = service_manager.get_excel_template(filename=file.filename)
     results = service_manager.seed_from_excel(file_location=file_path)
