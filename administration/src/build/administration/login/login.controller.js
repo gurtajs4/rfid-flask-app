@@ -47,7 +47,7 @@
                     })
                     .catch(function (error) {
                         $log.error(error);
-                        $socpe.loginErrror.non_field_error = error.message;
+                        $scope.loginErrror.non_field_error = error.message;
                         /*
                          setTimeout(function () {
                          if (error.indexOf('email') > -1) {
