@@ -46,13 +46,7 @@
                     })
                     .catch(function (error) {
                         $log.error(error);
-                        $log.error(error.data.message);
-                        setTimeout(function () {
-                            $scope.apply(function () {
-                                $scope.loginErrror.non_field_error = error.data.message;
-                                $log.debug($scope.loginErrror.non_field_error);
-                            });
-                        }, 100);
+                        $scope.loginError.non_field_error = error.data.message;
                     });
             }
         }
