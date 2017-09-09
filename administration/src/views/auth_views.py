@@ -72,7 +72,12 @@ def api_user_login():
         return resp
     except Exception as e:
         print(e)
-        return Response(e, status=404, mimetype='application/json')
+        resp = jsonify({
+            'status': 404,
+            'message': e
+        })
+        resp.status_code = 404
+        return resp
 
 
         # </editor-fold>
