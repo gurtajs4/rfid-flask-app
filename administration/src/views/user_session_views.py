@@ -7,7 +7,7 @@ from . import (
     request,
     Response
 )
-from .core_views import (
+from .auth_views import (
     verify_token,
     get_request_auth
 )

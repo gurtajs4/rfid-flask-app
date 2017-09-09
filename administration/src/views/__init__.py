@@ -6,8 +6,10 @@ from flask import jsonify, request, Response, send_file
 
 service_manager = ServiceManager()
 
-import core_views
+import auth_views
+import storage_views
 import user_views
 import key_views
 import session_views
 import user_session_views
+import core_views
