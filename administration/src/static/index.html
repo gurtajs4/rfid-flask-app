@@ -26,9 +26,9 @@
 </head>
 <body ng-controller="MainController">
 <nav-bar></nav-bar>
-<navigation-sidebar></navigation-sidebar>
+<navigation-sidebar ng-hide="!isAuthenticated"></navigation-sidebar>
 <br/>
 <br/>
-<div style="margin-left: 38px" ng-view></div>
+<div ng-style="{'margin-left: 38px;': isAuthenticated}" ng-view></div>
 </body>
 </html>
