@@ -69,8 +69,8 @@ def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, emai
         cur.execute(sql_command, params)
         results = [cur.fetchone()] if limit == 1 else cur.fetchall()
         print('From server - user factory - search results %s' % results)
-        dbm.close_connection(db)
         if None is results or 0 == len(results) or None is results[0]:
+            dbm.close_connection(db)
             return None
         else:
             users = []
@@ -79,6 +79,7 @@ def search_user(user_id=None, tag_id=None, first_name=None, last_name=None, emai
             else:
                 res = results[0]
                 users.append(User(res[0], res[1], res[2], res[3], res[4], res[5], res[6]))
+            dbm.close_connection(db)
             return users[0] if limit == 1 else users
     else:
         return None
