@@ -21,6 +21,9 @@ class AuthManager():
         :param password:
         :return: bool
         """
+        print("Password is %s" % password)
+        print("Hashed password is %s" % password_hash)
+        print("Password check becomes %s" % check_password_hash(password_hash, password))
         return check_password_hash(password_hash, password)
 
     @staticmethod
