@@ -54,12 +54,8 @@
                 });
         }
 
-        function logout(event) {
-            event.preventDefault();
+        function logout() {
             authService.clearCredentials();
-            setTimeout(function () {
-                $location.url('/home');
-            }, 500);
         }
     }
 })();
