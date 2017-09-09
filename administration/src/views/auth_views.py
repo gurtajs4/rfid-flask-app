@@ -71,10 +71,10 @@ def api_user_login():
         resp.status_code = 200
         return resp
     except Exception as e:
-        print(e)
+        print(e.message)
         resp = jsonify({
             'status': 404,
-            'message': e
+            'message': e.message
         })
         resp.status_code = 404
         return resp
