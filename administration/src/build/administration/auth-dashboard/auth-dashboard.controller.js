@@ -11,6 +11,12 @@
         $scope.editProfile = editProfile;
 
         $scope.$on('$routeChangeSuccess', function (event, newUrl, oldUrl) {
+            init();
+        });
+
+        init();
+
+        function init() {
             if (document.cookie.indexOf('token') > -1 && authService.isAuthenticated()) {
                 var userCredentials = authService.getCredentials();
                 if (userCredentials) {
@@ -22,10 +28,12 @@
                     }
                 }
             }
-        });
+        }
 
         function setUsername(username) {
-            $scope.username = username;
+            $scope.$apply(function () {
+                $scope.username = username;
+            });
         }
 
         function editProfile() {
