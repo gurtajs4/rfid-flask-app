@@ -17,17 +17,14 @@
             if (!$scope.email) {
                 $scope.loginError.email = 'Ovo polje je obavezno!';
                 _isValid = false;
-
             }
             if (!$scope.password) {
                 $scope.loginError.password = 'Ovo polje je obavezno!';
                 _isValid = false;
-
             }
-            if ($scope.password.length < 9) {
+            if ($scope.password && $scope.password.length < 9) {
                 $scope.loginError.password = 'Lozinka je sigurna kao ima više od 8 znakova!';
                 _isValid = false;
-
             }
             return _isValid;
         }
@@ -48,19 +45,6 @@
                     .catch(function (error) {
                         $log.error(error);
                         $scope.loginErrror.non_field_error = error.message;
-                        /*
-                         setTimeout(function () {
-                         if (error.indexOf('email') > -1) {
-                         $scope.apply(function () {
-                         $scope.loginError.email = error.message;
-                         });
-                         }
-                         else if (error.indexOf('password') > -1) {
-                         $scope.apply(function () {
-                         $scope.loginError.password = error.message;
-                         });
-                         }
-                         }, 200);*/
                     });
             }
         }
