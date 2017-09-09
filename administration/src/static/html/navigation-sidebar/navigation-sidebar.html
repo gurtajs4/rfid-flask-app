@@ -1,6 +1,6 @@
 <!-- Sidebar -->
-<div id="sidebar-wrapper" ng-init="showSide=false" ng-class="{'side-condensed': (!showSide && !isAuthenticated)}">
-    <ul class="sidebar-nav" ng-class="{'side-condensed': (!showSide && !isAuthenticated)}"
+<div id="sidebar-wrapper" ng-init="showSide=false" ng-class="{'side-condensed': (!showSide && isAuthenticated)}">
+    <ul class="sidebar-nav" ng-class="{'side-condensed': (!showSide && isAuthenticated)}"
         ng-mouseleave="slideSidebar()">
         <li ng-init="basic.showOptions=false">
             <a ng-hide="showSide" ng-mouseenter="slideSidebar()"><i class="glyphicon glyphicon-user"></i></a>
