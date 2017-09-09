@@ -35,4 +35,4 @@ def api_root():
 
 @app.errorhandler(404)
 def page_not_found(e):
-    return app.send_static_file('not_found.html')
+    return app.send_static_file('errors.html')
