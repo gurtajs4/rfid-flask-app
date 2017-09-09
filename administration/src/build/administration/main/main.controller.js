@@ -7,5 +7,10 @@
 
     MainController.$inject = ['$scope'];
     function MainController($scope) {
+        init();
+
+        function init() {
+            $scope.isAuthenticated = false;
+        }
     }
 })();
