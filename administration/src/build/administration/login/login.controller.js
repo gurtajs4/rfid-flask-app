@@ -45,9 +45,14 @@
                         }
                     })
                     .catch(function (error) {
+                        $log.error(error);
                         $log.error(error.message);
-                        $scope.loginErrror.non_field_error = error.message;
-                        $log.error($scope.loginErrror.non_field_error);
+                        setTimeout(function () {
+                            $scope.apply(function () {
+                                $scope.loginErrror.non_field_error = error.message;
+                                $log.error($scope.loginErrror.non_field_error);
+                            });
+                        }, 100);
                     });
             }
         }
