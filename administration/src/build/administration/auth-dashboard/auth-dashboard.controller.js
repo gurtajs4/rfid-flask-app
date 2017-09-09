@@ -31,9 +31,11 @@
         }
 
         function setUsername(username) {
-            $scope.$apply(function () {
-                $scope.username = username;
-            });
+            setTimeout(function () {
+                $scope.$apply(function () {
+                    $scope.username = username;
+                });
+            }, 500);
         }
 
         function editProfile() {
