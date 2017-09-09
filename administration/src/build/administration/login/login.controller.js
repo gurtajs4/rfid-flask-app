@@ -47,12 +47,18 @@
                     })
                     .catch(function (error) {
                         $log.error(error);
-                        if (error.indexOf('email') > -1) {
-                            $scope.loginError.email = error.message;
-                        }
-                        else if (error.indexOf('password') > -1) {
-                            $scope.loginError.password = error.message;
-                        }
+                        setTimeout(function () {
+                            if (error.indexOf('email') > -1) {
+                                $scope.apply(function () {
+                                    $scope.loginError.email = error.message;
+                                });
+                            }
+                            else if (error.indexOf('password') > -1) {
+                                $scope.apply(function () {
+                                    $scope.loginError.password = error.message;
+                                });
+                            }
+                        }, 200);
                     });
             }
         }
