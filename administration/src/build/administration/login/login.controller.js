@@ -14,6 +14,8 @@
 
         function isValid() {
             var _isValid = true;
+            $scope.loginError = {};
+
             if (!$scope.email) {
                 $scope.loginError.email = 'Ovo polje je obavezno!';
                 _isValid = false;

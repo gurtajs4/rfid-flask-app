@@ -74,7 +74,7 @@ def api_user_login():
         print(e)
         resp = jsonify({
             'status': 404,
-            'message': e
+            'message': e.message
         })
         resp.status_code = 404
         return resp
