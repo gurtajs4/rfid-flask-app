@@ -56,6 +56,9 @@
 
         function logout() {
             authService.clearCredentials();
+            setTimeout(function () {
+                $scope.$apply();
+            }, 200);
         }
     }
 })();
