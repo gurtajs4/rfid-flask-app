@@ -56,9 +56,7 @@
 
         function logout() {
             authService.clearCredentials();
-            setTimeout(function () {
-                $location.path('/home');
-            }, 200);
+            $location.path('/home');
         }
     }
 })();
