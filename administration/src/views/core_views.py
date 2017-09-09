@@ -30,19 +30,9 @@ def api_door_lock_root():
 
 @app.route('/', methods=['GET'])
 @app.route('/home', methods=['GET'])
-@app.route('/login', methods=['GET'])
-@app.route('/users/register/', methods=['GET'])
-@app.route('/user/search/', methods=['GET'])
-@app.route('/user-details/', methods=['GET'])
-@app.route('/users/edit/', methods=['GET'])
-@app.route('/users', methods=['GET'])
-@app.route('/keys/register/', methods=['GET'])
-@app.route('/key/search/', methods=['GET'])
-@app.route('/key-details/', methods=['GET'])
-@app.route('/keys/edit/', methods=['GET'])
-@app.route('/keys', methods=['GET'])
-@app.route('/keys/seed', methods=['GET'])
-@app.route('/sessions', methods=['GET'])
-@app.route('/sessions/', methods=['GET'])
 def api_root():
+    return app.send_static_file('index.html')
+
+@app.errorhandler(404)
+def page_not_found(e):
     return app.send_static_file('index.html')
