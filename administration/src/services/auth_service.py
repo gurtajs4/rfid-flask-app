@@ -24,6 +24,8 @@ class AuthManager():
         print("Password is %s" % password)
         print("Hashed password is %s" % password_hash)
         print("Password check becomes %s" % check_password_hash(password_hash, password))
+        print("Hashing the form password is %s" % AuthManager.secure_password(password))
+        print("Password check becomes %s" % check_password_hash(password_hash, AuthManager.secure_password(password)))
         return check_password_hash(password_hash, password)
 
     @staticmethod
