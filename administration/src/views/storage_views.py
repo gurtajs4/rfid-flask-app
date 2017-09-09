@@ -24,7 +24,8 @@ def api_data_template():
         return jsonify(auth_data[1:])
     if not verify_token(auth_data[1:]):
         return Response('Login required', status=404, mimetype='application/json')
-    file = service_manager.ServiceManager.get_excel_template()
+    file = service_manager.get_excel_template()
+    # file = service_manager.ServiceManager.get_excel_template()
     return send_file(file, mimetype='text/csv', attachment_filename='data_template.xls', as_attachment=True)
 
 
